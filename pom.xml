@@ -12,19 +12,11 @@
         <scala.minor.version>2.11</scala.minor.version>
         <amazonaws.version>1.11.99</amazonaws.version>
     </properties>
+
     <groupId>org.ditw</groupId>
     <artifactId>texutil-root</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-	<!--
-    <distributionManagement>
-        <repository>
-            <id>nexus</id>
-            <name>Monocl repo</name>
-            <url>http://nexus.monocl/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
-	-->
     <build>
         <pluginManagement>
             <plugins>
