@@ -8,8 +8,8 @@ object TknrResults extends Serializable {
   private val EmptyTokens = IndexedSeq[Token]()
 
   private[tknr] class LineResult(
-    origTokenStrs: IndexedSeq[String],
-    origLine: String
+    val origTokenStrs: IndexedSeq[String],
+    val origLine: String
   ) {
     private var _tokens: IndexedSeq[Token] = EmptyTokens
     private[tknr] def _setTokens(tokens: IndexedSeq[Token]): Unit = {

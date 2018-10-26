@@ -1,6 +1,7 @@
 package org.ditw.tknr
 
 import org.ditw.tknr.TknrResults._
+import org.ditw.tknr.Trimmers.TTrimmer
 
 import scala.util.matching.Regex
 
@@ -44,39 +45,51 @@ object Tokenizers extends Serializable {
   case class TokenizerSettings(
     _lineSplitter: String,
     _tokenSplitter: String,
-    _token: String,
-    tokenSplitterCond: List[TokenSplitterCond]
+    tokenSplitterCond: List[TokenSplitterCond],
+    _tokenTrimmer: TTrimmer
   ) {
     private[Tokenizers] val lineSplitter: Regex = _lineSplitter.r
     private[Tokenizers] val tokenSplitter: TTokenSplitter =
       RegexTokenSplitter(_tokenSplitter)
   }
 
-//  private[Tokenizers] class Tokenizer(private val _settings: TokenizerSettings)
-//      extends TTokenizer {
-//    override def run(input: String): TknrResult = {
-//      val lineResults = _settings.lineSplitter.split(input).map { line =>
-//        val tokens = _settings.tokenSplitter.split(line).flatMap { t =>
-//          var processed = false;
-//          val it = _settings.tokenSplitterCond.iterator
-//          var res = EmptyTokenStrs
-//          while (!processed && it.hasNext) {
-//            val condSplitter = it.next()
-//            if (condSplitter.canSplit(t)) {
-//              res = condSplitter.split(t)
-//              processed = true
-//            }
-//          }
-//          if (processed)
-//            res
-//          else
-//            IndexedSeq(t)
-//        }
-//        val lineResult = new LineResult(tokens, line)
-//        val resTokens = tokens.map(t => Token(lineResult, ))
-//      }
-//    }
-//  }
-//
-//  def load(settings: TokenizerSettings): TTokenizer = {}
+  private[Tokenizers] class Tokenizer(private val _settings: TokenizerSettings)
+      extends TTokenizer {
+    override def run(input: String): TknrResult = {
+      val lineResults = _settings.lineSplitter.split(input).map { line =>
+        val tokens = _settings.tokenSplitter.split(line).flatMap { t =>
+          var processed = false;
+          val it = _settings.tokenSplitterCond.iterator
+          var res = EmptyTokenStrs
+          while (!processed && it.hasNext) {
+            val condSplitter = it.next()
+            if (condSplitter.canSplit(t)) {
+              res = condSplitter.split(t)
+              processed = true
+            }
+          }
+          if (processed)
+            res
+          else
+            IndexedSeq(t)
+        }
+        val lineResult = new LineResult(tokens, line)
+        val resTokens = tokens.indices.map { idx =>
+          val trimRes = _settings._tokenTrimmer.run(tokens(idx))
+          Token(
+            lineResult,
+            idx,
+            trimRes.result,
+            trimRes.leftTrimmed,
+            trimRes.rightTrimmed)
+        }
+        lineResult._setTokens(resTokens)
+        lineResult
+      }
+
+      TknrResult(lineResults)
+    }
+  }
+
+  def load(settings: TokenizerSettings): TTokenizer = new Tokenizer(settings)
 }
