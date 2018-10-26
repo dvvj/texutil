@@ -91,6 +91,13 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>org.testng</groupId>
+                <artifactId>testng</artifactId>
+                <version>6.14.2</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.scalatest</groupId>
                 <artifactId>scalatest_${scala.minor.version}</artifactId>
                 <version>3.0.0</version>

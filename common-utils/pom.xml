@@ -14,7 +14,14 @@
           <groupId>commons-io</groupId>
           <artifactId>commons-io</artifactId>
       </dependency>
-
+      <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.scala-lang</groupId>
+          <artifactId>scala-library</artifactId>
+      </dependency>
       <dependency>
           <groupId>org.scalatest</groupId>
           <artifactId>scalatest_${scala.minor.version}</artifactId>
