@@ -20,6 +20,10 @@ class SeqOfTokens(
 
   override def newBuilder: mutable.Builder[Token, SeqOfTokens] =
     _newBuilder
+
+  override def toString(): String = {
+    s"[$orig] size=$length"
+  }
 }
 
 object SeqOfTokens {

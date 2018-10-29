@@ -87,7 +87,7 @@ object Tokenizers extends Serializable {
         lineOfTokens
       }
 
-      TknrResult(linesOfTokens)
+      TknrResult(input, linesOfTokens)
     }
   }
 

@@ -1,10 +1,12 @@
 package org.ditw.tknr
+import org.ditw.tknr.TknrResults.TknrResult
 
 object TestHelpers {
 
   private val EmptyStr = ""
   private [tknr] def noPfxSfx(content:String) = IndexedSeq(content)
   private [tknr] def noPfx(content:String, sfx:String) = IndexedSeq(content, EmptyStr, sfx)
+  private [tknr] def commaSfx(content:String) = noPfx(content, ",")
   private [tknr] def noSfx(content:String, pfx:String) = IndexedSeq(content, pfx)
 
   private [tknr] def tokenFrom(
@@ -48,5 +50,12 @@ object TestHelpers {
     val tokens = tokensFrom(contents)
     val (orig, origTokenStrs) = origTokenStrsFrom(contents)
     new SeqOfTokens(orig, origTokenStrs, tokens)
+  }
+
+  private [tknr] def resultFrom(
+    orig:String,
+    sots:IndexedSeq[SeqOfTokens]
+  ): TknrResult = {
+    TknrResult(orig, sots)
   }
 }

@@ -16,6 +16,9 @@ object TknrResults extends Serializable {
 //  }
 //
   case class TknrResult(
-    lineResults: IndexedSeq[SeqOfTokens]
-  ) {}
+    orig:String,
+    linesOfTokens: IndexedSeq[SeqOfTokens]
+  ) {
+
+  }
 }

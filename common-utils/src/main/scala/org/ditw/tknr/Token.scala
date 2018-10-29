@@ -3,9 +3,9 @@ package org.ditw.tknr
 /**
   * Created by dev on 2018-10-26.
   */
-import TknrResults._
+
 class Token(
-  val idx: Int,
+  private var idx: Int,
   val content: String,
   val pfx: String,
   val sfx: String
@@ -14,6 +14,7 @@ class Token(
   private[tknr] def setLoT(lot: SeqOfTokens):Unit = {
     _sot = lot
   }
+
   override def toString: String = {
     val tr = s"$pfx||$content||$sfx"
     val orig = _sot.origTokenStrs(idx)
