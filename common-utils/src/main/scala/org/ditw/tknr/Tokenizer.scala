@@ -56,7 +56,7 @@ object Tokenizers extends Serializable {
   private[Tokenizers] class Tokenizer(private val _settings: TokenizerSettings)
       extends TTokenizer {
     override def run(input: String): TknrResult = {
-      val lineResults = _settings.lineSplitter.split(input).map { line =>
+      val linesOfTokens = _settings.lineSplitter.split(input).map { line =>
         val tokens = _settings.tokenSplitter.split(line).flatMap { t =>
           var processed = false;
           val it = _settings.tokenSplitterCond.iterator
@@ -73,21 +73,21 @@ object Tokenizers extends Serializable {
           else
             IndexedSeq(t)
         }
-        val lineResult = new LineResult(tokens, line)
         val resTokens = tokens.indices.map { idx =>
           val trimRes = _settings._tokenTrimmer.run(tokens(idx))
-          Token(
-            lineResult,
+          new Token(
+//            lineResult,
             idx,
             trimRes.result,
             trimRes.leftTrimmed,
             trimRes.rightTrimmed)
         }
-        lineResult._setTokens(resTokens)
-        lineResult
+        val lineOfTokens = new SeqOfTokens(line, tokens, resTokens)
+        //lineResult._setTokens(resTokens)
+        lineOfTokens
       }
 
-      TknrResult(lineResults)
+      TknrResult(linesOfTokens)
     }
   }
 
