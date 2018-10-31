@@ -1,5 +1,6 @@
 package org.ditw.tknr
 
+import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.tknr.Tokenizers.TokenizerSettings
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
@@ -19,7 +20,6 @@ class TknrResultsTests
     List(),
     trimByCommaColon
   )
-
 
   import TestHelpers._
   private val testStr1 = "Cardiovascular Research, Vrije University, Amsterdam"
@@ -66,6 +66,7 @@ class TknrResultsTests
       testStr1,
       resultFrom(
         testStr1,
+        dict,
         tokenContent1.map(loTFrom)
       )
     ),
@@ -74,6 +75,7 @@ class TknrResultsTests
       testStr2,
       resultFrom(
         testStr2,
+        dict,
         tokenContent2.map(loTFrom)
       )
     ),
@@ -82,6 +84,7 @@ class TknrResultsTests
       testStr3,
       resultFrom(
         testStr3,
+        dict,
         tokenContent3.map(loTFrom)
       )
     )
@@ -90,7 +93,7 @@ class TknrResultsTests
   "tokenizer tests" should "pass" in {
     forAll(testData) { (settings, input, expRes) =>
       val tokenizer = Tokenizers.load(settings)
-      val res = tokenizer.run(input)
+      val res = tokenizer.run(input, dict)
 
 //      val expLrs = expLineTokens.map()
 //      val expRes = TknrResult(expLineResults)

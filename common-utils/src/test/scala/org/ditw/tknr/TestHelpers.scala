@@ -1,4 +1,5 @@
 package org.ditw.tknr
+import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.tknr.TknrResults.TknrResult
 
 object TestHelpers {
@@ -54,9 +55,10 @@ object TestHelpers {
 
   private [tknr] def resultFrom(
     orig:String,
+    dict:Dict,
     sots:IndexedSeq[SeqOfTokens]
   ): TknrResult = {
-    TknrResult(orig, sots)
+    new TknrResult(orig, dict, sots)
   }
 
   private def tokenEqual(t1:Token, t2:Token):Boolean = {
@@ -76,4 +78,10 @@ object TestHelpers {
     tr1.linesOfTokens.size == tr2.linesOfTokens.size &&
     tr1.linesOfTokens.indices.forall(idx => sotEqualTest(tr1.linesOfTokens(idx), tr2.linesOfTokens(idx)))
   }
+
+
+  val dict:Dict = InputHelpers.loadDict(
+    "[\\s,]".r.pattern.split("Cardiovascular Research, Vrije University, Amsterdam")
+      .filter(!_.isEmpty)
+  )
 }

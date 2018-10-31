@@ -1,5 +1,6 @@
 package org.ditw.tknr
 
+import org.ditw.common.Dict
 import org.ditw.tknr.TknrResults._
 import org.ditw.tknr.Trimmers.TTrimmer
 
@@ -10,7 +11,7 @@ import scala.util.matching.Regex
   */
 object Tokenizers extends Serializable {
   trait TTokenizer extends Serializable {
-    def run(input: String): TknrResult
+    def run(input: String, dict:Dict): TknrResult
   }
 
   trait TTokenSplitter extends Serializable {
@@ -54,8 +55,8 @@ object Tokenizers extends Serializable {
   }
 
   private[Tokenizers] class Tokenizer(private val _settings: TokenizerSettings)
-      extends TTokenizer {
-    override def run(input: String): TknrResult = {
+    extends TTokenizer {
+    override def run(input: String, dict:Dict): TknrResult = {
       val linesOfTokens = _settings.lineSplitter.split(input).map { l =>
         val line = l.trim
         val tokens = _settings.tokenSplitter.split(line).flatMap { t =>
@@ -87,7 +88,7 @@ object Tokenizers extends Serializable {
         lineOfTokens
       }
 
-      TknrResult(input, linesOfTokens)
+      new TknrResult(input, dict, linesOfTokens)
     }
   }
 

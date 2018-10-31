@@ -1,4 +1,6 @@
 package org.ditw.tknr
+import org.ditw.common.Dict
+
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.{IndexedSeqLike, mutable}
 

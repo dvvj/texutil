@@ -10,7 +10,7 @@ class Token(
   val pfx: String,
   val sfx: String
 ) {
-  private var _sot: SeqOfTokens = null
+  private[tknr] var _sot: SeqOfTokens = null
   private[tknr] def setLoT(lot: SeqOfTokens):Unit = {
     _sot = lot
   }
