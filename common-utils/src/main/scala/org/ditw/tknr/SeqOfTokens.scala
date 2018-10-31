@@ -10,7 +10,7 @@ class SeqOfTokens(
 
   import SeqOfTokens._
 
-  private val _tokens = {
+  private[tknr] val _tokens:IndexedSeq[Token] = {
     tokens.foreach(_.setLoT(this))
     tokens.toIndexedSeq
   }

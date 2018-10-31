@@ -95,7 +95,8 @@ class TknrResultsTests
 //      val expLrs = expLineTokens.map()
 //      val expRes = TknrResult(expLineResults)
 //      res.lineResults.size shouldBe expRes.lineResults.size
-      res.linesOfTokens.size shouldBe expRes.linesOfTokens.size
+      //res.linesOfTokens.size shouldBe expRes.linesOfTokens.size
+      resEqual(res, expRes) shouldBe true
     }
   }
 }

@@ -5,7 +5,7 @@ package org.ditw.tknr
   */
 
 class Token(
-  private var idx: Int,
+  private[tknr] val idx: Int,
   val content: String,
   val pfx: String,
   val sfx: String
@@ -21,7 +21,7 @@ class Token(
     s"$tr($orig)"
   }
 
-  def reIndex(idx:Int):Token = new Token(
-    idx, content, pfx, sfx
+  def reIndex(newIdx:Int):Token = new Token(
+    newIdx, content, pfx, sfx
   )
 }

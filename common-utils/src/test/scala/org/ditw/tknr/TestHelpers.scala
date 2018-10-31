@@ -58,4 +58,22 @@ object TestHelpers {
   ): TknrResult = {
     TknrResult(orig, sots)
   }
+
+  private def tokenEqual(t1:Token, t2:Token):Boolean = {
+    t1.content == t2.content &&
+      t1.pfx == t2.pfx && t1.sfx == t2.sfx &&
+      t1.idx == t2.idx
+  }
+
+  private def sotEqualTest(sot1:SeqOfTokens, sot2:SeqOfTokens):Boolean = {
+    sot1.orig == sot2.orig &&
+      sot1.origTokenStrs == sot2.origTokenStrs &&
+      sot1._tokens.size == sot2._tokens.size &&
+      sot1._tokens.indices.forall(idx => tokenEqual(sot1._tokens(idx), sot2._tokens(idx)))
+  }
+
+  private [tknr] def resEqual(tr1:TknrResult, tr2:TknrResult):Boolean = {
+    tr1.linesOfTokens.size == tr2.linesOfTokens.size &&
+    tr1.linesOfTokens.indices.forall(idx => sotEqualTest(tr1.linesOfTokens(idx), tr2.linesOfTokens(idx)))
+  }
 }
