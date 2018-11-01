@@ -7,18 +7,18 @@ import scala.collection.{IndexedSeqLike, mutable}
 class SeqOfTokens(
   val orig:String,
   val origTokenStrs:IndexedSeq[String],
-  tokens: Seq[Token]
+  _tokens: Seq[Token]
 ) extends IndexedSeq[Token] with IndexedSeqLike[Token, SeqOfTokens] {
 
   import SeqOfTokens._
 
-  private[tknr] val _tokens:IndexedSeq[Token] = {
-    tokens.foreach(_.setLoT(this))
-    tokens.toIndexedSeq
+  private[ditw] val tokens:IndexedSeq[Token] = {
+    _tokens.foreach(_.setLoT(this))
+    _tokens.toIndexedSeq
   }
-  override def apply(idx:Int):Token = _tokens(idx)
+  override def apply(idx:Int):Token = tokens(idx)
 
-  override def length: Int = _tokens.length
+  override def length: Int = tokens.length
 
   override def newBuilder: mutable.Builder[Token, SeqOfTokens] =
     _newBuilder

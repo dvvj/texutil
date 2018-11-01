@@ -31,9 +31,7 @@ class TkRangeTests extends FlatSpec with Matchers with TableDrivenPropertyChecks
 
   "TkRange::origStr tests" should "pass" in {
     forAll(origStrTestData) { (inStr, coord, expOrigStr) =>
-      val input = new Input(
-        testTokenizer.run(inStr, dict)
-      )
+      val input = testTokenizer.run(inStr, dict)
       val range = new TkRange(input, coord._1, coord._2, coord._3)
       range.origStr shouldBe expOrigStr
     }
@@ -65,9 +63,7 @@ class TkRangeTests extends FlatSpec with Matchers with TableDrivenPropertyChecks
 
   "TkRange::str tests" should "pass" in {
     forAll(strTestData) { (inStr, coord, expStr) =>
-      val input = new Input(
-        testTokenizer.run(inStr, dict)
-      )
+      val input = testTokenizer.run(inStr, dict)
       val range = new TkRange(input, coord._1, coord._2, coord._3)
       range.str shouldBe expStr
     }

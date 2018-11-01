@@ -17,8 +17,38 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
   private val regexD3Plus = TokenMatchers.regex(
     "\\d{3,}"
   )
+  private val pfxNGram = prefixedBy(
+    ngram1,
+    Set("\"")
+  )
+  private val quotedNGram = suffixedBy(
+    pfxNGram,
+    Set("\"")
+  )
   private val testData = Table(
     ("ngram", "input", "expSet"),
+    (
+      quotedNGram,
+      "\"Cardiovascular Research\" department, X \"University",
+      Set(
+        (0, 0, 2)
+      )
+    ),
+    (
+      pfxNGram,
+      "\"Cardiovascular Research\" department, X University",
+      Set(
+        (0, 0, 2)
+      )
+    ),
+    (
+      pfxNGram,
+      "\"Cardiovascular Research\" department, X \"University",
+      Set(
+        (0, 0, 2),
+        (0, 4, 5)
+      )
+    ),
     (
       regexD3Plus,
       "12 123 1234",

@@ -6,18 +6,20 @@ object TokenMatchers extends Serializable {
 
   import collection.JavaConverters._
   import collection.mutable
-  import java.lang.{Integer => JavaInt}
+  import org.ditw.common.TypeCommon._
+
+  // ---------- N-Gram
   private[matcher] class TmNGram(
-    private val ngrams:List[Array[JavaInt]],
+    private val ngrams:List[Array[DictEntryKey]],
     val tag:Option[String]
   ) extends TTkMatcher {
-    private val _pfxTree:PrefixTree[JavaInt] = {
+    private val _pfxTree:PrefixTree[DictEntryKey] = {
       //val jl:JavaList[Array[Int]] = new JavaArrayList(ngrams.asJava)
       PrefixTree.createPrefixTree(ngrams.asJava)
     }
 
     def runAtLineFrom(matchPool: MatchPool, lineIdx:Int, start:Int):Set[TkMatch] = {
-      val encLine = matchPool.input.tknrResult.encoded(lineIdx)
+      val encLine = matchPool.input.encoded(lineIdx)
       val lens = _pfxTree.allPrefixes(encLine, start).asScala
       val matches = lens.map { len =>
         val range = TkRange(matchPool.input, lineIdx, start, start+len)
@@ -67,13 +69,14 @@ object TokenMatchers extends Serializable {
 
   private val EmptyMatches = Set[TkMatch]()
 
+  // ---------- Regex
   private [matcher] class TmRegex(
     private val _regex:String,
     val tag:Option[String]
   ) extends TTkMatcher {
     private val regex = _regex.r
     def runAtLineFrom(matchPool: MatchPool, lineIdx:Int, start:Int):Set[TkMatch] = {
-      val token = matchPool.input.tknrResult.linesOfTokens(lineIdx)(start)
+      val token = matchPool.input.linesOfTokens(lineIdx)(start)
       if (regex.pattern.matcher(token.content).matches()) {
         val range = TkRange(matchPool.input, lineIdx, start, start+1)
         Set(new TkMatch(range))
@@ -88,6 +91,60 @@ object TokenMatchers extends Serializable {
     tag:Option[String] = None
   ):TTkMatcher = {
     new TmRegex(_regex, tag)
+  }
+
+  // ---------- Prefixed-By
+  private [matcher] trait SuffixedOrPrefixedBy extends TTkMatcher {
+    protected val _tkMatcher: TTkMatcher
+    protected val _preSuffixSet:Set[String]
+    protected val _isPrefix:Boolean
+    override def runAtLineFrom(
+      matchPool: MatchPool,
+      lineIdx: Int,
+      start: Int): Set[TkMatch] = {
+      val matches = _tkMatcher.runAtLineFrom(matchPool, lineIdx, start)
+      val lot = matchPool.input.linesOfTokens(lineIdx)
+      matches.filter { m =>
+        if (_isPrefix) {
+          val pfx = lot.tokens(m.range.start).pfx
+          _preSuffixSet.contains(pfx)
+        }
+        else {
+          val sfx = lot.tokens(m.range.end-1).sfx
+          _preSuffixSet.contains(sfx)
+        }
+      }
+    }
+  }
+
+  private def _prefixSuffixedBy(
+                                 tkMatcher: TTkMatcher,
+                                 isPrefix: Boolean,
+                                 preSuffixSet:Set[String],
+                                 t:Option[String] = None
+                               ):TTkMatcher = {
+    new SuffixedOrPrefixedBy {
+      override protected val _isPrefix: Boolean = isPrefix
+      override protected val _preSuffixSet: Set[String] = preSuffixSet
+      override protected val _tkMatcher: TTkMatcher = tkMatcher
+      override val tag: Option[String] = t
+    }
+  }
+
+  def prefixedBy(
+                  tkMatcher: TTkMatcher,
+                  prefixSet:Set[String],
+                  t:Option[String] = None
+                ):TTkMatcher = {
+    _prefixSuffixedBy(tkMatcher, true, prefixSet, t)
+  }
+
+  def suffixedBy(
+                  tkMatcher: TTkMatcher,
+                  suffixSet:Set[String],
+                  t:Option[String] = None
+                ):TTkMatcher = {
+    _prefixSuffixedBy(tkMatcher, false, suffixSet, t)
   }
 
 }

@@ -7,7 +7,7 @@ trait TTkMatcher extends Serializable {
   : Set[TkMatch] = {
     val res = mutable.Set[TkMatch]()
 
-    matchPool.input.tknrResult.linesOfTokens.indices.foreach { lineIdx =>
+    matchPool.input.linesOfTokens.indices.foreach { lineIdx =>
       res ++= runAtLine(matchPool, lineIdx)
     }
 
@@ -15,7 +15,7 @@ trait TTkMatcher extends Serializable {
   }
 
   def runAtLine(matchPool: MatchPool, lineIdx:Int):Set[TkMatch] = {
-    val sot = matchPool.input.tknrResult.linesOfTokens(lineIdx)
+    val sot = matchPool.input.linesOfTokens(lineIdx)
     val res = mutable.Set[TkMatch]()
     sot.indices.foreach { idx =>
       res ++= runAtLineFrom(matchPool, lineIdx, idx)

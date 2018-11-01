@@ -23,7 +23,7 @@ object TknrResults extends Serializable {
     val linesOfTokens: IndexedSeq[SeqOfTokens]
   ) {
     val encoded:IndexedSeq[Array[DictEntryKey]] = {
-      linesOfTokens.map(_._tokens.map(t => dict.enc(t.content)).toArray)
+      linesOfTokens.map(_.tokens.map(t => dict.enc(t.content)).toArray)
     }
   }
 }

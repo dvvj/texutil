@@ -1,7 +1,8 @@
 package org.ditw.common
+import org.ditw.tknr.TknrResults.TknrResult
 
 case class TkRange(
-  input:Input,
+  input:TknrResult,
   lineIdx:Int,
   start:Int,
   end:Int
@@ -18,12 +19,12 @@ case class TkRange(
   }
 
   def origStr:String = {
-    val sot = input.tknrResult.linesOfTokens(lineIdx)
+    val sot = input.linesOfTokens(lineIdx)
     sot.origTokenStrs.slice(start, end).mkString(" ")
   }
 
   def str:String = {
-    val sot = input.tknrResult.linesOfTokens(lineIdx)
+    val sot = input.linesOfTokens(lineIdx)
     sot.slice(start, end).map(_.content).mkString(" ")
   }
 }

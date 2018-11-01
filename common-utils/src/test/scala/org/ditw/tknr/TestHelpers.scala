@@ -71,8 +71,8 @@ object TestHelpers {
   private def sotEqualTest(sot1:SeqOfTokens, sot2:SeqOfTokens):Boolean = {
     sot1.orig == sot2.orig &&
       sot1.origTokenStrs == sot2.origTokenStrs &&
-      sot1._tokens.size == sot2._tokens.size &&
-      sot1._tokens.indices.forall(idx => tokenEqual(sot1._tokens(idx), sot2._tokens(idx)))
+      sot1.tokens.size == sot2.tokens.size &&
+      sot1.tokens.indices.forall(idx => tokenEqual(sot1.tokens(idx), sot2.tokens(idx)))
   }
 
   private [tknr] def resEqual(tr1:TknrResult, tr2:TknrResult):Boolean = {
