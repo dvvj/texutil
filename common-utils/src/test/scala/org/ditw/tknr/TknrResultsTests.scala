@@ -12,14 +12,6 @@ class TknrResultsTests
     extends FlatSpec
     with Matchers
     with TableDrivenPropertyChecks {
-  private val trimByCommaColon = Trimmers.byChars(Set(',', ';'))
-
-  private val settings = TokenizerSettings(
-    "\\n+",
-    "[\\s]+",
-    List(),
-    trimByCommaColon
-  )
 
   import TestHelpers._
   private val testStr1 = "Cardiovascular Research, Vrije University, Amsterdam"
@@ -62,7 +54,7 @@ class TknrResultsTests
   private val testData = Table(
     ("settings", "input", "expRes"),
     (
-      settings,
+      testTokenizer,
       testStr1,
       resultFrom(
         testStr1,
@@ -71,7 +63,7 @@ class TknrResultsTests
       )
     ),
     (
-      settings,
+      testTokenizer,
       testStr2,
       resultFrom(
         testStr2,
@@ -80,7 +72,7 @@ class TknrResultsTests
       )
     ),
     (
-      settings,
+      testTokenizer,
       testStr3,
       resultFrom(
         testStr3,
@@ -91,8 +83,7 @@ class TknrResultsTests
   )
 
   "tokenizer tests" should "pass" in {
-    forAll(testData) { (settings, input, expRes) =>
-      val tokenizer = Tokenizers.load(settings)
+    forAll(testData) { (tokenizer, input, expRes) =>
       val res = tokenizer.run(input, dict)
 
 //      val expLrs = expLineTokens.map()

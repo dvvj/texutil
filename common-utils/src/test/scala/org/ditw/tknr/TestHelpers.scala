@@ -1,6 +1,7 @@
 package org.ditw.tknr
 import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.tknr.TknrResults.TknrResult
+import org.ditw.tknr.Tokenizers.TokenizerSettings
 
 object TestHelpers {
 
@@ -84,4 +85,15 @@ object TestHelpers {
     "[\\s,]".r.pattern.split("Cardiovascular Research, Vrije University, Amsterdam")
       .filter(!_.isEmpty)
   )
+
+  private val trimByCommaColon = Trimmers.byChars(Set(',', ';'))
+  private val settings = TokenizerSettings(
+    "\\n+",
+    "[\\s]+",
+    List(),
+    trimByCommaColon
+  )
+
+  val testTokenizer = Tokenizers.load(settings)
+
 }
