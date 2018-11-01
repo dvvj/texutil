@@ -80,7 +80,6 @@ class TknrResultsTests
     IndexedSeq(
       noSfx("Auburn", "*"),
       noPfxSfx("University"),
-      noPfxSfx("Department"),
       noSfx("Professor", "("),
       noPfx("Emeritus", "),"),
       noPfx("Auburn", ","),

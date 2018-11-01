@@ -8,33 +8,19 @@ object TokenMatchers extends Serializable {
   import collection.mutable
   import java.lang.{Integer => JavaInt}
   private[matcher] class TmNGram(
-    val tag:Option[String],
-    private val ngrams:List[Array[JavaInt]]
+    private val ngrams:List[Array[JavaInt]],
+    val tag:Option[String]
   ) extends TTkMatcher {
     private val _pfxTree:PrefixTree[JavaInt] = {
       //val jl:JavaList[Array[Int]] = new JavaArrayList(ngrams.asJava)
       PrefixTree.createPrefixTree(ngrams.asJava)
     }
 
-    override def run(matchPool: MatchPool)
-      : Set[TkMatch] = {
-      val res = mutable.Set[TkMatch]()
-
-      matchPool.input.tknrResult.linesOfTokens.indices.foreach { lineIdx =>
-        val sot = matchPool.input.tknrResult.linesOfTokens(lineIdx)
-        sot.indices.foreach { idx =>
-          res ++= runAt(matchPool, lineIdx, idx)
-        }
-      }
-
-      res.toSet
-    }
-
-    def runAt(matchPool: MatchPool, lineIdx:Int, start:Int):Set[TkMatch] = {
+    def runAtLineFrom(matchPool: MatchPool, lineIdx:Int, start:Int):Set[TkMatch] = {
       val encLine = matchPool.input.tknrResult.encoded(lineIdx)
       val lens = _pfxTree.allPrefixes(encLine, start).asScala
       val matches = lens.map { len =>
-        val range = new TkRange(matchPool.input, lineIdx, start, start+len)
+        val range = TkRange(matchPool.input, lineIdx, start, start+len)
         val m = new TkMatch(range)
         if (tag.nonEmpty) {
           m.addTag(tag.get)
@@ -52,9 +38,19 @@ object TokenMatchers extends Serializable {
     tag:Option[String] = None
   ):TTkMatcher = {
     val encNGrams = ngrams
-      .map(arr => arr.map(t => dict.enc(t.toLowerCase())))
+      .map { arr =>
+        arr.map { t =>
+          val lower = t.toLowerCase()
+          if (dict.contains(lower))
+            dict.enc(t.toLowerCase())
+          else
+            throw new IllegalArgumentException(
+              s"Token [$t] not found in Dictionary"
+            )
+        }
+      }
       .toList
-    new TmNGram(tag, encNGrams)
+    new TmNGram(encNGrams, tag)
   }
 
   private val SpaceSep = "\\h+".r
@@ -67,6 +63,31 @@ object TokenMatchers extends Serializable {
     tag:Option[String] = None
   ):TTkMatcher = {
     ngram(spaceSepNGrams.map(splitBySpace2NonEmpty), dict, tag)
+  }
+
+  private val EmptyMatches = Set[TkMatch]()
+
+  private [matcher] class TmRegex(
+    private val _regex:String,
+    val tag:Option[String]
+  ) extends TTkMatcher {
+    private val regex = _regex.r
+    def runAtLineFrom(matchPool: MatchPool, lineIdx:Int, start:Int):Set[TkMatch] = {
+      val token = matchPool.input.tknrResult.linesOfTokens(lineIdx)(start)
+      if (regex.pattern.matcher(token.content).matches()) {
+        val range = TkRange(matchPool.input, lineIdx, start, start+1)
+        Set(new TkMatch(range))
+      }
+      else
+        EmptyMatches
+    }
+  }
+
+  def regex(
+    _regex:String,
+    tag:Option[String] = None
+  ):TTkMatcher = {
+    new TmRegex(_regex, tag)
   }
 
 }
