@@ -22,7 +22,7 @@ object Trimmers {
   def allTrimmed(input: String): TrimResult =
     TrimResult(EmptyStr, input, EmptyStr)
   private[Trimmers] class TrimmerByChars(
-    private val chars2Trim: Set[Character]
+    private val chars2Trim: Set[Char]
   ) extends TTrimmer {
     override def run(input: String): TrimResult = {
       var idx1 = 0
@@ -50,7 +50,7 @@ object Trimmers {
     }
   }
 
-  def byChars(chars2Trim: Set[Character]): TTrimmer =
+  def byChars(chars2Trim: Set[Char]): TTrimmer =
     new TrimmerByChars(chars2Trim)
 
   private[Trimmers] class RegexTrimmer(

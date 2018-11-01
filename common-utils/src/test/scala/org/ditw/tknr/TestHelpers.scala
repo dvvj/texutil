@@ -86,12 +86,15 @@ object TestHelpers {
       .filter(!_.isEmpty)
   )
 
-  private val trimByCommaColon = Trimmers.byChars(Set(',', ';'))
+  //private val trimByCommaColon = Trimmers.byChars(Set(',', ';'))
+  private val trimByPuncts = Trimmers.byChars(
+    ",;:\"()*†".toSet
+  )
   private val settings = TokenizerSettings(
     "\\n+",
     "[\\s]+",
     List(),
-    trimByCommaColon
+    trimByPuncts
   )
 
   val testTokenizer = Tokenizers.load(settings)

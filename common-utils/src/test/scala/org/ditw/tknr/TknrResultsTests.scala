@@ -50,9 +50,73 @@ class TknrResultsTests
       noPfxSfx("Amsterdam")
     )
   )
+  private val testStr4 =
+    "\"Angelo Nocivelli\" Institute for Molecular Medicine"
+  private val tokenContent4 = IndexedSeq(
+    IndexedSeq(
+      noSfx("Angelo", "\""),
+      noPfx("Nocivelli", "\""),
+      noPfxSfx("Institute"),
+      noPfxSfx("for"),
+      noPfxSfx("Molecular"),
+      noPfxSfx("Medicine")
+    )
+  )
+
+  private val testStr5 =
+    "(Formerly) Department of Anthropology"
+  private val tokenContent5 = IndexedSeq(
+    IndexedSeq(
+      IndexedSeq("Formerly", "(", ")"),
+      noPfxSfx("Department"),
+      noPfxSfx("of"),
+      noPfxSfx("Anthropology")
+    )
+  )
+
+  private val testStr6 =
+    "*Auburn University (Professor Emeritus), Auburn, AL;"
+  private val tokenContent6 = IndexedSeq(
+    IndexedSeq(
+      noSfx("Auburn", "*"),
+      noPfxSfx("University"),
+      noPfxSfx("Department"),
+      noSfx("Professor", "("),
+      noPfx("Emeritus", "),"),
+      noPfx("Auburn", ","),
+      noPfx("AL", ";")
+    )
+  )
 
   private val testData = Table(
     ("settings", "input", "expRes"),
+    (
+      testTokenizer,
+      testStr6,
+      resultFrom(
+        testStr6,
+        dict,
+        tokenContent6.map(loTFrom)
+      )
+    ),
+    (
+      testTokenizer,
+      testStr5,
+      resultFrom(
+        testStr5,
+        dict,
+        tokenContent5.map(loTFrom)
+      )
+    ),
+    (
+      testTokenizer,
+      testStr4,
+      resultFrom(
+        testStr4,
+        dict,
+        tokenContent4.map(loTFrom)
+      )
+    ),
     (
       testTokenizer,
       testStr1,
