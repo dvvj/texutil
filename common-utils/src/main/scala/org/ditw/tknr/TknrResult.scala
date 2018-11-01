@@ -4,6 +4,7 @@ import org.ditw.common.Dict
 /**
   * Created by dev on 2018-10-26.
   */
+import org.ditw.common.TypeCommon._
 object TknrResults extends Serializable {
 
   private val EmptyTokens = IndexedSeq[Token]()
@@ -21,8 +22,8 @@ object TknrResults extends Serializable {
     val dict:Dict,
     val linesOfTokens: IndexedSeq[SeqOfTokens]
   ) {
-    val encoded:IndexedSeq[IndexedSeq[Int]] = {
-      linesOfTokens.map(_._tokens.map(t => dict.enc(t.content)))
+    val encoded:IndexedSeq[Array[DictEntryKey]] = {
+      linesOfTokens.map(_._tokens.map(t => dict.enc(t.content)).toArray)
     }
   }
 }
