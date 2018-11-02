@@ -27,6 +27,52 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
   private val segMatcherTestData = Table(
     ("inStr", "expRes"),
     (
+      "1, 3, 2 ,\n2 4, 1",
+      Set(
+        (0, 2, 3),
+        (1, 0, 2)
+      )
+    ),
+    (
+      "1, 3, 2,\n2 4, 1",
+      Set(
+        (0, 2, 3),
+        (1, 0, 2)
+      )
+    ),
+    (
+      "1, 3, 2\n2 4, 1",
+      Set(
+        (0, 2, 3),
+        (1, 0, 2)
+      )
+    ),
+    (
+      "1, 3, 4\n2 4, 1",
+      Set(
+        (1, 0, 2)
+      )
+    ),
+    (
+      "1, 3, 4\n2 4",
+      Set(
+        (1, 0, 2)
+      )
+    ),
+    (
+      "1, 3, 4\n1, 2 4",
+      Set(
+        (1, 1, 3)
+      )
+    ),
+    (
+      "1, 2 3, 4\n1, 2 4",
+      Set(
+        (0, 1, 3),
+        (1, 1, 3)
+      )
+    ),
+    (
       ", 2 3 , 4",
       Set(
         (0, 1, 3)
