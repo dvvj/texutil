@@ -10,28 +10,36 @@ class CompMatcherNsTest extends FlatSpec with Matchers with TableDrivenPropertyC
   import TokenMatchers._
   import org.ditw.tknr.TestHelpers._
 
-  private val tag23 = "tag23"
+  private val tag12_23 = "tag12_23"
+  private val matcher12_23 = seq(
+    IndexedSeq(
+      byTm(
+        ngram(
+          Set(Array("1"), Array("2")), dict)
+      ),
+      byTm(
+        ngram(
+          Set(Array("2"), Array("3")), dict)
+      )
+    ),
+    tag12_23
+  )
   private val seqTestData = Table(
     ( "cms", "inStr", "expResultMap" ),
     (
-      List(
-        seq(
-          IndexedSeq(
-            byTm(
-              ngram(
-                Set(Array("1"), Array("2")), dict)
-            ),
-            byTm(
-              ngram(
-                Set(Array("2"), Array("3")), dict)
-            )
-          ),
-          tag23
+      List(matcher12_23),
+      "2, 3 4\n2\" 1 3",
+      Map(
+        matcher12_23.tag.get -> Set(
+          (0, 0, 2), (1, 1, 3)
         )
-      ),
+      )
+    ),
+    (
+      List(matcher12_23),
       "1, 2, 3 4",
       Map(
-        tag23 -> Set(
+        matcher12_23.tag.get -> Set(
           (0, 0, 2), (0, 1, 3)
         )
       )
