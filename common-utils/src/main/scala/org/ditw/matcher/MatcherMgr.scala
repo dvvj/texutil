@@ -51,6 +51,7 @@ class MatcherMgr(
       val currMatches = headMatcher.run(matchPool)
       val hasUpdates = currMatches != matchCache.getOrElse(headMatcher, EmptyMatches)
       if (hasUpdates) {
+        matchPool.add(headMatcher.tag.get, currMatches)
         val affectedCmTags = cmDepMap.getOrElse(headMatcher.tag.get, EmptyDepCmTags)
         remMatchers ++= affectedCmTags.map(tag2CmMap)
         matchCache.put(headMatcher, currMatches)

@@ -1,11 +1,9 @@
 package org.ditw.matcher
 
-trait TCompMatcherN {
-  self: TCompMatcher =>
+trait TCompMatcherN extends TCompMatcher {
+  protected val subMatchers:Iterable[TCompMatcher]
 
-  protected val subMatchers:Set[TCompMatcher]
-
-  protected val refTags:Set[String] = subMatchers.flatMap(_.tag)
-  override def getRefTags(): Set[String] = refTags
+  protected val refTags:Set[String] = subMatchers.flatMap(_.tag).toSet
+  override def getRefTags: Set[String] = refTags
 
 }

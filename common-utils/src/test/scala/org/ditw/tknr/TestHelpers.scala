@@ -83,7 +83,8 @@ object TestHelpers {
 
   val dict:Dict = InputHelpers.loadDict(
     "[\\s,]".r.pattern.split("Cardiovascular Research, Vrije University, Amsterdam")
-      .filter(!_.isEmpty)
+      .filter(!_.isEmpty),
+    "0123456789".map(_.toString)
   )
 
   //private val trimByCommaColon = Trimmers.byChars(Set(',', ';'))

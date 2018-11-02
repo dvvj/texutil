@@ -64,5 +64,7 @@ object CompMatchers extends Serializable {
     }
   }
 
-
+  def byTm(tm:TTkMatcher):TCompMatcher = {
+    new CmByTm(tm, None)
+  }
 }
