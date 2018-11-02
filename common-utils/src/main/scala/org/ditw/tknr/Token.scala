@@ -10,6 +10,7 @@ class Token(
   val pfx: String,
   val sfx: String
 ) {
+  private[ditw] val str:String = s"$pfx$content$sfx"
   private[tknr] var _sot: SeqOfTokens = null
   private[tknr] def setLoT(lot: SeqOfTokens):Unit = {
     _sot = lot

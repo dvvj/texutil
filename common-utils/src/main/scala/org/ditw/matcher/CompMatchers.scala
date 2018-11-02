@@ -2,6 +2,19 @@ package org.ditw.matcher
 
 object CompMatchers extends Serializable {
 
+  private [ditw] trait TDefRunAtLineFrom extends TCompMatcher {
+    override def runAtLineFrom(
+      matchPool: MatchPool,
+      lineIdx: Int,
+      start: Int
+    ):Set[TkMatch] = {
+      val all = run(matchPool)
+      all.filter { m =>
+        m.range.lineIdx == lineIdx && m.range.start == start
+      }
+    }
+  }
+
   // -------------- by-tag
   private[matcher] class CmByTags(
     private val tagsToFind:Set[String],
@@ -11,7 +24,7 @@ object CompMatchers extends Serializable {
       matchPool: MatchPool,
       lineIdx: Int,
       start: Int): Set[TkMatch] = {
-      val candidates = tagsToFind.flatMap(matchPool.get)
+      val candidates = matchPool.get(tagsToFind)
       candidates.filter(m => m.range.lineIdx == lineIdx && m.range.start == start)
     }
 

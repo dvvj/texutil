@@ -1,5 +1,5 @@
 package org.ditw.tknr
-import org.ditw.common.Dict
+import org.ditw.common.{Dict, TkRange}
 
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.{IndexedSeqLike, mutable}
@@ -25,6 +25,46 @@ class SeqOfTokens(
 
   override def toString(): String = {
     s"[$orig] size=$length"
+  }
+
+  def rangeBy(
+    range: TkRange,
+    sfxs:Set[String]
+  ):TkRange = {
+    var start = range.start-1
+    var found = false
+    while (start >= 0 && !found) {
+      val token = tokens(start)
+      if (sfxs.contains(token.sfx) ||
+        (token.content.isEmpty && sfxs.contains(token.str))
+      ) {
+        found = true
+      }
+      else
+        start -= 1
+    }
+    start = if (found) start+1
+      else 0
+
+    var end = range.end-1
+    found = false
+    while (end < tokens.size && !found) {
+      val token = tokens(end)
+      if (sfxs.contains(token.sfx) ||
+        (token.content.isEmpty && sfxs.contains(token.str))
+      ) {
+        found = true
+      }
+      else
+        end += 1
+    }
+    end = if (found) {
+        // if the (end) token is ',' self, use end instead
+        if (tokens(end).content.isEmpty) end
+        else end+1
+      }
+      else tokens.size
+    TkRange(range.input, range.lineIdx, start, end)
   }
 }
 

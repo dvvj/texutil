@@ -2,6 +2,7 @@ package org.ditw.matcher
 import scala.collection.mutable.ListBuffer
 
 object CompMatcherNs {
+  import CompMatchers._
   // ------------ OR
   private[matcher] class CmOr(
     protected val subMatchers:Set[TCompMatcher],
@@ -52,7 +53,7 @@ object CompMatcherNs {
   }
 
   // ------------ Seq
-  trait TCompMatcherSeq extends TCompMatcherN {
+  trait TCompMatcherSeq extends TCompMatcherN with TDefRunAtLineFrom {
     protected val subMatchers:IndexedSeq[TCompMatcher]
 
     private def matchCandidates(
@@ -75,16 +76,6 @@ object CompMatcherNs {
       val subMatchesSeq:IndexedSeq[Set[TkMatch]] = subMatchers.map(_.run(matchPool))
       val candidates = matchCandidates(matchPool, subMatchesSeq)
       filterCandidates(candidates)
-    }
-
-    override def runAtLineFrom(
-      matchPool: MatchPool,
-      lineIdx: Int,
-      start: Int): Set[TkMatch] = {
-      val all = run(matchPool)
-      all.filter { m =>
-        m.range.lineIdx == lineIdx && m.range.start == start
-      }
     }
   }
 

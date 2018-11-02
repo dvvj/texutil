@@ -50,8 +50,8 @@ object Trimmers {
     }
   }
 
-  def byChars(chars2Trim: Set[Char]): TTrimmer =
-    new TrimmerByChars(chars2Trim)
+  def byChars(chars2Trim: Iterable[Char]): TTrimmer =
+    new TrimmerByChars(chars2Trim.toSet)
 
   private[Trimmers] class RegexTrimmer(
     private val condRegex: Regex,

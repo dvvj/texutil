@@ -1,7 +1,6 @@
 package org.ditw.tknr
 
 import org.ditw.common.Dict
-import org.ditw.tknr.TknrResults._
 import org.ditw.tknr.Trimmers.TTrimmer
 
 import scala.util.matching.Regex

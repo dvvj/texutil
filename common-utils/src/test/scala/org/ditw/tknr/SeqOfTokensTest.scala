@@ -5,6 +5,7 @@ import org.scalatest.{FlatSpec, Matchers}
 class SeqOfTokensTest extends FlatSpec with Matchers with TableDrivenPropertyChecks {
 
   import TestHelpers._
+  import TknrHelpers._
 
   private val testTokens1 = IndexedSeq(
     noPfxSfx("Cardiovascular"),

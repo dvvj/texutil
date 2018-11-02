@@ -117,10 +117,17 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.ditw</groupId>
+                <artifactId>common-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <modules>
         <module>common-utils</module>
+        <module>text-seg</module>
     </modules>
 </project>

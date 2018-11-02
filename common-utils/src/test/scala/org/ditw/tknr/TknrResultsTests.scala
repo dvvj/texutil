@@ -14,6 +14,8 @@ class TknrResultsTests
     with TableDrivenPropertyChecks {
 
   import TestHelpers._
+  import TknrHelpers._
+
   private val testStr1 = "Cardiovascular Research, Vrije University, Amsterdam"
   private val tokenContent1 = IndexedSeq(
     IndexedSeq(

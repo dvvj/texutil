@@ -17,7 +17,11 @@ class TkMatch(
 
   override def equals(obj: Any): Boolean = obj match {
     case m2:TkMatch => {
-      range == m2.range && tags == m2.tags
+      range == m2.range && tags == m2.tags &&
+        m2.children.size == children.size &&
+        children.indices.forall(
+          idx => m2.children(idx).range == children(idx).range
+        ) // todo: check, not recursive now
     }
     case _ => false
   }

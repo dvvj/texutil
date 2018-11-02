@@ -1,5 +1,5 @@
 package org.ditw.common
-import org.ditw.tknr.TknrResults.TknrResult
+import org.ditw.tknr.TknrResult
 
 case class TkRange(
   input:TknrResult,
