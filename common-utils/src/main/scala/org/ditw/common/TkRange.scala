@@ -27,4 +27,12 @@ case class TkRange(
     val sot = input.linesOfTokens(lineIdx)
     sot.slice(start, end).map(_.content).mkString(" ")
   }
+
+  def overlap(r2:TkRange):Boolean = {
+    if (lineIdx == r2.lineIdx) {
+      (start >= r2.start && start <= r2.end) ||
+        (end >= r2.start && end <= r2.end)
+    }
+    else false
+  }
 }
