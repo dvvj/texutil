@@ -13,7 +13,11 @@ object Cat1SegMatchers {
     _Dict,
     TagTmCorp
   )
-  private val segCorp = segByPfxSfx(Set(TagTmCorp), _SegSfxs, TagSegCorp)
+  private val segCorp = segByPfxSfx(
+    Set(TagTmCorp), _SegSfxs,
+    false,
+    TagSegCorp
+  )
 
   def catTms():List[TTkMatcher] = List(tmCorp)
   def catCms():List[TCompMatcher] = List(segCorp)

@@ -5,9 +5,11 @@ import org.ditw.matcher.{MatchPool, TCompMatcher, TkMatch}
 
 object SegMatchers {
 
+  private val RangeBy2_1:(Int, Int) = (2, 1)
   private[textSeg] class SegBySfx(
     private val tagsContained:Set[String],
     private val sfxs:Set[String],
+    private val canBeStart:Boolean = true,
     val tag:Option[String]
   ) extends TCompMatcher with TDefRunAtLineFrom {
     override def runAtLine(
@@ -17,7 +19,10 @@ object SegMatchers {
         .filter(_.range.lineIdx == lineIdx)
       val segMatches = matches.map { m =>
         val lot = matchPool.input.linesOfTokens(m.range.lineIdx)
-        val newRange = lot.rangeBy(m.range, sfxs)
+        var newRange = lot.rangeBy(m.range, sfxs)
+        if (!canBeStart && m.range.start == newRange.start) {
+          newRange = lot.rangeBy(m.range, sfxs, RangeBy2_1)
+        }
         new TkMatch(newRange, IndexedSeq(m))
       }
       segMatches
@@ -80,9 +85,10 @@ object SegMatchers {
   def segByPfxSfx(
     tagsContained:Set[String],
     sfxs:Set[String],
+    canBeStart:Boolean,
     tag:String
   ):TCompMatcher = {
-    new SegBySfx(tagsContained, sfxs, Option(tag))
+    new SegBySfx(tagsContained, sfxs, canBeStart, Option(tag))
   }
 
   def segByTags(

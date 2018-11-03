@@ -20,6 +20,7 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
   private val segByPfxSfxMatcher = segByPfxSfx(
     Set(tag2.get),
     punctSet,
+    true,
     tagSegByPfxSfx
   )
   private val segByTagsMatcherLeftOnly = segByTags(

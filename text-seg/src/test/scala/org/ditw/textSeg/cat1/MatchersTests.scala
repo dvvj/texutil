@@ -11,13 +11,27 @@ class MatchersTests extends FlatSpec with Matchers with TableDrivenPropertyCheck
   import org.ditw.textSeg.common.Vocabs
   private val corpTestData = Table(
     ("inStr", "tag", "expRanges"),
-//    (
-//      "Integrated Laboratory Systems, Inc.,",
-//      TagSegCorp,
-//      Set(
-//        (0, 0, 4)
-//      )
-//    ),
+    (
+      "Sth Else, Integrated Laboratory Systems, Inc., Sth Else, Sth.",
+      TagSegCorp,
+      Set(
+        (0, 2, 6)
+      )
+    ),
+    (
+      "Integrated Laboratory Systems, Inc.,",
+      TagSegCorp,
+      Set(
+        (0, 0, 4)
+      )
+    ),
+    (
+      "Sth Else, Integrated Laboratory Systems, Inc.,",
+      TagSegCorp,
+      Set(
+        (0, 2, 6)
+      )
+    ),
     (
       "Integrated Laboratory Systems Inc.,",
       TagSegCorp,

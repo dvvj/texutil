@@ -38,7 +38,7 @@ class SeqOfTokens(
     var leftFound = 0
     while (start >= 0 && !found) {
       val token = tokens(start)
-      if (sfxs.contains(token.sfx) ||
+      if (checkSfx(token.sfx, sfxs) ||
         (token.content.isEmpty && sfxs.contains(token.str))
       ) {
         leftFound += 1
@@ -56,7 +56,7 @@ class SeqOfTokens(
     var rightFound = 0
     while (end < tokens.size && !found) {
       val token = tokens(end)
-      if (sfxs.contains(token.sfx) ||
+      if (checkSfx(token.sfx, sfxs) ||
         (token.content.isEmpty && sfxs.contains(token.str))
       ) {
         rightFound += 1
@@ -77,6 +77,11 @@ class SeqOfTokens(
 }
 
 object SeqOfTokens {
+
+  private def checkSfx(sfx:String, sfxSet:Set[String]):Boolean = {
+    sfxSet.exists(sfx.endsWith)
+  }
+
   def fromTokens(tokens:Seq[Token]):SeqOfTokens = {
     val origTokenStrs = tokens.map { t =>
       s"${t.pfx}${t.content}${t.sfx}"
