@@ -5,7 +5,7 @@ import org.ditw.matcher.{MatchPool, TCompMatcher, TkMatch}
 
 object SegMatchers {
 
-  private[textSeg] class SegByPSfx(
+  private[textSeg] class SegBySfx(
     private val tagsContained:Set[String],
     private val sfxs:Set[String],
     val tag:Option[String]
@@ -82,7 +82,7 @@ object SegMatchers {
     sfxs:Set[String],
     tag:String
   ):TCompMatcher = {
-    new SegByPSfx(tagsContained, sfxs, Option(tag))
+    new SegBySfx(tagsContained, sfxs, Option(tag))
   }
 
   def segByTags(

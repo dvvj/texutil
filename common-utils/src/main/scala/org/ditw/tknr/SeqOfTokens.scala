@@ -29,18 +29,23 @@ class SeqOfTokens(
 
   def rangeBy(
     range: TkRange,
-    sfxs:Set[String]
+    sfxs:Set[String],
+    sfxCounts:(Int, Int) = RangeBySfxCountsDefault
   ):TkRange = {
     var start = range.start-1
     var found = false
+    val (leftCount, rightCount) = sfxCounts
+    var leftFound = 0
     while (start >= 0 && !found) {
       val token = tokens(start)
       if (sfxs.contains(token.sfx) ||
         (token.content.isEmpty && sfxs.contains(token.str))
       ) {
-        found = true
+        leftFound += 1
+        if (leftFound >= leftCount)
+          found = true
       }
-      else
+      if (!found)
         start -= 1
     }
     start = if (found) start+1
@@ -48,14 +53,17 @@ class SeqOfTokens(
 
     var end = range.end-1
     found = false
+    var rightFound = 0
     while (end < tokens.size && !found) {
       val token = tokens(end)
       if (sfxs.contains(token.sfx) ||
         (token.content.isEmpty && sfxs.contains(token.str))
       ) {
-        found = true
+        rightFound += 1
+        if (rightFound >= rightCount)
+          found = true
       }
-      else
+      if (!found)
         end += 1
     }
     end = if (found) {
@@ -79,5 +87,7 @@ object SeqOfTokens {
   }
   private def _newBuilder: mutable.Builder[Token, SeqOfTokens] =
     new ArrayBuffer[Token] mapResult fromTokens
+
+  private[tknr] val RangeBySfxCountsDefault = (1, 1)
 }
 

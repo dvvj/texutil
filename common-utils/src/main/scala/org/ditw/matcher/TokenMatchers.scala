@@ -34,6 +34,15 @@ object TokenMatchers extends Serializable {
     }
   }
 
+  def ngramT(
+    ngrams:Set[Array[String]],
+    dict: Dict,
+    tag:String
+  ):TTkMatcher = {
+    ngram(ngrams, dict, Option(tag))
+  }
+
+
   def ngram(
     ngrams:Set[Array[String]],
     dict: Dict,

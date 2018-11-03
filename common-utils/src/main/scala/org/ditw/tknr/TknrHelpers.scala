@@ -1,5 +1,5 @@
 package org.ditw.tknr
-import org.ditw.common.Dict
+import org.ditw.common.{Dict, TkRange}
 
 object TknrHelpers extends Serializable {
   private [ditw] val EmptyStr = ""
@@ -78,5 +78,6 @@ object TknrHelpers extends Serializable {
       tr1.linesOfTokens.indices.forall(idx => sotEqualTest(tr1.linesOfTokens(idx), tr2.linesOfTokens(idx)))
   }
 
-
+  private [ditw] def rangeFromTp3(input: TknrResult, tp3:(Int, Int, Int)): TkRange =
+    TkRange(input, tp3._1, tp3._2, tp3._3)
 }
