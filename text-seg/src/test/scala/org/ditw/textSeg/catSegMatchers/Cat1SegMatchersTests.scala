@@ -1,10 +1,12 @@
-package org.ditw.textSeg.cat1
+package org.ditw.textSeg.catSegMatchers
 import org.ditw.common.TkRange
 import org.ditw.matcher.MatchPool
+import org.ditw.textSeg.TestHelpers
+import org.ditw.tknr.TknrHelpers
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
 
-class MatchersTests extends FlatSpec with Matchers with TableDrivenPropertyChecks {
+class Cat1SegMatchersTests extends FlatSpec with Matchers with TableDrivenPropertyChecks {
   import org.ditw.textSeg.common.AllCatMatchers._
   import org.ditw.textSeg.common.Tags._
   import org.ditw.textSeg.Settings._
@@ -13,41 +15,43 @@ class MatchersTests extends FlatSpec with Matchers with TableDrivenPropertyCheck
     ("inStr", "tag", "expRanges"),
     (
       "Sth Else, Integrated Laboratory Systems, Inc., Sth Else, Sth.",
-      TagSegCorp,
+      TagGroup4Corp.segTag,
       Set(
         (0, 2, 6)
       )
     ),
     (
       "Integrated Laboratory Systems, Inc.,",
-      TagSegCorp,
+      TagGroup4Corp.segTag,
       Set(
         (0, 0, 4)
       )
     ),
     (
       "Sth Else, Integrated Laboratory Systems, Inc.,",
-      TagSegCorp,
+      TagGroup4Corp.segTag,
       Set(
         (0, 2, 6)
       )
     ),
     (
       "Integrated Laboratory Systems Inc.,",
-      TagSegCorp,
+      TagGroup4Corp.segTag,
       Set(
         (0, 0, 4)
       )
     )
   )
+
+  private val mmgr = mmgrFrom(
+    Cat1SegMatchers.segMatchers,
+    Cat2SegMatchers.segMatchers
+  )
   "Corp SegMatcher tests" should "pass" in {
     forAll(corpTestData) { (inStr, tag, expRanges) =>
-      val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, Vocabs._Dict)
-      matcherMgr.run(matchPool)
-      val res = matchPool.get(tag)
-      val resRanges = res.map(_.range)
-      val expRngs = expRanges.map(tp => TkRange(matchPool.input, tp._1, tp._2, tp._3))
-      resRanges shouldBe expRngs
+      TestHelpers.runAndVerifyRanges(
+        mmgr, inStr, tag, expRanges
+      )
     }
   }
 }

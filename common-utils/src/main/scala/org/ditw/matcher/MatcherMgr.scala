@@ -33,9 +33,10 @@ class MatcherMgr(
   }
   import MatcherMgr._
   def run(matchPool: MatchPool):Unit = {
-    val tmMatches = tms.foreach { tm =>
+    tms.foreach { tm =>
       val matches = tm.run(matchPool)
-      matchPool.add(tm.tag.get, matches)
+      if (matches.nonEmpty)
+        matchPool.add(tm.tag.get, matches)
     }
 
     import collection.mutable

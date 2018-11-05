@@ -27,6 +27,10 @@ class SeqOfTokens(
     s"[$orig] size=$length"
   }
 
+  def trOrigTokens(start:Int, end:Int):String = {
+    origTokenStrs.slice(start, end).mkString(" ")
+  }
+
   def rangeBy(
     range: TkRange,
     sfxs:Set[String],

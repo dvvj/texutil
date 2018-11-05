@@ -35,4 +35,17 @@ case class TkRange(
     }
     else false
   }
+
+  override def toString: String = {
+    val startEnd =
+      if (end - start > 1) s"$start,$end"
+      else start.toString
+    val lineStartEnd =
+      if (input.linesOfTokens.size > 1)
+        s"(L$lineIdx,$startEnd)"
+      else
+        s"($startEnd)"
+    val trSrc = input.linesOfTokens(lineIdx).trOrigTokens(start, end)
+    s"$trSrc$lineStartEnd"
+  }
 }

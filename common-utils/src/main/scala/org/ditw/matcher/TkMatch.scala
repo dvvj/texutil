@@ -25,6 +25,11 @@ class TkMatch(
     }
     case _ => false
   }
+
+  override def toString: String = {
+    val trTags = tags.toList.sorted.mkString(",")
+    s"[$trTags]: $range"
+  }
 }
 
 object TkMatch extends Serializable {
