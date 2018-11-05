@@ -32,7 +32,7 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
   private val mmgr = new MatcherMgr(
     List(tm2, tm3),
     List(segByPfxSfxMatcher, segByTagsMatcherLeftOnly),
-    Map()
+    List()
   )
 
   private val segByPfxSfxTestData = Table(

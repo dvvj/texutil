@@ -48,7 +48,7 @@ class CompMatcherNsTest extends FlatSpec with Matchers with TableDrivenPropertyC
 
   "seq matcher tests" should "pass" in {
     forAll(seqTestData) { (cms, inStr, expRes) =>
-      val mmgr = new MatcherMgr(List(), cms, Map())
+      val mmgr = new MatcherMgr(List(), cms, List())
       val matchPool:MatchPool = MatchPool.fromStr(inStr, testTokenizer, dict)
       mmgr.run(matchPool)
       val res = expRes.keySet

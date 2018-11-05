@@ -1,10 +1,15 @@
 package org.ditw.matcher
 import scala.collection.mutable.ListBuffer
 
+private[ditw] trait TPostProc {
+  def run(matchPool: MatchPool):Unit
+}
+
 class MatcherMgr(
   val tms:List[TTkMatcher],
   val cms:List[TCompMatcher],
-  val blockTagMap:Map[String, Set[String]]
+  val postProcs:Iterable[TPostProc]
+  //val blockTagMap:Map[String, Set[String]]
 ) {
   private def checkTags:Unit = {
     val allTags = tms.map(_.tag) ++ cms.map(_.tag)
@@ -65,30 +70,8 @@ class MatcherMgr(
 
   private def postproc(matchPool: MatchPool):Unit = {
     val toRemoveList = ListBuffer[TkMatch]()
-    blockTagMap.foreach { kv =>
-      val (blockerTag, blockeeTags) = kv
-      val blockerRanges = matchPool.get(blockerTag).map(_.range)
-
-      val blockees = matchPool.get(blockeeTags)
-
-      blockees.foreach { blockee =>
-        if (blockerRanges.exists(_.overlap(blockee.range))) {
-          toRemoveList += blockee
-        }
-      }
-    }
-
-    val toRemoveMap = toRemoveList.flatMap { m =>
-      m.getTags.map(_ -> m)
-    }.groupBy(_._1)
-      .mapValues(_.map(_._2))
-    toRemoveMap.foreach { kv =>
-      val (tag, matches) = kv
-      val existing = matchPool.get(tag)
-      matchPool.update(
-        tag,
-        existing -- matches
-      )
+    postProcs.foreach { pp =>
+      pp.run(matchPool)
     }
   }
 }
@@ -96,4 +79,35 @@ class MatcherMgr(
 object MatcherMgr {
   private val EmptyMatches = Set[TkMatch]()
   private val EmptyDepCmTags = Set[String]()
+
+  private[ditw] def postProcBlocker(blockTagMap:Map[String, Set[String]]):TPostProc = new TPostProc {
+    override def run(matchPool: MatchPool): Unit = {
+      val toRemoveList = ListBuffer[TkMatch]()
+      blockTagMap.foreach { kv =>
+        val (blockerTag, blockeeTags) = kv
+        val blockerRanges = matchPool.get(blockerTag).map(_.range)
+
+        val blockees = matchPool.get(blockeeTags)
+
+        blockees.foreach { blockee =>
+          if (blockerRanges.exists(_.overlap(blockee.range))) {
+            toRemoveList += blockee
+          }
+        }
+      }
+
+      val toRemoveMap = toRemoveList.flatMap { m =>
+        m.getTags.map(_ -> m)
+      }.groupBy(_._1)
+        .mapValues(_.map(_._2))
+      toRemoveMap.foreach { kv =>
+        val (tag, matches) = kv
+        val existing = matchPool.get(tag)
+        matchPool.update(
+          tag,
+          existing -- matches
+        )
+      }
+    }
+  }
 }

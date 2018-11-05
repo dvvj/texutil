@@ -11,8 +11,8 @@ object AllCatMatchers {
     catSegMatchers.flatMap(_.tms).toList,
     catSegMatchers.flatMap(_.cms).toList,
     catSegMatchers.map { m =>
-      m.tagGroup.stopWordsTag -> Set(m.tagGroup.segTag)
-    }.toMap
+      MatcherMgr.postProcBlocker(List(m.tagGroup.stopWordsTag -> Set(m.tagGroup.segTag)).toMap)
+    }
   )
 
 }
