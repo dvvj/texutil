@@ -64,30 +64,31 @@ class MatcherMgr(
   }
 
   private def postproc(matchPool: MatchPool):Unit = {
+    val toRemoveList = ListBuffer[TkMatch]()
     blockTagMap.foreach { kv =>
       val (blockerTag, blockeeTags) = kv
       val blockerRanges = matchPool.get(blockerTag).map(_.range)
 
       val blockees = matchPool.get(blockeeTags)
 
-      val toRemoveList = ListBuffer[TkMatch]()
       blockees.foreach { blockee =>
         if (blockerRanges.exists(_.overlap(blockee.range))) {
           toRemoveList += blockee
         }
       }
-      val toRemoveMap = toRemoveList.flatMap { m =>
-          m.getTags.map(_ -> m)
-        }.groupBy(_._1)
-        .mapValues(_.map(_._2))
-      toRemoveMap.foreach { kv =>
-        val (tag, matches) = kv
-        val existing = matchPool.get(tag)
-        matchPool.update(
-          tag,
-          existing -- matches
-        )
-      }
+    }
+
+    val toRemoveMap = toRemoveList.flatMap { m =>
+      m.getTags.map(_ -> m)
+    }.groupBy(_._1)
+      .mapValues(_.map(_._2))
+    toRemoveMap.foreach { kv =>
+      val (tag, matches) = kv
+      val existing = matchPool.get(tag)
+      matchPool.update(
+        tag,
+        existing -- matches
+      )
     }
   }
 }

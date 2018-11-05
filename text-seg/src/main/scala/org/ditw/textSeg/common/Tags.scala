@@ -17,8 +17,8 @@ object Tags extends Serializable {
 
   private def tagGroup(groupTag:String):TagGroup = TagGroup(
     TmTagPfx + groupTag, // tm
-    TmStopTagPfx + groupTag, // stop words tag
     SegTagPfx + groupTag, // seg
+    TmStopTagPfx + groupTag, // stop words tag
     SegLeftStopTagPfx + groupTag, // seg stop left
     SegRightStopTagPfx + groupTag // seg stop right
   )
