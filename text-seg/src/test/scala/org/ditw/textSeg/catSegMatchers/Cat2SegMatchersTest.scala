@@ -20,8 +20,55 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     )
   }
 
+  //  part-00245:University Biomedical Campus, Rome, Italy.
+  //  part-00245:University Biomedical Campus, Rome, Italy. massimo.ciccozzi@iss.it.
+  //  part-00245:University of Biomedical Campus of Rome, Rome, Italy.
+  //  part-00245:University of Biomedical Campus, Rome, Italy.
+
+  //  University of Cambridge Hutchison/MRC Research Centre Cambridge Biomedical Campus
+
   private val univSegtestData = Table(
     ("inStr", "tag", "expRanges"),
+    testDataEntr(
+      "University of Cambridge Biomedical Campus",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "Boston University Medical Campus",
+      (0, 0, 2)
+    ),
+    testDataEntr(
+      "University of Oldenburg Medical Campus, School of Medicine",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "University of Texas Southwestern Medical Center at Dallas",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "University of Texas SW Medical Center at Dallas",
+      (0, 0, 3)
+    ),
+//    testDataEntr(
+//      "University of Colorado Anschutz Medical Campus.",
+//      (0, 0, 3)
+//    ),
+    testDataEntr(
+      "University of Colorado-Anschutz Medical Campus, Aurora, CO, USA.",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "University of Texas - Southwestern Medical Center, Dallas, TX, USA.",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "Northern Arizona University- Phoenix Biomedical Campus",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "University of Pennsylvania Medical Center",
+      (0, 0, 3)
+    ),
     testDataEntr(
       "The Graduate School and University Center of The City University of New York",
       (0, 7, 13)

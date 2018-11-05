@@ -1,6 +1,6 @@
 package org.ditw.tknr
 import org.ditw.common.{Dict, InputHelpers}
-import org.ditw.tknr.Tokenizers.TokenizerSettings
+import org.ditw.tknr.Tokenizers.{TokenSplitterCond, TokenizerSettings}
 
 object TestHelpers {
 
@@ -19,10 +19,24 @@ object TestHelpers {
   private val settings = TokenizerSettings(
     "\\n+",
     "[\\s]+",
-    List(),
+    List(
+      TokenSplitter_DashSlash
+    ),
     trimByPuncts
   )
 
   val testTokenizer = Tokenizers.load(settings)
+
+  def testDataTuple(
+    testStr:String,
+    testContents:IndexedSeq[IndexedSeq[IndexedSeq[String]]]
+  ):(String, TknrResult) = {
+    testStr ->
+      resultFrom(
+        testStr,
+        dict,
+        testContents.map(tc => loTFrom(tc))
+      )
+  }
 
 }

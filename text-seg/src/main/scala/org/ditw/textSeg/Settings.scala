@@ -10,6 +10,8 @@ object Settings extends Serializable {
       "0123456789".map(_.toString)
     )
 
+  import org.ditw.tknr.TknrHelpers._
+
   private[textSeg] val _PunctChars = ".,;:()[]\""
   private[textSeg] val _AffIndexChars =
     """╫╪^?ζΘΦΨχΣΠξΔǁ«»¿×®°±¹²³ª©*†‡§¶∥‖║#△■●□⊥∇⁎€⁴№∞∧∫∮≠⊕⊗⊗⊗⊞⋈⌋⑊┘┼┼□▰▲▼▽◆◇◊○◐★☆⚲⦀⧓⿿☼§𝕃�|£¤¥⟁◑◪⧖⧧⧨⧩⧫⬢⬡⬠⬟⧳̂⊗"""
@@ -18,7 +20,9 @@ object Settings extends Serializable {
     TokenizerSettings(
       "\\n+",
       "[\\h]+",
-      List(),
+      List(
+        TokenSplitter_DashSlash
+      ),
       Trimmers.byChars(
         _AffIndexChars + _PunctChars
       )

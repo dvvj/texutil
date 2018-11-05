@@ -89,67 +89,55 @@ class TknrResultsTests
     )
   )
 
+  private val testStr7 =
+    "*Auburn University- (Professor Emeritus), Auburn, AL;"
+  private val tokenContent7 = IndexedSeq(
+    IndexedSeq(
+      noSfx("Auburn", "*"),
+      noPfxSfx("University"),
+      noPfxSfx("-"),
+      noSfx("Professor", "("),
+      noPfx("Emeritus", "),"),
+      noPfx("Auburn", ","),
+      noPfx("AL", ";")
+    )
+  )
+
   private val testData = Table(
-    ("settings", "input", "expRes"),
-    (
-      testTokenizer,
-      testStr6,
-      resultFrom(
-        testStr6,
-        dict,
-        tokenContent6.map(loTFrom)
-      )
+    ("input", "expRes"),
+    testDataTuple(
+      testStr7,
+      tokenContent7
     ),
-    (
-      testTokenizer,
-      testStr5,
-      resultFrom(
-        testStr5,
-        dict,
-        tokenContent5.map(loTFrom)
-      )
-    ),
-    (
-      testTokenizer,
-      testStr4,
-      resultFrom(
-        testStr4,
-        dict,
-        tokenContent4.map(loTFrom)
-      )
-    ),
-    (
-      testTokenizer,
+    testDataTuple(
       testStr1,
-      resultFrom(
-        testStr1,
-        dict,
-        tokenContent1.map(loTFrom)
-      )
+      tokenContent1
     ),
-    (
-      testTokenizer,
+    testDataTuple(
       testStr2,
-      resultFrom(
-        testStr2,
-        dict,
-        tokenContent2.map(loTFrom)
-      )
+      tokenContent2
     ),
-    (
-      testTokenizer,
+    testDataTuple(
       testStr3,
-      resultFrom(
-        testStr3,
-        dict,
-        tokenContent3.map(loTFrom)
-      )
+      tokenContent3
+    ),
+    testDataTuple(
+      testStr4,
+      tokenContent4
+    ),
+    testDataTuple(
+      testStr5,
+      tokenContent5
+    ),
+    testDataTuple(
+      testStr6,
+      tokenContent6
     )
   )
 
   "tokenizer tests" should "pass" in {
-    forAll(testData) { (tokenizer, input, expRes) =>
-      val res = tokenizer.run(input, dict)
+    forAll(testData) { (input, expRes) =>
+      val res = testTokenizer.run(input, dict)
 
 //      val expLrs = expLineTokens.map()
 //      val expRes = TknrResult(expLineResults)

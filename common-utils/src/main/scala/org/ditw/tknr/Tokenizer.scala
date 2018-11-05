@@ -3,6 +3,7 @@ package org.ditw.tknr
 import org.ditw.common.Dict
 import org.ditw.tknr.Trimmers.TTrimmer
 
+import scala.collection.mutable.ListBuffer
 import scala.util.matching.Regex
 
 /**
@@ -20,13 +21,30 @@ object Tokenizers extends Serializable {
   val EmptyTokenStrs = IndexedSeq[String]()
   case class TokenSplitterCond(
     _condRegex: String,
-    _tokenSplitter: String
+    _tokenSplitter: String,
+    splitterStrsToKeep:Set[String]
   ) extends TTokenSplitter {
     private val condRegex: Regex = _condRegex.r
     private val tokenSplitter: Regex = _tokenSplitter.r
     def split(input: String): IndexedSeq[String] = {
       if (canSplit(input)) {
-        tokenSplitter.split(input)
+        val parts = tokenSplitter.split(input)
+        val res = ListBuffer[String]()
+        var start = 0
+        parts.foreach { p =>
+          val s = input.indexOf(p, start)
+          if (s > start) {
+            val pfx = input.substring(start, s).trim
+            if (!pfx.isEmpty && splitterStrsToKeep.contains(pfx.toLowerCase()))
+              res += pfx
+          }
+          res += p
+          start = s + p.length
+        }
+        val rem = input.substring(start)
+        if (splitterStrsToKeep.contains(rem.toLowerCase()))
+          res += rem
+        res.toIndexedSeq
       } else
         throw new RuntimeException("Error!")
     }

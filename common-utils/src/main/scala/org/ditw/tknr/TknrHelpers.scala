@@ -1,5 +1,6 @@
 package org.ditw.tknr
 import org.ditw.common.{Dict, TkRange}
+import org.ditw.tknr.Tokenizers.TokenSplitterCond
 
 object TknrHelpers extends Serializable {
   private [ditw] val EmptyStr = ""
@@ -67,7 +68,7 @@ object TknrHelpers extends Serializable {
   }
 
   private def sotEqualTest(sot1:SeqOfTokens, sot2:SeqOfTokens):Boolean = {
-    sot1.orig == sot2.orig &&
+    // sot1.orig == sot2.orig &&
       sot1.origTokenStrs == sot2.origTokenStrs &&
       sot1.tokens.size == sot2.tokens.size &&
       sot1.tokens.indices.forall(idx => tokenEqual(sot1.tokens(idx), sot2.tokens(idx)))
@@ -80,4 +81,10 @@ object TknrHelpers extends Serializable {
 
   private [ditw] def rangeFromTp3(input: TknrResult, tp3:(Int, Int, Int)): TkRange =
     TkRange(input, tp3._1, tp3._2, tp3._3)
+
+  private [ditw] val TokenSplitter_DashSlash = TokenSplitterCond(
+    "(?i)(university|colorado)-",
+    "-",
+    Set("-")
+  )
 }

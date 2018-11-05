@@ -32,13 +32,19 @@ object Vocabs extends Serializable {
 
   private[textSeg] val __UnivSegStopWordsCommon = Set(
     "school",
+    "sw medical center",
+    "southwestern medical center",
+    "medical center",
+    "medical campus",
+    "biomedical campus",
     "medical school",
     "medical college",
     "graduate school",
     "superior school",
     "department",
     "and",
-    "faculty"
+    "faculty",
+    "-"
   )
 
   private[textSeg] val _UnivSegStopWordsLeftExtra = Set(
