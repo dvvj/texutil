@@ -16,6 +16,10 @@ class MatchPool(
     val existing = get(tag)
     _map.put(tag, existing ++ matches)
   }
+
+  def update(tag:String, matches:Set[TkMatch]):Unit = {
+    _map.put(tag, matches)
+  }
 }
 
 object MatchPool extends Serializable {

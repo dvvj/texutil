@@ -1,12 +1,13 @@
 package org.ditw.matcher
 import org.ditw.common.TkRange
 
-class TkMatch(
+class TkMatch private (
   val range: TkRange,
-  val children: IndexedSeq[TkMatch] = TkMatch.EmptyChildren
+  val children: IndexedSeq[TkMatch]
 ) extends Serializable {
   import collection.mutable
   private val tags = mutable.Set[String]()
+  def getTags:Set[String] = tags.toSet
 
   def addTag(ts:String):Unit = tags += ts
   def addTags(ts:Iterable[String]):Unit = tags ++= ts
@@ -35,7 +36,11 @@ class TkMatch(
 object TkMatch extends Serializable {
 
   val EmptyChildren:IndexedSeq[TkMatch] = IndexedSeq[TkMatch]()
-  def fromChildren(children:IndexedSeq[TkMatch]):TkMatch = {
+  val EmptyTags:Set[String] = Set()
+  def fromChildren(
+    children:IndexedSeq[TkMatch],
+    tags:Set[String] = EmptyTags
+  ):TkMatch = {
     if (children.isEmpty)
       throw new IllegalArgumentException("Empty Children")
     val lineIndices = children.map(_.range.lineIdx).distinct
@@ -51,5 +56,23 @@ object TkMatch extends Serializable {
       children.last.range.end
     )
     new TkMatch(range, children)
+  }
+
+  def oneChild(
+    range: TkRange,
+    child: TkMatch,
+    tag:Option[String]
+  ):TkMatch = {
+    val res = new TkMatch(range, IndexedSeq(child))
+    if (tag.nonEmpty)
+      res.addTag(tag.get)
+    res
+  }
+
+  def noChild(range:TkRange, tag:Option[String]):TkMatch = {
+    val res = new TkMatch(range, TkMatch.EmptyChildren)
+    if (tag.nonEmpty)
+      res.addTag(tag.get)
+    res
   }
 }

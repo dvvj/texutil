@@ -29,10 +29,11 @@ object Cat1SegMatchers {
 
   private[textSeg] val segMatchers = new SegMatcher4Cat(
     cat = Category.Corp,
+    TagGroup4Corp,
     keywords = _CorpWords,
+    stopKeywords = Set(),
     segStopWordsLeft = Set(),
     segStopWordsRight = Set(),
-    TagGroup4Corp,
     false
   )
 

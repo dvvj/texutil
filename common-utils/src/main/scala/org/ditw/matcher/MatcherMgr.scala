@@ -3,7 +3,8 @@ import scala.collection.mutable.ListBuffer
 
 class MatcherMgr(
   val tms:List[TTkMatcher],
-  val cms:List[TCompMatcher]
+  val cms:List[TCompMatcher],
+  val blockTagMap:Map[String, Set[String]]
 ) {
   private def checkTags:Unit = {
     val allTags = tms.map(_.tag) ++ cms.map(_.tag)
@@ -56,6 +57,36 @@ class MatcherMgr(
         val affectedCmTags = cmDepMap.getOrElse(headMatcher.tag.get, EmptyDepCmTags)
         remMatchers ++= affectedCmTags.map(tag2CmMap)
         matchCache.put(headMatcher, currMatches)
+      }
+    }
+
+    postproc(matchPool)
+  }
+
+  private def postproc(matchPool: MatchPool):Unit = {
+    blockTagMap.foreach { kv =>
+      val (blockerTag, blockeeTags) = kv
+      val blockerRanges = matchPool.get(blockerTag).map(_.range)
+
+      val blockees = matchPool.get(blockeeTags)
+
+      val toRemoveList = ListBuffer[TkMatch]()
+      blockees.foreach { blockee =>
+        if (blockerRanges.exists(_.overlap(blockee.range))) {
+          toRemoveList += blockee
+        }
+      }
+      val toRemoveMap = toRemoveList.flatMap { m =>
+          m.getTags.map(_ -> m)
+        }.groupBy(_._1)
+        .mapValues(_.map(_._2))
+      toRemoveMap.foreach { kv =>
+        val (tag, matches) = kv
+        val existing = matchPool.get(tag)
+        matchPool.update(
+          tag,
+          existing -- matches
+        )
       }
     }
   }

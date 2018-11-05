@@ -65,7 +65,7 @@ object CompMatcherNs {
         idx -> matchesSeqInLineIdx
       }
       val matchesInLines = lineIdx2Matches.map(p => seqMatches(p._2))
-      val res = matchesInLines.flatMap(l => l.map(TkMatch.fromChildren))
+      val res = matchesInLines.flatMap(l => l.map(ch => TkMatch.fromChildren(ch)))
       res.toSet
     }
 

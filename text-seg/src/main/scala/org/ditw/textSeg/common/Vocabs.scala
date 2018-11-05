@@ -50,6 +50,7 @@ object Vocabs extends Serializable {
   private val allVocabs = Seq(
     _CorpWords,
     _UnivWords,
+    _UnivStopWords,
     __UnivSegStopWordsCommon,
     _UnivSegStopWordsLeftExtra
   )

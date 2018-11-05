@@ -19,21 +19,23 @@ object CatSegMatchers {
 
   private [textSeg] trait TSegMatchers4Cat extends Serializable {
     def cat:Category
-    protected def tms:List[TTkMatcher]
-    protected def cms:List[TCompMatcher]
+    def tms:List[TTkMatcher]
+    def cms:List[TCompMatcher]
+    val tagGroup:TagGroup
   }
 
   private val EmptyTags = Set[String]()
   private [textSeg] class SegMatcher4Cat(
     val cat:Category,
+    val tagGroup:TagGroup,
     keywords:Set[String],
+    stopKeywords:Set[String],
     segStopWordsLeft:Set[String],
     segStopWordsRight:Set[String],
-    tagGroup:TagGroup,
     canBeStart:Boolean
   ) extends TSegMatchers4Cat {
 
-    protected val tms:List[TTkMatcher] = {
+    val tms:List[TTkMatcher] = {
       val t = ListBuffer[TTkMatcher](
         ngramT(
           splitVocabEntries(keywords),
@@ -55,10 +57,17 @@ object CatSegMatchers {
           tagGroup.segRightStopTag
         )
       }
+      if (stopKeywords.nonEmpty) {
+        t += ngramT(
+          splitVocabEntries(stopKeywords),
+          _Dict,
+          tagGroup.stopWordsTag
+        )
+      }
       t.toList
     }
 
-    protected val cms:List[TCompMatcher] = {
+    val cms:List[TCompMatcher] = {
       var t = segByPfxSfx(
         Set(tagGroup.keywordTag), _SegSfxs,
         canBeStart,

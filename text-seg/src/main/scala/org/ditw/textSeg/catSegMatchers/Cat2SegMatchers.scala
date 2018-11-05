@@ -29,10 +29,11 @@ object Cat2SegMatchers {
 //  }
   private[textSeg] val segMatchers = new SegMatcher4Cat(
     cat = Category.Univ,
+    TagGroup4Univ,
     keywords = _UnivWords,
+    stopKeywords = _UnivStopWords,
     segStopWordsLeft = _UnivSegStopWordsLeft,
     segStopWordsRight = _UnivSegStopWordsRight,
-    TagGroup4Univ,
   true
   )
 }

@@ -9,7 +9,10 @@ object AllCatMatchers {
     catSegMatchers:TSegMatchers4Cat*
   ) = new MatcherMgr(
     catSegMatchers.flatMap(_.tms).toList,
-    catSegMatchers.flatMap(_.cms).toList
+    catSegMatchers.flatMap(_.cms).toList,
+    catSegMatchers.map { m =>
+      m.tagGroup.stopWordsTag -> Set(m.tagGroup.segTag)
+    }.toMap
   )
 
 }

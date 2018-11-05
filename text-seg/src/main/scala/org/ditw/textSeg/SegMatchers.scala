@@ -23,7 +23,7 @@ object SegMatchers {
         if (!canBeStart && m.range.start == newRange.start) {
           newRange = lot.rangeBy(m.range, sfxs, RangeBy2_1)
         }
-        new TkMatch(newRange, IndexedSeq(m))
+        TkMatch.oneChild(newRange, m, tag)
       }
       segMatches
     }
@@ -69,8 +69,9 @@ object SegMatchers {
         }
         val newEnd = minRight
         if (newStart != c.range.start || newEnd != c.range.end) {
-          new TkMatch(
-            TkRange(matchPool.input, lineIdx, newStart, newEnd)
+          TkMatch.noChild(
+            TkRange(matchPool.input, lineIdx, newStart, newEnd),
+            tag
           )
         }
         else c

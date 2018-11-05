@@ -23,10 +23,7 @@ object TokenMatchers extends Serializable {
       val lens = _pfxTree.allPrefixes(encLine, start).asScala
       val matches = lens.map { len =>
         val range = TkRange(matchPool.input, lineIdx, start, start+len)
-        val m = new TkMatch(range)
-        if (tag.nonEmpty) {
-          m.addTag(tag.get)
-        }
+        val m = TkMatch.noChild(range, tag)
         m
       }
 
@@ -88,7 +85,7 @@ object TokenMatchers extends Serializable {
       val token = matchPool.input.linesOfTokens(lineIdx)(start)
       if (regex.pattern.matcher(token.content).matches()) {
         val range = TkRange(matchPool.input, lineIdx, start, start+1)
-        Set(new TkMatch(range))
+        Set(TkMatch.noChild(range, tag))
       }
       else
         EmptyMatches
