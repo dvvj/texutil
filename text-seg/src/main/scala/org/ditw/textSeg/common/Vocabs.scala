@@ -38,26 +38,26 @@ object Vocabs extends Serializable {
   private[textSeg] def loadStopWords(cat: Category):Set[String] = {
     val resPath = _catToResPath(cat)
     val s1 = ResourceHelpers.loadStrs(s"/$resPath/stopwords.txt").toSet
-    val s2 = loadOtherGazWordsAsStopWords(cat)
+    val s2 = otherGazWordsAsStopWords(cat)
     s1 ++ s2
   }
 
-  private[textSeg] def loadGazWords(cat: Category):Set[String] = {
+  private[textSeg] def loadGazWords(cat: Category, throwIfNotFound:Boolean = true):Set[String] = {
     val resPath = _catToResPath(cat)
-    ResourceHelpers.loadStrs(s"/$resPath/gaz.txt").toSet
+    ResourceHelpers.loadStrs(s"/$resPath/gaz.txt", throwIfNotFound).toSet
   }
 
-  private[textSeg] def loadOtherGazWordsAsStopWords(cat: Category):Set[String] = {
-    val merged = Category.values.filter(_ != cat)
-      .flatMap { ocat =>
-        val resPath = _catToResPath(ocat)
-        ResourceHelpers.loadStrs(s"/$resPath/gaz.txt", false)
-      }
-    merged
+  private[textSeg] val _catToGazSet:Map[Category, Set[String]] = Category.values.toList.map { cat =>
+    cat -> loadGazWords(cat, false)
+  }.toMap
+
+  private[textSeg] def otherGazWordsAsStopWords(cat: Category):Set[String] = {
+    Category.values.filter(_ != cat)
+      .flatMap(_catToGazSet)
   }
 
   private[textSeg] val _UnivStopWords = loadStopWords(Univ)
-  private[textSeg] val _UnivGazWords = loadGazWords(Univ)
+  private[textSeg] val _UnivGazWords = _catToGazSet(Univ)
 
   private[textSeg] val __UnivSegStopWordsCommon = Set(
     "school",
