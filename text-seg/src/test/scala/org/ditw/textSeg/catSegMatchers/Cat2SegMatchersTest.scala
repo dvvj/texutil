@@ -192,6 +192,15 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
       "\"A. Gemelli\" University Hospital Foundation"
     ),
     testDataEntr(
+      "\"Dr. Carol Davila\" Central Military University Emergency Hospital"
+    ),
+    testDataEntr(
+      "\"Dr Carol Davila\" Central University Emergency Military Hospital"
+    ),
+    testDataEntr(
+      "University of Pittsburgh Medical Center"
+    ),
+    testDataEntr(
       "\"Carol Davila\" University of Medicine and Pharmacy, Obstetrics-Gynaecology Clinic",
       (0, 0, 7)
     ),
@@ -202,6 +211,10 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "\"Carol Davila\" University of Medicine, Obstetrics-Gynaecology Clinic",
       (0, 0, 5)
+    ),
+    testDataEntr(
+      "\"Dipartimento di Medicina Clinica (Clinica Malattie Infettive e Tropicali)\" \"Sapienza\" Università di Roma",
+      (0, 9, 13)
     )
   )
 

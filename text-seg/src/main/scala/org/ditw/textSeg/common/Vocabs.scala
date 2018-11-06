@@ -31,17 +31,29 @@ object Vocabs extends Serializable {
 
   private val _catToResPath = Map(
     Category.Corp -> "cat1",
-    Category.Univ -> "cat2"
+    Category.Univ -> "cat2",
+    Category.Hosp -> "cat3"
   )
 
   private[textSeg] def loadStopWords(cat: Category):Set[String] = {
     val resPath = _catToResPath(cat)
-    ResourceHelpers.loadStrs(s"/$resPath/stopwords.txt").toSet
+    val s1 = ResourceHelpers.loadStrs(s"/$resPath/stopwords.txt").toSet
+    val s2 = loadOtherGazWordsAsStopWords(cat)
+    s1 ++ s2
   }
 
   private[textSeg] def loadGazWords(cat: Category):Set[String] = {
     val resPath = _catToResPath(cat)
     ResourceHelpers.loadStrs(s"/$resPath/gaz.txt").toSet
+  }
+
+  private[textSeg] def loadOtherGazWordsAsStopWords(cat: Category):Set[String] = {
+    val merged = Category.values.filter(_ != cat)
+      .flatMap { ocat =>
+        val resPath = _catToResPath(ocat)
+        ResourceHelpers.loadStrs(s"/$resPath/gaz.txt", false)
+      }
+    merged
   }
 
   private[textSeg] val _UnivStopWords = loadStopWords(Univ)
