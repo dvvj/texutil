@@ -6,7 +6,7 @@ case class TkRange(
   lineIdx:Int,
   start:Int,
   end:Int
-) {
+) extends Ordered[TkRange] {
   override def hashCode(): Int = {
     (lineIdx << 24) + (start << 16) + (end << 8) + input.hashCode()
   }
@@ -36,6 +36,13 @@ case class TkRange(
     else false
   }
 
+  def covers(r2:TkRange):Boolean = {
+    if (lineIdx == r2.lineIdx) {
+      start <= r2.start && end >= r2.end
+    }
+    else false
+  }
+
   override def toString: String = {
     val startEnd =
       if (end - start > 1) s"$start,$end"
@@ -47,5 +54,10 @@ case class TkRange(
         s"($startEnd)"
     val trSrc = input.linesOfTokens(lineIdx).trOrigTokens(start, end)
     s"$trSrc$lineStartEnd"
+  }
+
+  import math.Ordered.orderingToOrdered
+  override def compare(that: TkRange): Int = {
+    (lineIdx, start, end) compare (that.lineIdx, that.start, that.end)
   }
 }

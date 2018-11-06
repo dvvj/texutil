@@ -10,7 +10,7 @@
         <scala.version>2.11.8</scala.version>
         <opencv-version>3.1.0</opencv-version>
         <scala.minor.version>2.11</scala.minor.version>
-        <amazonaws.version>1.11.99</amazonaws.version>
+        <spark.version>2.3.0</spark.version>
     </properties>
 
     <groupId>org.ditw</groupId>
@@ -122,11 +122,25 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.ditw</groupId>
+                <artifactId>text-seg</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.spark</groupId>
+                <artifactId>spark-core_2.11</artifactId>
+                <version>${spark.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <modules>
         <module>common-utils</module>
+        <module>spark-runs</module>
         <module>text-seg</module>
     </modules>
 </project>

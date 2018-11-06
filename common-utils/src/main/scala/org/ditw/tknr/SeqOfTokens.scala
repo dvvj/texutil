@@ -83,7 +83,7 @@ class SeqOfTokens(
 object SeqOfTokens {
 
   private def checkSfx(sfx:String, sfxSet:Set[String]):Boolean = {
-    sfxSet.exists(sfx.endsWith)
+    sfxSet.exists(sfx.contains)
   }
 
   def fromTokens(tokens:Seq[Token]):SeqOfTokens = {

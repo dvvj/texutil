@@ -1,6 +1,8 @@
 package org.ditw.matcher
 import org.ditw.common.TkRange
 
+import scala.collection.mutable.ListBuffer
+
 class TkMatch private (
   val range: TkRange,
   val children: IndexedSeq[TkMatch]
@@ -74,5 +76,23 @@ object TkMatch extends Serializable {
     if (tag.nonEmpty)
       res.addTag(tag.get)
     res
+  }
+
+  def mergeByRange(matches:Iterable[TkMatch]):Set[TkMatch] = {
+    val indexed = matches.toArray
+    val idxToRemove = ListBuffer[Int]()
+    indexed.indices.foreach { i =>
+    val ri = indexed(i).range
+      (i+1 until indexed.length).foreach { j =>
+        val rj = indexed(j).range
+        if (ri.covers(rj))
+          idxToRemove += j
+        else if (rj.covers(ri))
+          idxToRemove += i
+      }
+    }
+    val removeIdxSet = idxToRemove.toSet
+    indexed.indices.filter(idx => !removeIdxSet.contains(idx))
+      .map(indexed).toSet
   }
 }

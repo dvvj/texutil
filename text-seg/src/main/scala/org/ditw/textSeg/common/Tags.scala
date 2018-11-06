@@ -26,9 +26,9 @@ object Tags extends Serializable {
     SegRightStopTagPfx + groupTag // seg stop right
   )
 
-  private [textSeg] val Tag4Corp = "Corp"
-  private [textSeg] val TagGroup4Corp:TagGroup = tagGroup(Tag4Corp)
+  private val Tag4Corp = "Corp"
+  val TagGroup4Corp:TagGroup = tagGroup(Tag4Corp)
 
-  private [textSeg] val Tag4Univ = "Univ"
-  private [textSeg] val TagGroup4Univ:TagGroup = tagGroup(Tag4Univ)
+  private val Tag4Univ = "Univ"
+  val TagGroup4Univ:TagGroup = tagGroup(Tag4Univ)
 }

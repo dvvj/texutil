@@ -27,7 +27,7 @@ object Cat2SegMatchers {
 //    override def tms: List[TTkMatcher] = List(tmUniv)
 //    override def cms: List[TCompMatcher] = List(segUniv)
 //  }
-  private[textSeg] val segMatchers = new SegMatcher4Cat(
+  val segMatchers = new SegMatcher4Cat(
     cat = Category.Univ,
     tagGroup = TagGroup4Univ,
     keywords = _UnivWords,

@@ -1,7 +1,7 @@
 package org.ditw.matcher
 import scala.collection.mutable.ListBuffer
 
-private[ditw] trait TPostProc {
+private[ditw] trait TPostProc extends Serializable {
   def run(matchPool: MatchPool):Unit
 }
 
@@ -10,7 +10,7 @@ class MatcherMgr(
   val cms:List[TCompMatcher],
   val postProcs:Iterable[TPostProc]
   //val blockTagMap:Map[String, Set[String]]
-) {
+) extends Serializable {
   private def checkTags:Unit = {
     val allTags = tms.map(_.tag) ++ cms.map(_.tag)
     if (!allTags.forall(_.nonEmpty))
@@ -36,6 +36,7 @@ class MatcherMgr(
     val depPairs = cms.flatMap(cm => cm.getRefTags().map(_ -> cm.tag.get))
     depPairs.groupBy(_._1)
       .mapValues(_.map(_._2).toSet)
+      .toList.toMap // to make it serializable
   }
   import MatcherMgr._
   def run(matchPool: MatchPool):Unit = {
@@ -76,7 +77,7 @@ class MatcherMgr(
   }
 }
 
-object MatcherMgr {
+object MatcherMgr extends Serializable {
   private val EmptyMatches = Set[TkMatch]()
   private val EmptyDepCmTags = Set[String]()
 
@@ -104,10 +105,16 @@ object MatcherMgr {
     overrideMap:Map[String, String]
   ):TPostProc = new TPostProc {
     override def run(matchPool: MatchPool): Unit = {
+      val overrideMergedMap = overrideMap.map { kv =>
+        val overrideTag = kv._1
+        val matches = matchPool.get(overrideTag)
+        overrideTag -> TkMatch.mergeByRange(matches)
+      }
+
       val toRemoveList = ListBuffer[TkMatch]()
       overrideMap.foreach { kv =>
         val (overrideTag, toOverrideTag) = kv
-        val overrideRanges = matchPool.get(overrideTag).map(_.range)
+        val overrideRanges = overrideMergedMap(overrideTag).map(_.range)
 
         val toOverride = matchPool.get(toOverrideTag)
 
@@ -121,7 +128,7 @@ object MatcherMgr {
       matchPool.remove(toRemoveList)
       overrideMap.foreach { kv =>
         val (overrideTag, toOverrideTag) = kv
-        val overrideMatches = matchPool.get(overrideTag)
+        val overrideMatches = overrideMergedMap(overrideTag)
         if (overrideMatches.nonEmpty)
           matchPool.add(toOverrideTag, overrideMatches)
       }
