@@ -17,6 +17,21 @@ class MatchPool(
     _map.put(tag, existing ++ matches)
   }
 
+  def remove(matches: Iterable[TkMatch]):Unit = {
+    val toRemoveMap = matches.flatMap { m =>
+      m.getTags.map(_ -> m)
+    }.groupBy(_._1)
+      .mapValues(_.map(_._2))
+    toRemoveMap.foreach { kv =>
+      val (tag, matches) = kv
+      val existing = get(tag)
+      update(
+        tag,
+        existing -- matches
+      )
+    }
+  }
+
   def update(tag:String, matches:Set[TkMatch]):Unit = {
     _map.put(tag, matches)
   }

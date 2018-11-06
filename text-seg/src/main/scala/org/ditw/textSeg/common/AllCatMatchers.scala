@@ -7,12 +7,18 @@ object AllCatMatchers {
 
   private [textSeg] def mmgrFrom(
     catSegMatchers:TSegMatchers4Cat*
-  ) = new MatcherMgr(
-    catSegMatchers.flatMap(_.tms).toList,
-    catSegMatchers.flatMap(_.cms).toList,
-    catSegMatchers.map { m =>
-      MatcherMgr.postProcBlocker(List(m.tagGroup.stopWordsTag -> Set(m.tagGroup.segTag)).toMap)
-    }
-  )
+  ) = {
+    val blockerMap = catSegMatchers.map(m => m.tagGroup.stopWordsTag -> Set(m.tagGroup.segTag)).toMap
+    val gazOverrideMap = catSegMatchers.map(m => m.tagGroup.gazTag -> m.tagGroup.segTag).toMap
+    new MatcherMgr(
+      catSegMatchers.flatMap(_.tms).toList,
+      catSegMatchers.flatMap(_.cms).toList,
+      List(
+        MatcherMgr.postProcBlocker(blockerMap),
+        MatcherMgr.postProcOverride(gazOverrideMap)
+      )
+    )
+  }
+
 
 }

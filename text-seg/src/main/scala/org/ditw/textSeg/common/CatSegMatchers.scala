@@ -24,11 +24,26 @@ object CatSegMatchers {
     val tagGroup:TagGroup
   }
 
+  private def createTmIfNonEmptyVoc(
+    voc:Set[String],
+    tag:String,
+    addTo:ListBuffer[TTkMatcher]
+  ):Unit = {
+    if (voc.nonEmpty) {
+      addTo += ngramT(
+        splitVocabEntries(voc),
+        _Dict,
+        tag
+      )
+    }
+  }
+
   private val EmptyTags = Set[String]()
   private [textSeg] class SegMatcher4Cat(
     val cat:Category,
     val tagGroup:TagGroup,
     keywords:Set[String],
+    gazWords:Set[String],
     stopKeywords:Set[String],
     segStopWordsLeft:Set[String],
     segStopWordsRight:Set[String],
@@ -43,27 +58,11 @@ object CatSegMatchers {
           tagGroup.keywordTag
         )
       )
-      if (segStopWordsLeft.nonEmpty) {
-        t += ngramT(
-          splitVocabEntries(segStopWordsLeft),
-          _Dict,
-          tagGroup.segLeftStopTag
-        )
-      }
-      if (segStopWordsRight.nonEmpty) {
-        t += ngramT(
-          splitVocabEntries(segStopWordsRight),
-          _Dict,
-          tagGroup.segRightStopTag
-        )
-      }
-      if (stopKeywords.nonEmpty) {
-        t += ngramT(
-          splitVocabEntries(stopKeywords),
-          _Dict,
-          tagGroup.stopWordsTag
-        )
-      }
+      createTmIfNonEmptyVoc(gazWords, tagGroup.gazTag, t)
+      createTmIfNonEmptyVoc(segStopWordsLeft, tagGroup.segLeftStopTag, t)
+      createTmIfNonEmptyVoc(segStopWordsRight, tagGroup.segRightStopTag, t)
+      createTmIfNonEmptyVoc(stopKeywords, tagGroup.stopWordsTag, t)
+
       t.toList
     }
 

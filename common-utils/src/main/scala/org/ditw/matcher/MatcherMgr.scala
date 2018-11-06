@@ -96,17 +96,34 @@ object MatcherMgr {
         }
       }
 
-      val toRemoveMap = toRemoveList.flatMap { m =>
-        m.getTags.map(_ -> m)
-      }.groupBy(_._1)
-        .mapValues(_.map(_._2))
-      toRemoveMap.foreach { kv =>
-        val (tag, matches) = kv
-        val existing = matchPool.get(tag)
-        matchPool.update(
-          tag,
-          existing -- matches
-        )
+      matchPool.remove(toRemoveList)
+    }
+  }
+
+  private[ditw] def postProcOverride(
+    overrideMap:Map[String, String]
+  ):TPostProc = new TPostProc {
+    override def run(matchPool: MatchPool): Unit = {
+      val toRemoveList = ListBuffer[TkMatch]()
+      overrideMap.foreach { kv =>
+        val (overrideTag, toOverrideTag) = kv
+        val overrideRanges = matchPool.get(overrideTag).map(_.range)
+
+        val toOverride = matchPool.get(toOverrideTag)
+
+        toOverride.foreach { toOv =>
+          if (overrideRanges.exists(_.overlap(toOv.range))) {
+            toRemoveList += toOv
+          }
+        }
+      }
+
+      matchPool.remove(toRemoveList)
+      overrideMap.foreach { kv =>
+        val (overrideTag, toOverrideTag) = kv
+        val overrideMatches = matchPool.get(overrideTag)
+        if (overrideMatches.nonEmpty)
+          matchPool.add(toOverrideTag, overrideMatches)
       }
     }
   }
