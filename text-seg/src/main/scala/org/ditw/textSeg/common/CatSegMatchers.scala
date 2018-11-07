@@ -4,7 +4,7 @@ import org.ditw.matcher.TokenMatchers.ngramT
 import org.ditw.matcher.{TCompMatcher, TTkMatcher}
 import org.ditw.textSeg.SegMatchers._
 import org.ditw.textSeg.common.Tags.TagGroup
-import org.ditw.textSeg.common.Vocabs.{_Dict, _SegSfxs, _UnivWords}
+import org.ditw.textSeg.common.Vocabs._
 
 import scala.collection.mutable.ListBuffer
 
@@ -68,7 +68,7 @@ object CatSegMatchers {
 
     val cms:List[TCompMatcher] = {
       var t = segByPfxSfx(
-        Set(tagGroup.keywordTag), _SegSfxs,
+        Set(tagGroup.keywordTag), _SegPfxs, _SegSfxs,
         canBeStart,
         tagGroup.segTag
       )

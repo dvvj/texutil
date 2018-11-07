@@ -1,6 +1,7 @@
 package org.ditw.textSeg
 import org.ditw.common.TkRange
 import org.ditw.matcher.{MatchPool, MatcherMgr, TokenMatchers}
+import org.ditw.tknr.TknrHelpers
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
 
@@ -15,27 +16,27 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
   private val tm2 = ngram(Set(Array("2")), _Dict, tag2)
   private val tm3 = ngram(Set(Array("3")), _Dict, tag3)
   private val punctSet = Set(",", ";")
-  private val tagSegByPfxSfx = "tagSegByPfxSfx"
+  private val tagSegBySfx = "tagSegBySfx"
   private val tagByTagsMatcherLeftOnly = "tagByTagsMatcherLeftOnly"
-  private val segByPfxSfxMatcher = segByPfxSfx(
+  private val segBySfxMatcher = segBySfx(
     Set(tag2.get),
     punctSet,
     true,
-    tagSegByPfxSfx
+    tagSegBySfx
   )
   private val segByTagsMatcherLeftOnly = segByTags(
-    segByPfxSfxMatcher,
+    segBySfxMatcher,
     tag3.toSet,
     Set(),
     tagByTagsMatcherLeftOnly
   )
   private val mmgr = new MatcherMgr(
     List(tm2, tm3),
-    List(segByPfxSfxMatcher, segByTagsMatcherLeftOnly),
+    List(segBySfxMatcher, segByTagsMatcherLeftOnly),
     List()
   )
 
-  private val segByPfxSfxTestData = Table(
+  private val segBySfxTestData = Table(
     ("inStr", "expRes"),
     (
       "1, 3, 2 ,\n2 4, 1",
@@ -127,14 +128,14 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
     )
   )
 
-  "SegByPfxSfx Matcher tests" should "pass" in {
-    forAll(segByPfxSfxTestData) { (inStr, expRes) =>
+  "SegBySfx Matcher tests" should "pass" in {
+    forAll(segBySfxTestData) { (inStr, expRes) =>
       val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, _Dict)
       mmgr.run(matchPool)
       val expRanges = expRes.map { tp =>
-        TkRange(matchPool.input, tp._1, tp._2, tp._3)
+        TknrHelpers.rangeFromTp3(matchPool.input, tp)
       }
-      val resRanges = matchPool.get(tagSegByPfxSfx).map(_.range)
+      val resRanges = matchPool.get(tagSegBySfx).map(_.range)
       resRanges shouldBe expRanges
     }
   }

@@ -14,6 +14,25 @@ class Cat1SegMatchersTests extends FlatSpec with Matchers with TableDrivenProper
   private val corpTestData = Table(
     ("inStr", "tag", "expRanges"),
     (
+      "Sth Else, Integrated Laboratory Systems, #Inc., Sth Else, Sth.",
+      TagGroup4Corp.segTag,
+      Set(
+        (0, 2, 6)
+      )
+    ),
+    (
+      "#Inc., Sth Else, Sth.",
+      TagGroup4Corp.segTag,
+      Set[(Int, Int, Int)]()
+    ),
+    (
+      "Sth Else #Integrated Laboratory Systems, Inc., Sth Else, Sth.",
+      TagGroup4Corp.segTag,
+      Set(
+        (0, 2, 6)
+      )
+    ),
+    (
       "Sth Else, Integrated Laboratory Systems, Inc., Sth Else, Sth.",
       TagGroup4Corp.segTag,
       Set(

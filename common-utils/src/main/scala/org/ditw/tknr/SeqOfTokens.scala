@@ -53,7 +53,7 @@ class SeqOfTokens(
     isPrefix:Boolean = false,
     sfxCounts:(Int, Int) = RangeBySfxCountsDefault
   ):TkRange = {
-    var start = range.start-1
+    var start = if (isPrefix) range.start else range.start-1
     var found = false
     val (leftCount, rightCount) = sfxCounts
     var leftFound = 0
@@ -76,7 +76,7 @@ class SeqOfTokens(
     }
       else 0
 
-    var end = range.end-1
+    var end = if (isPrefix) range.end else range.end-1
     found = false
     var rightFound = 0
     while (end < tokens.size && !found) {

@@ -36,6 +36,19 @@ case class TkRange(
     else false
   }
 
+  def intersect(r2:TkRange):Option[TkRange] = {
+    if (overlap(r2)) {
+      Option(
+        TkRange(
+          input, lineIdx,
+          if (start >= r2.start) start else r2.start,
+          if (end <= r2.end) end else r2.end
+        )
+      )
+    }
+    else None
+  }
+
   def covers(r2:TkRange):Boolean = {
     if (lineIdx == r2.lineIdx) {
       start <= r2.start && end >= r2.end

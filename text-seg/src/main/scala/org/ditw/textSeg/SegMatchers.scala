@@ -39,17 +39,29 @@ object SegMatchers {
     val tag:Option[String]
   ) extends TCompMatcher with TDefRunAtLineFrom {
     override def runAtLine(
-                            matchPool: MatchPool,
-                            lineIdx: Int): Set[TkMatch] = {
+      matchPool: MatchPool,
+      lineIdx: Int
+    ): Set[TkMatch] = {
       val matches = matchPool.get(tagsContained)
         .filter(_.range.lineIdx == lineIdx)
-      val segMatches = matches.map { m =>
+      val segMatches = matches.flatMap { m =>
         val lot = matchPool.input.linesOfTokens(m.range.lineIdx)
-        var newRange = lot.rangeBy(m.range, sfxs)
-        if (!canBeStart && m.range.start == newRange.start) {
-          newRange = lot.rangeByPfxs(m.range, sfxs, RangeBy2_1)
+        var newRangeBySfx = lot.rangeBySfxs(m.range, sfxs)
+        var newRangeByPfx = lot.rangeByPfxs(m.range, pfxs)
+        var newRange = newRangeBySfx.intersect(newRangeByPfx)
+        assert(newRange.nonEmpty)
+        if (!canBeStart && m.range.start == newRange.get.start) {
+          if (newRangeByPfx.start == m.range.start)
+            newRangeByPfx = lot.rangeByPfxs(m.range, pfxs, RangeBy2_1)
+          if (newRangeBySfx.start == m.range.start)
+            newRangeBySfx = lot.rangeBySfxs(m.range, sfxs, RangeBy2_1)
+          newRange = newRangeBySfx.intersect(newRangeByPfx)
         }
-        TkMatch.oneChild(newRange, m, tag)
+        if (!canBeStart && m.range.start == newRange.get.start) {
+          // still failed (probably at the beginning) give up
+          None
+        }
+        else Option(TkMatch.oneChild(newRange.get, m, tag))
       }
       segMatches
     }
@@ -110,13 +122,23 @@ object SegMatchers {
     override def getRefTags(): Set[String] = refTags
   }
 
-  def segByPfxSfx(
+  def segBySfx(
     tagsContained:Set[String],
     sfxs:Set[String],
     canBeStart:Boolean,
     tag:String
   ):TCompMatcher = {
     new SegBySfx(tagsContained, sfxs, canBeStart, Option(tag))
+  }
+
+  def segByPfxSfx(
+                tagsContained:Set[String],
+                pfxs:Set[String],
+                sfxs:Set[String],
+                canBeStart:Boolean,
+                tag:String
+              ):TCompMatcher = {
+    new SegByPfxSfx(tagsContained, pfxs, sfxs, canBeStart, Option(tag))
   }
 
   def segByTags(

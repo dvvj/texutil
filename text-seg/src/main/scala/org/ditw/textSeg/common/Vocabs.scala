@@ -7,7 +7,9 @@ object Vocabs extends Serializable {
 
   private[textSeg] val _SegSfxs = Set(
     ",", ";"
-  ) ++ Settings._AffIndexChars.map(_.toString)
+  )
+  private[textSeg] val _SegPfxs =
+    Settings._AffIndexChars.map(_.toString).toSet
 
   private[textSeg] val _CorpWords = Set(
     "llc", "inc", "ltd",
