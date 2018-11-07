@@ -1,9 +1,4 @@
 package org.ditw.textSeg.catSegMatchers
-import org.ditw.common.InputHelpers.splitVocabEntries
-import org.ditw.matcher.TokenMatchers.ngramT
-import org.ditw.matcher.{TCompMatcher, TTkMatcher}
-import org.ditw.textSeg.SegMatchers.segByPfxSfx
-import org.ditw.textSeg.common.CatSegMatchers.Category.Category
 import org.ditw.textSeg.common.CatSegMatchers.{Category, SegMatcher4Cat, TSegMatchers4Cat}
 import org.ditw.textSeg.common.Tags._
 import org.ditw.textSeg.common.Vocabs._

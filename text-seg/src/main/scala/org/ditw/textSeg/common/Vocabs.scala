@@ -1,12 +1,13 @@
 package org.ditw.textSeg.common
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
+import org.ditw.textSeg.Settings
 import org.ditw.textSeg.common.CatSegMatchers.Category
 
 object Vocabs extends Serializable {
 
   private[textSeg] val _SegSfxs = Set(
     ",", ";"
-  )
+  ) ++ Settings._AffIndexChars.map(_.toString)
 
   private[textSeg] val _CorpWords = Set(
     "llc", "inc", "ltd",

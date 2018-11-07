@@ -18,12 +18,14 @@ object SegMatcherRuns extends App {
   val brMgr = spark.broadcast(mmgr)
   println(s"Line count: ${affLines.count}")
 
+  val brEndingChars = spark.broadcast(Set(",", ";"))
+
   val allUnivs = affLines.map { l =>
     val mp = run(brMgr.value, l)
     val matches = mp.get(Tags.TagGroup4Univ.segTag)
     val univNames = matches.map { m =>
       var t = m.range.origStr
-      if (t.endsWith(","))
+      if (brEndingChars.value.exists(t.endsWith))
         t = t.substring(0, t.length-1)
       t
     }
@@ -45,7 +47,7 @@ object SegMatcherRuns extends App {
   allUnivs
     .flatMap(s => s)
     .groupByKey()
-    .mapValues(_.mkString("\t", "\n\t", ""))
+    .mapValues(l => s"\t(${l.size})\n" + l.mkString("\t", "\n\t", ""))
     .coalesce(1)
     .sortBy(x => x._1)
     .map { p =>
