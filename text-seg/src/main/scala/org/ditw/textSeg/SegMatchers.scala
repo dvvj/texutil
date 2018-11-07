@@ -21,7 +21,7 @@ object SegMatchers {
         val lot = matchPool.input.linesOfTokens(m.range.lineIdx)
         var newRange = lot.rangeBy(m.range, sfxs)
         if (!canBeStart && m.range.start == newRange.start) {
-          newRange = lot.rangeBy(m.range, sfxs, RangeBy2_1)
+          newRange = lot.rangeBySfxs(m.range, sfxs, RangeBy2_1)
         }
         TkMatch.oneChild(newRange, m, tag)
       }
@@ -30,6 +30,33 @@ object SegMatchers {
 
     override def getRefTags(): Set[String] = tagsContained
   }
+
+  private[textSeg] class SegByPfxSfx(
+    private val tagsContained:Set[String],
+    private val pfxs:Set[String],
+    private val sfxs:Set[String],
+    private val canBeStart:Boolean = true,
+    val tag:Option[String]
+  ) extends TCompMatcher with TDefRunAtLineFrom {
+    override def runAtLine(
+                            matchPool: MatchPool,
+                            lineIdx: Int): Set[TkMatch] = {
+      val matches = matchPool.get(tagsContained)
+        .filter(_.range.lineIdx == lineIdx)
+      val segMatches = matches.map { m =>
+        val lot = matchPool.input.linesOfTokens(m.range.lineIdx)
+        var newRange = lot.rangeBy(m.range, sfxs)
+        if (!canBeStart && m.range.start == newRange.start) {
+          newRange = lot.rangeByPfxs(m.range, sfxs, RangeBy2_1)
+        }
+        TkMatch.oneChild(newRange, m, tag)
+      }
+      segMatches
+    }
+
+    override def getRefTags(): Set[String] = tagsContained
+  }
+
 
   private[textSeg] class SegByTags(
     private val matcher:TCompMatcher,

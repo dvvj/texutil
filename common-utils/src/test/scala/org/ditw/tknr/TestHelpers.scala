@@ -14,7 +14,7 @@ object TestHelpers {
 
   //private val trimByCommaColon = Trimmers.byChars(Set(',', ';'))
   private val trimByPuncts = Trimmers.byChars(
-    ",;:\"()*†".toSet
+    ",;:\"()*†#".toSet
   )
   private val settings = TokenizerSettings(
     "\\n+",

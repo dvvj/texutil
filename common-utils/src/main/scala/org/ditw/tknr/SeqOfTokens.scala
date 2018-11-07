@@ -31,9 +31,26 @@ class SeqOfTokens(
     origTokenStrs.slice(start, end).mkString(" ")
   }
 
-  def rangeBy(
+  def rangeBySfxs(
     range: TkRange,
     sfxs:Set[String],
+    sfxCounts:(Int, Int) = RangeBySfxCountsDefault
+  ):TkRange = {
+    rangeBy(range, sfxs, false, sfxCounts)
+  }
+
+  def rangeByPfxs(
+    range: TkRange,
+    pfxs:Set[String],
+    sfxCounts:(Int, Int) = RangeBySfxCountsDefault
+  ):TkRange = {
+    rangeBy(range, pfxs, true, sfxCounts)
+  }
+
+  def rangeBy(
+    range: TkRange,
+    psfxs:Set[String],
+    isPrefix:Boolean = false,
     sfxCounts:(Int, Int) = RangeBySfxCountsDefault
   ):TkRange = {
     var start = range.start-1
@@ -42,8 +59,9 @@ class SeqOfTokens(
     var leftFound = 0
     while (start >= 0 && !found) {
       val token = tokens(start)
-      if (checkSfx(token.sfx, sfxs) ||
-        (token.content.isEmpty && sfxs.contains(token.str))
+      val psfx = if (isPrefix) token.pfx else token.sfx
+      if (checkPSfx(psfx, psfxs) ||
+        (token.content.isEmpty && psfxs.contains(token.str))
       ) {
         leftFound += 1
         if (leftFound >= leftCount)
@@ -52,7 +70,10 @@ class SeqOfTokens(
       if (!found)
         start -= 1
     }
-    start = if (found) start+1
+    start = if (found) {
+      if (!isPrefix) start+1
+      else start
+    }
       else 0
 
     var end = range.end-1
@@ -60,8 +81,9 @@ class SeqOfTokens(
     var rightFound = 0
     while (end < tokens.size && !found) {
       val token = tokens(end)
-      if (checkSfx(token.sfx, sfxs) ||
-        (token.content.isEmpty && sfxs.contains(token.str))
+      val psfx = if (isPrefix) token.pfx else token.sfx
+      if (checkPSfx(psfx, psfxs) ||
+        (token.content.isEmpty && psfxs.contains(token.str))
       ) {
         rightFound += 1
         if (rightFound >= rightCount)
@@ -73,7 +95,10 @@ class SeqOfTokens(
     end = if (found) {
         // if the (end) token is ',' self, use end instead
         if (tokens(end).content.isEmpty) end
-        else end+1
+        else {
+          if (!isPrefix) end+1
+          else end
+        }
       }
       else tokens.size
     TkRange(range.input, range.lineIdx, start, end)
@@ -82,8 +107,8 @@ class SeqOfTokens(
 
 object SeqOfTokens {
 
-  private def checkSfx(sfx:String, sfxSet:Set[String]):Boolean = {
-    sfxSet.exists(sfx.contains)
+  private def checkPSfx(psfx:String, sfxSet:Set[String]):Boolean = {
+    sfxSet.exists(psfx.contains)
   }
 
   def fromTokens(tokens:Seq[Token]):SeqOfTokens = {
