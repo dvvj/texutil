@@ -49,7 +49,9 @@ object SegMatchers {
         var newRangeBySfx = lot.rangeBySfxs(m.range, sfxs)
         var newRangeByPfx = lot.rangeByPfxs(m.range, pfxs)
         var newRange = newRangeBySfx.intersect(newRangeByPfx)
-        assert(newRange.nonEmpty)
+        if (newRange.isEmpty) {
+          println("error?")
+        }
         if (!canBeStart && m.range.start == newRange.get.start) {
           if (newRangeByPfx.start == m.range.start)
             newRangeByPfx = lot.rangeByPfxs(m.range, pfxs, RangeBy2_1)
