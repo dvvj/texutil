@@ -1,7 +1,7 @@
 package org.ditw.textSeg.common
 import org.ditw.common.InputHelpers.splitVocabEntries
 import org.ditw.matcher.TokenMatchers.ngramT
-import org.ditw.matcher.{TCompMatcher, TTkMatcher}
+import org.ditw.matcher.{MatcherMgr, TCompMatcher, TPostProc, TTkMatcher}
 import org.ditw.textSeg.SegMatchers._
 import org.ditw.textSeg.common.Tags.TagGroup
 import org.ditw.textSeg.common.Vocabs._
@@ -22,6 +22,7 @@ object CatSegMatchers {
     def tms:List[TTkMatcher]
     def cms:List[TCompMatcher]
     val tagGroup:TagGroup
+    def postprocs:List[TPostProc]
   }
 
   private def createTmIfNonEmptyVoc(
@@ -32,7 +33,7 @@ object CatSegMatchers {
     if (voc.nonEmpty) {
       addTo += ngramT(
         splitVocabEntries(voc),
-        _Dict,
+        AllVocabDict,
         tag
       )
     }
@@ -47,14 +48,17 @@ object CatSegMatchers {
     stopKeywords:Set[String],
     segStopWordsLeft:Set[String],
     segStopWordsRight:Set[String],
-    canBeStart:Boolean
+    canBeStart:Boolean,
+    extraTms:List[TTkMatcher] = Nil,
+    extraCms:List[TCompMatcher] = Nil,
+    extraPostProcs:List[TPostProc] = Nil
   ) extends TSegMatchers4Cat {
 
     val tms:List[TTkMatcher] = {
       val t = ListBuffer[TTkMatcher](
         ngramT(
           splitVocabEntries(keywords),
-          _Dict,
+          AllVocabDict,
           tagGroup.keywordTag
         )
       )
@@ -63,7 +67,7 @@ object CatSegMatchers {
       createTmIfNonEmptyVoc(segStopWordsRight, tagGroup.segRightStopTag, t)
       createTmIfNonEmptyVoc(stopKeywords, tagGroup.stopWordsTag, t)
 
-      t.toList
+      extraTms ++ t
     }
 
     val cms:List[TCompMatcher] = {
@@ -85,9 +89,18 @@ object CatSegMatchers {
           t, leftStopTags, rightStopTags, tagGroup.segTag
         )
       }
+      t :: extraCms
+    }
+
+    val postprocs:List[TPostProc] = {
       List(
-        t
-      )
+        MatcherMgr.postProcBlocker(
+          Map(tagGroup.stopWordsTag -> Set(tagGroup.segTag))
+        ),
+        MatcherMgr.postProcOverride(
+          Map(tagGroup.gazTag -> tagGroup.segTag)
+        )
+      ) ++ extraPostProcs
     }
   }
 }

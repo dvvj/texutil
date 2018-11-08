@@ -5,11 +5,6 @@ import org.ditw.tknr.Tokenizers.{TTokenizer, TokenizerSettings}
 
 object Settings extends Serializable {
 
-  private[textSeg] val _Dict: Dict =
-    InputHelpers.loadDict(
-      "0123456789".map(_.toString)
-    )
-
   import org.ditw.tknr.TknrHelpers._
 
   private[textSeg] val _PunctChars = ".,;:()[]\""

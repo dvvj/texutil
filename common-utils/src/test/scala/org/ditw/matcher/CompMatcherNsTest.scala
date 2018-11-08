@@ -11,7 +11,7 @@ class CompMatcherNsTest extends FlatSpec with Matchers with TableDrivenPropertyC
   import org.ditw.tknr.TestHelpers._
 
   private val tag12_23 = "tag12_23"
-  private val matcher12_23 = seq(
+  private val matcher12_23 = lng(
     IndexedSeq(
       byTm(
         ngram(

@@ -96,10 +96,17 @@ object CompMatcherNs {
     }
   }
 
-  def seq(
+  def lng(
     subMatchers:IndexedSeq[TCompMatcher],
     tag:String
   ):TCompMatcher = {
     new CmLNGram(subMatchers, Option(tag))
+  }
+
+  def lngOfTags(
+    subMatcherTags:IndexedSeq[String],
+    tag:String
+  ):TCompMatcher = {
+    lng(subMatcherTags.map(byTag), tag)
   }
 }

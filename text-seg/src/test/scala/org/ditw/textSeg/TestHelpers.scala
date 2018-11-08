@@ -1,12 +1,19 @@
 package org.ditw.textSeg
+import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.matcher.{MatchPool, MatcherMgr}
-import org.ditw.textSeg.Settings.{TknrTextSeg, _Dict}
+import org.ditw.textSeg.Settings.{TknrTextSeg}
 import org.ditw.textSeg.common.Vocabs
 import org.ditw.tknr.TknrHelpers.{loTFrom, resultFrom}
 import org.ditw.tknr.{TknrHelpers, TknrResult}
 import org.scalatest.Matchers
 
 object TestHelpers extends Matchers {
+
+
+  private[textSeg] val _Dict: Dict =
+    InputHelpers.loadDict(
+      "0123456789".map(_.toString)
+    )
 
   private [textSeg] def testDataTuple(
     testStr:String,
@@ -24,7 +31,7 @@ object TestHelpers extends Matchers {
     mmgr:MatcherMgr,
     inStr:String, tag:String, expRanges:Set[(Int, Int, Int)]
   ):Unit = {
-    val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, Vocabs._Dict)
+    val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, Vocabs.AllVocabDict)
     mmgr.run(matchPool)
     val res = matchPool.get(tag)
     val resRanges = res.map(_.range)

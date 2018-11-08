@@ -1,6 +1,7 @@
 package org.ditw.textSeg.common
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.textSeg.Settings
+import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.CatSegMatchers.Category
 
 object Vocabs extends Serializable {
@@ -87,6 +88,8 @@ object Vocabs extends Serializable {
   )
   private[textSeg] val _UnivSegStopWordsLeft = __UnivSegStopWordsCommon ++ _UnivSegStopWordsLeftExtra
   private[textSeg] val _UnivSegStopWordsRight = __UnivSegStopWordsCommon
+  private[textSeg] val __univOfVocab =
+    ResourceHelpers.loadStrs("/cat2/univ_of_vocab.txt").toSet
 
   private val allVocabs = Seq(
     _CorpWords,
@@ -94,11 +97,12 @@ object Vocabs extends Serializable {
     _UnivGazWords,
     _UnivStopWords,
     __UnivSegStopWordsCommon,
-    _UnivSegStopWordsLeftExtra
+    _UnivSegStopWordsLeftExtra,
+    __univOfVocab
   )
 
   import InputHelpers._
-  private [textSeg] val _Dict:Dict = InputHelpers.loadDict(
+  private [textSeg] val AllVocabDict:Dict = InputHelpers.loadDict(
     allVocabs.map(splitVocabToSet)
   )
 }

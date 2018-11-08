@@ -6,6 +6,10 @@ import org.ditw.matcher.{MatchPool, TCompMatcher, TkMatch}
 object SegMatchers {
 
   private val RangeBy2_1:(Int, Int) = (2, 1)
+
+  private def refTagsFromMatcher(matcher:TCompMatcher):Iterable[String] =
+    if (matcher.tag.nonEmpty) matcher.tag
+    else matcher.getRefTags()
   private[textSeg] class SegBySfx(
     private val tagsContained:Set[String],
     private val sfxs:Set[String],
@@ -29,6 +33,43 @@ object SegMatchers {
     }
 
     override def getRefTags(): Set[String] = tagsContained
+  }
+
+  private[textSeg] class SegEndWithTags(
+    private val matcher:TCompMatcher,
+    private val tagsToEndWith:Set[String],
+    val tag:Option[String]
+  ) extends TCompMatcher with TDefRunAtLineFrom {
+    override def runAtLine(
+      matchPool: MatchPool,
+      lineIdx: Int
+    ): Set[TkMatch] = {
+      val matches = matcher.runAtLine(matchPool, lineIdx)
+      val endTagRanges = matchPool.get(tagsToEndWith)
+        .map(_.range)
+        .filter(_.lineIdx == lineIdx)
+      val segMatches = matches.flatMap { m =>
+        val allCovered = endTagRanges.filter(m.range.covers)
+          .toList.sortBy(_.end)(Ordering[Int].reverse)
+        if (allCovered.nonEmpty) {
+          val maxEnd = allCovered.head.end
+          val res =
+            if (maxEnd == m.range.end) m
+            else {
+              val newRange = m.range.copy(end = maxEnd)
+              TkMatch.updateRange(m, newRange)
+            }
+          Option(res)
+        }
+        else None
+      }
+
+      TkMatch.mergeByRange(segMatches)
+    }
+
+    override def getRefTags(): Set[String] = {
+      tagsToEndWith ++ refTagsFromMatcher(matcher)
+    }
   }
 
   private[textSeg] class SegByPfxSfx(
@@ -120,7 +161,7 @@ object SegMatchers {
       c1
     }
 
-    private val refTags = leftTags ++ rightTags ++ matcher.tag
+    private val refTags = leftTags ++ rightTags ++ refTagsFromMatcher(matcher)
     override def getRefTags(): Set[String] = refTags
   }
 
@@ -150,5 +191,13 @@ object SegMatchers {
     tag:String
   ):TCompMatcher = {
     new SegByTags(matcher, leftTags, rightTags, Option(tag))
+  }
+
+  def endWithTags(
+    matcher:TCompMatcher,
+    tagsToEndWith:Set[String],
+    tag:String
+  ):TCompMatcher = {
+    new SegEndWithTags(matcher, tagsToEndWith, Option(tag))
   }
 }

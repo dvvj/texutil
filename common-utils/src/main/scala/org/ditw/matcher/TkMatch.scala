@@ -78,6 +78,10 @@ object TkMatch extends Serializable {
     res
   }
 
+  def updateRange(orig:TkMatch, newRange:TkRange):TkMatch = {
+    new TkMatch(newRange, orig.children)
+  }
+
   def mergeByRange(matches:Iterable[TkMatch]):Set[TkMatch] = {
     val indexed = matches.toArray
     val idxToRemove = ListBuffer[Int]()

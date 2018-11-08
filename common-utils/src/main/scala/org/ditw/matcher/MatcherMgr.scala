@@ -129,6 +129,7 @@ object MatcherMgr extends Serializable {
       overrideMap.foreach { kv =>
         val (overrideTag, toOverrideTag) = kv
         val overrideMatches = overrideMergedMap(overrideTag)
+        overrideMatches.foreach { m => m.addTag(toOverrideTag) }
         if (overrideMatches.nonEmpty)
           matchPool.add(toOverrideTag, overrideMatches)
       }

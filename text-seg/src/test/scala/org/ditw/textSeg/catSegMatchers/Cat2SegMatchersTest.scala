@@ -38,12 +38,16 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     //      (0, 7, 9)
     //    ),
     testDataEntr(
-      "\"Hippocration\" General Hospital †2nd University",
-      (0, 3, 5)
-    ),
-    testDataEntr(
       "\"Carol Davila\" University of medicine and Pharmacy bucharest",
       (0, 0, 7)
+    ),
+    testDataEntr(
+      "\"Iuliu Hațieganu\" University of Medicine and Pharmacy Cluj-Napoca, Romania",
+      (0, 0, 7)
+    ),
+    testDataEntr(
+      "\"Hippocration\" General Hospital †2nd University",
+      (0, 3, 5)
     ),
     testDataEntr(
       "\"Biomolécules et Biotechnologies Végétales,\" Université François-Rabelais de Tours",
@@ -237,7 +241,6 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
   )
 
   private val mmgr = mmgrFrom(
-    Cat1SegMatchers.segMatchers,
     Cat2SegMatchers.segMatchers
   )
   "Cat2 seg matchers test" should "pass" in {

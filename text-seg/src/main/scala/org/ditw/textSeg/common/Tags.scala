@@ -1,12 +1,23 @@
 package org.ditw.textSeg.common
 
 object Tags extends Serializable {
+
+  private def builtInTag(tagStem:String) = {
+    "__TagBITm" + tagStem
+  }
+  private[textSeg] val TmOf = builtInTag("Of")
+
   private val TmTagPfx = "__TagTm"
   private val GazTagPfx = "__TagGaz"
   private val TmStopTagPfx = "__TagStopTm"
   private val SegTagPfx = "_TagSeg"
   private val SegLeftStopTagPfx = "_TagSegLStop"
   private val SegRightStopTagPfx = "_TagSegRStop"
+
+  private val CustomTmTagPrefix = "__CusTm"
+  def customTmTag(tagStem:String):String = CustomTmTagPrefix + tagStem
+  private[textSeg] val CustomCmTagPrefix = "_CusCm"
+  def customCmTag(tagStem:String):String = CustomCmTagPrefix + tagStem
 
   case class TagGroup(
     keywordTag:String,
