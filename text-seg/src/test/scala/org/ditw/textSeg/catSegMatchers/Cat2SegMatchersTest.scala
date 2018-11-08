@@ -33,10 +33,14 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     //      "Key Laboratory of Biorheological Science and Technology (Chongqing University)",
     //      (0, 7, 9)
     //    ),
-    //    testDataEntr(
-    //      ""Carol Davila'' University of Medicine and Pharmacy, Bucharest, Romania.",
-    //      (0, 7, 9)
-    //    ),
+//    testDataEntr(
+//      "University of Medicine and Dentistry of New Jersey",
+//      (0, 0, 7)
+//    ),
+    testDataEntr(
+      "\"Carol Davila'' University of Medicine and Pharmacy, Bucharest, Romania.",
+      (0, 0, 7)
+    ),
     testDataEntr(
       "\"Carol Davila\" University of medicine and Pharmacy bucharest",
       (0, 0, 7)
