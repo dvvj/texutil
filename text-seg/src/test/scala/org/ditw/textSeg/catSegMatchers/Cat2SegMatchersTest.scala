@@ -29,10 +29,17 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
 
   private val univSegtestData = Table(
     ("inStr", "tag", "expRanges"),
-    //    testDataEntr(
-    //      "Key Laboratory of Biorheological Science and Technology (Chongqing University)",
-    //      (0, 7, 9)
-    //    ),
+    testDataEntr(
+      "A. Gemelli Hospital-Catholic University of Rome",
+      (0, 4, 8)
+    ),
+    testDataEntr(
+      "University of Pittsburgh Medical Center in Italy" // it's considered cat3
+    ),
+    testDataEntr(
+      "Key Laboratory of Biorheological Science and Technology (Chongqing University)",
+      (0, 7, 9)
+    ),
     testDataEntr(
       "\"Iuliu Hatieganu\" University of Medicine and Pharmacy Department of Medical Sciences Cluj-Napoca Romania \"Iuliu Hatieganu\" University of Medicine and Pharmacy",
       (0, 0, 7),
@@ -53,9 +60,6 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "\"Gr.T. Popa\" University of Medicine and Pharmacy of Iasi, 700503 Iasi",
       (0, 0, 9)
-    ),
-    testDataEntr(
-      "University of Pittsburgh Medical Center in Italy" // it's considered cat3
     ),
     testDataEntr(
       "University of Medicine and Dentistry of New Jersey",
@@ -258,6 +262,22 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     ),
     testDataEntr(
       "\"Elias\" University Emergency Hospital"
+    ),
+    testDataEntr(
+      "Southampton General Hospital, (Southampton University Hospitals NHS Trust)"
+    ),
+    testDataEntr(
+      "Royal Free and University College Medical School (University College London)",
+      (0, 0, 7),
+      (0, 7, 10)
+    ),
+    testDataEntr(
+      "Charing Cross and Westminster Medical School (University of London) London UK.",
+      (0, 6, 9)
+    ),
+    testDataEntr(
+      "(University of Queensland) Royal Brisbane Hospital",
+      (0, 0, 3)
     )
   )
 

@@ -69,6 +69,18 @@ object Cat2SegMatchers {
     tagSegUnivOfVocabOf
   )
 
+
+//  private[textSeg] val tagSegUnivInBrackets = customCmTag("SegUnivInBrackets")
+//  private[textSeg] val segUnivInBracket = segByPfxSfx(
+//    Set(TagGroup4Univ.keywordTag), _SegPfxs_Bracket, _SegSfxs_Bracket,
+//    _canBeStart,
+//    tagSegUnivInBrackets
+//  )
+//  private[textSeg] val univInBracketsOverride = MatcherMgr.postProcOverride(
+//    Map(
+//      tagSegUnivInBrackets -> TagGroup4Univ.segTag
+//    )
+//  )
   private[textSeg] val univOfVocabOverride = MatcherMgr.postProcOverride(
     Map(
       tagSegUnivOfVocab -> TagGroup4Univ.segTag
@@ -79,6 +91,7 @@ object Cat2SegMatchers {
       tagSegUnivOfVocabOf -> TagGroup4Univ.segTag
     )
   )
+
 
   val segMatchers = new SegMatcher4Cat(
     cat = Category.Univ,

@@ -7,10 +7,16 @@ import org.ditw.textSeg.common.CatSegMatchers.Category
 object Vocabs extends Serializable {
 
   private[textSeg] val _SegSfxs = Set(
-    ",", ";"
+    ",", ";", ")"
   )
   private[textSeg] val _SegPfxs =
-    Settings._AffIndexChars.map(_.toString).toSet
+    Settings._AffIndexChars.map(_.toString).toSet + "("
+//  private[textSeg] val _SegPfxs_Bracket = Set(
+//    "("
+//  )
+//  private[textSeg] val _SegSfxs_Bracket = Set(
+//    ")"
+//  )
 
   private[textSeg] val _CorpWords = Set(
     "llc", "inc", "ltd",

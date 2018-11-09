@@ -10,7 +10,7 @@ object SegMatcherRuns extends App {
 
   val spark = SparkUtils.sparkContextLocal()
 
-  val affLines = spark.textFile("/media/sf_vmshare/aff-w2v")
+  val affLines = spark.textFile("/media/sf_vmshare/fp2Affs_uniq")
 
   val mmgr = mmgrFrom(
     Cat2SegMatchers.segMatchers
@@ -38,7 +38,7 @@ object SegMatcherRuns extends App {
 
   println(s"Matched Line count: ${allUnivs.count}")
 
-  val savePath = "/media/sf_vmshare/seg2/univs"
+  val savePath = "/home/dev/univs"
   val savePathFile = new File(savePath)
   if (savePathFile.exists()) {
     FileUtils.deleteDirectory(savePathFile)
@@ -48,7 +48,6 @@ object SegMatcherRuns extends App {
     .flatMap(s => s)
     .groupByKey()
     .mapValues(l => s"\t(${l.size})\n" + l.mkString("\t", "\n\t", ""))
-    .coalesce(1)
     .sortBy(x => x._1)
     .map { p =>
       s"${p._1}\n${p._2}"
