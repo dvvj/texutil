@@ -57,9 +57,26 @@ object Cat2SegMatchers {
       tagSegUnivOfVocab
   )
 
+  private[textSeg] val tagCmUnivOfOf = customCmTag("UnivOfVocabOf")
+  private val cmUnivOfOf = CompMatcherNs.lngOfTags(
+    IndexedSeq(tagCmUnivOf, TmOf),
+    tagCmUnivOfOf
+  )
+  private[textSeg] val tagSegUnivOfVocabOf = customCmTag("SegUnivOfVocabOf")
+  private val segUnivOfVocabOf = segByPfxSfx(
+    Set(tagCmUnivOfOf), _SegPfxs, _SegSfxs,
+    _canBeStart,
+    tagSegUnivOfVocabOf
+  )
+
   private[textSeg] val univOfVocabOverride = MatcherMgr.postProcOverride(
     Map(
       tagSegUnivOfVocab -> TagGroup4Univ.segTag
+    )
+  )
+  private[textSeg] val univOfVocabOfOverride = MatcherMgr.postProcOverride(
+    Map(
+      tagSegUnivOfVocabOf -> TagGroup4Univ.segTag
     )
   )
 
@@ -73,7 +90,7 @@ object Cat2SegMatchers {
     segStopWordsRight = _UnivSegStopWordsRight,
     _canBeStart,
     List(tmUnivOf),
-    List(cmUnivOf, segUnivOf, segUnivOfVocab),
-    List(univOfVocabOverride)
+    List(cmUnivOf, segUnivOf, segUnivOfVocab, cmUnivOfOf, segUnivOfVocabOf),
+    List(univOfVocabOverride, univOfVocabOfOverride)
   )
 }

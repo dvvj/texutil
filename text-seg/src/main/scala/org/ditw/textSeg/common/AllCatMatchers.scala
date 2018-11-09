@@ -23,7 +23,7 @@ object AllCatMatchers {
   def mmgrFrom(
     catSegMatchers:TSegMatchers4Cat*
   ):MatcherMgr = {
-    val postprocs = catSegMatchers.flatMap(_.postprocs)
+    val postprocs = catSegMatchers.map(_.postproc)
     new MatcherMgr(
       _ExtraTms ++ catSegMatchers.flatMap(_.tms),
       _ExtraCms ++ catSegMatchers.flatMap(_.cms),

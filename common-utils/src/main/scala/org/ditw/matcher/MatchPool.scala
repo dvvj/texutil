@@ -9,6 +9,7 @@ class MatchPool(
   import MatchPool._
   import collection.mutable
   private var _map = mutable.Map[String, Set[TkMatch]]()
+  private def getMap = _map.toSet
   def get(tag:String):Set[TkMatch] = _map.getOrElse(tag, EmptyMatches)
   def get(tags:Set[String]):Set[TkMatch] =
     tags.flatMap(_map.getOrElse(_, EmptyMatches))

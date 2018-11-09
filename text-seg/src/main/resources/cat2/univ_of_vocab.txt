@@ -3,3 +3,5 @@ Medicine and Dentistry
 Medicine and Science
 Medicine & Pharmacy
 Agricultural Sciences and Veterinary Medicine
+Medicine
+Medicine and Farmacy

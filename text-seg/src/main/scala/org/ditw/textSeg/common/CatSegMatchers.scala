@@ -22,7 +22,7 @@ object CatSegMatchers {
     def tms:List[TTkMatcher]
     def cms:List[TCompMatcher]
     val tagGroup:TagGroup
-    def postprocs:List[TPostProc]
+    def postproc:TPostProc
   }
 
   private def createTmIfNonEmptyVoc(
@@ -92,15 +92,16 @@ object CatSegMatchers {
       t :: extraCms
     }
 
-    val postprocs:List[TPostProc] = {
-      List(
-        MatcherMgr.postProcBlocker(
-          Map(tagGroup.stopWordsTag -> Set(tagGroup.segTag))
-        ),
-        MatcherMgr.postProcOverride(
-          Map(tagGroup.gazTag -> tagGroup.segTag)
-        )
-      ) ++ extraPostProcs
+
+    private val orderedPostprocs:List[TPostProc] = {
+      MatcherMgr.postProcBlocker(
+        Map(tagGroup.stopWordsTag -> Set(tagGroup.segTag))
+      ) :: extraPostProcs :::
+      MatcherMgr.postProcOverride(
+        Map(tagGroup.gazTag -> tagGroup.segTag)
+      ) :: Nil
     }
+
+    val postproc:TPostProc = MatcherMgr.postProcPrioList(orderedPostprocs)
   }
 }

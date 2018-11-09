@@ -19,6 +19,8 @@ object CompMatcherNs {
   def or(subMatchers:Set[TCompMatcher], tag:String):TCompMatcher = {
     new CmOr(subMatchers, Option(tag))
   }
+
+  private val EmptyMatches = List[IndexedSeq[TkMatch]]()
   private def _seqMatches(
     curr:List[IndexedSeq[TkMatch]],
     subMatchesSeq:IndexedSeq[Set[TkMatch]],
@@ -29,20 +31,24 @@ object CompMatcherNs {
     else {
       val nextSubMatches = subMatchesSeq(start)
       val next = ListBuffer[IndexedSeq[TkMatch]]()
-      if (curr.isEmpty) {
-        next ++= nextSubMatches.map(sm => IndexedSeq(sm))
-      }
-      else {
-        nextSubMatches.foreach { nextSubMatch =>
-          curr.foreach { subMatchesSoFar =>
-            val lastMatch = subMatchesSoFar.last
-            if (nextSubMatch.range.start >= lastMatch.range.end) {
-              next += (subMatchesSoFar :+ nextSubMatch)
+      if (nextSubMatches.nonEmpty) {
+        if (curr.isEmpty) {
+          next ++= nextSubMatches.map(sm => IndexedSeq(sm))
+        }
+        else {
+          nextSubMatches.foreach { nextSubMatch =>
+            curr.foreach { subMatchesSoFar =>
+              val lastMatch = subMatchesSoFar.last
+              if (nextSubMatch.range.start >= lastMatch.range.end) {
+                next += (subMatchesSoFar :+ nextSubMatch)
+              }
             }
           }
         }
+        _seqMatches(next.toList, subMatchesSeq, start+1)
       }
-      _seqMatches(next.toList, subMatchesSeq, start+1)
+      else
+        EmptyMatches
     }
   }
 
@@ -77,6 +83,13 @@ object CompMatcherNs {
       val candidates = matchCandidates(matchPool, subMatchesSeq)
       filterCandidates(candidates)
     }
+
+    private val _refTags:Set[String] = {
+      subMatchers.flatMap(sm => if (sm.tag.nonEmpty) sm.tag else sm.getRefTags())
+        .toSet
+    }
+
+    override def getRefTags: Set[String] = _refTags
   }
 
   private[matcher] class CmLNGram(

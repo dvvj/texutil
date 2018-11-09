@@ -81,6 +81,12 @@ object MatcherMgr extends Serializable {
   private val EmptyMatches = Set[TkMatch]()
   private val EmptyDepCmTags = Set[String]()
 
+  private[ditw] def postProcPrioList(procList:List[TPostProc]):TPostProc = new TPostProc {
+    override def run(matchPool: MatchPool): Unit = {
+      procList.foreach(_.run(matchPool))
+    }
+  }
+
   private[ditw] def postProcBlocker(blockTagMap:Map[String, Set[String]]):TPostProc = new TPostProc {
     override def run(matchPool: MatchPool): Unit = {
       val toRemoveList = ListBuffer[TkMatch]()
@@ -108,7 +114,9 @@ object MatcherMgr extends Serializable {
       val overrideMergedMap = overrideMap.map { kv =>
         val overrideTag = kv._1
         val matches = matchPool.get(overrideTag)
-        overrideTag -> TkMatch.mergeByRange(matches)
+        val merged = TkMatch.mergeByRange(matches)
+        merged.foreach { m => m.addTag(kv._2) }
+        overrideTag -> merged
       }
 
       val toRemoveList = ListBuffer[TkMatch]()
@@ -126,13 +134,14 @@ object MatcherMgr extends Serializable {
       }
 
       matchPool.remove(toRemoveList)
+//      println(s"\t$overrideMergedMap")
       overrideMap.foreach { kv =>
         val (overrideTag, toOverrideTag) = kv
         val overrideMatches = overrideMergedMap(overrideTag)
-        overrideMatches.foreach { m => m.addTag(toOverrideTag) }
         if (overrideMatches.nonEmpty)
           matchPool.add(toOverrideTag, overrideMatches)
       }
+
     }
   }
 }

@@ -33,16 +33,36 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     //      "Key Laboratory of Biorheological Science and Technology (Chongqing University)",
     //      (0, 7, 9)
     //    ),
-//    testDataEntr(
-//      "University of Medicine and Dentistry of New Jersey",
-//      (0, 0, 7)
-//    ),
     testDataEntr(
-      "\"Carol Davila'' University of Medicine and Pharmacy, Bucharest, Romania.",
+      "\"Iuliu Hatieganu\" University of Medicine and Pharmacy Department of Medical Sciences Cluj-Napoca Romania \"Iuliu Hatieganu\" University of Medicine and Pharmacy",
+      (0, 0, 7),
+      (0, 13, 20)
+    ),
+    testDataEntr(
+      "\"Carol Davila\" University of Medicine and Farmacy, Obstetrics-Gynaecology Clinic",
       (0, 0, 7)
     ),
     testDataEntr(
+      "\"Carol Davila\" University of Medicine Bucharest, Department II",
+      (0, 0, 5)
+    ),
+    testDataEntr(
       "\"Carol Davila\" University of medicine and Pharmacy bucharest",
+      (0, 0, 7)
+    ),
+    testDataEntr(
+      "\"Gr.T. Popa\" University of Medicine and Pharmacy of Iasi, 700503 Iasi",
+      (0, 0, 9)
+    ),
+    testDataEntr(
+      "University of Pittsburgh Medical Center in Italy" // it's considered cat3
+    ),
+    testDataEntr(
+      "University of Medicine and Dentistry of New Jersey",
+      (0, 0, 8)
+    ),
+    testDataEntr(
+      "\"Carol Davila'' University of Medicine and Pharmacy, Bucharest, Romania.",
       (0, 0, 7)
     ),
     testDataEntr(
@@ -60,9 +80,6 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "University of Texas Medical Branch",
       (0, 0, 5)
-    ),
-    testDataEntr(
-      "University of Pittsburgh Medical Center in Italy" // it's considered cat3
     ),
     testDataEntr(
       "University of Colorado Denver and Health Science Center",
