@@ -86,8 +86,9 @@ object Vocabs extends Serializable {
     "and",
     "&",
     "faculty",
-    "-"
-  )
+    "-",
+    "Institute"
+  ).map(_.toLowerCase())
 
   private[textSeg] val _UnivSegStopWordsLeftExtra = Set(
     "of", "at"

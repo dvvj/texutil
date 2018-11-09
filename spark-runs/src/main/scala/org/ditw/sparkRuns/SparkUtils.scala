@@ -1,4 +1,7 @@
 package org.ditw.sparkRuns
+import java.io.File
+
+import org.apache.commons.io.FileUtils
 import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkUtils {
@@ -36,6 +39,13 @@ object SparkUtils {
 
   def sparkContextLocal(appName:String = "[NO NAME]", numReducer:Int = 4) = {
     sparkContext(true, appName, numReducer)
+  }
+
+  def deleteLocal(path:String):Unit = {
+    val pathFile = new File(path)
+    if (pathFile.exists()) {
+      FileUtils.deleteDirectory(pathFile)
+    }
   }
 
 //  def sparkSessionLocal(appName:String = "[NO NAME]", numReducer:Int = 4) = {

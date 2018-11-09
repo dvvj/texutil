@@ -2,6 +2,7 @@ package org.ditw.sparkRuns
 import java.io.File
 
 import org.apache.commons.io.FileUtils
+import org.apache.spark.storage.StorageLevel
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.AllCatMatchers._
 import org.ditw.textSeg.common.Tags
@@ -10,7 +11,10 @@ object SegMatcherRuns extends App {
 
   val spark = SparkUtils.sparkContextLocal()
 
-  val affLines = spark.textFile("/media/sf_vmshare/fp2Affs_uniq")
+  val affLines = spark.textFile(
+    //"/media/sf_vmshare/fp2Affs_uniq"
+    "/media/sf_vmshare/aff-w2v"
+  )
 
   val mmgr = mmgrFrom(
     Cat2SegMatchers.segMatchers
@@ -38,21 +42,26 @@ object SegMatcherRuns extends App {
 
   println(s"Matched Line count: ${allUnivs.count}")
 
-  val savePath = "/home/dev/univs"
-  val savePathFile = new File(savePath)
-  if (savePathFile.exists()) {
-    FileUtils.deleteDirectory(savePathFile)
-  }
-
-  allUnivs
+  val s = allUnivs
     .flatMap(s => s)
     .groupByKey()
-    .mapValues(l => s"\t(${l.size})\n" + l.mkString("\t", "\n\t", ""))
     .sortBy(x => x._1)
+    .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+
+  val savePath = "/home/dev/univs"
+  SparkUtils.deleteLocal(savePath)
+  s.mapValues(l => s"\t(${l.size})\n" + l.mkString("\t", "\n\t", ""))
     .map { p =>
       s"${p._1}\n${p._2}"
     }
     .saveAsTextFile(savePath)
+
+  val savePath2= "/home/dev/univs-count"
+  SparkUtils.deleteLocal(savePath2)
+  s.map { p =>
+      f"${p._2.size}%05d, ${p._1}"
+    }
+    .saveAsTextFile(savePath2)
 
   spark.stop()
 

@@ -45,7 +45,10 @@ object CompMatcherNs {
             }
           }
         }
-        _seqMatches(next.toList, subMatchesSeq, start+1)
+        if (next.nonEmpty)
+          _seqMatches(next.toList, subMatchesSeq, start+1)
+        else
+          EmptyMatches
       }
       else
         EmptyMatches
@@ -65,17 +68,18 @@ object CompMatcherNs {
     private def matchCandidates(
       matchPool: MatchPool,
       subMatchesSeq:IndexedSeq[Set[TkMatch]]
-    ):Set[TkMatch] = {
+    ):IndexedSeq[IndexedSeq[TkMatch]] = {
       val lineIdx2Matches = matchPool.input.linesOfTokens.indices.map { idx =>
         val matchesSeqInLineIdx = subMatchesSeq.map(_.filter(_.range.lineIdx == idx))
         idx -> matchesSeqInLineIdx
       }
       val matchesInLines = lineIdx2Matches.map(p => seqMatches(p._2))
-      val res = matchesInLines.flatMap(l => l.map(ch => TkMatch.fromChildren(ch)))
-      res.toSet
+//      val res = matchesInLines.flatMap(l => l.map(ch => TkMatch.fromChildren(ch)))
+//      res.toSet
+      matchesInLines.flatten
     }
 
-    protected def filterCandidates(candidates:Set[TkMatch]):Set[TkMatch]
+    protected def filterCandidates(candidates:IndexedSeq[IndexedSeq[TkMatch]]):Set[TkMatch]
 
     override def run(matchPool: MatchPool)
       : Set[TkMatch] = {
@@ -84,28 +88,35 @@ object CompMatcherNs {
       filterCandidates(candidates)
     }
 
-    private val _refTags:Set[String] = {
-      subMatchers.flatMap(sm => if (sm.tag.nonEmpty) sm.tag else sm.getRefTags())
-        .toSet
-    }
-
-    override def getRefTags: Set[String] = _refTags
+//    private val _refTags:Set[String] = {
+//      subMatchers.flatMap(sm => if (sm.tag.nonEmpty) sm.tag else sm.getRefTags())
+//        .toSet
+//    }
+//
+//    override def getRefTags: Set[String] = _refTags
   }
 
   private[matcher] class CmLNGram(
     protected val subMatchers:IndexedSeq[TCompMatcher],
     val tag:Option[String]
   ) extends TCompMatcherSeq {
-    override protected def filterCandidates(candidates: Set[TkMatch])
+    override protected def filterCandidates(candidates: IndexedSeq[IndexedSeq[TkMatch]])
       : Set[TkMatch] = {
-      candidates.filter { c =>
-        val nextToEachOther = (0 to c.children.size-2).forall { idx =>
-          val curr = c.children(idx)
-          val next = c.children(idx+1)
+      val filtered = candidates.filter { ml =>
+        val nextToEachOther = (0 to ml.size-2).forall { idx =>
+          val curr = ml(idx)
+          val next = ml(idx+1)
           curr.range.end == next.range.start
         }
         nextToEachOther
       }
+
+      filtered.map { subMatches =>
+        val m = TkMatch.fromChildren(subMatches)
+        if (tag.nonEmpty)
+          m.addTag(tag.get)
+        m
+      }.toSet
     }
   }
 
