@@ -267,6 +267,12 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
       "Southampton General Hospital, (Southampton University Hospitals NHS Trust)"
     ),
     testDataEntr(
+      "A. Meyer University Children's Hospital"
+    ),
+    testDataEntr(
+      "A. Meyer\" University Children's Hospital"
+    ),
+    testDataEntr(
       "Royal Free and University College Medical School (University College London)",
       (0, 0, 7),
       (0, 7, 10)
@@ -278,6 +284,19 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "(University of Queensland) Royal Brisbane Hospital",
       (0, 0, 3)
+    ),
+    testDataEntr(
+      "\"F. Magrassi - A. Lanzara\" Second University of Naples",
+      (0, 5, 9)
+    ),
+    testDataEntr(
+      "''F.Magrassi, A.Lanzara'' Seconda Università di Napoli",
+      (0, 2, 6)
+    ),
+    testDataEntr(
+      "\"F. Magrassi and A. Lanzara\" University of Campania \"Luigi Vanvitelli\" Second University of Naples",
+      (0, 5, 10),
+      (0, 10, 14)
     )
   )
 
