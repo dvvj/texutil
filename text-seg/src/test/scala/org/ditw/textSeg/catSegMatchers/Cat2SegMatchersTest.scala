@@ -297,6 +297,10 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
       "\"F. Magrassi and A. Lanzara\" University of Campania \"Luigi Vanvitelli\" Second University of Naples",
       (0, 5, 10),
       (0, 10, 14)
+    ),
+    testDataEntr(
+      "the A.T. Still Research Institute at A.T. Still University (Drs Snider and Degenhardt and Ms Johnson)",
+      (0, 6, 9)
     )
   )
 
