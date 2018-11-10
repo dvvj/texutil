@@ -42,7 +42,8 @@ object Vocabs extends Serializable {
   private val _catToResPath = Map(
     Category.Corp -> "cat1",
     Category.Univ -> "cat2",
-    Category.Hosp -> "cat3"
+    Category.Hosp -> "cat3",
+    Category.ResInst -> "cat4"
   )
 
   private[textSeg] def loadStopWords(cat: Category):Set[String] = {
@@ -87,8 +88,10 @@ object Vocabs extends Serializable {
     "&",
     "faculty",
     "-",
-    "Institute"
-  ).map(_.toLowerCase())
+    "Institute",
+    "from"
+  ).map(_.toLowerCase()) ++
+    otherGazWordsAsStopWords(Category.Univ).map(_.toLowerCase)
 
   private[textSeg] val _UnivSegStopWordsLeftExtra = Set(
     "of", "at"

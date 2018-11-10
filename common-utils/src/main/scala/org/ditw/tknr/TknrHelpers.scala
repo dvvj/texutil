@@ -83,8 +83,8 @@ object TknrHelpers extends Serializable {
     TkRange(input, tp3._1, tp3._2, tp3._3)
 
   private [ditw] val TokenSplitter_CommaColon = TokenSplitterCond(
-    ".*[,].*",
-    "[,;]",
+    ".*[,;][^\"]+",
+    "(?<=[,;])",
     Set(",;")
   )
   private [ditw] val TokenSplitter_DashSlash = TokenSplitterCond(

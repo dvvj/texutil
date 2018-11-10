@@ -33,10 +33,22 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
 //      "\"C.I. Parhon\" National Institute of Endocrinology,\"Carol Davila\" University of Medicine and Pharmacy",
 //      (0, 8, 11)
 //    ),
-    //    testDataEntr(
-    //      "*Midwifery Department,Shahid Sadoughi University of Medical Sciences,Yazd,Iran.",
-    //      (0, 8, 11)
-    //    ),
+    testDataEntr(
+      "Biomedicum Helsinki University of Helsinki",
+      (0, 2, 5)
+    ),
+    testDataEntr(
+      "3Department of Biomedicine,Federal University of Uberlândia,Uberlândia,Brazil.",
+      (0, 3, 7)
+    ),
+    testDataEntr(
+      "Department of Biochemistry and Molecular Biology and Institute of Biomedicine from the University of Barcelona",
+      (0, 11, 15)
+    ),
+    testDataEntr(
+      "*Midwifery Department,Shahid Sadoughi University of Medical Sciences,Yazd,Iran.",
+      (0, 2, 8)
+    ),
     testDataEntr(
       "#Department of Internal Medicine, Medical College of Georgia, Georgia Regents University, Augusta, Georgia 30912, United States.",
       (0, 8, 11)
@@ -283,6 +295,10 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     ),
     testDataEntr(
       "A. Meyer\" University Children's Hospital"
+    ),
+    testDataEntr(
+      "Baylor Heart & Vascular Institute and the Departments of Pathology and Medicine, Baylor University Medical Center",
+      (0, 12, 14)
     ),
     testDataEntr(
       "Royal Free and University College Medical School (University College London)",

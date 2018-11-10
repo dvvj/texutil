@@ -70,7 +70,6 @@ class MatcherMgr(
   }
 
   private def postproc(matchPool: MatchPool):Unit = {
-    val toRemoveList = ListBuffer[TkMatch]()
     postProcs.foreach { pp =>
       pp.run(matchPool)
     }

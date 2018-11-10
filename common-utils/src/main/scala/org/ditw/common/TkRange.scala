@@ -30,8 +30,8 @@ case class TkRange(
 
   def overlap(r2:TkRange):Boolean = {
     if (lineIdx == r2.lineIdx) {
-      (start >= r2.start && start <= r2.end) ||
-        (r2.start >= start && r2.start <= end)
+      (start >= r2.start && start < r2.end) ||
+        (r2.start >= start && r2.start < end)
     }
     else false
   }

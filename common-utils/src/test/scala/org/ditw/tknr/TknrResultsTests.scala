@@ -103,8 +103,41 @@ class TknrResultsTests
     )
   )
 
+  private val testStr8 = "Cardiovascular Research,Vrije University, Amsterdam"
+  private val tokenContent8 = IndexedSeq(
+    IndexedSeq(
+      noPfxSfx("Cardiovascular"),
+      commaSfx("Research"),
+      noPfxSfx("Vrije"),
+      commaSfx("University"),
+      noPfxSfx("Amsterdam")
+    )
+
+  )
+
+  private val testStr9 = "Cardiovascular Research;Vrije University, Amsterdam"
+  private val tokenContent9 = IndexedSeq(
+    IndexedSeq(
+      noPfxSfx("Cardiovascular"),
+      noPfx("Research", ";"),
+      noPfxSfx("Vrije"),
+      commaSfx("University"),
+      noPfxSfx("Amsterdam")
+    )
+
+  )
+
+
   private val testData = Table(
     ("input", "expRes"),
+    testDataTuple(
+      testStr9,
+      tokenContent9
+    ),
+    testDataTuple(
+      testStr8,
+      tokenContent8
+    ),
     testDataTuple(
       testStr7,
       tokenContent7

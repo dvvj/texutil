@@ -16,7 +16,7 @@ object Settings extends Serializable {
       "\\n+",
       "[\\h]+",
       List(
-        TokenSplitter_DashSlash
+        TokenSplitter_CommaColon, TokenSplitter_DashSlash
       ),
       Trimmers.byChars(
         _AffIndexChars + _PunctChars

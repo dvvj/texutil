@@ -20,7 +20,7 @@ object TestHelpers {
     "\\n+",
     "[\\s]+",
     List(
-      TokenSplitter_DashSlash
+      TokenSplitter_CommaColon, TokenSplitter_DashSlash
     ),
     trimByPuncts
   )

@@ -12,7 +12,7 @@ object CatSegMatchers {
 
   object Category extends Enumeration {
     type Category = Value
-    val Univ, Corp, Hosp = Value
+    val Univ, Corp, Hosp, ResInst = Value
   }
 
   import Category._
