@@ -26,7 +26,12 @@ object AssiMatchers extends Serializable {
     IndexedSeq(_TmDept, TmOf, _TmDeptType),
     _CmDeptOfTag
   )
-  private[textSeg] val _ExtraCms:List[TCompMatcher] = List(_CmDeptOf)
+  private[textSeg] val _CmXDeptTag = CmTagPfx + "XDept"
+  private val _CmXDept = CompMatcherNs.lngOfTags(
+    IndexedSeq(_TmDeptType, _TmDept),
+    _CmXDeptTag
+  )
+  private[textSeg] val _ExtraCms:List[TCompMatcher] = List(_CmDeptOf, _CmXDept)
 
 
 }
