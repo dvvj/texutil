@@ -11,15 +11,9 @@ object AllCatMatchers {
   import org.ditw.matcher.TokenMatchers._
   import Tags._
   import InputHelpers._
-  private val _ExtraTmData = List(
-    TmOf -> Set("of")
-  )
-  private val _ExtraTms = _ExtraTmData.map(
-    tmd => ngramT(splitVocabEntries(tmd._2), Vocabs.AllVocabDict, tmd._1)
-  )
 
-  private val _ExtraCms:List[TCompMatcher] = Nil
-
+  import AssiMatchers._
+  import Vocabs._
   def mmgrFrom(
     catSegMatchers:TSegMatchers4Cat*
   ):MatcherMgr = {

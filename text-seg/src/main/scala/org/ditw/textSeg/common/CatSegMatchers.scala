@@ -46,8 +46,8 @@ object CatSegMatchers {
     keywords:Set[String],
     gazWords:Set[String],
     stopKeywords:Set[String],
-    segStopWordsLeft:Set[String],
-    segStopWordsRight:Set[String],
+    segStopTagsLeft:Set[String],
+    segStopTagsRight:Set[String],
     canBeStart:Boolean,
     extraTms:List[TTkMatcher] = Nil,
     extraCms:List[TCompMatcher] = Nil,
@@ -63,8 +63,6 @@ object CatSegMatchers {
         )
       )
       createTmIfNonEmptyVoc(gazWords, tagGroup.gazTag, t)
-      createTmIfNonEmptyVoc(segStopWordsLeft, tagGroup.segLeftStopTag, t)
-      createTmIfNonEmptyVoc(segStopWordsRight, tagGroup.segRightStopTag, t)
       createTmIfNonEmptyVoc(stopKeywords, tagGroup.stopWordsTag, t)
 
       extraTms ++ t
@@ -77,16 +75,16 @@ object CatSegMatchers {
         tagGroup.segTag
       )
 
-      val leftStopTags =
-        if (segStopWordsLeft.nonEmpty) Set(tagGroup.segLeftStopTag)
-        else EmptyTags
-      val rightStopTags =
-        if (segStopWordsRight.nonEmpty) Set(tagGroup.segRightStopTag)
-        else EmptyTags
+//      val leftStopTags =
+//        if (segStopTagsLeft.nonEmpty) Set(tagGroup.segLeftStopTag)
+//        else EmptyTags
+//      val rightStopTags =
+//        if (segStopTagsRight.nonEmpty) Set(tagGroup.segRightStopTag)
+//        else EmptyTags
 
-      if (leftStopTags.nonEmpty || rightStopTags.nonEmpty) {
+      if (segStopTagsLeft.nonEmpty || segStopTagsRight.nonEmpty) {
         t = segByTags(
-          t, leftStopTags, rightStopTags, tagGroup.segTag
+          t, segStopTagsLeft, segStopTagsRight, tagGroup.segTag
         )
       }
       t :: extraCms

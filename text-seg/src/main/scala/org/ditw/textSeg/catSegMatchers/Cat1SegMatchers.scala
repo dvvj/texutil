@@ -33,8 +33,8 @@ object Cat1SegMatchers {
     keywords = _CorpWords,
     gazWords = Set(),
     stopKeywords = Set(),
-    segStopWordsLeft = Set(),
-    segStopWordsRight = Set(),
+    segStopTagsLeft = Set(),
+    segStopTagsRight = Set(),
     false
   )
 

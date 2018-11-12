@@ -90,8 +90,7 @@ object Vocabs extends Serializable {
     "-",
     "Institute",
     "from"
-  ).map(_.toLowerCase()) ++
-    otherGazWordsAsStopWords(Category.Univ).map(_.toLowerCase)
+  ) ++ otherGazWordsAsStopWords(Category.Univ)
 
   private[textSeg] val _UnivSegStopWordsLeftExtra = Set(
     "of", "at"
@@ -101,6 +100,11 @@ object Vocabs extends Serializable {
   private[textSeg] val __univOfVocab =
     ResourceHelpers.loadStrs("/cat2/univ_of_vocab.txt").toSet
 
+  private[textSeg] val _DeptTypes = ResourceHelpers.loadStrs("/shared/depts.txt").toSet
+  private[textSeg] val _DeptWords = Set(
+    "dept", "department", "departments", "deptartment", "departamento"
+  )
+
   private val allVocabs = Seq(
     _CorpWords,
     _UnivWords,
@@ -108,7 +112,9 @@ object Vocabs extends Serializable {
     _UnivStopWords,
     __UnivSegStopWordsCommon,
     _UnivSegStopWordsLeftExtra,
-    __univOfVocab
+    __univOfVocab,
+    _DeptTypes,
+    _DeptWords
   )
 
   import InputHelpers._

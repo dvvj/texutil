@@ -1,12 +1,12 @@
 package org.ditw.textSeg.catSegMatchers
 import org.ditw.common.{InputHelpers, ResourceHelpers}
-import org.ditw.matcher.{CompMatcherNs, MatcherMgr}
+import org.ditw.matcher.{CompMatcherNs, MatcherMgr, TokenMatchers}
 import org.ditw.matcher.TokenMatchers.ngramT
 import org.ditw.textSeg.SegMatchers._
 import org.ditw.textSeg.Settings
 import org.ditw.textSeg.common.CatSegMatchers.{Category, SegMatcher4Cat, TSegMatchers4Cat}
 import org.ditw.textSeg.common.Tags._
-import org.ditw.textSeg.common.Vocabs
+import org.ditw.textSeg.common.{AssiMatchers, Tags, Vocabs}
 import org.ditw.textSeg.common.Vocabs._
 
 object Cat2SegMatchers {
@@ -92,6 +92,12 @@ object Cat2SegMatchers {
     )
   )
 
+  private val UnivTagGroup = Tags.TagGroup4Univ
+
+  private val tmSegStopLeft = TokenMatchers.ngramT(
+    InputHelpers.splitVocabEntries(_UnivSegStopWordsLeft), AllVocabDict, UnivTagGroup.segLeftStopTag)
+  private val tmSegStopRight = TokenMatchers.ngramT(
+    InputHelpers.splitVocabEntries(_UnivSegStopWordsRight), AllVocabDict, UnivTagGroup.segRightStopTag)
 
   val segMatchers = new SegMatcher4Cat(
     cat = Category.Univ,
@@ -99,10 +105,10 @@ object Cat2SegMatchers {
     keywords = _UnivWords,
     gazWords = _UnivGazWords,
     stopKeywords = _UnivStopWords,
-    segStopWordsLeft = _UnivSegStopWordsLeft,
-    segStopWordsRight = _UnivSegStopWordsRight,
+    segStopTagsLeft = Set(UnivTagGroup.segLeftStopTag, AssiMatchers._CmDeptOfTag),
+    segStopTagsRight = Set(UnivTagGroup.segRightStopTag),
     _canBeStart,
-    List(tmUnivOf),
+    List(tmUnivOf, tmSegStopLeft, tmSegStopRight),
     List(cmUnivOf, segUnivOf, segUnivOfVocab, cmUnivOfOf, segUnivOfVocabOf),
     List(univOfVocabOverride, univOfVocabOfOverride)
   )
