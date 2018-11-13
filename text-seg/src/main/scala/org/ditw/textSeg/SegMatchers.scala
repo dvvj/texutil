@@ -2,6 +2,7 @@ package org.ditw.textSeg
 import org.ditw.common.TkRange
 import org.ditw.matcher.CompMatchers.TDefRunAtLineFrom
 import org.ditw.matcher.{MatchPool, TCompMatcher, TkMatch}
+import org.ditw.textSeg.common.AssiMatchers
 
 object SegMatchers {
 
@@ -83,6 +84,7 @@ object SegMatchers {
       matchPool: MatchPool,
       lineIdx: Int
     ): Set[TkMatch] = {
+
       val matches = matchPool.get(tagsContained)
         .filter(_.range.lineIdx == lineIdx)
       val segMatches = matches.flatMap { m =>
@@ -106,6 +108,7 @@ object SegMatchers {
         }
         else Option(TkMatch.oneChild(newRange.get, m, tag))
       }
+
       segMatches
     }
 
@@ -158,6 +161,8 @@ object SegMatchers {
         }
         else c
       }
+//      val t1 = matchPool.get(AssiMatchers._CmXDeptTag)
+//      println(s"---- $t1\n\t$c1")
       c1
     }
 
