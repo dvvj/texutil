@@ -133,4 +133,87 @@ object CompMatcherNs {
   ):TCompMatcher = {
     lng(subMatcherTags.map(byTag), tag)
   }
+
+  private[matcher] class CmEntSeq(
+    private val entTags:Set[String],
+    private val connTags:Set[String],
+    private val commaInBtw:Boolean,
+    val tag:Option[String]
+  ) extends TCompMatcher with TDefRunAtLineFrom {
+    override def runAtLine(
+      matchPool: MatchPool,
+      lineIdx: Int): Set[TkMatch] = {
+      val entMatches = matchPool
+        .get(entTags)
+        .filter(_.range.lineIdx == lineIdx)
+        .toIndexedSeq
+      val connMatches = matchPool
+        .get(connTags)
+        .filter(_.range.lineIdx == lineIdx)
+        .map(m => m.range.start -> m)
+        .groupBy(_._1)
+        .mapValues(_.map(_._2))
+
+      val res = ListBuffer[TkMatch]()
+      val sorted = entMatches.sortBy(_.range)
+      var currSoFar = ListBuffer[TkMatch]()
+      sorted.indices.foreach { idx =>
+        val curr = sorted(idx)
+        if (currSoFar.isEmpty) {
+          currSoFar += curr
+        }
+        else {
+          val last = currSoFar.last
+          if (connMatches.contains(last.range.end)) {
+            val cands:Iterable[TkMatch] = connMatches(last.range.end)
+            val filtered = cands.filter(_.range.end == curr.range.start)
+            if (filtered.nonEmpty) {
+              currSoFar ++= List(filtered.head, curr)
+            }
+            else {
+              res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
+              currSoFar = ListBuffer[TkMatch]()
+            }
+          }
+          else {
+            if (commaInBtw) {
+              if (last.range.end == curr.range.start &&
+                last.range.suffixedBy(","))
+                currSoFar += curr
+              else {
+                if (last.range.end < curr.range.start) {
+                  res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
+                  currSoFar = ListBuffer[TkMatch]()
+                }
+                else {
+                  // ignore shorter terms (e.g. Biology vs Developmental Biology
+                }
+              }
+            }
+            else {
+              res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
+              currSoFar = ListBuffer[TkMatch]()
+            }
+          }
+        }
+      }
+      if (currSoFar.nonEmpty)
+        res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
+
+      res.toSet
+    }
+
+    private val _refTags = entTags ++ connTags
+    override def getRefTags(): Set[String] = _refTags
+  }
+
+  def entSeq(
+    entTags:Set[String],
+    connTags:Set[String],
+    commaInBtw:Boolean,
+    tag:String
+  ):TCompMatcher = {
+    new CmEntSeq(entTags, connTags, commaInBtw, Option(tag))
+  }
+
 }

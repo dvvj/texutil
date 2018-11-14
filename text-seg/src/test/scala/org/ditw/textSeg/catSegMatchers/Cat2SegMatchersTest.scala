@@ -38,9 +38,21 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
 //      (0, 0, 2)
 //    ),
 //    testDataEntr(
-//      "‡Department of Biology and Chemistry Yamaguchi University",
-//      (0, 0, 2)
+//      "Departments of Molecular, Cellular, and Developmental Biology, Chemistry, and Pharmacology Yale University",
+//      (0, 10, 12)
 //    ),
+    testDataEntr(
+      "Departments of Developmental Biology, Chemistry, and Pharmacology Yale University",
+      (0, 7, 9)
+    ),
+    testDataEntr(
+      "‡Department of Biology and Chemistry Yamaguchi University",
+      (0, 5, 7)
+    ),
+    testDataEntr(
+      "‡Department of Biology & Chemistry Yamaguchi University",
+      (0, 5, 7)
+    ),
     testDataEntr(
       "Boğazici University Biology Department",
       (0, 0, 2)

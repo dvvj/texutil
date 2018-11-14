@@ -9,6 +9,10 @@ object Vocabs extends Serializable {
   private[textSeg] val _SegSfxs = Set(
     ",", ";", ")"
   )
+
+  private[textSeg] val _SfxsCommas = Set(
+    ","
+  )
   private[textSeg] val _SegPfxs =
     Settings._AffIndexChars.map(_.toString).toSet + "("
 //  private[textSeg] val _SegPfxs_Bracket = Set(
@@ -105,6 +109,8 @@ object Vocabs extends Serializable {
     "dept", "department", "departments", "deptartment", "departamento"
   )
 
+  private[textSeg] val _And = Set("and", "&", "und")
+
   private val allVocabs = Seq(
     _CorpWords,
     _UnivWords,
@@ -113,6 +119,7 @@ object Vocabs extends Serializable {
     __UnivSegStopWordsCommon,
     _UnivSegStopWordsLeftExtra,
     __univOfVocab,
+    _And,
     _DeptTypes,
     _DeptWords
   )

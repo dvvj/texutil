@@ -11,27 +11,34 @@ object AssiMatchers extends Serializable {
   private val _TmDept = TmTagPfx + "Dept"
   private val _TmDeptType = TmTagPfx + "DeptType"
 
+
   private val _ExtraTmData = List(
     TmOf -> Set("of"),
     _TmDept -> _DeptWords,
-    _TmDeptType -> _DeptTypes
+    _TmDeptType -> _DeptTypes,
+    TmAnd -> _And
   )
 
   private[textSeg] val _ExtraTms = _ExtraTmData.map(
     tmd => ngramT(splitVocabEntries(tmd._2), Vocabs.AllVocabDict, tmd._1)
   )
 
+  private val _CmDeptTypeSeqTag = CmTagPfx + "DeptTypeSeq"
+  private[textSeg] val _CmDeptTypes = CompMatcherNs.entSeq(
+    Set(_TmDeptType), Set(TmAnd), true, _CmDeptTypeSeqTag
+  )
+
   private[textSeg] val _CmDeptOfTag = CmTagPfx + "DeptOf"
   private val _CmDeptOf = CompMatcherNs.lngOfTags(
-    IndexedSeq(_TmDept, TmOf, _TmDeptType),
+    IndexedSeq(_TmDept, TmOf, _CmDeptTypeSeqTag),
     _CmDeptOfTag
   )
   private[textSeg] val _CmXDeptTag = CmTagPfx + "XDept"
   private val _CmXDept = CompMatcherNs.lngOfTags(
-    IndexedSeq(_TmDeptType, _TmDept),
+    IndexedSeq(_CmDeptTypeSeqTag, _TmDept),
     _CmXDeptTag
   )
-  private[textSeg] val _ExtraCms:List[TCompMatcher] = List(_CmDeptOf, _CmXDept)
+  private[textSeg] val _ExtraCms:List[TCompMatcher] = List(_CmDeptTypes, _CmDeptOf, _CmXDept)
 
 
 }

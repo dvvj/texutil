@@ -1,2 +1,5 @@
 Chemical and Biomolecular Engineering
 Biology
+Chemistry
+Developmental Biology
+Pharmacology

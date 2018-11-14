@@ -1,5 +1,5 @@
 package org.ditw.common
-import org.ditw.tknr.TknrResult
+import org.ditw.tknr.{TknrResult, Token}
 
 case class TkRange(
   input:TknrResult,
@@ -16,6 +16,11 @@ case class TkRange(
       r.lineIdx == lineIdx && r.start == start && r.end == end
     }
     case _ => false
+  }
+
+  private val lastToken:Token = input.linesOfTokens(lineIdx).tokens(end-1)
+  def suffixedBy(sfx:String):Boolean = {
+    lastToken.sfx.contains(sfx)
   }
 
   def origStr:String = {
