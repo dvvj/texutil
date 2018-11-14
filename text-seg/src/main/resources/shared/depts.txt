@@ -4,3 +4,5 @@ Chemistry
 Developmental Biology
 Pharmacology
 Anatomy
+Cell Biology
+Cellular Biology

@@ -164,36 +164,41 @@ object CompMatcherNs {
         }
         else {
           val last = currSoFar.last
-          if (connMatches.contains(last.range.end)) {
-            val cands:Iterable[TkMatch] = connMatches(last.range.end)
-            val filtered = cands.filter(_.range.end == curr.range.start)
-            if (filtered.nonEmpty) {
-              currSoFar ++= List(filtered.head, curr)
-            }
-            else {
-              res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
-              currSoFar = ListBuffer[TkMatch]()
-            }
-          }
-          else {
-            if (commaInBtw) {
-              if (last.range.end == curr.range.start &&
-                last.range.suffixedBy(","))
-                currSoFar += curr
+          if (curr.range.end > last.range.end) {
+            if (connMatches.contains(last.range.end)) {
+              val cands:Iterable[TkMatch] = connMatches(last.range.end)
+              val filtered = cands.filter(_.range.end == curr.range.start)
+              if (filtered.nonEmpty) {
+                currSoFar ++= List(filtered.head, curr)
+              }
               else {
-                if (last.range.end < curr.range.start) {
-                  res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
-                  currSoFar = ListBuffer[TkMatch]()
-                }
-                else {
-                  // ignore shorter terms (e.g. Biology vs Developmental Biology
-                }
+                res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
+                currSoFar = ListBuffer[TkMatch]()
               }
             }
             else {
-              res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
-              currSoFar = ListBuffer[TkMatch]()
+              if (commaInBtw) {
+                if (last.range.end == curr.range.start &&
+                  last.range.suffixedBy(","))
+                  currSoFar += curr
+                else {
+//                  if (last.range.end < curr.range.start) {
+                    res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
+                    currSoFar = ListBuffer[TkMatch]()
+//                  }
+//                  else {
+//                    // ignore shorter terms (e.g. Biology vs Developmental Biology
+//                  }
+                }
+              }
+              else {
+                res += TkMatch.fromChildren(currSoFar.toIndexedSeq)
+                currSoFar = ListBuffer[TkMatch]()
+              }
             }
+          }
+          else {
+            // ignore shorter terms (e.g. Biology vs Developmental Biology
           }
         }
       }
