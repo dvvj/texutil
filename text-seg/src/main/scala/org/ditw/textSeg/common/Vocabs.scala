@@ -86,6 +86,7 @@ object Vocabs extends Serializable {
     "medical college",
     "graduate school",
     "superior school",
+    "law school",
     "department",
     "clinical centre",
     "and",

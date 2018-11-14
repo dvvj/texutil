@@ -21,6 +21,8 @@ object AssiMatchers extends Serializable {
 
   private[textSeg] val _ExtraTms = _ExtraTmData.map(
     tmd => ngramT(splitVocabEntries(tmd._2), Vocabs.AllVocabDict, tmd._1)
+  ) ++ List(
+    TokenMatchers.emailMatcher(TmEmail)
   )
 
   private val _CmDeptTypeSeqTag = CmTagPfx + "DeptTypeSeq"
