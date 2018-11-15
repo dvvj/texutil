@@ -44,4 +44,36 @@ object SrcDataUtils extends Serializable {
   def GNsCol(line:Array[String], col:GNsCols):String =
     line(GNsColEnum2Idx(col))
 
+  private val AllIncluded = Set[String]()
+  private val AdmClass = "A"
+  private val PplClass = "P"
+  private val featureClass2CodesMap = Map(
+    AdmClass -> AllIncluded, // A: country, state, region,...
+    PplClass -> AllIncluded, // P: city, village,...
+    "L" -> Set( // L: parks,area, ...
+      "CTRB" // business center
+    )
+  )
+
+  type FeatureChecker = (String, String) => Boolean
+
+  private val admExcludedCodes = Set(
+    "ADM1H",
+    "ADM2H",
+    "ADM3H",
+    "ADM4H",
+    "ADM5H",
+    "ADMDH",
+    "PCLH"
+  )
+  val fcAdm:FeatureChecker = (fcls:String, fcode:String) => {
+    fcls == AdmClass && !admExcludedCodes.contains(fcode)
+  }
+  val fcPpl:FeatureChecker = (fcls:String, fcode:String) => {
+    fcls == PplClass
+  }
+  val fcAll:FeatureChecker = (fcls:String, fcode:String) => {
+    fcAdm(fcls, fcode) || fcPpl(fcls, fcode) ||
+      (featureClass2CodesMap.contains(fcls) && featureClass2CodesMap(fcls).contains(fcode))
+  }
 }
