@@ -22,7 +22,8 @@ object SrcDataUtils extends Serializable {
       Elevation,
       Dem,
       Timezone,
-      UpdateDate = Value
+      UpdateDate,
+      AltNameCount = Value
   }
 
   import GNsCols._
@@ -33,6 +34,12 @@ object SrcDataUtils extends Serializable {
     Adm1, Adm2, Adm3, Adm4, Population,
     Elevation, Dem, Timezone, UpdateDate
   )
+  val GNsSlimColArr = IndexedSeq(
+    GID, Name, AsciiName, Latitude, Longitude,
+    FeatureClass, FeatureCode, CountryCode, CountryCode2,
+    Adm1, Adm2, Adm3, Adm4, Population
+  )
+  val GNsSlimColArrAltCount:IndexedSeq[GNsCols] = GNsSlimColArr :+ AltNameCount
 
   private val GNsColIdx2Enum = GNsColArr.indices
     .map(idx => idx -> GNsColArr(idx))

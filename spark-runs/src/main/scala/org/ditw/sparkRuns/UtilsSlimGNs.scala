@@ -42,22 +42,7 @@ object UtilsSlimGNs extends Serializable {
         GNsCol(line, GNsCols.AltNames)
       ).filter(_.nonEmpty).size
 
-      val newLineCols = IndexedSeq(
-        GNsCols.GID,
-        GNsCols.Name,
-        GNsCols.AsciiName,
-        GNsCols.Latitude,
-        GNsCols.Longitude,
-        GNsCols.FeatureClass,
-        GNsCols.FeatureCode,
-        GNsCols.CountryCode,
-        GNsCols.CountryCode2,
-        GNsCols.Adm1,
-        GNsCols.Adm2,
-        GNsCols.Adm3,
-        GNsCols.Adm4,
-        GNsCols.Population
-      )
+      val newLineCols = SrcDataUtils.GNsSlimColArr
 
       val newLine = newLineCols.map(GNsCol(line, _))
 
