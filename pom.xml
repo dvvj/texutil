@@ -129,6 +129,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.ditw</groupId>
+                <artifactId>demo1</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.spark</groupId>
                 <artifactId>spark-core_2.11</artifactId>
                 <version>${spark.version}</version>
@@ -142,5 +148,6 @@
         <module>common-utils</module>
         <module>spark-runs</module>
         <module>text-seg</module>
+        <module>demo1</module>
     </modules>
 </project>
