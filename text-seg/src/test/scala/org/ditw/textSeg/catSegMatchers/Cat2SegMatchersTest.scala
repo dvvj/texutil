@@ -384,6 +384,29 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "the A.T. Still Research Institute at A.T. Still University (Drs Snider and Degenhardt and Ms Johnson)",
       (0, 6, 9)
+    ),
+    testDataEntr(
+      "Department of Chemistry and Biochemistry Bradley University",
+      (0, 5, 7)
+    ),
+    testDataEntr(
+      "Brain Hospital affiliated to Nanjing Medical University",
+      (0, 4, 7)
+    ),
+    testDataEntr(
+      "Department of Biology and Spinal Cord and Brain Injury Research Center University of Kentucky",
+      (0, 11, 14)
+    ),
+    testDataEntr(
+      "Brain Research Institute Niigata University",
+      (0, 3, 5)
+    ),
+    testDataEntr(
+      "Yonsei University Severance Hospital"
+    ),
+    testDataEntr(
+      "Department of Brain Science University of Ulsan College of Medicine",
+      (0, 4, 7)
     )
   )
 

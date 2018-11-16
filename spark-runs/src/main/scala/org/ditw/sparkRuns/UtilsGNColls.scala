@@ -32,6 +32,8 @@ object UtilsGNColls {
 
 //  private val admLevel2Code = List(ADM1, ADM2, ADM3, ADM4).map(a => a -> a.toString).toMap
 
+  private val EmptyMap = Map[Long, GNEnt]()
+
   private def admCode(gncols:Array[String]):(String, GNLevel) = {
 
     var res = gncols(countryCodeIndex)
@@ -110,14 +112,15 @@ object UtilsGNColls {
           colVal(cols, GNsCols.Population).toLong
         )
 
-        admCode(cols) -> ent
+        val admc = admCode(cols)
+        admc -> ent
       }
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     println(gnsInCC.count())
 
 
-    val t1:RDD[(Option[String], Iterable[(GNLevel, Option[GNEnt], Iterable[GNEnt])])] = gnsInCC
+    val t1:RDD[(Option[String], Iterable[(GNLevel, String)])] = gnsInCC
       .groupByKey()
       .map { p =>
         var admEnt:Option[GNEnt] = None
@@ -135,7 +138,7 @@ object UtilsGNColls {
         val level =
           if (admEnt.nonEmpty) admEnt.get.level
           else p._1._2
-        admM1 -> (level, admEnt, ents)
+        admM1 -> (level, p._1._1)
 //        GNColls.admx(
 //          level,
 //          admEnt,
@@ -148,29 +151,63 @@ object UtilsGNColls {
       .groupByKey()
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val admGNs = gnsInCC.filter { p =>
-      val level = p._1._2
-      val ent = p._2
-      ent.level == level && ent.featureCode == level.toString
-    }
+    val admGNs = gnsInCC.groupByKey()
+      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-      val t2 = admGNs
-        .map(p => p._1._1 -> p._2).join(
-          t1.filter { p =>
-            if (p._1.isEmpty)
-              println("ok")
-            p._1.nonEmpty
-          }.map(p => p._1.get -> p._2)
-        )
-        .map { p =>
-          p._1 -> p._2._2.size
+    val noAdmc = t1.filter(_._1.isEmpty).collect()
+    println(noAdmc.length)
+    val withAdmc = t1.filter { p =>
+        if (p._1.isEmpty)
+          println("ok")
+        p._1.nonEmpty
+      }.map(p => p._1.get -> p._2)
+      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+
+    val t2 = withAdmc.leftOuterJoin(
+        admGNs.map(p => p._1._1 -> (p._1._2 -> p._2))
+      )
+      .map { p =>
+        //
+        val (sub, tp) = p._2
+        if (tp.nonEmpty) {
+          val (level, curr) = tp.get
+          var currAdm:Option[GNEnt] = None
+          val ppls = curr.filter { c =>
+            if (c.featureCode == level.toString) {
+              currAdm = Option(c)
+              false
+            }
+            else true
+          }
+
+          val coll = GNColls.admx(
+            level,
+            currAdm,
+            sub.map(_._2).toIndexedSeq,
+            ppls.map(ppl => ppl.gnid -> ppl).toMap
+          )
+
+          coll
+//          it.map { tp =>
+//            val
+//          }
+//          val coll = GNColls.admx(level, ent, )
         }
-        .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+        else {
+          val adm0 = GNColls.adm0(
+            None,
+            sub.map(_._2).toIndexedSeq,
+            EmptyMap
+          )
+          adm0
+        }
+      }
+      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     println(t2.count())
-    val tPath = "/media/sf_vmshare/ttt"
-    SparkUtils.deleteLocal(tPath)
-    t2.sortBy(_._1).saveAsTextFile(tPath)
+//    val tPath = "/media/sf_vmshare/ttt"
+//    SparkUtils.deleteLocal(tPath)
+//    t2.sortBy(_._1).saveAsTextFile(tPath)
 
 //    val featureCodeIndex = 6
 //    val adm1s = gnsInCC.filter(_(featureCodeIndex) == "ADM1").collect()
