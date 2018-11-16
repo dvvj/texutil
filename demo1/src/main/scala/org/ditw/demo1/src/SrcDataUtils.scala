@@ -27,6 +27,7 @@ object SrcDataUtils extends Serializable {
   }
 
   import GNsCols._
+  import org.ditw.demo1.gndata.GNLevel._
 
   private val GNsColArr = Array(
     GID, Name, AsciiName, AltNames, Latitude, Longitude,
