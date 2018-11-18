@@ -82,7 +82,7 @@ object UtilsGNColls {
       "/media/sf_vmshare/gns/all"
     )
 
-    val cc = "CA"
+    val cc = "US"
 
     val admCols = List(GNsCols.Adm1, GNsCols.Adm2, GNsCols.Adm3, GNsCols.Adm4)
 
@@ -134,6 +134,9 @@ object UtilsGNColls {
           }
         }
 
+//        if (admEnt.nonEmpty && admEnt.get.level == ADM1)
+//          println("ok")
+
         val admM1 = admMinus1Code(p._1._1)
         val level =
           if (admEnt.nonEmpty) admEnt.get.level
@@ -152,33 +155,25 @@ object UtilsGNColls {
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     val admGNs = gnsInCC.groupByKey()
+      .map(p => p._1._1 -> (p._1._2 -> p._2))
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     val noAdmc = t1.filter(_._1.isEmpty).collect()
     println(noAdmc.length)
     val withAdmc = t1.filter { p =>
-        if (p._1.isEmpty)
-          println("ok")
+//        if (p._1.isEmpty)
+//          println("ok")
         p._1.nonEmpty
       }.map(p => p._1.get -> p._2)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val t2 = withAdmc.leftOuterJoin(
-        admGNs.map(p => p._1._1 -> (p._1._2 -> p._2))
-      )
+    val t2 = withAdmc.leftOuterJoin(admGNs)
       .map { p =>
         //
         val (sub, tp) = p._2
         if (tp.nonEmpty) {
           val (level, curr) = tp.get
-          var currAdm:Option[GNEnt] = None
-          val ppls = curr.filter { c =>
-            if (c.featureCode == level.toString) {
-              currAdm = Option(c)
-              false
-            }
-            else true
-          }
+          val (currAdm, ppls) = splitAdmAndPpl(curr, level)
 
           val coll = GNColls.admx(
             level,
@@ -187,7 +182,7 @@ object UtilsGNColls {
             ppls.map(ppl => ppl.gnid -> ppl).toMap
           )
 
-          coll
+          p._1 -> coll
 //          it.map { tp =>
 //            val
 //          }
@@ -199,13 +194,34 @@ object UtilsGNColls {
             sub.map(_._2).toIndexedSeq,
             EmptyMap
           )
-          adm0
+          cc -> adm0
         }
       }
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    println(t2.count())
-//    val tPath = "/media/sf_vmshare/ttt"
+    val m = t2.collectAsMap()
+
+    println(m.size)
+
+    val t3 = admGNs
+      .leftOuterJoin(withAdmc)
+      .filter(_._2._2.isEmpty)
+        .mapValues { p =>
+          val (level, curr) = p._1
+          val (currAdm, ppls) = splitAdmAndPpl(curr, level)
+          val coll = GNColls.admx(
+            level,
+            currAdm,
+            IndexedSeq(),
+            ppls.map(ppl => ppl.gnid -> ppl).toMap
+          )
+          coll
+        }
+
+    val m2 = t3.collectAsMap()
+    println(m2.size)
+
+    //    val tPath = "/media/sf_vmshare/ttt"
 //    SparkUtils.deleteLocal(tPath)
 //    t2.sortBy(_._1).saveAsTextFile(tPath)
 
@@ -220,5 +236,19 @@ object UtilsGNColls {
 //    println(s"${adm1s.length} ${adm2s.length} ${adm3s.length} ${adm4s.length} ${adm5s.length} ${admds.length} ${prshs.length}")
 
     spark.stop()
+  }
+
+  //private val EmptyPpls = IndexedSeq[GNEnt]()
+  private def splitAdmAndPpl(in:Iterable[GNEnt], level:GNLevel)
+    :(Option[GNEnt], Iterable[GNEnt]) = {
+    var currAdm:Option[GNEnt] = None
+    val ppls = in.filter { c =>
+      if (c.featureCode == level.toString) {
+        currAdm = Option(c)
+        false
+      }
+      else true
+    }
+    currAdm -> ppls
   }
 }
