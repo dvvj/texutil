@@ -74,6 +74,10 @@ object SrcDataUtils extends Serializable {
     "ADMDH",
     "PCLH"
   )
+
+  def isPcl(c:String):Boolean = {
+    (c.startsWith("PCL") && c != "PCLH") || (c == "TERR")
+  }
   val fcAdm:FeatureChecker = (fcls:String, fcode:String) => {
     fcls == AdmClass && !admExcludedCodes.contains(fcode)
   }

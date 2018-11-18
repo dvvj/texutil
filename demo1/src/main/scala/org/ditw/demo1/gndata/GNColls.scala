@@ -32,7 +32,7 @@ object GNColls extends Serializable {
     ent:Option[GNEnt],
     subAdms:IndexedSeq[String],
     gents:Map[Long, GNEnt]
-  ):TGNMap = {
+  ):TGNColl = {
     new GNCollChildMap(GNLevel.ADM0, ent, subAdms, gents)
   }
 

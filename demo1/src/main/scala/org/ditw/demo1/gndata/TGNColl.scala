@@ -7,6 +7,10 @@ trait TGNColl extends Serializable {
   val subAdms:IndexedSeq[String]
   val gents:Map[Long, GNEnt]
 
+  val size:Int =
+    if (self.nonEmpty) gents.size+1
+    else gents.size
+
   override def toString: String = {
     val selfName = if (self.nonEmpty) self.get.name else "_NA_"
 
