@@ -1,6 +1,7 @@
 package org.ditw.sparkRuns
 import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
+import org.ditw.common.SparkUtils
 import org.ditw.demo1.src.SrcDataUtils
 import org.ditw.sparkRuns.SegMatcherRuns.spark
 

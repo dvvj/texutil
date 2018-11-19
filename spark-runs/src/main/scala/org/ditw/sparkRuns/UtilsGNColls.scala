@@ -9,6 +9,7 @@ import org.ditw.demo1.src.SrcDataUtils.GNsCols._
 
 import scala.collection.mutable.ListBuffer
 import org.ditw.common.GenUtils._
+import org.ditw.common.SparkUtils
 
 object UtilsGNColls {
 
@@ -64,12 +65,7 @@ object UtilsGNColls {
     res -> level
   }
 
-  private val colEnum2Idx = SrcDataUtils.GNsSlimColArrAltCount.indices.map { idx =>
-    SrcDataUtils.GNsSlimColArrAltCount(idx) -> idx
-  }.toMap
-  def colVal(cols:Array[String], col: GNsCols):String = {
-    cols(colEnum2Idx(col))
-  }
+  import org.ditw.demo1.gndata.SrcData._
 
   private def admMinus1Code(admCode:String):Option[String] = {
     val lastIdx = admCode.lastIndexOf("_")
@@ -89,23 +85,7 @@ object UtilsGNColls {
     ).map(tabSplitter.split)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val adm0Ents = gnLines.filter(cols => SrcDataUtils.isPcl(cols(featureCodeIndex)))
-      .map { cols =>
-        val countryCode = colVal(cols, GNsCols.CountryCode)
-        val ent = GNEnt(
-          colVal(cols, GNsCols.GID).toLong,
-          colVal(cols, GNsCols.Name),
-          Set(colVal(cols, GNsCols.AsciiName)), // todo
-          colVal(cols, GNsCols.Latitude).toDouble,
-          colVal(cols, GNsCols.Longitude).toDouble,
-          colVal(cols, GNsCols.FeatureClass),
-          colVal(cols, GNsCols.FeatureCode),
-          countryCode,
-          EmptyAdms,
-          colVal(cols, GNsCols.Population).toLong
-        )
-        countryCode -> ent
-      }.collectAsMap()
+    val adm0Ents = loadAdm0(gnLines)
     val brAdm0Ents = spark.broadcast(adm0Ents)
 
     val ccList = List(
@@ -128,17 +108,11 @@ object UtilsGNColls {
               adms += colVal(cols, col)
             }
           }
-          val ent = GNEnt(
-            colVal(cols, GNsCols.GID).toLong,
-            colVal(cols, GNsCols.Name),
-            Set(colVal(cols, GNsCols.AsciiName)), // todo
-            colVal(cols, GNsCols.Latitude).toDouble,
-            colVal(cols, GNsCols.Longitude).toDouble,
-            colVal(cols, GNsCols.FeatureClass),
-            colVal(cols, GNsCols.FeatureCode),
-            colVal(cols, GNsCols.CountryCode),
-            adms.toIndexedSeq,
-            colVal(cols, GNsCols.Population).toLong
+          val countryCode = colVal(cols, GNsCols.CountryCode)
+          val ent = entFrom(
+            cols,
+            countryCode,
+            adms.toIndexedSeq
           )
 
           val admc = admCode(cols)
@@ -241,8 +215,9 @@ object UtilsGNColls {
         m2
       )
         //m2 += cc -> adm0
-      printlnT0(s"\tMap size: ${m2.size}")
-      printlnT0(s"\tEnt in Map: " + m2.map(_._2.size).sum)
+      printlnT0(s"\tAdm #: ${m2.size+1}") // + adm0
+      val allEntCount = m2.map(_._2.size).sum + adm0.size
+      printlnT0(s"\tEnt in Map: $allEntCount")
 
       val strs = testStrs.getOrElse(cc, List())
       strs.foreach { ts =>
@@ -257,6 +232,8 @@ object UtilsGNColls {
 
   val testStrs = Map(
     "US" -> List[String](
+      "Washington, DC",
+      "Washington, MN",
       "Minneapolis, MN",
       "Research Triangle Park, NC"
     ),

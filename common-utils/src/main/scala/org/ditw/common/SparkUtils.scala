@@ -1,4 +1,4 @@
-package org.ditw.sparkRuns
+package org.ditw.common
 import java.io.File
 
 import org.apache.commons.io.FileUtils
@@ -48,8 +48,8 @@ object SparkUtils {
     }
   }
 
-//  def sparkSessionLocal(appName:String = "[NO NAME]", numReducer:Int = 4) = {
-//    val conf = config(true, appName, numReducer)
-//    SparkSession.builder.config(conf).getOrCreate()
-//  }
+  //  def sparkSessionLocal(appName:String = "[NO NAME]", numReducer:Int = 4) = {
+  //    val conf = config(true, appName, numReducer)
+  //    SparkSession.builder.config(conf).getOrCreate()
+  //  }
 }

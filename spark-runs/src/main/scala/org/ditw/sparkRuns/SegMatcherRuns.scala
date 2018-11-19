@@ -3,6 +3,7 @@ import java.io.File
 
 import org.apache.commons.io.FileUtils
 import org.apache.spark.storage.StorageLevel
+import org.ditw.common.SparkUtils
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.AllCatMatchers._
 import org.ditw.textSeg.common.Tags
