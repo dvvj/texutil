@@ -26,7 +26,7 @@ object SparkUtils {
     val spark = new SparkContext(conf)
 
     if (localRun) {
-      spark.setLogLevel("WARN")
+      spark.setLogLevel("ERROR")
     }
 
     //    if (localRun) {

@@ -107,132 +107,86 @@ object UtilsGNColls {
       }.collectAsMap()
     val brAdm0Ents = spark.broadcast(adm0Ents)
 
-    val cc = "ES"
-
+    val ccList = List("US", "CA", "GB", "AU", "FR", "DE", "ES", "IT")
     val admCols = List(GNsCols.Adm1, GNsCols.Adm2, GNsCols.Adm3, GNsCols.Adm4)
 
+    ccList.foreach { cc =>
+      println(s"--- $cc")
 
-
-    val gnsInCC:RDD[((String,GNLevel), GNEnt)] = gnLines
-      .filter { cols =>
-        cols(countryCodeIndex) == cc && !SrcDataUtils.isPcl(cols(featureCodeIndex))
-      }
-      .map { cols =>
-        val adms = ListBuffer[String]()
-        admCols.foreach { col =>
-          if (colVal(cols, col).nonEmpty) {
-            adms += colVal(cols, col)
-          }
+      val gnsInCC:RDD[((String,GNLevel), GNEnt)] = gnLines
+        .filter { cols =>
+          cols(countryCodeIndex) == cc && !SrcDataUtils.isPcl(cols(featureCodeIndex))
         }
-        val ent = GNEnt(
-          colVal(cols, GNsCols.GID).toLong,
-          colVal(cols, GNsCols.Name),
-          Set(colVal(cols, GNsCols.AsciiName)), // todo
-          colVal(cols, GNsCols.Latitude).toDouble,
-          colVal(cols, GNsCols.Longitude).toDouble,
-          colVal(cols, GNsCols.FeatureClass),
-          colVal(cols, GNsCols.FeatureCode),
-          colVal(cols, GNsCols.CountryCode),
-          adms.toIndexedSeq,
-          colVal(cols, GNsCols.Population).toLong
-        )
-
-        val admc = admCode(cols)
-        admc -> ent
-      }
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
-
-    println(gnsInCC.count())
-
-
-    val t1:RDD[(Option[String], Iterable[(GNLevel, String)])] = gnsInCC
-      .groupByKey()
-      .map { p =>
-        var admEnt:Option[GNEnt] = None
-        val admCode = p._1._2.toString
-        val ents = p._2
-        ents.foreach { ent =>
-          if (ent.featureCode == admCode) {
-            if (admEnt.nonEmpty)
-              throw new IllegalArgumentException("dup adm entity?")
-            admEnt = Option(ent)
+        .map { cols =>
+          val adms = ListBuffer[String]()
+          admCols.foreach { col =>
+            if (colVal(cols, col).nonEmpty) {
+              adms += colVal(cols, col)
+            }
           }
+          val ent = GNEnt(
+            colVal(cols, GNsCols.GID).toLong,
+            colVal(cols, GNsCols.Name),
+            Set(colVal(cols, GNsCols.AsciiName)), // todo
+            colVal(cols, GNsCols.Latitude).toDouble,
+            colVal(cols, GNsCols.Longitude).toDouble,
+            colVal(cols, GNsCols.FeatureClass),
+            colVal(cols, GNsCols.FeatureCode),
+            colVal(cols, GNsCols.CountryCode),
+            adms.toIndexedSeq,
+            colVal(cols, GNsCols.Population).toLong
+          )
+
+          val admc = admCode(cols)
+          admc -> ent
         }
+        .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-//        if (admEnt.nonEmpty && admEnt.get.level == ADM1)
-//          println("ok")
+      println(s"\tADM->Ent: ${gnsInCC.count}")
 
-        val admM1 = admMinus1Code(p._1._1)
-        val level =
-          if (admEnt.nonEmpty) admEnt.get.level
-          else p._1._2
-        admM1 -> (level, p._1._1)
-//        GNColls.admx(
-//          level,
-//          admEnt,
-//          ents
-//        )
-//        if (admEnt.isEmpty) {
-//          throw new IllegalArgumentException("no adm entity?")
-//        }
-      }
-      .groupByKey()
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+      val t1:RDD[(Option[String], Iterable[(GNLevel, String)])] = gnsInCC
+        .groupByKey()
+        .map { p =>
+          var admEnt:Option[GNEnt] = None
+          val admCode = p._1._2.toString
+          val ents = p._2
+          ents.foreach { ent =>
+            if (ent.featureCode == admCode) {
+              if (admEnt.nonEmpty)
+                throw new IllegalArgumentException("dup adm entity?")
+              admEnt = Option(ent)
+            }
+          }
 
-    val admGNs = gnsInCC.groupByKey()
-      .map(p => p._1._1 -> (p._1._2 -> p._2))
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+          val admM1 = admMinus1Code(p._1._1)
+          val level =
+            if (admEnt.nonEmpty) admEnt.get.level
+            else p._1._2
+          admM1 -> (level, p._1._1)
+        }
+        .groupByKey()
+        .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val noAdmc = t1.filter(_._1.isEmpty).collect()
-    println(noAdmc.length)
-    val withAdmc = t1.filter { p =>
-//        if (p._1.isEmpty)
-//          println("ok")
+      val admGNs = gnsInCC.groupByKey()
+        .map(p => p._1._1 -> (p._1._2 -> p._2))
+        .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+
+      val noAdmc = t1.filter(_._1.isEmpty).collect()
+
+      println(s"\tNo ADM: ${noAdmc.length}: ${noAdmc.toList}")
+
+      val withAdmc = t1.filter { p =>
+        //        if (p._1.isEmpty)
+        //          println("ok")
         p._1.nonEmpty
       }.map(p => p._1.get -> p._2)
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+        .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-//    val t2 = withAdmc.leftOuterJoin(admGNs)
-//      .map { p =>
-//        //
-//        val (sub, tp) = p._2
-//        if (tp.nonEmpty) {
-//          val (level, curr) = tp.get
-//          val (currAdm, ppls) = splitAdmAndPpl(curr, level)
-//
-//          val coll:TGNColl = GNColls.admx(
-//            level,
-//            currAdm,
-//            sub.map(_._2).toIndexedSeq,
-//            ppls.map(ppl => ppl.gnid -> ppl).toMap
-//          )
-//
-//          p._1 -> coll
-////          it.map { tp =>
-////            val
-////          }
-////          val coll = GNColls.admx(level, ent, )
-//        }
-//        else {
-//          val adm0:TGNColl = GNColls.adm0(
-//            None,
-//            sub.map(_._2).toIndexedSeq,
-//            EmptyMap
-//          )
-//          cc -> adm0
-//        }
-//      }
-//      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
-//
-//    val m = t2.collectAsMap()
-//
-//    println(m.size)
-//    println("m.size: " + m.map(_._2.size).sum)
 
-    val t3 = admGNs
-      .leftOuterJoin(withAdmc)
-      //.filter(_._2._2.isEmpty)
-      .mapValues { p =>
+      val t3 = admGNs
+        .leftOuterJoin(withAdmc)
+        //.filter(_._2._2.isEmpty)
+        .mapValues { p =>
         val (level, curr) = p._1
         val (currAdm, ppls) = splitAdmAndPpl(curr, level)
         val subAdms =
@@ -253,45 +207,32 @@ object UtilsGNColls {
           subAdms,
           ppls.map(ppl => ppl.gnid -> ppl).toMap
         )
-//        if (level == ADM0)
-//          println("ok")
+        //        if (level == ADM0)
+        //          println("ok")
         coll
       }
 
-    var m2 = t3.collectAsMap()
+      var m2 = t3.collectAsMap()
 
-    if (!m2.contains(cc)) {
-      val t = withAdmc.filter(_._1 == cc).collect()
-      if (t.length == 1) {
-        val admEnt = adm0Ents.get(cc)
-        val adm0 = GNColls.adm0(
-          admEnt, // todo
-          t(0)._2.map(_._2).toIndexedSeq,
-          EmptyMap
-        )
-        m2 += cc -> adm0
+      if (!m2.contains(cc)) {
+        val t = withAdmc.filter(_._1 == cc).collect()
+        if (t.length == 1) {
+          val admEnt = adm0Ents.get(cc)
+          val adm0 = GNColls.adm0(
+            admEnt, // todo
+            t(0)._2.map(_._2).toIndexedSeq,
+            EmptyMap
+          )
+          m2 += cc -> adm0
+        }
+        else {
+          throw new IllegalArgumentException("More than one country code entries?!")
+        }
       }
-      else {
-        throw new IllegalArgumentException("More than one country code entries?!")
-      }
+
+      println(s"\tMap size: ${m2.size}")
+      println(s"\tEnt in Map: " + m2.map(_._2.size).sum)
     }
-
-    println(m2.size)
-    println(s"m2.size: " + m2.map(_._2.size).sum)
-
-    //    val tPath = "/media/sf_vmshare/ttt"
-//    SparkUtils.deleteLocal(tPath)
-//    t2.sortBy(_._1).saveAsTextFile(tPath)
-
-//    val featureCodeIndex = 6
-//    val adm1s = gnsInCC.filter(_(featureCodeIndex) == "ADM1").collect()
-//    val adm2s = gnsInCC.filter(_(featureCodeIndex) == "ADM2").collect()
-//    val adm3s = gnsInCC.filter(_(featureCodeIndex) == "ADM3").collect()
-//    val adm4s = gnsInCC.filter(_(featureCodeIndex) == "ADM4").collect()
-//    val adm5s = gnsInCC.filter(_(featureCodeIndex) == "ADM5").collect()
-//    val admds = gnsInCC.filter(_(featureCodeIndex) == "ADMD").collect()
-//    val prshs = gnsInCC.filter(_(featureCodeIndex) == "PRSH").collect()
-//    println(s"${adm1s.length} ${adm2s.length} ${adm3s.length} ${adm4s.length} ${adm5s.length} ${admds.length} ${prshs.length}")
 
     spark.stop()
   }
