@@ -113,7 +113,7 @@ object TokenMatchers extends Serializable {
       start: Int): Set[TkMatch] = {
       val matches = _tkMatcher.runAtLineFrom(matchPool, lineIdx, start)
       val lot = matchPool.input.linesOfTokens(lineIdx)
-      matches.filter { m =>
+      val res = matches.filter { m =>
         if (_isPrefix) {
           val pfx = lot.tokens(m.range.start).pfx
           _preSuffixSet.contains(pfx)
@@ -123,6 +123,9 @@ object TokenMatchers extends Serializable {
           _preSuffixSet.contains(sfx)
         }
       }
+      res
+//      addTagIfNonEmpty(res)
+//      res
     }
   }
 

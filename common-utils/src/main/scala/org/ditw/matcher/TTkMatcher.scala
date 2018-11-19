@@ -3,6 +3,11 @@ import scala.collection.mutable
 
 trait TTkMatcher extends Serializable {
   val tag:Option[String]
+  def addTagIfNonEmpty(matches:Iterable[TkMatch]):Unit = {
+    if (tag.nonEmpty) {
+      matches.foreach(_.addTag(tag.get))
+    }
+  }
   def run(matchPool: MatchPool)
   : Set[TkMatch] = {
     val res = mutable.Set[TkMatch]()
@@ -11,6 +16,7 @@ trait TTkMatcher extends Serializable {
       res ++= runAtLine(matchPool, lineIdx)
     }
 
+    addTagIfNonEmpty(res)
     res.toSet
   }
 
