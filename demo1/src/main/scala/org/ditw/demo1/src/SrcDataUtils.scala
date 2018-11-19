@@ -72,7 +72,8 @@ object SrcDataUtils extends Serializable {
     "ADM4H",
     "ADM5H",
     "ADMDH",
-    "PCLH"
+    "PCLH",
+    "ZN"
   )
 
   def isPcl(c:String):Boolean = {

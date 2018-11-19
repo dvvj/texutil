@@ -26,6 +26,11 @@
           <groupId>org.scalatest</groupId>
           <artifactId>scalatest_${scala.minor.version}</artifactId>
       </dependency>
+
+      <dependency>
+          <groupId>joda-time</groupId>
+          <artifactId>joda-time</artifactId>
+      </dependency>
   </dependencies>
 
 

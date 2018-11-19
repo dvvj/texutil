@@ -8,6 +8,7 @@ import org.ditw.demo1.src.SrcDataUtils.GNsCols
 import org.ditw.demo1.src.SrcDataUtils.GNsCols._
 
 import scala.collection.mutable.ListBuffer
+import org.ditw.common.GenUtils._
 
 object UtilsGNColls {
 
@@ -107,11 +108,14 @@ object UtilsGNColls {
       }.collectAsMap()
     val brAdm0Ents = spark.broadcast(adm0Ents)
 
-    val ccList = List("US", "CA", "GB", "AU", "FR", "DE", "ES", "IT")
+    val ccList = List(
+      "US"
+      ,"CA", "GB", "AU", "FR", "DE", "ES", "IT"
+    )
     val admCols = List(GNsCols.Adm1, GNsCols.Adm2, GNsCols.Adm3, GNsCols.Adm4)
 
     ccList.foreach { cc =>
-      println(s"--- $cc")
+      printlnT0(s"--- $cc")
 
       val gnsInCC:RDD[((String,GNLevel), GNEnt)] = gnLines
         .filter { cols =>
@@ -142,7 +146,7 @@ object UtilsGNColls {
         }
         .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-      println(s"\tADM->Ent: ${gnsInCC.count}")
+      printlnT0(s"\tADM->Ent: ${gnsInCC.count}")
 
       val t1:RDD[(Option[String], Iterable[(GNLevel, String)])] = gnsInCC
         .groupByKey()
@@ -171,10 +175,6 @@ object UtilsGNColls {
         .map(p => p._1._1 -> (p._1._2 -> p._2))
         .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-      val noAdmc = t1.filter(_._1.isEmpty).collect()
-
-      println(s"\tNo ADM: ${noAdmc.length}: ${noAdmc.toList}")
-
       val withAdmc = t1.filter { p =>
         //        if (p._1.isEmpty)
         //          println("ok")
@@ -184,6 +184,9 @@ object UtilsGNColls {
 
 
       val t3 = admGNs
+        .filter { p =>
+          p._1 != cc || p._2._1 != ADM0
+        }
         .leftOuterJoin(withAdmc)
         //.filter(_._2._2.isEmpty)
         .mapValues { p =>
@@ -212,31 +215,55 @@ object UtilsGNColls {
         coll
       }
 
-      var m2 = t3.collectAsMap()
+      val m2 = t3.collectAsMap().toMap
 
-      if (!m2.contains(cc)) {
-        val t = withAdmc.filter(_._1 == cc).collect()
-        if (t.length == 1) {
-          val admEnt = adm0Ents.get(cc)
-          val adm0 = GNColls.adm0(
-            admEnt, // todo
-            t(0)._2.map(_._2).toIndexedSeq,
-            EmptyMap
-          )
-          m2 += cc -> adm0
-        }
+      assert (!m2.contains(cc))
+
+      val t = withAdmc.filter(_._1 == cc).collect()
+      val adm0GNs = admGNs.filter { p =>
+        p._1 == cc && p._2._1 == ADM0
+      }.collect()
+
+      println(s"\tADM0: ${adm0GNs.length}")
+      val gentOfAdm0 =
+        if (adm0GNs.isEmpty) EmptyMap
         else {
-          throw new IllegalArgumentException("More than one country code entries?!")
+          assert(adm0GNs.length == 1)
+          adm0GNs(0)._2._2.map(ent => ent.gnid -> ent).toMap
         }
-      }
 
-      println(s"\tMap size: ${m2.size}")
-      println(s"\tEnt in Map: " + m2.map(_._2.size).sum)
+      assert (t.length == 1)
+      val admEnt = adm0Ents.get(cc)
+      val adm0 = GNColls.adm0(
+        admEnt, // todo
+        t(0)._2.map(_._2).toIndexedSeq,
+        gentOfAdm0,
+        m2
+      )
+        //m2 += cc -> adm0
+      printlnT0(s"\tMap size: ${m2.size}")
+      printlnT0(s"\tEnt in Map: " + m2.map(_._2.size).sum)
+
+      val strs = testStrs.getOrElse(cc, List())
+      strs.foreach { ts =>
+        val parts = ts.split(",").map(_.trim).filter(_.nonEmpty)
+        val res = adm0.byName(parts(0), cc + "_" + parts(1))
+        printlnT0(res)
+      }
     }
 
     spark.stop()
   }
 
+  val testStrs = Map(
+    "US" -> List[String](
+      "Minneapolis, MN",
+      "Research Triangle Park, NC"
+    ),
+    "CA" -> List[String](
+      "Montréal, Québec"
+    )
+  )
   //private val EmptyPpls = IndexedSeq[GNEnt]()
   private def splitAdmAndPpl(in:Iterable[GNEnt], level:GNLevel)
     :(Option[GNEnt], Iterable[GNEnt]) = {

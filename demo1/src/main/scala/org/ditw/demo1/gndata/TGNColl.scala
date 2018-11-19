@@ -11,6 +11,9 @@ trait TGNColl extends Serializable {
     if (self.nonEmpty) gents.size+1
     else gents.size
 
+  def name2Id(admMap:Map[String, TGNColl]):Map[String, IndexedSeq[Long]]
+  def id2Ent(admMap:Map[String, TGNColl]):Map[Long, GNEnt]
+
   override def toString: String = {
     val selfName = if (self.nonEmpty) self.get.name else "_NA_"
 

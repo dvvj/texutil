@@ -8,32 +8,77 @@ object GNColls extends Serializable {
     val subAdms:IndexedSeq[String],
     val gents:Map[Long, GNEnt]
   ) extends TGNColl {
-//    protected[gndata] def childrenMap:Map[Long, GNEnt] = {
-//      val all = subColls.flatMap { sc =>
-//        sc.childrenMap.toIndexedSeq
-//      } ++ self.map(e => e.gnid -> e)
-//      val grouped = all.groupBy(_._1).mapValues(_.map(_._2))
-//      assert(grouped.forall(_._2.size == 1))
-//      grouped.mapValues(_.head)
-//    }
+
+    def name2Id(admMap:Map[String, TGNColl]):Map[String, IndexedSeq[Long]] = {
+      val children:IndexedSeq[(String, IndexedSeq[Long])] = subAdms
+        .flatMap(subAdm => admMap(subAdm).name2Id(admMap).toIndexedSeq)
+
+      val curr = (gents.values ++ self).flatMap { gen =>
+        gen.queryNames.map(n => n -> IndexedSeq(gen.gnid))
+      }
+      (children ++ curr).groupBy(_._1)
+        .toIndexedSeq
+        .map(p => p._1 -> p._2.flatMap(_._2))
+        .toMap
+    }
+
+    def id2Ent(admMap:Map[String, TGNColl]):Map[Long, GNEnt] = {
+      val children = subAdms
+        .flatMap(subAdm => admMap(subAdm).id2Ent(admMap))
+      gents ++ children ++ self.map(e => e.gnid -> e)
+    }
   }
 
+  private val EmptyIds = IndexedSeq[Long]()
+  private val EmptyEnts = IndexedSeq[GNEnt]()
   private class GNCollChildMap(
     _level:GNLevel,
     _self:Option[GNEnt],
     _subAdms:IndexedSeq[String],
-    _gents:Map[Long, GNEnt]
+    _gents:Map[Long, GNEnt],
+    val admMap:Map[String, TGNColl]
   ) extends GNColl(_level, _self, _subAdms, _gents) with TGNMap {
 //    private val map = childrenMap
     def byId(gnid:Long):GNEnt = _gents(gnid)
+
+    private val admNameMap:Map[String, Map[String, IndexedSeq[Long]]] = {
+      _subAdms.map { sadm =>
+        val m = admMap(sadm).name2Id(admMap)
+        sadm -> m
+      }.toMap
+    }
+    private val admIdMap:Map[String, Map[Long, GNEnt]] = {
+      _subAdms.map { sadm =>
+        val m = admMap(sadm).id2Ent(admMap)
+        sadm -> m
+      }.toMap
+    }
+
+    def idsByName(name:String, adm:String):IndexedSeq[Long] = {
+      if (admNameMap.contains(adm)) {
+        val ids = admNameMap(adm).getOrElse(name, EmptyIds)
+        ids
+      }
+      else EmptyIds
+    }
+
+    def byName(name:String, adm:String):IndexedSeq[GNEnt] = {
+      if (admNameMap.contains(adm)) {
+        val ids = admNameMap(adm).getOrElse(name, EmptyIds)
+        val m = admIdMap(adm)
+        ids.map(m)
+      }
+      else EmptyEnts
+    }
   }
 
   def adm0(
     ent:Option[GNEnt],
     subAdms:IndexedSeq[String],
-    gents:Map[Long, GNEnt]
-  ):TGNColl = {
-    new GNCollChildMap(GNLevel.ADM0, ent, subAdms, gents)
+    gents:Map[Long, GNEnt],
+    admMap:Map[String, TGNColl]
+  ):TGNMap = {
+    new GNCollChildMap(GNLevel.ADM0, ent, subAdms, gents, admMap)
   }
 
   def admx(

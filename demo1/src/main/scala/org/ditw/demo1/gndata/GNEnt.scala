@@ -13,6 +13,7 @@ case class GNEnt(
   admCodes:IndexedSeq[String],
   population:Long
 ) {
+  val queryNames:Set[String] = alias + name
   val level:GNLevel = admCodes.size match {
     case 0 => GNLevel.ADM0
     case 1 => GNLevel.ADM1
