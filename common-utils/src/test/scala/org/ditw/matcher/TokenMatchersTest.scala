@@ -25,8 +25,31 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
     pfxNGram,
     Set("\"")
   )
+
+  private val ngramD = ngramExtraTag(
+    Map(
+      "Cardiovascular Research" -> "T1",
+      "Research Vrije" -> "T2",
+      "Vrije" -> "T3"
+    ),
+    dict,
+    (m, tag) => {
+      m.addTag(tag)
+      m
+    },
+    "TmpTag"
+  )
   private val testData = Table(
     ("ngram", "input", "expSet"),
+    (
+      ngramD,
+      "Cardiovascular Research, Vrije University, Amsterdam",
+      Set(
+        (0, 0, 2),
+        (0, 1, 3),
+        (0, 2, 3)
+      )
+    ),
     (
       quotedNGram,
       "\"Cardiovascular Research\" department, X \"University",
@@ -78,7 +101,8 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
   "NGram matcher test" should "pass" in {
     forAll(testData) { (tm, inStr, expRanges) =>
       val matchPool = fromStr(inStr, testTokenizer, dict)
-      val res = tm.run(matchPool).map(_.range)
+      val res0 = tm.run(matchPool)
+      val res = res0.map(_.range)
       val expRngs = expRanges.map(tp => TkRange(matchPool.input, tp._1, tp._2, tp._3))
       res shouldBe expRngs
     }

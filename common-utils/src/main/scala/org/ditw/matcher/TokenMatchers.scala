@@ -1,5 +1,5 @@
 package org.ditw.matcher
-import org.ditw.common.{Dict, PrefixTree, TkRange}
+import org.ditw.common._
 import org.ditw.tknr.Tokenizers.TTokenizer
 
 object TokenMatchers extends Serializable {
@@ -154,6 +154,42 @@ object TokenMatchers extends Serializable {
                   t:Option[String] = None
                 ):TTkMatcher = {
     _prefixSuffixedBy(tkMatcher, false, suffixSet, t)
+  }
+
+  type TmMatchPProc[T] = (TkMatch, T) => TkMatch
+
+  private[matcher] class TmNGramD[T](
+    private val ngrams:Map[Array[DictEntryKey], T],
+    private val proc:TmMatchPProc[T],
+    val tag:Option[String]
+  ) extends TTkMatcher {
+    private val _pfxTreeD: PrefixTreeD[DictEntryKey, T] = {
+      //val jl:JavaList[Array[Int]] = new JavaArrayList(ngrams.asJava)
+      PrefixTreeD.createPrefixTree(ngrams.asJava)
+    }
+
+    def runAtLineFrom(matchPool: MatchPool, lineIdx:Int, start:Int):Set[TkMatch] = {
+      val encLine = matchPool.input.encoded(lineIdx)
+      val pairs = _pfxTreeD.allPrefixes(encLine, start).asScala
+      val matches = pairs.map { p =>
+        val range = TkRange(matchPool.input, lineIdx, start, start+p.length())
+        val m = TkMatch.noChild(range, tag)
+        proc(m, p.d())
+      }
+
+      matches.toSet
+    }
+  }
+
+  def ngramExtraTag(
+              ngrams:Map[String, String],
+              dict: Dict,
+              pproc:TmMatchPProc[String],
+              tag:String
+            ):TTkMatcher = {
+    val encm:Map[Array[DictEntryKey], String] =
+      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(dict.enc) -> p._2)
+    new TmNGramD(encm, pproc, Option(tag))
   }
 
 }

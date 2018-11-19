@@ -28,5 +28,8 @@ object InputHelpers extends Serializable {
   def splitVocabEntries(phrases:Set[String]):Set[Array[String]] = {
     phrases.map(SpaceSplitter.split)
   }
+  def splitVocabEntry(phrase:String):Array[String] = {
+    SpaceSplitter.split(phrase)
+  }
 
 }
