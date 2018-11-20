@@ -2,7 +2,7 @@ package org.ditw.sparkRuns
 import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
 import org.ditw.demo1.gndata.GNLevel._
-import org.ditw.demo1.gndata.{GNColls, GNEnt, TGNColl}
+import org.ditw.demo1.gndata.{GNColls, GNEnt, TGNColl, TGNMap}
 import org.ditw.demo1.src.SrcDataUtils
 import org.ditw.demo1.src.SrcDataUtils.GNsCols
 import org.ditw.demo1.src.SrcDataUtils.GNsCols._
@@ -10,6 +10,11 @@ import org.ditw.demo1.src.SrcDataUtils.GNsCols._
 import scala.collection.mutable.ListBuffer
 import org.ditw.common.GenUtils._
 import org.ditw.common.SparkUtils
+import org.ditw.demo1.matchers.{Adm0Gen, MatcherGen}
+import org.ditw.matcher.MatchPool
+import org.ditw.tknr.TknrHelpers.{TokenSplitter_CommaColon, TokenSplitter_DashSlash}
+import org.ditw.tknr.{Tokenizers, Trimmers}
+import org.ditw.tknr.Tokenizers.TokenizerSettings
 
 object UtilsGNColls {
 
@@ -209,11 +214,19 @@ object UtilsGNColls {
       assert (t.length == 1)
       val admEnt = adm0Ents.get(cc)
       val adm0 = GNColls.adm0(
-        admEnt, // todo
+        admEnt.get, // todo
         t(0)._2.map(_._2).toIndexedSeq,
         gentOfAdm0,
         m2
       )
+
+//      testTm(adm0,
+//        List(
+//          "north carolina",
+//          "massachusetts"
+//        )
+//      )
+
         //m2 += cc -> adm0
       printlnT0(s"\tAdm #: ${m2.size+1}") // + adm0
       val allEntCount = m2.map(_._2.size).sum + adm0.size
@@ -228,6 +241,34 @@ object UtilsGNColls {
     }
 
     spark.stop()
+  }
+
+  def testTm(adm0:TGNMap,
+             testStrs:Iterable[String]
+            ):Unit = {
+    val trimByPuncts = Trimmers.byChars(
+      ",;:\"()*†#".toSet
+    )
+    val settings = TokenizerSettings(
+      "\\n+",
+      "[\\s]+",
+      List(
+        TokenSplitter_CommaColon, TokenSplitter_DashSlash
+      ),
+      trimByPuncts
+    )
+
+    val testTokenizer = Tokenizers.load(settings)
+
+    val dict = MatcherGen.loadDict(Iterable(adm0))
+    val tm = Adm0Gen.genTms(adm0, dict).head
+    testStrs.foreach { str =>
+      val res = tm.run(
+        MatchPool.fromStr(str, testTokenizer, dict)
+      )
+      println(res)
+    }
+
   }
 
   val testStrs = Map(

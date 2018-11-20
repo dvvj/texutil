@@ -184,11 +184,16 @@ object TokenMatchers extends Serializable {
     }
   }
 
+  private val addExtraTag:TmMatchPProc[String] = (m, tag) => {
+    m.addTag(tag)
+    m
+  }
+
   def ngramExtraTag(
               ngrams:Map[String, String],
               dict: Dict,
-              pproc:TmMatchPProc[String],
-              tag:String
+              tag:String,
+              pproc:TmMatchPProc[String] = addExtraTag
             ):TTkMatcher = {
     val encm:Map[Array[DictEntryKey], String] =
       ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(dict.enc) -> p._2)

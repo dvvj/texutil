@@ -33,13 +33,14 @@ object GNColls extends Serializable {
   private val EmptyEnts = IndexedSeq[GNEnt]()
   private class GNCollMap(
     _level:GNLevel,
-    _self:Option[GNEnt],
+    _self:GNEnt,
     _subAdms:IndexedSeq[String],
     _gents:Map[Long, GNEnt],
     val admMap:Map[String, TGNColl]
-  ) extends GNColl(_level, _self, _subAdms, _gents) with TGNMap {
+  ) extends GNColl(_level, Option(_self), _subAdms, _gents) with TGNMap {
 //    private val map = childrenMap
     def byId(gnid:Long):GNEnt = _gents(gnid)
+    val countryCode:String = _self.countryCode
 
     val admNameMap:Map[String, Map[String, IndexedSeq[Long]]] = {
       _subAdms.map { sadm =>
@@ -73,7 +74,7 @@ object GNColls extends Serializable {
   }
 
   def adm0(
-    ent:Option[GNEnt],
+    ent:GNEnt,
     subAdms:IndexedSeq[String],
     gents:Map[Long, GNEnt],
     admMap:Map[String, TGNColl]

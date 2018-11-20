@@ -37,10 +37,6 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
       "Vrije" -> "T3"
     ),
     dict,
-    (m, tag) => {
-      m.addTag(tag)
-      m
-    },
     ngramDTag
   )
 
