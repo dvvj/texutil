@@ -76,14 +76,24 @@ object SrcDataUtils extends Serializable {
     "ZN"
   )
 
-  def isPcl(c:String):Boolean = {
-    (c.startsWith("PCL") && c != "PCLH") || (c == "TERR")
+  private val pplExcludedCodes = Set(
+    "PPLCH",
+    "PPLH", // historical populated place
+    "PPLQ", // abandoned populated place
+    "PPLW"  // destroyed populated place
+  )
+
+  private val adm0TerrCC = Set(
+    "AQ", "EH", "SJ", "AS"
+  )
+  def isAdm0(c:String, fcode:String):Boolean = {
+    (c.startsWith("PCL") && c != "PCLH") || (c == "TERR" && adm0TerrCC(fcode))
   }
   val fcAdm:FeatureChecker = (fcls:String, fcode:String) => {
     fcls == AdmClass && !admExcludedCodes.contains(fcode)
   }
   val fcPpl:FeatureChecker = (fcls:String, fcode:String) => {
-    fcls == PplClass
+    fcls == PplClass && !pplExcludedCodes.contains(fcode)
   }
   val fcAll:FeatureChecker = (fcls:String, fcode:String) => {
     fcAdm(fcls, fcode) || fcPpl(fcls, fcode) ||

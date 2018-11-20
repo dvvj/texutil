@@ -47,6 +47,9 @@ object UtilsSlimGNs extends Serializable {
 
       val newLine = newLineCols.map(GNsCol(line, _))
 
+//      if (line(0) == "4956184")
+//        println("ok")
+
       val res = newLine :+ altNameCount.toString
         //(newLine :+ altNameCount).mkString("\t")
       res

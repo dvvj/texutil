@@ -5,9 +5,11 @@ object GNColls extends Serializable {
   private class GNColl(
     val level:GNLevel,
     val self:Option[GNEnt],
-    val subAdms:IndexedSeq[String],
+    private[gndata] var subAdms:IndexedSeq[String],
     val gents:Map[Long, GNEnt]
   ) extends TGNColl {
+    private[gndata] def updateSubAdms(newVal:IndexedSeq[String]):Unit =
+      subAdms = newVal
 
     def name2Id(admMap:Map[String, TGNColl]):Map[String, IndexedSeq[Long]] = {
       val children:IndexedSeq[(String, IndexedSeq[Long])] = subAdms
@@ -23,6 +25,10 @@ object GNColls extends Serializable {
     }
 
     def id2Ent(admMap:Map[String, TGNColl]):Map[Long, GNEnt] = {
+//      if (self.nonEmpty && self.get.countryCode == "DE")
+//        println("ok")
+//      if (self.nonEmpty && self.get.gnid == 6547410L)
+//        println("ok")
       val children = subAdms
         .flatMap(subAdm => admMap(subAdm).id2Ent(admMap))
       gents ++ children ++ self.map(e => e.gnid -> e)
@@ -42,13 +48,54 @@ object GNColls extends Serializable {
     def byId(gnid:Long):GNEnt = _gents(gnid)
     val countryCode:String = _self.countryCode
 
+    private def assignOrphanedAdms:Set[String] = {
+      val (orphanedAdms, managedAdms) = {
+        val allChildren = childAdms(admMap)
+        val diff = admMap.keySet -- allChildren
+//        println(diff.size)
+        diff -> allChildren
+      }
+      val updateMap = orphanedAdms.toIndexedSeq.map { oadm =>
+        var nadm = SrcData.admMinus1Code(oadm)
+        var found = false
+        while (!found && nadm.nonEmpty) {
+          if (managedAdms.contains(nadm.get))
+            found = true
+          else
+            nadm = SrcData.admMinus1Code(nadm.get)
+        }
+        if (found) {
+          nadm.get -> oadm
+        }
+        else {
+          throw new RuntimeException(s"Cannot found parent adm for $oadm")
+        }
+      }.groupBy(_._1).mapValues(_.map(_._2))
+
+      updateMap.foreach { p =>
+        val (parent, children) = p
+        val newChildren = admMap(parent).subAdms ++ children
+        admMap(parent).updateSubAdms(newChildren)
+      }
+
+      // verify
+//      {
+//        val allChildren = childAdms(admMap)
+//        val diff = admMap.keySet -- allChildren
+//        println(diff.size)
+//      }
+      orphanedAdms
+    }
+
+    private val _orphanedAdms = assignOrphanedAdms
+
     val admNameMap:Map[String, Map[String, IndexedSeq[Long]]] = {
       _subAdms.map { sadm =>
         val m = admMap(sadm).name2Id(admMap)
         sadm -> m
       }.toMap
     }
-    private val admIdMap:Map[String, Map[Long, GNEnt]] = {
+    val admIdMap:Map[String, Map[Long, GNEnt]] = {
       _subAdms.map { sadm =>
         val m = admMap(sadm).id2Ent(admMap)
         sadm -> m
@@ -71,6 +118,8 @@ object GNColls extends Serializable {
       }
       else EmptyEnts
     }
+
+
   }
 
   def adm0(
