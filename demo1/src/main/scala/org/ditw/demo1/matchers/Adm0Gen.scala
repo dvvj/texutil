@@ -15,7 +15,9 @@ object Adm0Gen extends Serializable {
       else EmptyPairs
     }
 
-    val tmAdms = TokenMatchers.ngramExtraTag(name2Admc, dict, TagHelper.admTmTag(adm0.countryCode))
+    val tmAdms = TokenMatchers.ngramExtraTag(name2Admc, dict, TagHelper.admTmTag(adm0.countryCode.toString))
     Iterable(tmAdms)
   }
+
+  //def genCms()
 }

@@ -2,7 +2,7 @@ package org.ditw.sparkRuns
 import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
 import org.ditw.demo1.gndata.GNLevel._
-import org.ditw.demo1.gndata.{GNColls, GNEnt, TGNColl, TGNMap}
+import org.ditw.demo1.gndata._
 import org.ditw.demo1.src.SrcDataUtils
 import org.ditw.demo1.src.SrcDataUtils.GNsCols
 import org.ditw.demo1.src.SrcDataUtils.GNsCols._
@@ -17,14 +17,13 @@ import org.ditw.tknr.{Tokenizers, Trimmers}
 import org.ditw.tknr.Tokenizers.TokenizerSettings
 
 object UtilsGNColls {
-
-  private val tabSplitter = "\\t".r
-
 //  private val admLevel2Code = List(ADM1, ADM2, ADM3, ADM4).map(a => a -> a.toString).toMap
 
 
 
   import org.ditw.demo1.gndata.SrcData._
+
+  import GNCntry._
 
 
   def main(args:Array[String]):Unit = {
@@ -40,10 +39,10 @@ object UtilsGNColls {
     val brAdm0Ents = spark.broadcast(adm0Ents)
 
     val ccs = Set(
-      "US"
-      ,"CA", "GB", "AU", "FR", "DE", "ES", "IT"
+      US
+      ,CA, GB, AU,FR,DE,ES,IT
     )
-    loadCountries(gnLines, ccs, brAdm0Ents)
+    val adm0s = loadCountries(gnLines, ccs, brAdm0Ents)
 
 
 //    ccList.foreach { cc =>
@@ -190,33 +189,7 @@ object UtilsGNColls {
     spark.stop()
   }
 
-  def testTm(adm0:TGNMap,
-             testStrs:Iterable[String]
-            ):Unit = {
-    val trimByPuncts = Trimmers.byChars(
-      ",;:\"()*†#".toSet
-    )
-    val settings = TokenizerSettings(
-      "\\n+",
-      "[\\s]+",
-      List(
-        TokenSplitter_CommaColon, TokenSplitter_DashSlash
-      ),
-      trimByPuncts
-    )
 
-    val testTokenizer = Tokenizers.load(settings)
-
-    val dict = MatcherGen.loadDict(Iterable(adm0))
-    val tm = Adm0Gen.genTms(adm0, dict).head
-    testStrs.foreach { str =>
-      val res = tm.run(
-        MatchPool.fromStr(str, testTokenizer, dict)
-      )
-      println(res)
-    }
-
-  }
 
   val testStrs = Map(
     "US" -> List[String](

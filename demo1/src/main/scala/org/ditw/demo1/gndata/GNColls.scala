@@ -1,4 +1,5 @@
 package org.ditw.demo1.gndata
+import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.GNLevel.GNLevel
 
 object GNColls extends Serializable {
@@ -46,7 +47,7 @@ object GNColls extends Serializable {
   ) extends GNColl(_level, Option(_self), _subAdms, _gents) with TGNMap {
 //    private val map = childrenMap
     def byId(gnid:Long):GNEnt = _gents(gnid)
-    val countryCode:String = _self.countryCode
+    val countryCode:GNCntry = GNCntry.withName(_self.countryCode)
 
     private def assignOrphanedAdms:Set[String] = {
       val (orphanedAdms, managedAdms) = {
@@ -98,7 +99,7 @@ object GNColls extends Serializable {
       val subAdmMap = _subAdms.map { sadm =>
         val m = admMap(sadm).name2Id(admMap)
         sadm -> m
-      } :+ (countryCode -> t)
+      } :+ (countryCode.toString -> t)
 
       subAdmMap.toMap
     }
@@ -106,7 +107,7 @@ object GNColls extends Serializable {
       val subAdmMap = _subAdms.map { sadm =>
         val m = admMap(sadm).id2Ent(admMap)
         sadm -> m
-      } :+ (countryCode -> _gents)
+      } :+ (countryCode.toString -> _gents)
       subAdmMap.toMap
     }
 

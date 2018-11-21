@@ -1,4 +1,5 @@
 package org.ditw.demo1.gndata
+import org.ditw.demo1.gndata.GNCntry.GNCntry
 
 trait TGNMap extends TGNColl {
   def byId(gnid:Long):GNEnt
@@ -6,7 +7,7 @@ trait TGNMap extends TGNColl {
   def byName(name:String, adm:String):IndexedSeq[GNEnt]
   def admNameMap:Map[String, Map[String, IndexedSeq[Long]]]
   val admMap:Map[String, TGNColl]
-  val countryCode:String
+  val countryCode:GNCntry
   val admIdMap:Map[String, Map[Long, GNEnt]]
 
   override val size: Int = {

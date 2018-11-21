@@ -4,6 +4,7 @@ import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.GenUtils.printlnT0
+import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.GNLevel.{ADM4, GNLevel}
 import org.ditw.demo1.src.SrcDataUtils
 import org.ditw.demo1.src.SrcDataUtils.GNsCols
@@ -12,6 +13,8 @@ import org.ditw.demo1.src.SrcDataUtils.GNsCols._
 import scala.collection.mutable.ListBuffer
 
 object SrcData extends Serializable {
+  val tabSplitter = "\\t".r
+
 
   val featureCodeIndex = 6
   val countryCodeIndex = 7
@@ -105,9 +108,11 @@ object SrcData extends Serializable {
 
   def loadCountries(
                      rdd:RDD[Array[String]],
-                     countryCodes:Set[String],
+                     countries:Set[GNCntry],
                      brAdm0Ents:Broadcast[Map[String, GNEnt]]
-                   ):Iterable[TGNMap] = {
+                   ):Map[GNCntry, TGNMap] = {
+
+    val countryCodes = countries.map(_.toString)
     val gnsInCC:RDD[((String,GNLevel), GNEnt)] = rdd
       .filter { cols =>
         countryCodes.contains(cols(countryCodeIndex)) &&
@@ -254,7 +259,7 @@ object SrcData extends Serializable {
     ).filter(_._2._2.isEmpty).map(_._1).collect()
     printlnT0(s"Missing: $missing")
 
-    res
+    res.map(adm0 => adm0.countryCode -> adm0).toMap
 
   }
 
