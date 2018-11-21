@@ -3,6 +3,7 @@ import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.textSeg.Settings
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.CatSegMatchers.Category
+import org.ditw.tknr.TknrHelpers
 
 object Vocabs extends Serializable {
 
@@ -14,7 +15,7 @@ object Vocabs extends Serializable {
     ","
   )
   private[textSeg] val _SegPfxs =
-    Settings._AffIndexChars.map(_.toString).toSet + "("
+    TknrHelpers._AffIndexChars.map(_.toString).toSet + "("
 //  private[textSeg] val _SegPfxs_Bracket = Set(
 //    "("
 //  )

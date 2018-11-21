@@ -11,6 +11,7 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
   import TestHelpers._
   import Settings._
   import SegMatchers._
+  import TknrHelpers._
   private val tag2 = Option("tag2")
   private val tag3 = Option("tag3")
   private val tm2 = ngram(Set(Array("2")), _Dict, tag2)

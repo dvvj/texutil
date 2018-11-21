@@ -1,7 +1,6 @@
 package org.ditw.textSeg.common
 import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.matcher._
-import org.ditw.textSeg.Settings.TknrTextSeg
 import org.ditw.textSeg.catSegMatchers.Cat1SegMatchers
 import org.ditw.textSeg.common.CatSegMatchers.TSegMatchers4Cat
 import org.ditw.tknr.Tokenizers.TTokenizer
@@ -10,7 +9,7 @@ object AllCatMatchers {
 
   import org.ditw.matcher.TokenMatchers._
   import Tags._
-  import InputHelpers._
+  import org.ditw.tknr.TknrHelpers._
 
   import AssiMatchers._
   import Vocabs._

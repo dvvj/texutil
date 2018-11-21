@@ -17,6 +17,10 @@ class MatchPool(
     val existing = get(tag)
     _map.put(tag, existing ++ matches)
   }
+  def add(tag:String, m:TkMatch):Unit = {
+    val existing = get(tag)
+    _map.put(tag, existing + m)
+  }
 
   def remove(matches: Iterable[TkMatch]):Unit = {
     val toRemoveMap = matches.flatMap { m =>

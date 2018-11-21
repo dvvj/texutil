@@ -1,35 +1,29 @@
 package org.ditw.demo1.matchers
 import org.ditw.demo1.gndata.TGNMap
-import org.ditw.matcher.MatchPool
-import org.ditw.tknr.TknrHelpers.{TokenSplitter_CommaColon, TokenSplitter_DashSlash}
-import org.ditw.tknr.Tokenizers.TokenizerSettings
-import org.ditw.tknr.{Tokenizers, Trimmers}
+import org.ditw.matcher.{MatchPool, MatcherMgr}
+import org.ditw.tknr.{TknrHelpers, Tokenizers, Trimmers}
 
 object TmTest1 extends App {
   def testTm(adm0:TGNMap,
              testStrs:Iterable[String]
             ):Unit = {
-    val trimByPuncts = Trimmers.byChars(
-      ",;:\"()*†#".toSet
-    )
-    val settings = TokenizerSettings(
-      "\\n+",
-      "[\\s]+",
-      List(
-        TokenSplitter_CommaColon, TokenSplitter_DashSlash
-      ),
-      trimByPuncts
-    )
 
-    val testTokenizer = Tokenizers.load(settings)
 
     val dict = MatcherGen.loadDict(Iterable(adm0))
-    val tm = Adm0Gen.genTms(adm0, dict).head
+
+    val (tms, cms) = Adm0Gen.genMatchers(adm0, dict)
+    val mmgr = new MatcherMgr(
+      tms,
+      cms,
+      List()
+    )
+
     testStrs.foreach { str =>
-      val res = tm.run(
-        MatchPool.fromStr(str, testTokenizer, dict)
-      )
-      println(res)
+      val mp = MatchPool.fromStr(str, TknrHelpers.TknrTextSeg, dict)
+      mmgr.run(mp)
+      val tag = TagHelper.adm1AndSubCmTag("US_MA")
+      val t = mp.get(tag)
+      println(t.size)
     }
 
   }
@@ -38,6 +32,9 @@ object TmTest1 extends App {
   import org.ditw.demo1.gndata.GNCntry._
   val admUS = testCountries(US)
   testTm(admUS, List(
+    "Worcester County, Massachusetts, USA.",
+    "City of Boston, Massachusetts, USA.",
+    "Boston, Massachusetts, USA.",
     "massachusetts",
     "Worcester County",
     "City of Boston"

@@ -23,7 +23,7 @@ object TokenMatchers extends Serializable {
       val lens = _pfxTree.allPrefixes(encLine, start).asScala
       val matches = lens.map { len =>
         val range = TkRange(matchPool.input, lineIdx, start, start+len)
-        val m = TkMatch.noChild(range, tag)
+        val m = TkMatch.noChild(matchPool, range, tag)
         m
       }
 
@@ -85,7 +85,7 @@ object TokenMatchers extends Serializable {
       val token = matchPool.input.linesOfTokens(lineIdx)(start)
       if (regex.pattern.matcher(token.content).matches()) {
         val range = TkRange(matchPool.input, lineIdx, start, start+1)
-        Set(TkMatch.noChild(range, tag))
+        Set(TkMatch.noChild(matchPool, range, tag))
       }
       else
         EmptyMatches
@@ -176,7 +176,7 @@ object TokenMatchers extends Serializable {
       val pairs = _pfxTreeD.allPrefixes(encLine, start).asScala
       val matches = pairs.map { p =>
         val range = TkRange(matchPool.input, lineIdx, start, start+p.length())
-        val m = TkMatch.noChild(range, tag)
+        val m = TkMatch.noChild(matchPool, range, tag)
         proc(m, p.d())
       }
 
@@ -189,6 +189,14 @@ object TokenMatchers extends Serializable {
     m
   }
 
+  private val GNIdTagTmpl = "GNId_%d"
+  private val addGNIdTags:TmMatchPProc[IndexedSeq[Long]] = (m, gnids) => {
+    val tags = gnids.map(GNIdTagTmpl.format(_))
+    m.addTags(tags, false)
+    m
+  }
+
+
   def ngramExtraTag(
               ngrams:Map[String, String],
               dict: Dict,
@@ -196,6 +204,17 @@ object TokenMatchers extends Serializable {
               pproc:TmMatchPProc[String] = addExtraTag
             ):TTkMatcher = {
     val encm:Map[Array[DictEntryKey], String] =
+      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(dict.enc) -> p._2)
+    new TmNGramD(encm, pproc, Option(tag))
+  }
+
+  def ngramGNIds(
+                     ngrams:Map[String, IndexedSeq[Long]],
+                     dict: Dict,
+                     tag:String,
+                     pproc:TmMatchPProc[IndexedSeq[Long]] = addGNIdTags
+                   ):TTkMatcher = {
+    val encm:Map[Array[DictEntryKey], IndexedSeq[Long]] =
       ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(dict.enc) -> p._2)
     new TmNGramD(encm, pproc, Option(tag))
   }

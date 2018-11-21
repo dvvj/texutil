@@ -1,7 +1,6 @@
 package org.ditw.textSeg
 import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.matcher.{MatchPool, MatcherMgr}
-import org.ditw.textSeg.Settings.{TknrTextSeg}
 import org.ditw.textSeg.common.Vocabs
 import org.ditw.tknr.TknrHelpers.{loTFrom, resultFrom}
 import org.ditw.tknr.{TknrHelpers, TknrResult}
@@ -9,7 +8,7 @@ import org.scalatest.Matchers
 
 object TestHelpers extends Matchers {
 
-
+  import TknrHelpers._
   private[textSeg] val _Dict: Dict =
     InputHelpers.loadDict(
       "0123456789".map(_.toString)

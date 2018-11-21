@@ -4,6 +4,7 @@ import org.ditw.common.TkRange
 import scala.collection.mutable.ListBuffer
 
 class TkMatch private (
+  val matchPool: MatchPool,
   val range: TkRange,
   val children: IndexedSeq[TkMatch]
 ) extends Serializable {
@@ -11,8 +12,18 @@ class TkMatch private (
   private val tags = mutable.Set[String]()
   def getTags:Set[String] = tags.toSet
 
-  def addTag(ts:String):Unit = tags += ts
-  def addTags(ts:Iterable[String]):Unit = tags ++= ts
+  def addTag(ts:String):Unit = {
+    tags += ts
+    matchPool.add(ts, this)
+  }
+
+  def addTags(ts:Iterable[String],
+              addToPool:Boolean = true
+             ):Unit = {
+    tags ++= ts
+    if (addToPool)
+      ts.foreach(matchPool.add(_, this))
+  }
 
   override def hashCode(): Int = {
     (children.size << 16) + range.hashCode()
@@ -57,7 +68,7 @@ object TkMatch extends Serializable {
       firstChildRange.start,
       children.last.range.end
     )
-    new TkMatch(range, children)
+    new TkMatch(children.head.matchPool, range, children)
   }
 
   def oneChild(
@@ -65,21 +76,21 @@ object TkMatch extends Serializable {
     child: TkMatch,
     tag:Option[String]
   ):TkMatch = {
-    val res = new TkMatch(range, IndexedSeq(child))
+    val res = new TkMatch(child.matchPool, range, IndexedSeq(child))
     if (tag.nonEmpty)
       res.addTag(tag.get)
     res
   }
 
-  def noChild(range:TkRange, tag:Option[String]):TkMatch = {
-    val res = new TkMatch(range, TkMatch.EmptyChildren)
+  def noChild(matchPool: MatchPool, range:TkRange, tag:Option[String]):TkMatch = {
+    val res = new TkMatch(matchPool, range, TkMatch.EmptyChildren)
     if (tag.nonEmpty)
       res.addTag(tag.get)
     res
   }
 
   def updateRange(orig:TkMatch, newRange:TkRange):TkMatch = {
-    new TkMatch(newRange, orig.children)
+    new TkMatch(orig.matchPool, newRange, orig.children)
   }
 
   def mergeByRange(matches:Iterable[TkMatch]):Set[TkMatch] = {
