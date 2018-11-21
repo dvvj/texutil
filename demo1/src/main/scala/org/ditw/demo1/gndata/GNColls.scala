@@ -20,7 +20,7 @@ object GNColls extends Serializable {
       }
       (children ++ curr).groupBy(_._1)
         .toIndexedSeq
-        .map(p => p._1 -> p._2.flatMap(_._2))
+        .map(p => p._1 -> p._2.flatMap(_._2).distinct)
         .toMap
     }
 
@@ -90,16 +90,24 @@ object GNColls extends Serializable {
     private val _orphanedAdms = assignOrphanedAdms
 
     val admNameMap:Map[String, Map[String, IndexedSeq[Long]]] = {
-      _subAdms.map { sadm =>
+      val directChildren:Map[String, IndexedSeq[Long]] = _gents.flatMap { p =>
+        val (gnid, ent) = p
+        ent.queryNames.map(_ -> gnid)
+      }.groupBy(_._1).mapValues(_.values.toIndexedSeq)
+      val t = Map() ++ directChildren // serialization
+      val subAdmMap = _subAdms.map { sadm =>
         val m = admMap(sadm).name2Id(admMap)
         sadm -> m
-      }.toMap
+      } :+ (countryCode -> t)
+
+      subAdmMap.toMap
     }
     val admIdMap:Map[String, Map[Long, GNEnt]] = {
-      _subAdms.map { sadm =>
+      val subAdmMap = _subAdms.map { sadm =>
         val m = admMap(sadm).id2Ent(admMap)
         sadm -> m
-      }.toMap
+      } :+ (countryCode -> _gents)
+      subAdmMap.toMap
     }
 
     def idsByName(name:String, adm:String):IndexedSeq[Long] = {

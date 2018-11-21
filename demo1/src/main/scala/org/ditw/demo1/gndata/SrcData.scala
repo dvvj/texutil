@@ -255,27 +255,7 @@ object SrcData extends Serializable {
     printlnT0(s"Missing: $missing")
 
     res
-//    val adm0GNs = admGNs.filter { p =>
-//      p._1 == cc && p._2._1 == ADM0
-//    }.collect()
-//
-//    println(s"\tADM0: ${adm0GNs.length}")
-//    val gentOfAdm0 =
-//      if (adm0GNs.isEmpty) EmptyMap
-//      else {
-//        assert(adm0GNs.length == 1)
-//        adm0GNs(0)._2._2.map(ent => ent.gnid -> ent).toMap
-//      }
-//
-//    assert (t.length == 1)
-//    val admEnt = adm0Ents.get(cc)
-//    val adm0 = GNColls.adm0(
-//      admEnt.get, // todo
-//      t(0)._2.map(_._2).toIndexedSeq,
-//      gentOfAdm0,
-//      m2
-//    )
-//    adm0
+
   }
 
   private def ccFromAdmc(admc:String):String = {
