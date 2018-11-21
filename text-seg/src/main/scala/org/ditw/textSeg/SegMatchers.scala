@@ -155,6 +155,7 @@ object SegMatchers {
         val newEnd = minRight
         if (newStart != c.range.start || newEnd != c.range.end) {
           TkMatch.noChild(
+            matchPool,
             TkRange(matchPool.input, lineIdx, newStart, newEnd),
             tag
           )

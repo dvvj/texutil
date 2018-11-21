@@ -4,7 +4,7 @@ import org.ditw.demo1.gndata.GNLevel.GNLevel
 case class GNEnt(
   gnid:Long,
   name:String,
-  alias:Set[String],
+  private[gndata] var _alias:Set[String],
   latitude:Double,
   longitude:Double,
   featureClz:String,
@@ -13,7 +13,12 @@ case class GNEnt(
   admCodes:IndexedSeq[String],
   population:Long
 ) {
-  val queryNames:Set[String] = alias + name
+  private var _queryNames:Set[String] = _alias + name
+  def queryNames:Set[String] = _queryNames
+  def addAliases(aliases:Iterable[String]):Unit = {
+    _alias ++= aliases
+    _queryNames ++= aliases
+  }
   val level:GNLevel = admCodes.size match {
     case 0 => GNLevel.ADM0
     case 1 => GNLevel.ADM1

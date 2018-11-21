@@ -43,6 +43,7 @@ object GNColls extends Serializable {
     _self:GNEnt,
     _subAdms:IndexedSeq[String],
     _gents:Map[Long, GNEnt],
+    aliasMap:Map[Long, Iterable[String]],
     val admMap:Map[String, TGNColl]
   ) extends GNColl(_level, Option(_self), _subAdms, _gents) with TGNMap {
 //    private val map = childrenMap
@@ -90,6 +91,23 @@ object GNColls extends Serializable {
 
     private val _orphanedAdms = assignOrphanedAdms
 
+    val admIdMap:Map[String, Map[Long, GNEnt]] = {
+      if (aliasMap.contains(_self.gnid))
+        _self.addAliases(aliasMap(_self.gnid))
+      val subAdmMap = _subAdms.map { sadm =>
+        val m = admMap(sadm).id2Ent(admMap)
+        // update aliases
+        aliasMap.foreach { p =>
+          val (gnid, aliases) = p
+          if (m.contains(gnid)) {
+            m(gnid).addAliases(aliases)
+          }
+        }
+        sadm -> m
+      } :+ (countryCode.toString -> _gents)
+      subAdmMap.toMap
+    }
+
     val admNameMap:Map[String, Map[String, IndexedSeq[Long]]] = {
       val directChildren:Map[String, IndexedSeq[Long]] = _gents.flatMap { p =>
         val (gnid, ent) = p
@@ -101,13 +119,6 @@ object GNColls extends Serializable {
         sadm -> m
       } :+ (countryCode.toString -> t)
 
-      subAdmMap.toMap
-    }
-    val admIdMap:Map[String, Map[Long, GNEnt]] = {
-      val subAdmMap = _subAdms.map { sadm =>
-        val m = admMap(sadm).id2Ent(admMap)
-        sadm -> m
-      } :+ (countryCode.toString -> _gents)
       subAdmMap.toMap
     }
 
@@ -135,9 +146,10 @@ object GNColls extends Serializable {
     ent:GNEnt,
     subAdms:IndexedSeq[String],
     gents:Map[Long, GNEnt],
-    admMap:Map[String, TGNColl]
+    admMap:Map[String, TGNColl],
+    aliasMap:Map[Long, Iterable[String]]
   ):TGNMap = {
-    new GNCollMap(GNLevel.ADM0, ent, subAdms, gents, admMap)
+    new GNCollMap(GNLevel.ADM0, ent, subAdms, gents, aliasMap, admMap)
   }
 
   def admx(

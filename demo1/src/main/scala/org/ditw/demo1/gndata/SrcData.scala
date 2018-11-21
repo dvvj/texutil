@@ -4,6 +4,7 @@ import org.apache.spark.broadcast.Broadcast
 import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.GenUtils.printlnT0
+import org.ditw.common.ResourceHelpers
 import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.GNLevel.{ADM4, GNLevel}
 import org.ditw.demo1.src.SrcDataUtils
@@ -105,12 +106,17 @@ object SrcData extends Serializable {
     else None
   }
 
+  private val aliases:Array[SrcAlias] = ResourceHelpers.load("/alias.json", SrcAlias.load)
+
+  private val _aliasMap:Map[Long, Iterable[String]] = aliases.map(a => a.gnid -> a.aliases).toMap
+
 
   def loadCountries(
-                     rdd:RDD[Array[String]],
-                     countries:Set[GNCntry],
-                     brAdm0Ents:Broadcast[Map[String, GNEnt]]
-                   ):Map[GNCntry, TGNMap] = {
+    rdd:RDD[Array[String]],
+    countries:Set[GNCntry],
+    brAdm0Ents:Broadcast[Map[String, GNEnt]],
+    aliasMap:Map[Long, Iterable[String]] = _aliasMap
+  ):Map[GNCntry, TGNMap] = {
 
     val countryCodes = countries.map(_.toString)
     val gnsInCC:RDD[((String,GNLevel), GNEnt)] = rdd
@@ -240,9 +246,10 @@ object SrcData extends Serializable {
           admEnt, // todo
           pp._2.map(_._2).toIndexedSeq,
           gentOfAdm0,
-          pp._1
+          pp._1,
+          aliasMap
         )
-        printlnT0(adm0)
+        // printlnT0(adm0)
         adm0
       }
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
@@ -257,7 +264,7 @@ object SrcData extends Serializable {
     val missing = allIds.leftOuterJoin(
       t.flatMap(adm0 => adm0.admIdMap.flatMap(_._2.map(_._1 -> 1)))
     ).filter(_._2._2.isEmpty).map(_._1).collect()
-    printlnT0(s"Missing: $missing")
+    printlnT0(s"Missing: ${missing.length}")
 
     res.map(adm0 => adm0.countryCode -> adm0).toMap
 

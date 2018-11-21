@@ -1,20 +1,41 @@
 package org.ditw.demo1.matchers
+import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.TGNMap
-import org.ditw.matcher.{MatchPool, MatcherMgr}
+import org.ditw.matcher.TokenMatchers.TmMatchPProc
+import org.ditw.matcher._
 import org.ditw.tknr.{TknrHelpers, Tokenizers, Trimmers}
 
+import scala.collection.mutable.ListBuffer
+
 object TmTest1 extends App {
-  def testTm(adm0:TGNMap,
+  def testTm(adm0s:Map[GNCntry, TGNMap],
              testStrs:Iterable[String]
             ):Unit = {
 
+    val dict = MatcherGen.loadDict(adm0s.values)
 
-    val dict = MatcherGen.loadDict(Iterable(adm0))
+    val tmlst = ListBuffer[TTkMatcher]()
+    val cmlst = ListBuffer[TCompMatcher]()
+    adm0s.values.foreach { adm0 =>
+      val (tms, cms) = Adm0Gen.genMatchers(adm0, dict)
+      tmlst ++= tms
+      cmlst ++= cms
+    }
 
-    val (tms, cms) = Adm0Gen.genMatchers(adm0, dict)
+    val adm0Name2Tag = adm0s.flatMap { adm0 =>
+      val ent = adm0._2.self.get
+      ent.queryNames.map(_ -> TagHelper.adm0DynTag(adm0._2.countryCode.toString))
+    }
+    val tmAdm0 = TokenMatchers.ngramExtraTag(
+      adm0Name2Tag,
+      dict,
+      TagHelper.TmAdm0
+    )
+    tmlst += tmAdm0
+
     val mmgr = new MatcherMgr(
-      tms,
-      cms,
+      tmlst.toList,
+      cmlst.toList,
       List()
     )
 
@@ -28,10 +49,15 @@ object TmTest1 extends App {
 
   }
 
+//  private val addExtraAdm0Tag:TmMatchPProc[String] = (m, tag) => {
+//    m.addTag(TagHelper.adm0DynTag(tag))
+//    m
+//  }
+
   import org.ditw.demo1.TestData._
   import org.ditw.demo1.gndata.GNCntry._
-  val admUS = testCountries(US)
-  testTm(admUS, List(
+
+  testTm(testCountries, List(
     "Worcester County, Massachusetts, USA.",
     "City of Boston, Massachusetts, USA.",
     "Boston, Massachusetts, USA.",
