@@ -4,7 +4,7 @@ import org.ditw.demo1.gndata.GNLevel.GNLevel
 trait TGNColl extends Serializable {
   val level:GNLevel
   val self:Option[GNEnt]
-  private[gndata] def subAdms:IndexedSeq[String]
+  private[demo1] def subAdms:IndexedSeq[String]
   private[gndata] def updateSubAdms(newVal:IndexedSeq[String]):Unit
   val gents:Map[Long, GNEnt]
 

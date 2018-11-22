@@ -20,8 +20,8 @@ object TestData {
     val brAdm0Ents = spark.broadcast(adm0Ents)
 
     val ccs = Set(
-      US
-      //,"CA", "GB", "AU", "FR", "DE", "ES", "IT"
+      US, CA
+      //, "GB", "AU", "FR", "DE", "ES", "IT"
     )
     val adm0s = loadCountries(gnLines, ccs, brAdm0Ents)
 

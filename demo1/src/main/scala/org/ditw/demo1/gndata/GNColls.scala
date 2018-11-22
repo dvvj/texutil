@@ -6,7 +6,7 @@ object GNColls extends Serializable {
   private class GNColl(
     val level:GNLevel,
     val self:Option[GNEnt],
-    private[gndata] var subAdms:IndexedSeq[String],
+    private[demo1] var subAdms:IndexedSeq[String],
     val gents:Map[Long, GNEnt]
   ) extends TGNColl {
     private[gndata] def updateSubAdms(newVal:IndexedSeq[String]):Unit =
@@ -109,18 +109,14 @@ object GNColls extends Serializable {
     }
 
     val admNameMap:Map[String, Map[String, IndexedSeq[Long]]] = {
-      val directChildren:Map[String, IndexedSeq[Long]] = _gents.flatMap { p =>
-        val (gnid, ent) = p
-        ent.queryNames.map(_ -> gnid)
-      }.groupBy(_._1).mapValues(_.values.toIndexedSeq)
-      val t = Map() ++ directChildren // serialization
       val subAdmMap = _subAdms.map { sadm =>
         val m = admMap(sadm).name2Id(admMap)
         sadm -> m
-      } :+ (countryCode.toString -> t)
+      }
 
       subAdmMap.toMap
     }
+
 
     def idsByName(name:String, adm:String):IndexedSeq[Long] = {
       if (admNameMap.contains(adm)) {

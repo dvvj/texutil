@@ -6,7 +6,7 @@ object MatcherGen extends Serializable {
   import InputHelpers._
 
   def loadDict(adm0s: Iterable[TGNMap]):Dict = {
-    val keys = adm0s.flatMap(_.admNameMap.flatMap(_._2.keySet))
+    val keys = adm0s.flatMap(_.admNameMap.values.flatMap(_.keySet))
     val adm0Names = adm0s.flatMap(_.self.get.queryNames)
     val words = splitVocabEntries(keys.toSet ++ adm0Names)
       .map(_.toIndexedSeq)

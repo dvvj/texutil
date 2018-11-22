@@ -26,7 +26,25 @@ object Adm0Gen extends Serializable {
       addExtraAdmTag
     )
 
-    val name2Adm1SubEnts = adm0.admNameMap.map { p =>
+    val adm1NameIds = adm0.subAdms.map(adm0.admMap)
+      .flatMap(c => c.self.map(cs => cs.queryNames.map(_ -> cs.gnid)).getOrElse(Set()))
+    val adm1Names = adm1NameIds.map(_._1)
+    val adm1Ids = adm1NameIds.map(_._2)
+
+    // remove adm1 name->id pairs
+    val adm2PlusMap = adm0.admNameMap.map { p =>
+      val minusAdm1 = p._2.filter(p => !adm1Names.contains(p._1))
+      val filtered = p._2.filter(p => adm1Names.contains(p._1))
+        .flatMap { p =>
+          val rmd = p._2.filter(!adm1Ids.contains(_))
+          if (rmd.nonEmpty)
+            Option(p._1 -> rmd)
+          else None
+        }
+      p._1 -> (minusAdm1 ++ filtered)
+    }
+
+    val name2Adm1SubEnts = adm2PlusMap.map { p =>
       val adm1SubEntTag = adm1SubEntTmTag(p._1)
       ngramGNIds(p._2, dict, adm1SubEntTag)
     }
@@ -42,7 +60,7 @@ object Adm0Gen extends Serializable {
       )
     }.toList
     val ct = countryTag(adm0.countryCode)
-    val cityMap = adm0.admNameMap.flatMap(_._2.toIndexedSeq)
+    val cityMap = adm2PlusMap.flatMap(_._2.toIndexedSeq)
       .groupBy(_._1)
       .mapValues(_.flatMap(_._2).toIndexedSeq.distinct)
     val cityTag = countryOfCountryTag(adm0.countryCode)

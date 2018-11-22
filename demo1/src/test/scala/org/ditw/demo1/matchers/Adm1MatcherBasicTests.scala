@@ -12,6 +12,18 @@ class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPrope
   private val testData = Table(
     ("inStr", "expTag", "expRange"),
     (
+      "Waterloo, Ontario, Canada",
+      TagHelper.adm1AndSubCmTag("CA_08"),
+      Set(
+        (0, 0, 2)
+      )
+    ),
+    (
+      "Waterloo, Ontario, Canada",
+      TagHelper.cityCountryCmTag(GNCntry.CA),
+      Set[(Int, Int, Int)]()
+    ),
+    (
       "Washington, DC, USA.",
       TagHelper.cityCountryCmTag(GNCntry.US),
       Set(

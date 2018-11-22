@@ -3,7 +3,6 @@ import org.ditw.common.{InputHelpers, ResourceHelpers}
 import org.ditw.matcher.{CompMatcherNs, MatcherMgr, TokenMatchers}
 import org.ditw.matcher.TokenMatchers.ngramT
 import org.ditw.textSeg.SegMatchers._
-import org.ditw.textSeg.Settings
 import org.ditw.textSeg.common.CatSegMatchers.{Category, SegMatcher4Cat, TSegMatchers4Cat}
 import org.ditw.textSeg.common.Tags._
 import org.ditw.textSeg.common.{AssiMatchers, Tags, Vocabs}
