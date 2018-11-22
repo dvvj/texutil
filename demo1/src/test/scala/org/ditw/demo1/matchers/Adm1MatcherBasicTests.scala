@@ -1,5 +1,6 @@
 package org.ditw.demo1.matchers
 import org.ditw.demo1.TestData
+import org.ditw.demo1.gndata.GNCntry
 import org.ditw.matcher.MatchPool
 import org.ditw.tknr.TknrHelpers
 import org.ditw.tknr.TknrHelpers.rangeFromTp3
@@ -10,13 +11,13 @@ class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPrope
 
   private val testData = Table(
     ("inStr", "expTag", "expRange"),
-//    (
-//      "Washington, DC, USA.",
-//      TagHelper.adm1AndSubCmTag("US_MA"),
-//      Set(
-//        (0, 0, 3)
-//      )
-//    ),
+    (
+      "Washington, DC, USA.",
+      TagHelper.cityCountryCmTag(GNCntry.US),
+      Set(
+        (0, 0, 3)
+      )
+    ),
     (
       "Worcester County, Massachusetts, USA.",
       TagHelper.adm1AndSubCmTag("US_MA"),

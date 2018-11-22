@@ -11,15 +11,10 @@ object MatcherHelper {
 
     val tmlst = ListBuffer[TTkMatcher]()
     val cmlst = ListBuffer[TCompMatcher]()
-    adm0s.values.foreach { adm0 =>
-      val (tms, cms) = Adm0Gen.genMatchers(adm0, testDict)
-      tmlst ++= tms
-      cmlst ++= cms
-    }
 
     val adm0Name2Tag = adm0s.flatMap { adm0 =>
       val ent = adm0._2.self.get
-      ent.queryNames.map(_ -> TagHelper.adm0DynTag(adm0._2.countryCode.toString))
+      ent.queryNames.map(_ -> TagHelper.countryTag(adm0._2.countryCode))
     }
     val tmAdm0 = TokenMatchers.ngramExtraTag(
       adm0Name2Tag,
@@ -27,6 +22,12 @@ object MatcherHelper {
       TagHelper.TmAdm0
     )
     tmlst += tmAdm0
+
+    adm0s.values.foreach { adm0 =>
+      val (tms, cms) = Adm0Gen.genMatchers(adm0, testDict)
+      tmlst ++= tms
+      cmlst ++= cms
+    }
 
     new MatcherMgr(
       tmlst.toList,

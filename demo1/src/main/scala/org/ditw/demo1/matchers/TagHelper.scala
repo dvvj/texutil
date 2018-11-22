@@ -1,17 +1,22 @@
 package org.ditw.demo1.matchers
+import org.ditw.demo1.gndata.GNCntry.GNCntry
 
 object TagHelper extends Serializable {
 
   val TmAdm0 = "TmAdm0"
   private val AdmTmPfx = "TmAdm_"
-  def admTmTag(adm0Code:String):String = AdmTmPfx + adm0Code
+  def admTmTag(cntry: GNCntry):String = AdmTmPfx + cntry
   private val Adm1SubTmPfx = "TmAdm1Sub_"
   def adm1SubEntTmTag(adm0Code:String):String = Adm1SubTmPfx + adm0Code
-  private val _DynamicAdm0TmPfx = "_DyAdm0_"
-  def adm0DynTag(adm0Code:String):String = _DynamicAdm0TmPfx + adm0Code
+  private val _CountryTmPfx = "_CNTR_"
+  def countryTag(cntry: GNCntry):String = _CountryTmPfx + cntry
+  private val _CityTmPfx = "_CITY_"
+  def countryOfCountryTag(cntry: GNCntry):String = _CityTmPfx + cntry
   private val _DynamicTmPfx = "_DyAdm_"
   def admDynTag(adm0Code:String):String = _DynamicTmPfx + adm0Code
   private val CmAdm1SubPfx = "_CmAdm1Sub_"
-  def adm1AndSubCmTag(adm0Code:String):String = CmAdm1SubPfx + adm0Code
+  def adm1AndSubCmTag(adm1c: String):String = CmAdm1SubPfx + adm1c
+  private val CmCityCountryPfx = "_CITY_CNTR_"
+  def cityCountryCmTag(cntry: GNCntry):String = CmCityCountryPfx + cntry
 
 }

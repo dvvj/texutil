@@ -185,15 +185,19 @@ object TokenMatchers extends Serializable {
     }
   }
 
-  private val addExtraTag:TmMatchPProc[String] = (m, tag) => {
-    m.addTag(tag)
-    m
+  def ngramT[T](
+    ngrams:Map[String, T],
+    dict: Dict,
+    tag:String,
+    pproc:TmMatchPProc[T]
+    ):TTkMatcher = {
+    val encm:Map[Array[DictEntryKey], T] =
+      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(checkValidAndEnc(dict, _)) -> p._2)
+    new TmNGramD(encm, pproc, Option(tag))
   }
 
-  private val GNIdTagTmpl = "GNId_%d"
-  private val addGNIdTags:TmMatchPProc[IndexedSeq[Long]] = (m, gnids) => {
-    val tags = gnids.map(GNIdTagTmpl.format(_))
-    m.addTags(tags, false)
+  private val addExtraTag:TmMatchPProc[String] = (m, tag) => {
+    m.addTag(tag)
     m
   }
 
@@ -204,20 +208,10 @@ object TokenMatchers extends Serializable {
               tag:String,
               pproc:TmMatchPProc[String] = addExtraTag
             ):TTkMatcher = {
-    val encm:Map[Array[DictEntryKey], String] =
-      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(checkValidAndEnc(dict, _)) -> p._2)
-    new TmNGramD(encm, pproc, Option(tag))
-  }
-
-  def ngramGNIds(
-                     ngrams:Map[String, IndexedSeq[Long]],
-                     dict: Dict,
-                     tag:String,
-                     pproc:TmMatchPProc[IndexedSeq[Long]] = addGNIdTags
-                   ):TTkMatcher = {
-    val encm:Map[Array[DictEntryKey], IndexedSeq[Long]] =
-      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(checkValidAndEnc(dict, _)) -> p._2)
-    new TmNGramD(encm, pproc, Option(tag))
+    ngramT(ngrams, dict, tag, pproc)
+//    val encm:Map[Array[DictEntryKey], String] =
+//      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(checkValidAndEnc(dict, _)) -> p._2)
+//    new TmNGramD(encm, pproc, Option(tag))
   }
 
 }
