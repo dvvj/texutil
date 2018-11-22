@@ -1,11 +1,10 @@
 package org.ditw.demo1
 import org.apache.spark.storage.StorageLevel
-import org.ditw.common.{ResourceHelpers, SparkUtils}
+import org.ditw.common.{Dict, ResourceHelpers, SparkUtils}
 import org.ditw.demo1.gndata.SrcData._
 import org.ditw.demo1.gndata.TGNMap
 import org.ditw.demo1.gndata.GNCntry._
-
-import scala.io.Source
+import org.ditw.demo1.matchers.MatcherGen
 
 object TestData {
 
@@ -30,5 +29,7 @@ object TestData {
 
     adm0s
   }
+
+  val testDict: Dict = MatcherGen.loadDict(testCountries.values)
 
 }

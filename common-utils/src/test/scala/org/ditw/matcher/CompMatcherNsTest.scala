@@ -88,6 +88,8 @@ class CompMatcherNsTest extends FlatSpec with Matchers with TableDrivenPropertyC
     )
   )
 
+  import org.ditw.tknr.TknrHelpers._
+
   "seq matcher tests" should "pass" in {
     forAll(seqTestData) { (cms, inStr, expRes) =>
       val mmgr = new MatcherMgr(List(), cms, List())
@@ -100,7 +102,7 @@ class CompMatcherNsTest extends FlatSpec with Matchers with TableDrivenPropertyC
         ms.map(_.range)
       }
       val expMatcheRanges = expRes.mapValues { tp =>
-        tp.map(p => TkRange(matchPool.input, p._1, p._2, p._3))
+        tp.map(p => rangeFromTp3(matchPool.input, p))
       }
       res2Ranges shouldBe expMatcheRanges
     }
