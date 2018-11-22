@@ -36,6 +36,7 @@ object TmTest1 extends App {
     "Worcester County, Massachusetts, USA.",
     "City of Boston, Massachusetts, USA.",
     "Boston, Massachusetts, USA.",
+    "U.S. Secret Service, Forensic Services Division, Washington, DC, USA.",
     "massachusetts",
     "Worcester County",
     "City of Boston"

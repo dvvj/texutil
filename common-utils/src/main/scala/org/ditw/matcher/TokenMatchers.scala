@@ -39,6 +39,15 @@ object TokenMatchers extends Serializable {
     ngram(ngrams, dict, Option(tag))
   }
 
+  private def checkValidAndEnc(dict: Dict, ngram:String):DictEntryKey = {
+    val lower = ngram.toLowerCase()
+    if (dict.contains(lower))
+      dict.enc(lower)
+    else
+      throw new IllegalArgumentException(
+        s"Token [$ngram] not found in Dictionary"
+      )
+  }
 
   def ngram(
     ngrams:Set[Array[String]],
@@ -47,15 +56,7 @@ object TokenMatchers extends Serializable {
   ):TTkMatcher = {
     val encNGrams = ngrams
       .map { arr =>
-        arr.map { t =>
-          val lower = t.toLowerCase()
-          if (dict.contains(lower))
-            dict.enc(t.toLowerCase())
-          else
-            throw new IllegalArgumentException(
-              s"Token [$t] not found in Dictionary"
-            )
-        }
+        arr.map(checkValidAndEnc(dict, _))
       }
       .toList
     new TmNGram(encNGrams, tag)
@@ -204,7 +205,7 @@ object TokenMatchers extends Serializable {
               pproc:TmMatchPProc[String] = addExtraTag
             ):TTkMatcher = {
     val encm:Map[Array[DictEntryKey], String] =
-      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(dict.enc) -> p._2)
+      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(checkValidAndEnc(dict, _)) -> p._2)
     new TmNGramD(encm, pproc, Option(tag))
   }
 
@@ -215,7 +216,7 @@ object TokenMatchers extends Serializable {
                      pproc:TmMatchPProc[IndexedSeq[Long]] = addGNIdTags
                    ):TTkMatcher = {
     val encm:Map[Array[DictEntryKey], IndexedSeq[Long]] =
-      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(dict.enc) -> p._2)
+      ngrams.map(p => InputHelpers.splitVocabEntry(p._1).map(checkValidAndEnc(dict, _)) -> p._2)
     new TmNGramD(encm, pproc, Option(tag))
   }
 
