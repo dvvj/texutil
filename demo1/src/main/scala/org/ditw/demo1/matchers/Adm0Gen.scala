@@ -52,10 +52,11 @@ object Adm0Gen extends Serializable {
     val tms = tmAdm1s :: name2Adm1SubEnts.toList
 
     val cms = adm0.admNameMap.keySet.map { admc =>
-      val adm1Tag = admDynTag(admc)
-      val subEntTag = adm1SubEntTmTag(admc)
       CompMatcherNs.lngOfTags(
-        IndexedSeq(subEntTag, adm1Tag),
+        IndexedSeq(
+          adm1SubEntTmTag(admc),
+          admDynTag(admc)
+        ),
         adm1AndSubCmTag(admc)
       )
     }.toList
