@@ -60,9 +60,13 @@ object Adm0Gen extends Serializable {
       )
     }.toList
     val ct = countryTag(adm0.countryCode)
-    val cityMap = adm2PlusMap.flatMap(_._2.toIndexedSeq)
+    val t:IndexedSeq[(String, IndexedSeq[Long])] = adm2PlusMap.toIndexedSeq.flatMap(_._2.toIndexedSeq)
+    val cityMap = t
       .groupBy(_._1)
-      .mapValues(_.flatMap(_._2).toIndexedSeq.distinct)
+      .mapValues { maps =>
+        val gnids = maps.flatMap(_._2).toIndexedSeq.distinct
+        gnids
+      }
     val cityTag = countryOfCountryTag(adm0.countryCode)
     val tmCity = ngramGNIds(
       cityMap,
