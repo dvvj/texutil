@@ -6,7 +6,6 @@ import org.scalatest.{FlatSpec, Matchers}
 class DefaultTknrTest extends FlatSpec with Matchers with TableDrivenPropertyChecks {
 
   import org.ditw.tknr.TknrHelpers._
-  import Settings._
   import TestHelpers._
 
   private val tknrTestData = Table(

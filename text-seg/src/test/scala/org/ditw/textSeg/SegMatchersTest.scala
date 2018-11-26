@@ -9,7 +9,6 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
 
   import TokenMatchers._
   import TestHelpers._
-  import Settings._
   import SegMatchers._
   import TknrHelpers._
   private val tag2 = Option("tag2")

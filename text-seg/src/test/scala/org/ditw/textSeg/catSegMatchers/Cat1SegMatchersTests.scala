@@ -9,7 +9,6 @@ import org.scalatest.{FlatSpec, Matchers}
 class Cat1SegMatchersTests extends FlatSpec with Matchers with TableDrivenPropertyChecks {
   import org.ditw.textSeg.common.AllCatMatchers._
   import org.ditw.textSeg.common.Tags._
-  import org.ditw.textSeg.Settings._
   import org.ditw.textSeg.common.Vocabs
   private val corpTestData = Table(
     ("inStr", "tag", "expRanges"),

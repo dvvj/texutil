@@ -1,6 +1,5 @@
 package org.ditw.textSeg.common
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
-import org.ditw.textSeg.Settings
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.CatSegMatchers.Category
 import org.ditw.tknr.TknrHelpers

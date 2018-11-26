@@ -1,6 +1,5 @@
 package org.ditw.textSeg.catSegMatchers
 import org.ditw.matcher.MatchPool
-import org.ditw.textSeg.Settings.TknrTextSeg
 import org.ditw.textSeg.TestHelpers
 import org.ditw.textSeg.common.AllCatMatchers.mmgrFrom
 import org.ditw.textSeg.common.Tags._
