@@ -110,7 +110,6 @@ object SrcData extends Serializable {
 
   private val _aliasMap:Map[Long, Iterable[String]] = aliases.map(a => a.gnid -> a.aliases).toMap
 
-
   def loadCountries(
     rdd:RDD[Array[String]],
     countries:Set[GNCntry],

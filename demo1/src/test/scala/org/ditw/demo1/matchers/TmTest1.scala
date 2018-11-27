@@ -11,8 +11,8 @@ object TmTest1 extends App {
   import org.ditw.demo1.TestData._
   import MatcherHelper._
   def testTm(
-             testStrs:Iterable[String]
-            ):Unit = {
+    testStrs:Iterable[String]
+  ):Unit = {
 
     testStrs.foreach { str =>
       val mp = MatchPool.fromStr(str, TknrHelpers.TknrTextSeg, testDict)

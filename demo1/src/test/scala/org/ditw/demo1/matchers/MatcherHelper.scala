@@ -7,9 +7,6 @@ import scala.collection.mutable.ListBuffer
 
 object MatcherHelper {
   val mmgr:MatcherMgr = {
-    val adm0s = TestData.testCountries
-
-    MatcherGen.gen(adm0s.values, testDict)
-
+    MatcherGen.gen(TestData.testGNSvc, testDict)
   }
 }

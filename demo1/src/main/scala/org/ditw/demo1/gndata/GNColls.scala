@@ -47,7 +47,9 @@ object GNColls extends Serializable {
     val admMap:Map[String, TGNColl]
   ) extends GNColl(_level, Option(_self), _subAdms, _gents) with TGNMap {
 //    private val map = childrenMap
-    def byId(gnid:Long):GNEnt = _gents(gnid)
+    def byId(gnid:Long):Option[GNEnt] = {
+      idMap.get(gnid)
+    }
     val countryCode:GNCntry = GNCntry.withName(_self.countryCode)
 
     private def assignOrphanedAdms:Set[String] = {
@@ -135,6 +137,9 @@ object GNColls extends Serializable {
       else EmptyEnts
     }
 
+    val idMap:Map[Long, GNEnt] = {
+      admIdMap.flatMap(_._2) ++ _gents
+    }
 
   }
 
