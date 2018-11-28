@@ -29,7 +29,7 @@ object UtilsMatching extends App {
   val dict = MatcherGen.loadDict(adm0s.values)
 
   val matchers = adm0s.values.map { adm0 =>
-    Adm0Gen.genMatchers(adm0, dict)
+    Adm0Gen.genMatcherExtractors(adm0, dict)
   }
 
   val mmgr = MatcherGen.gen(adm0s.values, dict)

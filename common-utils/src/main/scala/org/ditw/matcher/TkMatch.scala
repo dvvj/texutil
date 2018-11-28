@@ -44,6 +44,15 @@ class TkMatch private (
     val trTags = tags.toList.sorted.mkString(",")
     s"[$trTags]: $range"
   }
+
+  def flatten:Iterable[TkMatch] = {
+    val res = ListBuffer[TkMatch]()
+    res += this
+    children.foreach { c =>
+      res ++= c.flatten
+    }
+    res.toList
+  }
 }
 
 object TkMatch extends Serializable {

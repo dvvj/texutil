@@ -19,5 +19,7 @@ object TagHelper extends Serializable {
   def adm1AndSubCmTag(adm1c: String):String = CmAdm1SubPfx + adm1c
   private val CmCityCountryPfx = "_CITY_CNTR_"
   def cityCountryCmTag(cntry: GNCntry):String = CmCityCountryPfx + cntry
+  private[demo1] val GNIdTagPfx = "GNId_"
+  private[demo1] val GNIdTagTmpl = s"$GNIdTagPfx%d"
 
 }

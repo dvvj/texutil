@@ -1,6 +1,7 @@
 package org.ditw.demo1.matchers
 import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.demo1.gndata.{GNSvc, TGNMap}
+import org.ditw.extract.{TXtr, XtrMgr}
 import org.ditw.matcher.{MatcherMgr, TCompMatcher, TTkMatcher, TokenMatchers}
 
 import scala.collection.mutable.ListBuffer
@@ -17,7 +18,7 @@ object MatcherGen extends Serializable {
     InputHelpers.loadDict(words)
   }
 
-  def gen(gnsvc:GNSvc, dict:Dict): MatcherMgr = {
+  def gen(gnsvc:GNSvc, dict:Dict): (MatcherMgr, XtrMgr[Long]) = {
     val tmlst = ListBuffer[TTkMatcher]()
     val cmlst = ListBuffer[TCompMatcher]()
 
@@ -33,17 +34,19 @@ object MatcherGen extends Serializable {
     )
     tmlst += tmAdm0
 
+    val xtrlst = ListBuffer[TXtr[Long]]()
     adm0s.foreach { adm0 =>
-      val (tms, cms) = Adm0Gen.genMatchers(adm0, dict)
+      val (tms, cms, xtrs) = Adm0Gen.genMatcherExtractors(adm0, dict)
       tmlst ++= tms
       cmlst ++= cms
+      xtrlst ++= xtrs
     }
 
     new MatcherMgr(
       tmlst.toList,
       cmlst.toList,
       List()
-    )
+    ) -> XtrMgr.create(xtrlst.toList)
 
   }
 }

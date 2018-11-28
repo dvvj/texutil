@@ -40,6 +40,8 @@ class MatchPool(
   def update(tag:String, matches:Set[TkMatch]):Unit = {
     _map.put(tag, matches)
   }
+
+  def allTags():Iterable[String] = _map.keySet
 }
 
 object MatchPool extends Serializable {
