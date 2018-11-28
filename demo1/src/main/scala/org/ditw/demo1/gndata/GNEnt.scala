@@ -13,6 +13,9 @@ case class GNEnt(
   admCodes:IndexedSeq[String],
   population:Long
 ) {
+  override def toString: String = {
+    s"$name([$featureCode]$gnid: ${admCodes.mkString("_")})"
+  }
   private var _queryNames:Set[String] = _alias + name
   def queryNames:Set[String] = _queryNames
   def addAliases(aliases:Iterable[String]):Unit = {

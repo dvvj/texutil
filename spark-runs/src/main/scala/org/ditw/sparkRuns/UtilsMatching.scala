@@ -1,7 +1,7 @@
 package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
-import org.ditw.demo1.gndata.GNCntry
+import org.ditw.demo1.gndata.{GNCntry, GNSvc}
 import org.ditw.demo1.gndata.GNCntry._
 import org.ditw.demo1.gndata.SrcData.{loadAdm0, loadCountries, tabSplitter}
 import org.ditw.demo1.matchers.{Adm0Gen, MatcherGen, TagHelper}
@@ -16,35 +16,29 @@ object UtilsMatching extends App {
     "/media/sf_vmshare/gns/all"
   ).map(tabSplitter.split)
     .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
-
-  val adm0Ents = loadAdm0(gnLines)
-  val brAdm0Ents = spark.broadcast(adm0Ents)
-
   val ccs = Set(
     US
     ,CA, GB, AU //,FR,DE,ES,IT
   )
-  val adm0s = loadCountries(gnLines, ccs, brAdm0Ents)
+  val svc = GNSvc.load(gnLines, ccs)
 
-  val dict = MatcherGen.loadDict(adm0s.values)
+  val dict = MatcherGen.loadDict(svc)
 
-  val matchers = adm0s.values.map { adm0 =>
-    Adm0Gen.genMatcherExtractors(adm0, dict)
-  }
+  val (mmgr, xtrMgr) = MatcherGen.gen(svc, dict)
 
-  val mmgr = MatcherGen.gen(adm0s.values, dict)
-
+  val brSvc = spark.broadcast(svc)
   val brMmgr = spark.broadcast(mmgr)
+  val brXtrMgr = spark.broadcast(xtrMgr)
   val brDict = spark.broadcast(dict)
   val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg)
 
-  spark.textFile("/media/sf_vmshare/aff-w2v")
+  spark.textFile("/media/sf_vmshare/aff-w2v-dbg")
     .foreach { l =>
       val mp = MatchPool.fromStr(l, TknrHelpers.TknrTextSeg, brDict.value)
       brMmgr.value.run(mp)
       val t = TagHelper.cityCountryCmTag(GNCntry.US)
-      val res = mp.get(t)
-      println(res.size)
+      val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)
+      println(rng2Ents)
     }
 
   spark.stop()

@@ -19,8 +19,9 @@ object TmTest1 extends App {
       mmgr.run(mp)
       val tag = TagHelper.adm1AndSubCmTag("US_MA")
       val t = mp.get(tag)
-      val xtrs = xtrMgr.run(mp)
-      println(xtrs.size)
+
+      val rng2Ents = testGNSvc.extrEnts(xtrMgr, mp)
+      println(rng2Ents)
     }
 
   }
