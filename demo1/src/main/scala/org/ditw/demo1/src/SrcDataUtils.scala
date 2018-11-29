@@ -1,4 +1,5 @@
 package org.ditw.demo1.src
+import org.ditw.demo1.gndata.GNEnt
 
 object SrcDataUtils extends Serializable {
 
@@ -92,6 +93,7 @@ object SrcDataUtils extends Serializable {
   val fcAdm:FeatureChecker = (fcls:String, fcode:String) => {
     fcls == AdmClass && !admExcludedCodes.contains(fcode)
   }
+  def isAdm(ent: GNEnt):Boolean = fcAdm(ent.featureClz, ent.featureCode)
   val fcPpl:FeatureChecker = (fcls:String, fcode:String) => {
     fcls == PplClass && !pplExcludedCodes.contains(fcode)
   }
