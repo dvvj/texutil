@@ -4,7 +4,7 @@ trait TCompMatcherN extends TCompMatcher {
   protected val subMatchers:Iterable[TCompMatcher]
 
   protected val refTags:Set[String] = {
-    subMatchers.flatMap(sm => if (sm.tag.nonEmpty) sm.tag else sm.getRefTags())
+    subMatchers.flatMap(CompMatcherNs.refTagsFromMatcher)
       .toSet
   }
   override def getRefTags: Set[String] = refTags

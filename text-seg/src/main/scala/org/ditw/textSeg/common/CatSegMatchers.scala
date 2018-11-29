@@ -69,11 +69,25 @@ object CatSegMatchers {
     }
 
     val cms:List[TCompMatcher] = {
-      var t = segByPfxSfx(
-        Set(tagGroup.keywordTag), _SegPfxs, _SegSfxs,
-        canBeStart,
-        tagGroup.segTag
-      )
+      val hasStopTags = segStopTagsLeft.nonEmpty || segStopTagsRight.nonEmpty
+
+      val t =
+        if (!hasStopTags) {
+          segByPfxSfx(
+            Set(tagGroup.keywordTag), _SegPfxs, _SegSfxs,
+            canBeStart,
+            tagGroup.segTag
+          )
+        }
+        else {
+          val t0 = segByPfxSfx(
+            Set(tagGroup.keywordTag), _SegPfxs, _SegSfxs,
+            canBeStart
+          )
+          segByTags(
+            t0, segStopTagsLeft, segStopTagsRight, tagGroup.segTag
+          )
+        }
 
 //      val leftStopTags =
 //        if (segStopTagsLeft.nonEmpty) Set(tagGroup.segLeftStopTag)
@@ -82,11 +96,6 @@ object CatSegMatchers {
 //        if (segStopTagsRight.nonEmpty) Set(tagGroup.segRightStopTag)
 //        else EmptyTags
 
-      if (segStopTagsLeft.nonEmpty || segStopTagsRight.nonEmpty) {
-        t = segByTags(
-          t, segStopTagsLeft, segStopTagsRight, tagGroup.segTag
-        )
-      }
       t :: extraCms
     }
 

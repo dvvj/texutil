@@ -3,6 +3,10 @@ import scala.collection.mutable.ListBuffer
 
 object CompMatcherNs {
   import CompMatchers._
+
+  def refTagsFromMatcher(matcher:TCompMatcher):Iterable[String] =
+    if (matcher.tag.nonEmpty) matcher.tag
+    else matcher.getRefTags()
   // ------------ OR
   private[matcher] class CmOr(
     protected val subMatchers:Set[TCompMatcher],

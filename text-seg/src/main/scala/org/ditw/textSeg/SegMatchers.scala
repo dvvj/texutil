@@ -6,11 +6,9 @@ import org.ditw.textSeg.common.AssiMatchers
 
 object SegMatchers {
 
+  import org.ditw.matcher.CompMatcherNs._
   private val RangeBy2_1:(Int, Int) = (2, 1)
 
-  private def refTagsFromMatcher(matcher:TCompMatcher):Iterable[String] =
-    if (matcher.tag.nonEmpty) matcher.tag
-    else matcher.getRefTags()
   private[textSeg] class SegBySfx(
     private val tagsContained:Set[String],
     private val sfxs:Set[String],
@@ -188,6 +186,14 @@ object SegMatchers {
                 tag:String
               ):TCompMatcher = {
     new SegByPfxSfx(tagsContained, pfxs, sfxs, canBeStart, Option(tag))
+  }
+  def segByPfxSfx(
+                   tagsContained:Set[String],
+                   pfxs:Set[String],
+                   sfxs:Set[String],
+                   canBeStart:Boolean
+                 ):TCompMatcher = {
+    new SegByPfxSfx(tagsContained, pfxs, sfxs, canBeStart, None)
   }
 
   def segByTags(
