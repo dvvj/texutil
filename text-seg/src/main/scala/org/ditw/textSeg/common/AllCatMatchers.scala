@@ -19,6 +19,7 @@ object AllCatMatchers {
     val postprocs = catSegMatchers.map(_.postproc)
     new MatcherMgr(
       _ExtraTms ++ catSegMatchers.flatMap(_.tms),
+      List(),
       _ExtraCms ++ catSegMatchers.flatMap(_.cms),
       postprocs
     )

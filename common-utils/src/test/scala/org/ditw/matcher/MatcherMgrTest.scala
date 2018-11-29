@@ -33,7 +33,7 @@ class MatcherMgrTest extends FlatSpec with Matchers with TableDrivenPropertyChec
 
   "depTagMap tests" should "pass" in {
     forAll(cmDepMapTestData) { (cms, depMap) =>
-      val mmgr = new MatcherMgr(List(), cms, List())
+      val mmgr = new MatcherMgr(List(), List(), cms, List())
       mmgr.cmDepMap shouldBe depMap
     }
   }
@@ -71,7 +71,7 @@ class MatcherMgrTest extends FlatSpec with Matchers with TableDrivenPropertyChec
   "tag errors" should "be detected" in {
     forAll(tagErrorTestData) { (cms, errorMsg) =>
       val caught = intercept[IllegalArgumentException] {
-        val mmgr = new MatcherMgr(List(), cms, List())
+        val mmgr = new MatcherMgr(List(), List(), cms, List())
       }
       caught.getMessage shouldBe errorMsg
     }

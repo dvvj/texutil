@@ -7,6 +7,7 @@ private[ditw] trait TPostProc extends Serializable {
 
 class MatcherMgr(
   val tms:List[TTkMatcher],
+  val tmPProcs:Iterable[TPostProc],
   val cms:List[TCompMatcher],
   val postProcs:Iterable[TPostProc]
   //val blockTagMap:Map[String, Set[String]]
@@ -46,6 +47,8 @@ class MatcherMgr(
         matchPool.add(tm.tag.get, matches)
     }
 
+    tmPostproc(matchPool)
+
     import collection.mutable
 
     var remMatchers = mutable.Set[TCompMatcher]()
@@ -73,10 +76,16 @@ class MatcherMgr(
     postproc(matchPool)
   }
 
-  private def postproc(matchPool: MatchPool):Unit = {
-    postProcs.foreach { pp =>
+  private def runPostProcs(pprocs:Iterable[TPostProc], matchPool: MatchPool):Unit = {
+    pprocs.foreach { pp =>
       pp.run(matchPool)
     }
+  }
+  private def postproc(matchPool: MatchPool):Unit = {
+    runPostProcs(postProcs, matchPool)
+  }
+  private def tmPostproc(matchPool: MatchPool):Unit = {
+    runPostProcs(tmPProcs, matchPool)
   }
 }
 

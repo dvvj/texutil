@@ -1,5 +1,5 @@
 package org.ditw.demo1.matchers
-import org.ditw.common.{Dict, InputHelpers}
+import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.common.TypeCommon.DictEntryKey
 import org.ditw.demo1.extracts.Xtrs
 import org.ditw.demo1.gndata.TGNMap

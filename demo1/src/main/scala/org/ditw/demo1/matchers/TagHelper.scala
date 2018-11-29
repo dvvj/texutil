@@ -3,6 +3,8 @@ import org.ditw.demo1.gndata.GNCntry.GNCntry
 
 object TagHelper extends Serializable {
 
+  val TmGNBlacklist = "TmGNBlacklist"
+
   val TmAdm0 = "TmAdm0"
   private val AdmTmPfx = "TmAdm_"
   def admTmTag(cntry: GNCntry):String = AdmTmPfx + cntry
