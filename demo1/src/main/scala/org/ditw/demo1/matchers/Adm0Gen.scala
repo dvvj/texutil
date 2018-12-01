@@ -5,7 +5,7 @@ import org.ditw.demo1.extracts.Xtrs
 import org.ditw.demo1.gndata.TGNMap
 import org.ditw.extract.{TXtr, XtrMgr}
 import org.ditw.matcher.TokenMatchers._
-import org.ditw.matcher.{CompMatcherNs, TCompMatcher, TTkMatcher, TokenMatchers}
+import org.ditw.matcher._
 
 import scala.collection.mutable.ListBuffer
 
@@ -13,8 +13,11 @@ object Adm0Gen extends Serializable {
   import TagHelper._
 
   private val EmptyPairs = Iterable[(String, String)]()
+  private val LookAroundSfxSet = Set(",")
+  private val LookAroundSfxCounts_CityState = (3, 3)
+  private val LookAroundSfxCounts_CityCountry = (2, 3)
   def genMatcherExtractors(adm0:TGNMap, dict:Dict)
-    :(List[TTkMatcher], List[TCompMatcher], List[TXtr[Long]]) = {
+    :(List[TTkMatcher], List[TCompMatcher], List[TXtr[Long]], TPostProc) = {
     val name2Admc = adm0.admMap.flatMap { p =>
       val admCode = p._1
       if (p._2.self.nonEmpty) {
@@ -57,15 +60,21 @@ object Adm0Gen extends Serializable {
 
     val xtrs = ListBuffer[TXtr[Long]]()
     val cms = adm0.admNameMap.keySet.map { admc =>
-      val cityStateTag = adm1AndSubCmTag(admc)
-      xtrs += Xtrs.entXtr4Tag(cityStateTag)
+      val csTag = cityStateTag(admc)
+      xtrs += Xtrs.entXtr4Tag(csTag)
 
-      CompMatcherNs.lngOfTags(
-        IndexedSeq(
-          adm1SubEntTmTag(admc),
-          admDynTag(admc)
-        ),
-        cityStateTag
+//      CompMatcherNs.lngOfTags(
+//        IndexedSeq(
+//          adm1SubEntTmTag(admc),
+//          admDynTag(admc)
+//        ),
+//        csTag
+//      )
+      CompMatcherNXs.sfxLookAroundByTag(
+        LookAroundSfxSet, LookAroundSfxCounts_CityState,
+        adm1SubEntTmTag(admc),
+        admDynTag(admc),
+        csTag
       )
     }.toList
     val ct = countryTag(adm0.countryCode)
@@ -76,18 +85,29 @@ object Adm0Gen extends Serializable {
         val gnids = maps.flatMap(_._2).toIndexedSeq.distinct
         gnids
       }
-    val cityTag = countryOfCountryTag(adm0.countryCode)
+    val cityTag = cityOfCountryTag(adm0.countryCode)
     val tmCity = ngramGNIds(
       cityMap,
       dict,
-      countryOfCountryTag(adm0.countryCode)
+      cityOfCountryTag(adm0.countryCode)
     )
-    val cmCityCountry = CompMatcherNs.lngOfTags(
-      IndexedSeq(cityTag, ct),
-      cityCountryCmTag(adm0.countryCode)
+//    val cmCityCountry = CompMatcherNs.lngOfTags(
+//      IndexedSeq(cityTag, ct),
+//      cityCountryTag(adm0.countryCode)
+//    )
+    val cmCityCountry = CompMatcherNXs.sfxLookAroundByTag(
+      LookAroundSfxSet, LookAroundSfxCounts_CityCountry,
+      cityTag, ct,
+      cityCountryTag(adm0.countryCode)
     )
 
-    (tmCity :: tms, cmCityCountry :: cms, xtrs.toList)
+    val pprocBlockers = MatcherMgr.postProcBlocker_TagPfx(
+      Map(
+        _CityStatePfx -> Set(cityCountryTag(adm0.countryCode))
+      )
+    )
+
+    (tmCity :: tms, cmCityCountry :: cms, xtrs.toList, pprocBlockers)
   }
 
 

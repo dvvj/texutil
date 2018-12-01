@@ -17,7 +17,7 @@ object TmTest1 extends App {
     testStrs.foreach { str =>
       val mp = MatchPool.fromStr(str, TknrHelpers.TknrTextSeg, testDict)
       mmgr.run(mp)
-      val tag = TagHelper.adm1AndSubCmTag("US_MA")
+      val tag = TagHelper.cityStateTag("US_MA")
       val t = mp.get(tag)
 
       val rng2Ents = testGNSvc.extrEnts(xtrMgr, mp)

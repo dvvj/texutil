@@ -2,7 +2,7 @@ package org.ditw.demo1.matchers
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.demo1.gndata.{GNSvc, TGNMap}
 import org.ditw.extract.{TXtr, XtrMgr}
-import org.ditw.matcher.{MatcherMgr, TCompMatcher, TTkMatcher, TokenMatchers}
+import org.ditw.matcher._
 
 import scala.collection.mutable.ListBuffer
 
@@ -30,6 +30,7 @@ object MatcherGen extends Serializable {
   def gen(gnsvc:GNSvc, dict:Dict): (MatcherMgr, XtrMgr[Long]) = {
     val tmlst = ListBuffer[TTkMatcher]()
     val cmlst = ListBuffer[TCompMatcher]()
+    val pproclst = ListBuffer[TPostProc]()
 
     val tmGNBlackList = TokenMatchers.ngramT(
       splitVocabEntries(_gnBlackList),
@@ -54,11 +55,12 @@ object MatcherGen extends Serializable {
     import collection.mutable
     val tmBlTargets = mutable.Set[String]()
     adm0s.foreach { adm0 =>
-      val (tms, cms, xtrs) = Adm0Gen.genMatcherExtractors(adm0, dict)
+      val (tms, cms, xtrs, pproc) = Adm0Gen.genMatcherExtractors(adm0, dict)
       tmBlTargets ++= tms.flatMap(_.tag) // black list blocks all tms
       tmlst ++= tms
       cmlst ++= cms
       xtrlst ++= xtrs
+      pproclst += pproc
     }
 
     val tmPProc = MatcherMgr.postProcBlocker(
@@ -71,7 +73,7 @@ object MatcherGen extends Serializable {
       tmlst.toList,
       List(tmPProc),
       cmlst.toList,
-      List()
+      pproclst.toList
     ) -> XtrMgr.create(xtrlst.toList)
 
   }

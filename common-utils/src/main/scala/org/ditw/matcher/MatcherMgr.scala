@@ -119,6 +119,29 @@ object MatcherMgr extends Serializable {
     }
   }
 
+  private[ditw] def postProcBlocker_TagPfx(blockTagMap:Map[String, Set[String]]):TPostProc = new TPostProc {
+    override def run(matchPool: MatchPool): Unit = {
+      val toRemoveList = ListBuffer[TkMatch]()
+      blockTagMap.foreach { kv =>
+        val (blockerTagPfx, blockeeTags) = kv
+        val blockerTags = matchPool.allTags()
+          .filter(_.startsWith(blockerTagPfx))
+          .toSet
+        val blockerRanges = matchPool.get(blockerTags).map(_.range)
+
+        val blockees = matchPool.get(blockeeTags)
+
+        blockees.foreach { blockee =>
+          if (blockerRanges.exists(_.overlap(blockee.range))) {
+            toRemoveList += blockee
+          }
+        }
+      }
+
+      matchPool.remove(toRemoveList)
+    }
+  }
+
   private[ditw] def postProcOverride(
     overrideMap:Map[String, String]
   ):TPostProc = new TPostProc {

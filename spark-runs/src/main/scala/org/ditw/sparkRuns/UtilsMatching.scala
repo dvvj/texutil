@@ -36,7 +36,7 @@ object UtilsMatching extends App {
     .foreach { l =>
       val mp = MatchPool.fromStr(l, TknrHelpers.TknrTextSeg, brDict.value)
       brMmgr.value.run(mp)
-      val t = TagHelper.cityCountryCmTag(GNCntry.US)
+      val t = TagHelper.cityCountryTag(GNCntry.US)
       val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)
       println(rng2Ents)
     }

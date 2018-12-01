@@ -9,37 +9,50 @@ import org.scalatest.{FlatSpec, Matchers}
 
 class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPropertyChecks {
 
+  import TagHelper._
   private val testData = Table(
     ("inStr", "expTag", "expRange"),
     (
-      "Waterloo, Ontario, Canada",
-      TagHelper.adm1AndSubCmTag("CA_08"),
+      "Montréal (Québec), Canada",
+      cityCountryTag(GNCntry.CA),
+      Set[(Int, Int, Int)]() // blocked by cityState match
+    ),
+    (
+      "Montréal (Québec), Canada",
+      cityStateTag("CA_10"),
       Set(
         (0, 0, 2)
       )
     ),
     (
       "Waterloo, Ontario, Canada",
-      TagHelper.cityCountryCmTag(GNCntry.CA),
+      cityStateTag("CA_08"),
+      Set(
+        (0, 0, 2)
+      )
+    ),
+    (
+      "Waterloo, Ontario, Canada",
+      cityCountryTag(GNCntry.CA),
       Set[(Int, Int, Int)]()
     ),
     (
       "Washington, DC, USA.",
-      TagHelper.cityCountryCmTag(GNCntry.US),
+      cityCountryTag(GNCntry.US),
       Set(
         (0, 0, 3)
       )
     ),
     (
       "Worcester County, Massachusetts, USA.",
-      TagHelper.adm1AndSubCmTag("US_MA"),
+      cityStateTag("US_MA"),
       Set(
         (0, 0, 3)
       )
     ),
     (
       "City of Boston, Massachusetts, USA.",
-      TagHelper.adm1AndSubCmTag("US_MA"),
+      cityStateTag("US_MA"),
       Set(
         (0, 0, 4),
         (0, 2, 4)
@@ -47,7 +60,7 @@ class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPrope
     ),
     (
       "Boston, Massachusetts, USA.",
-      TagHelper.adm1AndSubCmTag("US_MA"),
+      cityStateTag("US_MA"),
       Set(
         (0, 0, 2)
       )
