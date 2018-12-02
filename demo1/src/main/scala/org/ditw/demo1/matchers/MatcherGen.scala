@@ -1,5 +1,6 @@
 package org.ditw.demo1.matchers
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
+import org.ditw.demo1.extracts.Xtrs
 import org.ditw.demo1.gndata.{GNSvc, TGNMap}
 import org.ditw.extract.{TXtr, XtrMgr}
 import org.ditw.matcher._
@@ -69,6 +70,7 @@ object MatcherGen extends Serializable {
       )
     )
 
+    xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
     new MatcherMgr(
       tmlst.toList,
       List(tmPProc),

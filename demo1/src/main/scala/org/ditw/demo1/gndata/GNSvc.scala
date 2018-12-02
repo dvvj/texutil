@@ -41,8 +41,11 @@ object GNSvc extends Serializable {
         val ent1IsAdm = SrcDataUtils.isAdm(ent1)
         val ent2IsAdm = SrcDataUtils.isAdm(ent2)
         if (ent1IsAdm && !ent2IsAdm) Option(ent2)
-        else if (ent1IsAdm && ent2IsAdm)
-          throw new IllegalArgumentException("both adms?!")
+        else if (ent1IsAdm && ent2IsAdm) {
+          println(s"both adms?! $ent1 -- $ent2")
+          None
+        }
+          // throw new IllegalArgumentException("both adms?!")
         else Option(ent1)
       }
     }
@@ -50,39 +53,44 @@ object GNSvc extends Serializable {
   }
 
   private def mergeEnts(ents:List[GNEnt]):List[GNEnt] = {
-    var head = ents.head
-    var tail = ents.tail
-    val res = ListBuffer[GNEnt]()
-    while (tail.nonEmpty) {
-      val itTail = tail.iterator
-      var headMerged = false
-      val remTail = ListBuffer[GNEnt]()
-      while (!headMerged && itTail.hasNext) {
-        val t = itTail.next()
-        val c = checkIfContains(head, t)
-        if (c.nonEmpty) {
-          if (c.get.eq(t)) {
-            headMerged = true
-            remTail += t
+    if (ents.size <= 1)
+      ents
+    else {
+      var head = ents.head
+      var tail = ents.tail
+      val res = ListBuffer[GNEnt]()
+      while (tail.nonEmpty) {
+        val itTail = tail.iterator
+        var headMerged = false
+        val remTail = ListBuffer[GNEnt]()
+        while (!headMerged && itTail.hasNext) {
+          val t = itTail.next()
+          val c = checkIfContains(head, t)
+          if (c.nonEmpty) {
+            if (c.get.eq(t)) {
+              headMerged = true
+              remTail += t
+            }
+            else {
+              // tail merged, do not add to remTail
+            }
           }
           else {
-            // tail merged, do not add to remTail
+            remTail += t
           }
         }
-        else {
-          remTail += t
-        }
-      }
-      remTail ++= itTail
+        remTail ++= itTail
 
-      if (!headMerged) res += head
-      if (remTail.nonEmpty) {
-        head = remTail.head
-        tail = remTail.tail.toList
+        if (!headMerged) res += head
+        if (remTail.nonEmpty) {
+          head = remTail.head
+          tail = remTail.tail.toList
+        }
+        else tail = Nil
       }
-      else tail = Nil
+      res.toList
     }
-    res.toList
+
   }
 
   def load(

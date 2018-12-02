@@ -61,7 +61,7 @@ object Adm0Gen extends Serializable {
     val xtrs = ListBuffer[TXtr[Long]]()
     val cms = adm0.admNameMap.keySet.map { admc =>
       val csTag = cityStateTag(admc)
-      xtrs += Xtrs.entXtr4Tag(csTag)
+      //xtrs += Xtrs.entXtr4Tag(csTag)
 
 //      CompMatcherNs.lngOfTags(
 //        IndexedSeq(

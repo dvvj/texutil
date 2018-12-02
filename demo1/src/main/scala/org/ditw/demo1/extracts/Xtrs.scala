@@ -21,7 +21,13 @@ object Xtrs extends Serializable {
   private[demo1] def entXtr4Tag(tag2Match:String):TXtr[Long] = new TExactTag[Long](tag2Match) {
     override def _extract(m: TkMatch)
       : List[Long] = {
+      extractEntId(m)
+    }
+  }
 
+  private[demo1] def entXtr4TagPfx(tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+    override def _extract(m: TkMatch)
+    : List[Long] = {
       extractEntId(m)
     }
   }

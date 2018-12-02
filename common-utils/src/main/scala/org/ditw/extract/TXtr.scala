@@ -42,6 +42,10 @@ object TXtr extends Serializable {
     override def canApply(tag: String): Boolean = tag == tagToMatch
   }
 
+  abstract class TTagPfx[R](protected val tagPfx:String) extends TXtr[R] {
+    override def canApply(tag: String): Boolean = tag.startsWith(tagPfx)
+  }
+
   abstract class TRegexTag[R](protected val regex:Regex) extends TXtr[R] {
     override def canApply(tag: String): Boolean = regex.pattern.matcher(tag).matches()
   }

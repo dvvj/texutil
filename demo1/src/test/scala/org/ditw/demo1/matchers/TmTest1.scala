@@ -35,6 +35,7 @@ object TmTest1 extends App {
   import org.ditw.demo1.gndata.GNCntry._
 
   testTm(List(
+    "Los Angeles, California, USA",
     "Université de Montréal, Montréal (Québec), Canada.",
     "George Washington University, Washington, D.C.",
     "Washington, USA.",

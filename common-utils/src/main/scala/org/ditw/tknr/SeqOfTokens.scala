@@ -8,7 +8,7 @@ class SeqOfTokens(
   val orig:String,
   val origTokenStrs:IndexedSeq[String],
   _tokens: Seq[Token]
-) extends IndexedSeq[Token] with IndexedSeqLike[Token, SeqOfTokens] {
+) extends IndexedSeq[Token] with IndexedSeqLike[Token, SeqOfTokens] with Serializable {
 
   import SeqOfTokens._
 
