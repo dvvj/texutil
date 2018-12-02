@@ -101,11 +101,11 @@ object GNSvc extends Serializable {
     val adm0Ents = loadAdm0(lines)
     val brAdm0Ents = spark.broadcast(adm0Ents)
 
-    val ccs = Set(
-      US, CA
-      //, "GB", "AU", "FR", "DE", "ES", "IT"
-    )
-    val adm0s = loadCountries(lines, ccs, brAdm0Ents)
+//    val ccs = Set(
+//      US, CA
+//      //, "GB", "AU", "FR", "DE", "ES", "IT"
+//    )
+    val adm0s = loadCountries(lines, countries, brAdm0Ents)
 
     new GNSvc(adm0s)
   }
