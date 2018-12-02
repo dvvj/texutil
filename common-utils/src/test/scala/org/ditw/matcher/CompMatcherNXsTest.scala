@@ -136,7 +136,7 @@ class CompMatcherNXsTest extends FlatSpec with Matchers with TableDrivenProperty
 
   "sfxLookAround matcher tests" should "pass" in {
     forAll(testData) { (tms, sfxCounts, inStr, expRes) =>
-      val m = sfxLookAroundByTag(
+      val m = sfxLookAroundByTag_ALL(
         sfx,
         sfxCounts,
         tag1,

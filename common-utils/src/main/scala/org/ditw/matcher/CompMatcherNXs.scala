@@ -11,6 +11,8 @@ object CompMatcherNXs extends Serializable {
     private val sfx:Set[String],
     private val sfxCounts:(Int, Int),
     override protected val subMatchers:Iterable[TCompMatcher],
+    protected val oneMatchEach:Boolean,
+    protected val left2Right:Boolean,
     val tag:Option[String]
   ) extends TCompMatcher with TCompMatcherN with TDefRunAtLineFrom {
 //    protected val subMatchers:Iterable[TCompMatcher] = Iterable(mCenter, m2Lookfor)
@@ -22,37 +24,89 @@ object CompMatcherNXs extends Serializable {
       lineIdx: Int): Set[TkMatch] = {
       val ctMatches = mCenter.runAtLine(matchPool, lineIdx)
       val lookforMatches = m2Lookfor.runAtLine(matchPool, lineIdx)
-      ctMatches.flatMap { m =>
-        val rangeBySfx = matchPool.input.linesOfTokens(lineIdx).rangeBySfxs(m.range, sfx, sfxCounts)
-        lookforMatches.filter { lm => rangeBySfx.covers(lm.range) && !lm.range.overlap(m.range) }
-          .map { lm =>
+
+      if (!oneMatchEach) {
+        ctMatches.flatMap { m =>
+          val rangeBySfx = matchPool.input.linesOfTokens(lineIdx).rangeBySfxs(m.range, sfx, sfxCounts)
+          lookforMatches.filter { lm => rangeBySfx.covers(lm.range) && !lm.range.overlap(m.range) }
+            .map { lm =>
+              val mseq = if (m.range.start < lm.range.start) IndexedSeq(m, lm)
+              else IndexedSeq(lm, m)
+              TkMatch.fromChildren(mseq)
+            }
+        }
+      }
+      else {
+        // find first depending on left->right or right-> left
+        ctMatches.flatMap { m =>
+          val rangeBySfx = matchPool.input.linesOfTokens(lineIdx).rangeBySfxs(m.range, sfx, sfxCounts)
+          val t = lookforMatches.filter { lm => rangeBySfx.covers(lm.range) && !lm.range.overlap(m.range) }
+            .toList
+          if (t.nonEmpty) {
+            val sorted =
+              if (left2Right) t.sortBy(_.range)
+              else t.sortBy(_.range.end)(Ordering[Int].reverse)
+            val lm = sorted.head
             val mseq = if (m.range.start < lm.range.start) IndexedSeq(m, lm)
             else IndexedSeq(lm, m)
-            TkMatch.fromChildren(mseq)
+            Option(TkMatch.fromChildren(mseq))
           }
+          else EmptyMatches
+        }
       }
     }
   }
 
-  def sfxLookAround(
+  def sfxLookAround_R2L(
     sfx:Set[String],
     sfxCounts:(Int, Int),
     mCenter:TCompMatcher,
     m2Lookfor:TCompMatcher,
     tag:String
   ):TCompMatcher = {
-    new CmLookAround(sfx, sfxCounts, List(mCenter, m2Lookfor), Option(tag))
+    new CmLookAround(sfx, sfxCounts, List(mCenter, m2Lookfor),
+      true,
+      false,
+      Option(tag))
+  }
+
+  def sfxLookAround_ALL(
+                         sfx:Set[String],
+                         sfxCounts:(Int, Int),
+                         mCenter:TCompMatcher,
+                         m2Lookfor:TCompMatcher,
+                         tag:String
+                       ):TCompMatcher = {
+    new CmLookAround(sfx, sfxCounts, List(mCenter, m2Lookfor),
+      false,
+      false, // N/A
+      Option(tag))
   }
 
 
-  def sfxLookAroundByTag(
+  def sfxLookAroundByTag_R2L(
     sfx:Set[String],
     sfxCounts:(Int, Int),
     mCenterTag:String,
     m2LookforTag:String,
     tag:String
   ):TCompMatcher = {
-    sfxLookAround(sfx,
+    sfxLookAround_R2L(sfx,
+      sfxCounts,
+      CompMatchers.byTag(mCenterTag),
+      CompMatchers.byTag(m2LookforTag),
+      tag
+    )
+  }
+
+  def sfxLookAroundByTag_ALL(
+                              sfx:Set[String],
+                              sfxCounts:(Int, Int),
+                              mCenterTag:String,
+                              m2LookforTag:String,
+                              tag:String
+                            ):TCompMatcher = {
+    sfxLookAround_ALL(sfx,
       sfxCounts,
       CompMatchers.byTag(mCenterTag),
       CompMatchers.byTag(m2LookforTag),

@@ -70,7 +70,7 @@ object Adm0Gen extends Serializable {
 //        ),
 //        csTag
 //      )
-      CompMatcherNXs.sfxLookAroundByTag(
+      CompMatcherNXs.sfxLookAroundByTag_R2L(
         LookAroundSfxSet, LookAroundSfxCounts_CityState,
         adm1SubEntTmTag(admc),
         admDynTag(admc),
@@ -95,7 +95,7 @@ object Adm0Gen extends Serializable {
 //      IndexedSeq(cityTag, ct),
 //      cityCountryTag(adm0.countryCode)
 //    )
-    val cmCityCountry = CompMatcherNXs.sfxLookAroundByTag(
+    val cmCityCountry = CompMatcherNXs.sfxLookAroundByTag_R2L(
       LookAroundSfxSet, LookAroundSfxCounts_CityCountry,
       cityTag, ct,
       cityCountryTag(adm0.countryCode)
