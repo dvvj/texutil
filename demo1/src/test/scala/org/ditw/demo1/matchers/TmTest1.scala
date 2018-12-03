@@ -35,6 +35,9 @@ object TmTest1 extends App {
   import org.ditw.demo1.gndata.GNCntry._
 
   testTm(List(
+    "Imizu City, Toyama-ken 937-8585, Japan",
+    "Uozu City, Toyama-ken 937-8585, Japan",
+    "Uozu City, Toyama 937-8585, Japan",
     "Sanno Hospital (Komatsu), Tokyo, Japan.",
     "Komatsu Japan",
     "Kanazawa Japan",

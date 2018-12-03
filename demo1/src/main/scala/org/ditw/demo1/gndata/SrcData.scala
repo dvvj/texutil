@@ -241,11 +241,13 @@ object SrcData extends Serializable {
           }
         println(s"\t$cc: ${gentOfAdm0.size}")
         val admEnt = brAdm0Ents.value(cc)
+        val admMap = pp._1
+        GNCollPreConstruct.preprocess(GNCntry.withName(cc), admMap)
         val adm0 = GNColls.adm0(
           admEnt, // todo
           pp._2.map(_._2).toIndexedSeq,
           gentOfAdm0,
-          pp._1,
+          admMap,
           aliasMap
         )
         // printlnT0(adm0)
