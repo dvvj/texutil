@@ -15,6 +15,14 @@ class ExtractionTests extends FlatSpec with Matchers with TableDrivenPropertyChe
       Set(1861835L)
     ),
     (
+      "Onga, Fukuoka Japan.",
+      Set(7407422L)
+    ),
+    (
+      "Chuo-ku, Fukuoka 810-0051, Japan.",
+      Set(7407400L)
+    ),
+    (
       "Kanda Chiyodaku Japan",
       Set(11749713L)
     ),

@@ -17,7 +17,7 @@ object GNColls extends Serializable {
         .flatMap(subAdm => admMap(subAdm).name2Id(admMap).toIndexedSeq)
 
       val curr = (gents.values ++ self).flatMap { gen =>
-        gen.queryNames.map(n => n -> IndexedSeq(gen.gnid))
+        gen.queryNames.map(n => n.toLowerCase() -> IndexedSeq(gen.gnid))
       }
       (children ++ curr).groupBy(_._1)
         .toIndexedSeq
