@@ -1,7 +1,8 @@
 package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
+import org.ditw.common.GenUtils.printlnT0
 import org.ditw.common.SparkUtils
-import org.ditw.demo1.gndata.GNCntry.{AU, CA, GB, US}
+import org.ditw.demo1.gndata.GNCntry._
 import org.ditw.demo1.gndata.{GNCntry, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.{MatcherGen, TagHelper}
@@ -19,7 +20,7 @@ object UtilsExtract extends App {
     .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
   val ccs = Set(
     US
-    ,CA, GB, AU //,FR,DE,ES,IT
+    ,CA, GB, AU, JP //,FR,DE,ES,IT
   )
   val svc = GNSvc.load(gnLines, ccs)
 
@@ -32,7 +33,9 @@ object UtilsExtract extends App {
   val brDict = spark.broadcast(dict)
   val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg)
 
-  val xtrs = spark.textFile("/media/sf_vmshare/aff-w2v")
+  printlnT0("Running extraction ...")
+
+  val xtrs = spark.textFile("/media/sf_vmshare/aff-w2v-dbg")
     .map { l =>
       val mp = MatchPool.fromStr(l, TknrHelpers.TknrTextSeg, brDict.value)
       brMmgr.value.run(mp)
@@ -40,6 +43,9 @@ object UtilsExtract extends App {
       val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)
       l -> rng2Ents.map(identity)
     }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+
+  printlnT0("Saving results ...")
+
   val savePathEmpty = "/media/sf_vmshare/aff-w2v-e"
   SparkUtils.deleteLocal(savePathEmpty)
   xtrs.filter(_._2.isEmpty).keys.saveAsTextFile(savePathEmpty)
@@ -59,5 +65,6 @@ object UtilsExtract extends App {
     s"$line\n\t$trStr"
   }.saveAsTextFile(savePath)
 
+  printlnT0("Done!")
   spark.stop()
 }

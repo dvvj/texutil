@@ -21,8 +21,11 @@ class GNSvc private (private[demo1] val _cntryMap:Map[GNCntry, TGNMap]) extends 
   import GNSvc._
   def extrEnts(xtrMgr:XtrMgr[Long], matchPool: MatchPool):Map[TkRange, List[GNEnt]] = {
     val xtrs = xtrMgr.run(matchPool)
-    xtrs.mapValues(_.flatMap(entById))
-      .mapValues(mergeEnts)
+    val t = xtrs.mapValues(_.flatMap(entById))
+
+    val res = t.map(p => p._1 -> mergeEnts(p._2))
+
+    res
   }
 }
 
@@ -52,7 +55,7 @@ object GNSvc extends Serializable {
     else None
   }
 
-  private def mergeEnts(ents:List[GNEnt]):List[GNEnt] = {
+  private[gndata] def mergeEnts(ents:List[GNEnt]):List[GNEnt] = {
     if (ents.size <= 1)
       ents
     else {
@@ -82,11 +85,14 @@ object GNSvc extends Serializable {
         remTail ++= itTail
 
         if (!headMerged) res += head
-        if (remTail.nonEmpty) {
+        if (remTail.size > 1) {
           head = remTail.head
           tail = remTail.tail.toList
         }
-        else tail = Nil
+        else {
+          res += tail.head  // the remaining one
+          tail = Nil
+        }
       }
       res.toList
     }

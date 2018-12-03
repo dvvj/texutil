@@ -17,7 +17,7 @@ object TestData {
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     val cs = Set(
-      US, CA, CN
+      US, CA, CN, JP
       //, "GB", "AU", "FR", "DE", "ES", "IT"
     )
 

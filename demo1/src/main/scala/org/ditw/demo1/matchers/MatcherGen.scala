@@ -71,6 +71,8 @@ object MatcherGen extends Serializable {
     )
 
     xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
+    xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
+
     new MatcherMgr(
       tmlst.toList,
       List(tmPProc),
