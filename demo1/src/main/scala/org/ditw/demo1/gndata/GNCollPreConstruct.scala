@@ -10,9 +10,14 @@ object GNCollPreConstruct extends Serializable {
   private val jpAdm1Suffixes = Set(
     "-ken", "prefecture"
   )
-  private val jpAdm2SuffixesSorted = List(
-    "shi", "-shi", "gun", "-gun"
-  ).sortBy(_.length)(Ordering[Int].reverse)
+
+  private val jpAdmSfx = Set(
+    "shi", "gun", "ku", "machi", "cho", "mura"
+  )
+  private val jpAdm2SuffixesSorted = jpAdmSfx.flatMap { sfx =>
+      List(sfx, s"-$sfx")
+  }.toList.sortBy(_.length)(Ordering[Int].reverse)
+
   private def jpAdm2Alias(
                            lowerName:String,
                            sfxFound:String,
@@ -20,10 +25,16 @@ object GNCollPreConstruct extends Serializable {
                          ):Unit = {
     val trimmed = lowerName.substring(0, lowerName.length - sfxFound.length).trim
     lst += s"$trimmed-city"
-    if (sfxFound == "shi") // todo
-      lst += s"$trimmed-shi"
-    if (sfxFound == "gun")
-      lst += s"$trimmed-gun"
+    lst += trimmed
+    if (jpAdmSfx.contains(sfxFound)) {
+      lst += s"$trimmed-$sfxFound"
+    }
+//    if (sfxFound == "shi") // todo
+//      lst += s"$trimmed-shi"
+//    if (sfxFound == "gun")
+//      lst += s"$trimmed-gun"
+//    if (sfxFound == "ku")
+//      lst += s"$trimmed-ku"
   }
 
   private val replRegex = "\\p{M}".r
@@ -43,8 +54,9 @@ object GNCollPreConstruct extends Serializable {
         val (_, coll) = p
         if (coll.self.nonEmpty) {
           val admEnt = coll.self.get
-          val lower = admEnt.name.toLowerCase()
-          val normedName = normalize(lower)
+          val lowerOrig = admEnt.name.toLowerCase()
+          val normedName = normalize(lowerOrig)
+          val lower = normedName.getOrElse(lowerOrig)
           if (p._2.level == GNLevel.ADM1) {
 
             var found = false
@@ -60,7 +72,7 @@ object GNCollPreConstruct extends Serializable {
             if (found) {
               admEnt.addAliases(List(trimmed))
             }
-          } else if (p._2.level == GNLevel.ADM2) {
+          } else { // if (p._2.level == GNLevel.ADM2) {
             var found = false
             var sfxFound = ""
             val it = jpAdm2SuffixesSorted.iterator
@@ -73,7 +85,7 @@ object GNCollPreConstruct extends Serializable {
             }
             if (found) {
               val alias2Add = ListBuffer[String]()
-              jpAdm2Alias(lower, sfxFound, alias2Add)
+              jpAdm2Alias(lowerOrig, sfxFound, alias2Add)
               if (normedName.nonEmpty) {
                 jpAdm2Alias(normedName.get, sfxFound, alias2Add)
               }
