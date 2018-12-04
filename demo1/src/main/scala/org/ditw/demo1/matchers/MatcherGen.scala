@@ -71,8 +71,8 @@ object MatcherGen extends Serializable {
     )
 
     //xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
-    xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
-    xtrlst += Xtrs.entXtrFirst4TagPfx(_CityAdmSeqPfx)
+    //xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
+    xtrlst += Xtrs.entXtrFirst4TagPfx(gnsvc, _CityAdmSeqPfx)
 
     new MatcherMgr(
       tmlst.toList,

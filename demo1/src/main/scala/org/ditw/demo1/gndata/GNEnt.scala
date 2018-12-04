@@ -13,8 +13,9 @@ case class GNEnt(
   admCodes:IndexedSeq[String],
   population:Long
 ) {
+  val admc:String = admCodes.mkString("_")
   override def toString: String = {
-    s"$name([$featureCode]$gnid: ${admCodes.mkString("_")})"
+    s"$name([$featureCode]$gnid: $admc)"
   }
   private var _queryNames:Set[String] = (_alias + name).map(_.toLowerCase())
   def queryNames:Set[String] = _queryNames

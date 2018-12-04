@@ -1,7 +1,7 @@
 package org.ditw.demo1.matchers
 import org.ditw.common.TkRange
 import org.ditw.demo1.extracts.Xtrs
-import org.ditw.demo1.gndata.GNSvc
+import org.ditw.demo1.gndata.{GNLevel, GNSvc}
 import org.ditw.matcher.CompMatcherNs.lng
 import org.ditw.matcher.CompMatchers.{TDefRunAtLineFrom, byTag}
 import org.ditw.matcher.{MatchPool, TCompMatcher, TCompMatcherN, TkMatch}
@@ -36,11 +36,20 @@ object GNMatchers extends Serializable {
     )
   }
 
+  private def checkIsAdm1(gnsvc: GNSvc, m:TkMatch):Boolean = {
+    val ids = Xtrs.extractEntId(m)
+    ids.exists { id =>
+      val e = gnsvc.entById(id)
+      e.nonEmpty && e.get.isAdm && e.get.level == GNLevel.ADM1
+    }
+  }
+
   private val EmptyMatches = Set[TkMatch]()
   private[demo1] class GNSeqMatcher(
     protected val subMatchers: Iterable[TCompMatcher],
     private val sfx:Set[String],
     private val sfxCounts:(Int, Int),
+    private val mustEndWithAdm1:Boolean,
     private val gnsvc: GNSvc,
     val tag:Option[String]
   ) extends TCompMatcher with TCompMatcherN with TDefRunAtLineFrom {
@@ -77,7 +86,12 @@ object GNMatchers extends Serializable {
               }
             }
             if (resNodes.size > 1) {
-              res += TkMatch.fromChildren(resNodes.toIndexedSeq)
+              val toAdd =
+                if (mustEndWithAdm1)
+                  checkIsAdm1(gnsvc, resNodes.last)
+                else true
+              if (toAdd)
+                res += TkMatch.fromChildren(resNodes.toIndexedSeq)
             }
           }
           TkMatch.mergeByRange(res)
@@ -103,6 +117,7 @@ object GNMatchers extends Serializable {
       List(byTag(cityTag), byTag(adm1Tag)),
       SfxComma,
       DefSfxCounts,
+      true,
       gnsvc,
       Option(tag)
     )
