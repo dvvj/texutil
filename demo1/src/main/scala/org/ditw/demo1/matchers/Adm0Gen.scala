@@ -18,19 +18,22 @@ object Adm0Gen extends Serializable {
   private val LookAroundSfxCounts_CityCountry = (3, 1)
   def genMatcherExtractors(adm0:TGNMap, dict:Dict)
     :(List[TTkMatcher], List[TCompMatcher], List[TXtr[Long]], TPostProc) = {
-    val name2Admc = adm0.admMap.flatMap { p =>
-      val admCode = p._1
-      if (p._2.self.nonEmpty) {
-        p._2.self.get.queryNames.map(_ -> admCode)
+    val pairs = adm0.admMap.toIndexedSeq
+      .flatMap { p =>
+        val admCode = p._1
+        if (p._2.self.nonEmpty) {
+          p._2.self.get.queryNames.map(_ -> admCode)
+        }
+        else EmptyPairs
       }
-      else EmptyPairs
-    }
+    val name2Admc = pairs.groupBy(_._1)
+      .mapValues(_.map(_._2).toSet)
 
-    val tmAdm1s = TokenMatchers.ngramExtraTag(
+    val tmAdm1s = TokenMatchers.ngramExtraTags(
       name2Admc,
       dict,
       admTmTag(adm0.countryCode),
-      addExtraAdmTag
+      addExtraAdmTags
     )
 
     val adm1NameIds = adm0.subAdms.map(adm0.admMap)
@@ -116,7 +119,11 @@ object Adm0Gen extends Serializable {
     m.addTag(t)
     m
   }
-
+  private val addExtraAdmTags:TmMatchPProc[Set[String]] = (m, tags) => {
+    val t = tags.map(admDynTag)
+    m.addTags(t)
+    m
+  }
   private val addGNIdTags:TmMatchPProc[IndexedSeq[Long]] = (m, gnids) => {
     val tags = gnids.map(GNIdTagTmpl.format(_))
     m.addTags(tags, false)

@@ -90,7 +90,8 @@ object GNSvc extends Serializable {
           tail = remTail.tail.toList
         }
         else {
-          res += tail.head  // the remaining one
+          if (remTail.size == 1)
+            res += remTail.head  // the remaining one
           tail = Nil
         }
       }

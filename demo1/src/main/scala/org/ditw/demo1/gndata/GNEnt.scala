@@ -16,11 +16,11 @@ case class GNEnt(
   override def toString: String = {
     s"$name([$featureCode]$gnid: ${admCodes.mkString("_")})"
   }
-  private var _queryNames:Set[String] = _alias + name
+  private var _queryNames:Set[String] = (_alias + name).map(_.toLowerCase())
   def queryNames:Set[String] = _queryNames
   def addAliases(aliases:Iterable[String]):Unit = {
     _alias ++= aliases
-    _queryNames ++= aliases
+    _queryNames ++= aliases.map(_.toLowerCase())
   }
   val level:GNLevel = admCodes.size match {
     case 0 => GNLevel.ADM0
