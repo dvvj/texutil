@@ -8,7 +8,7 @@ object Xtrs extends Serializable {
   import org.ditw.extract.TXtr._
   import org.ditw.demo1.matchers.TagHelper._
 
-  private def extractEntId(m: TkMatch)
+  private[demo1] def extractEntId(m: TkMatch)
   : List[Long] = {
     val allMatches = m.flatten
     allMatches.flatMap(_.getTags).filter { _.startsWith(GNIdTagPfx) }
@@ -29,6 +29,13 @@ object Xtrs extends Serializable {
     override def _extract(m: TkMatch)
     : List[Long] = {
       extractEntId(m)
+    }
+  }
+
+  private[demo1] def entXtrFirst4TagPfx(tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+    override def _extract(m: TkMatch)
+    : List[Long] = {
+      extractEntId(m.children.head)
     }
   }
 

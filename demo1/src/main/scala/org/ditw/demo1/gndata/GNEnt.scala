@@ -22,6 +22,7 @@ case class GNEnt(
     _alias ++= aliases
     _queryNames ++= aliases.map(_.toLowerCase())
   }
+  val isAdm:Boolean = featureClz == "A"
   val level:GNLevel = admCodes.size match {
     case 0 => GNLevel.ADM0
     case 1 => GNLevel.ADM1

@@ -56,7 +56,7 @@ object MatcherGen extends Serializable {
     import collection.mutable
     val tmBlTargets = mutable.Set[String]()
     adm0s.foreach { adm0 =>
-      val (tms, cms, xtrs, pproc) = Adm0Gen.genMatcherExtractors(adm0, dict)
+      val (tms, cms, xtrs, pproc) = Adm0Gen.genMatcherExtractors(gnsvc, adm0, dict)
       tmBlTargets ++= tms.flatMap(_.tag) // black list blocks all tms
       tmlst ++= tms
       cmlst ++= cms
@@ -70,8 +70,9 @@ object MatcherGen extends Serializable {
       )
     )
 
-    xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
+    //xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
     xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
+    xtrlst += Xtrs.entXtrFirst4TagPfx(_CityAdmSeqPfx)
 
     new MatcherMgr(
       tmlst.toList,

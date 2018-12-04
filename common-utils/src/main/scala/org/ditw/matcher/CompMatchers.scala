@@ -49,6 +49,9 @@ object CompMatchers extends Serializable {
   def byTags(tagsToFind:Set[String], tag:String):TCompMatcher = {
     new CmByTags(tagsToFind, Option(tag))
   }
+  def byTags(tagsToFind:Set[String]):TCompMatcher = {
+    new CmByTags(tagsToFind, None)
+  }
   def byTag(tagToFind:String, tag:String):TCompMatcher = {
     new CmByTags(Set(tagToFind), Option(tag))
   }

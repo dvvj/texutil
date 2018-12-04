@@ -2,7 +2,7 @@ package org.ditw.demo1.matchers
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.common.TypeCommon.DictEntryKey
 import org.ditw.demo1.extracts.Xtrs
-import org.ditw.demo1.gndata.TGNMap
+import org.ditw.demo1.gndata.{GNSvc, TGNMap}
 import org.ditw.extract.{TXtr, XtrMgr}
 import org.ditw.matcher.TokenMatchers._
 import org.ditw.matcher._
@@ -12,28 +12,31 @@ import scala.collection.mutable.ListBuffer
 object Adm0Gen extends Serializable {
   import TagHelper._
 
-  private val EmptyPairs = Iterable[(String, String)]()
+  private val EmptyPairs = Iterable[(String, List[String])]()
   private val LookAroundSfxSet = Set(",")
   private val LookAroundSfxCounts_CityState = (3, 3)
   private val LookAroundSfxCounts_CityCountry = (3, 1)
-  def genMatcherExtractors(adm0:TGNMap, dict:Dict)
+  def genMatcherExtractors(gnsvc:GNSvc, adm0:TGNMap, dict:Dict)
     :(List[TTkMatcher], List[TCompMatcher], List[TXtr[Long]], TPostProc) = {
     val pairs = adm0.admMap.toIndexedSeq
       .flatMap { p =>
         val admCode = p._1
         if (p._2.self.nonEmpty) {
-          p._2.self.get.queryNames.map(_ -> admCode)
+          val admEnt = p._2.self.get
+          admEnt.queryNames.map(_ -> List(admDynTag(admCode), GNIdTag(admEnt.gnid)))
         }
         else EmptyPairs
       }
     val name2Admc = pairs.groupBy(_._1)
-      .mapValues(_.map(_._2).toSet)
+      .mapValues(_.flatMap(_._2).toSet)
 
+    // general tag for adms
+    val admTag = admTmTag(adm0.countryCode)
     val tmAdm1s = TokenMatchers.ngramExtraTags(
       name2Admc,
       dict,
-      admTmTag(adm0.countryCode),
-      addExtraAdmTags
+      admTag
+      //addExtraAdmTags
     )
 
     val adm1NameIds = adm0.subAdms.map(adm0.admMap)
@@ -104,13 +107,17 @@ object Adm0Gen extends Serializable {
       cityCountryTag(adm0.countryCode)
     )
 
+    val cmCityAdmSeq = GNMatchers.GNSeqByTags(
+      cityTag, admTag, gnsvc, cityAdmSeqTag(adm0.countryCode)
+    )
+
     val pprocBlockers = MatcherMgr.postProcBlocker_TagPfx(
       Map(
         _CityStatePfx -> Set(cityCountryTag(adm0.countryCode))
       )
     )
 
-    (tmCity :: tms, cmCityCountry :: cms, xtrs.toList, pprocBlockers)
+    (tmCity :: tms, cmCityAdmSeq :: cmCityCountry :: cms, xtrs.toList, pprocBlockers)
   }
 
 
@@ -125,7 +132,7 @@ object Adm0Gen extends Serializable {
     m
   }
   private val addGNIdTags:TmMatchPProc[IndexedSeq[Long]] = (m, gnids) => {
-    val tags = gnids.map(GNIdTagTmpl.format(_))
+    val tags = gnids.map(GNIdTag)
     m.addTags(tags, false)
     m
   }

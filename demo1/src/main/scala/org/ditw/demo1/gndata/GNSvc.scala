@@ -31,7 +31,24 @@ class GNSvc private (private[demo1] val _cntryMap:Map[GNCntry, TGNMap]) extends 
 
 object GNSvc extends Serializable {
 
-  private def checkIfContains(ent1:GNEnt, ent2:GNEnt):Option[GNEnt] = {
+  private[demo1] def checkContains(ent1:GNEnt, ent2:GNEnt):Boolean = {
+    if (ent1.countryCode == ent2.countryCode &&
+      ent1.admCodes.length <= ent2.admCodes.length
+    ) {
+      val admCodesChecked = ent1.admCodes.indices.forall(
+        idx => ent1.admCodes(idx) == ent2.admCodes(idx)
+      )
+      if (!admCodesChecked) false
+      else if (ent1.admCodes.length < ent2.admCodes.length && ent1.isAdm) true
+      else {
+        if (ent1.isAdm && !ent2.isAdm) true
+        else false
+      }
+    }
+    else false
+  }
+
+  private[demo1] def checkIfContains(ent1:GNEnt, ent2:GNEnt):Option[GNEnt] = {
     if (ent1.countryCode == ent2.countryCode &&
       ent1.admCodes.length <= ent2.admCodes.length
     ) {

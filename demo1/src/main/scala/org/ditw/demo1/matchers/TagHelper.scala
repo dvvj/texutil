@@ -22,6 +22,8 @@ object TagHelper extends Serializable {
   private[demo1] val _CityCountryPfx = "_CITY_CNTR_"
   def cityCountryTag(cntry: GNCntry):String = _CityCountryPfx + cntry
   private[demo1] val GNIdTagPfx = "GNId_"
-  private[demo1] val GNIdTagTmpl = s"$GNIdTagPfx%d"
+  private[demo1] def GNIdTag(id:Long) = s"$GNIdTagPfx$id"
 
+  private[demo1] val _CityAdmSeqPfx = "_CITY_ADMSEQ_"
+  def cityAdmSeqTag(cntry: GNCntry):String = _CityAdmSeqPfx + cntry
 }
