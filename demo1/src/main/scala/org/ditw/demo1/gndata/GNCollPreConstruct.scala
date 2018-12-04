@@ -95,6 +95,18 @@ object GNCollPreConstruct extends Serializable {
 
         }
       }
+    }),
+    US -> (m => {
+      m.foreach { p =>
+        val (_, coll) = p
+        if (coll.self.nonEmpty) {
+          val admEnt = coll.self.get
+          if (p._2.level == GNLevel.ADM1) {
+            val alias = admEnt.admCodes(0)
+            admEnt.addAliases(List(alias))
+          }
+        }
+      }
     })
   )
 
