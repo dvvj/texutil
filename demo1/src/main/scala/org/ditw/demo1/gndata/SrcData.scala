@@ -17,8 +17,10 @@ object SrcData extends Serializable {
   val tabSplitter = "\\t".r
 
 
+  val gnidIndex = 0
   val featureCodeIndex = 6
   val countryCodeIndex = 7
+  val populationIndex = SrcDataUtils.GNsSlimColArr.length - 1
   private val colEnum2Idx = SrcDataUtils.GNsSlimColArrAltCount.indices.map { idx =>
     SrcDataUtils.GNsSlimColArrAltCount(idx) -> idx
   }.toMap
@@ -107,6 +109,8 @@ object SrcData extends Serializable {
   }
 
   private val aliases:Array[SrcAlias] = ResourceHelpers.load("/alias.json", SrcAlias.load)
+  private val popu0s:Array[SrcPopu0] = ResourceHelpers.load("/popu0_whitelist.json", SrcPopu0.load)
+  private val popu0Map = popu0s.map(p => p.gnid -> p.name).toMap
 
   private val _aliasMap:Map[Long, Iterable[String]] = aliases.map(a => a.gnid -> a.aliases).toMap
 
@@ -120,8 +124,15 @@ object SrcData extends Serializable {
     val countryCodes = countries.map(_.toString)
     val gnsInCC:RDD[((String,GNLevel), GNEnt)] = rdd
       .filter { cols =>
-        countryCodes.contains(cols(countryCodeIndex)) &&
-          !SrcDataUtils.isAdm0(cols(featureCodeIndex), cols(countryCodeIndex))
+        val popu = cols(populationIndex).toLong
+        val gnid = cols(gnidIndex).toLong
+        if (popu > 0) {
+          countryCodes.contains(cols(countryCodeIndex)) &&
+            !SrcDataUtils.isAdm0(cols(featureCodeIndex), cols(countryCodeIndex))
+        }
+        else {
+          popu0Map.contains(gnid)
+        }
       }
       .map { cols =>
         val adms = ListBuffer[String]()

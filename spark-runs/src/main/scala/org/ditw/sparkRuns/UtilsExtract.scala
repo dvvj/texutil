@@ -19,8 +19,8 @@ object UtilsExtract extends App {
   ).map(tabSplitter.split)
     .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
   val ccs = Set(
-    US
-    ,CA, GB, AU, JP //,FR,DE,ES,IT
+    US, JP
+    ,CA //, GB, AU //,FR,DE,ES,IT
   )
   val svc = GNSvc.load(gnLines, ccs)
 

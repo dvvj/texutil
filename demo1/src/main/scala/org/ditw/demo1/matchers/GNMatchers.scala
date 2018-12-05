@@ -94,16 +94,27 @@ object GNMatchers extends Serializable {
                 res += TkMatch.fromChildren(resNodes.toIndexedSeq)
             }
           }
-          TkMatch.mergeByRange(res)
+          mergeMatches(res)
         }
         else EmptyMatches
       }
       else EmptyMatches
     }
+
+    private def mergeMatches(matches:Iterable[TkMatch]):Set[TkMatch] = {
+      val maxSz = matches.map(_.children.size).max
+      val maxSzMatches = matches.filter(_.children.size == maxSz)
+      if (maxSzMatches.size > 1) {
+        maxSzMatches.toSet // todo
+      }
+      else maxSzMatches.toSet
+    }
   }
 
   private val SfxComma = Set(",")
   private val DefSfxCounts = (1, 3)
+
+
 
 
   import org.ditw.matcher.CompMatchers._

@@ -30,7 +30,7 @@ object Xtrs extends Serializable {
   private[demo1] def entXtr4TagPfx(tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
     override def _extract(m: TkMatch)
     : List[Long] = {
-      extractEntId(m)
+      extractEntId(m.children.head)
     }
   }
 

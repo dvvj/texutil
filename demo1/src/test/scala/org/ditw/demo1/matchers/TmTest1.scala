@@ -35,8 +35,8 @@ object TmTest1 extends App {
   import org.ditw.demo1.gndata.GNCntry._
 
   testTm(List(
-    "Department of Obstetrics and Gynaecology, Hôpital Sainte-Justine and Université de Montréal, Montréal (Québec), Canada.",
     "Department of Public Health Sciences, University of Rochester Medical Center, Rochester, NY, USA.",
+    "Department of Obstetrics and Gynaecology, Hôpital Sainte-Justine and Université de Montréal, Montréal (Québec), Canada.less ",
     "Kyonancho, Musashino, Tokyo 180-8602, Japan.",
     "Tama-shi Tokyo-to 206-8512 Japan",
     "Chuo-ku, Fukuoka 810-0051, Japan.",

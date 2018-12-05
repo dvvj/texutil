@@ -107,9 +107,10 @@ object Adm0Gen extends Serializable {
       cityCountryTag(adm0.countryCode)
     )
 
-    val cmCityAdmSeq = GNMatchers.GNSeqByTags(
-      cityTag, admTag, gnsvc, cityAdmSeqTag(adm0.countryCode)
-    )
+    // todo: revisit this
+//    val cmCityAdmSeq = GNMatchers.GNSeqByTags(
+//      cityTag, admTag, gnsvc, cityAdmSeqTag(adm0.countryCode)
+//    )
 
     val pprocBlockers = MatcherMgr.postProcBlocker_TagPfx(
       Map(
@@ -117,7 +118,11 @@ object Adm0Gen extends Serializable {
       )
     )
 
-    (tmCity :: tms, cmCityAdmSeq :: cmCityCountry :: cms, xtrs.toList, pprocBlockers)
+    (
+      tmCity :: tms,
+      cmCityCountry :: cms,  // cmCityAdmSeq ::
+      xtrs.toList, pprocBlockers
+    )
   }
 
 

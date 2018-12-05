@@ -15,7 +15,8 @@ case class GNEnt(
 ) {
   val admc:String = admCodes.mkString("_")
   override def toString: String = {
-    s"$name([$featureCode]$gnid: $admc)"
+    val coord = f"{$latitude%.3f,$longitude%.3f}"
+    s"$name([$featureCode]$gnid: $admc,$coord)"
   }
   private var _queryNames:Set[String] = (_alias + name).map(_.toLowerCase())
   def queryNames:Set[String] = _queryNames

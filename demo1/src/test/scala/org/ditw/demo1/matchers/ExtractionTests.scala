@@ -104,7 +104,7 @@ class ExtractionTests extends FlatSpec with Matchers with TableDrivenPropertyChe
     ),
     (
       "Komatsu Japan",
-      Set(1858909L, 1858910L, 1858911L)  // before disambiguation
+      Set(1858910L)  // before disambiguation
     )
   )
 
