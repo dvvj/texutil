@@ -103,8 +103,11 @@ object Vocabs extends Serializable {
   private[textSeg] val _UnivSegStopWordsLeftExtra = Set(
     "of", "at"
   )
+  private[textSeg] val _UnivSegStopWordsRightExtra = Set(
+    "/"
+  )
   private[textSeg] val _UnivSegStopWordsLeft = __UnivSegStopWordsCommon ++ _UnivSegStopWordsLeftExtra
-  private[textSeg] val _UnivSegStopWordsRight = __UnivSegStopWordsCommon
+  private[textSeg] val _UnivSegStopWordsRight = __UnivSegStopWordsCommon ++ _UnivSegStopWordsRightExtra
   private[textSeg] val __univOfVocab =
     ResourceHelpers.loadStrs("/cat2/univ_of_vocab.txt").toSet
 
@@ -122,6 +125,7 @@ object Vocabs extends Serializable {
     _UnivStopWords,
     __UnivSegStopWordsCommon,
     _UnivSegStopWordsLeftExtra,
+    _UnivSegStopWordsRightExtra,
     __univOfVocab,
     _And,
     _DeptTypes,
