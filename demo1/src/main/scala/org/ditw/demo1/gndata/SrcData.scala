@@ -114,6 +114,8 @@ object SrcData extends Serializable {
 
   private val _aliasMap:Map[Long, Iterable[String]] = aliases.map(a => a.gnid -> a.aliases).toMap
 
+  private val MinPopu = 500
+
   def loadCountries(
     rdd:RDD[Array[String]],
     countries:Set[GNCntry],
@@ -126,7 +128,7 @@ object SrcData extends Serializable {
       .filter { cols =>
         val popu = cols(populationIndex).toLong
         val gnid = cols(gnidIndex).toLong
-        if (popu > 0) {
+        if (popu >= MinPopu) {
           countryCodes.contains(cols(countryCodeIndex)) &&
             !SrcDataUtils.isAdm0(cols(featureCodeIndex), cols(countryCodeIndex))
         }

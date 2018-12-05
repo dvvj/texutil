@@ -1,9 +1,9 @@
 package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.GenUtils.printlnT0
-import org.ditw.common.{Dict, InputHelpers, SparkUtils}
+import org.ditw.common.{Dict, InputHelpers, SparkUtils, TkRange}
 import org.ditw.demo1.gndata.GNCntry.{CA, JP, US}
-import org.ditw.demo1.gndata.{GNCntry, GNSvc}
+import org.ditw.demo1.gndata.{GNCntry, GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.{MatcherGen, TagHelper}
 import org.ditw.extract.XtrMgr
@@ -86,23 +86,36 @@ object UtilsExtrFull {
     SparkUtils.deleteLocal(savePathEmpty)
     xtrs.filter(xtr => xtr._3._2.isEmpty || xtr._3._3.isEmpty).saveAsTextFile(savePathEmpty)
 
-    val hasXtrs = xtrs.filter(xtr => xtr._3._2.nonEmpty && xtr._3._3.nonEmpty)
-    val savePath = "/media/sf_vmshare/pmjs/9-x"
+    val hasXtrs1 = xtrs.filter(xtr => xtr._3._2.size == 1 && xtr._3._3.nonEmpty)
+    val savePath1 = "/media/sf_vmshare/pmjs/9-x-s"
+    SparkUtils.deleteLocal(savePath1)
+    hasXtrs1.map { p =>
+      val (pmid, localId, pp) = p
+      trace(pmid, localId, pp)
+    }.saveAsTextFile(savePath1)
+
+    val hasXtrs = xtrs.filter(xtr => xtr._3._2.size > 1 && xtr._3._3.nonEmpty)
+    val savePath = "/media/sf_vmshare/pmjs/9-x-m"
     SparkUtils.deleteLocal(savePath)
     hasXtrs.map { p =>
       val (pmid, localId, pp) = p
-      val trs = ListBuffer[String]()
-      pp._2.keySet.toList.sorted.map { range =>
-        val ents = pp._2(range)
-        val trsEnts = ents.mkString("[", "],[", "]")
-        trs += s"$range: $trsEnts"
-      }
-      val univStrs = pp._3.toList.sorted.mkString("---{", "},{", "}")
-      trs += univStrs
-      val trStr = trs.mkString("; ")
-      s"$pmid-$localId: [${pp._1}]\n\t$trStr"
+      trace(pmid, localId, pp)
     }.saveAsTextFile(savePath)
 
     spark.stop()
+  }
+
+  def trace(pmid:Long, localId:Int,
+            pp:(String, Map[TkRange, List[GNEnt]], Set[String])):String = {
+    val trs = ListBuffer[String]()
+    pp._2.keySet.toList.sorted.map { range =>
+      val ents = pp._2(range)
+      val trsEnts = ents.mkString("[", "],[", "]")
+      trs += s"$range: $trsEnts"
+    }
+    val univStrs = pp._3.toList.sorted.mkString("---{", "},{", "}")
+    trs += univStrs
+    val trStr = trs.mkString("; ")
+    s"$pmid-$localId: [${pp._1}]\n\t$trStr"
   }
 }
