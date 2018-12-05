@@ -11,6 +11,34 @@ class ExtractionTests extends FlatSpec with Matchers with TableDrivenPropertyChe
   private val testData = Table(
     ("inStr", "expGNIds"),
     (
+      "CLINTON TWP MI",
+      Set(4989133L)
+    ),
+    (
+      "Boston, Massaschusetts,USA.",
+      Set(4930956L)
+    ),
+//    (
+//      "Harvard School of Public Health Massaschussets, Cambridge, USA.",
+//      Set(4931972L)
+//    ),
+    (
+      "Cambridge, Massachussets, USA.",
+      Set(4931972L)
+    ),
+    (
+      "Portland, Ore. 97239, USA.",
+      Set(5746545L)
+    ),
+    (
+      "New York, USA.",
+      Set(5128581L)
+    ),
+    (
+      "The Medical Banking Project, Franklin, Tenn, USA.",
+      Set(4623560L)
+    ),
+    (
       "Cambridge, MA 02138, USA.",
       Set(4931972L)
     ),

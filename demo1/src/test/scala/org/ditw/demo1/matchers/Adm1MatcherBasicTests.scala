@@ -13,6 +13,20 @@ class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPrope
   private val testData = Table(
     ("inStr", "expTag", "expRange"),
     (
+      "City of Boston, Massachusetts, USA.",
+      cityStateTag("US_MA"),
+      Set(
+        (0, 0, 4)
+      )
+    ),
+    (
+      "Boston, Massachusetts, USA.",
+      cityStateTag("US_MA"),
+      Set(
+        (0, 0, 2)
+      )
+    ),
+    (
       "Montréal (Québec), Canada",
       cityCountryTag(GNCntry.CA),
       Set[(Int, Int, Int)]() // blocked by cityState match
@@ -48,14 +62,6 @@ class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPrope
       cityStateTag("US_MA"),
       Set(
         (0, 0, 3)
-      )
-    ),
-    (
-      "City of Boston, Massachusetts, USA.",
-      cityStateTag("US_MA"),
-      Set(
-        (0, 0, 4),
-        (0, 2, 4)
       )
     ),
     (

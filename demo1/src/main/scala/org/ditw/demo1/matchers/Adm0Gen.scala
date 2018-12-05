@@ -14,7 +14,7 @@ object Adm0Gen extends Serializable {
 
   private val EmptyPairs = Iterable[(String, List[String])]()
   private val LookAroundSfxSet = Set(",")
-  private val LookAroundSfxCounts_CityState = (3, 3)
+  private val LookAroundSfxCounts_CityState = (3, 1)
   private val LookAroundSfxCounts_CityCountry = (3, 1)
   def genMatcherExtractors(gnsvc:GNSvc, adm0:TGNMap, dict:Dict)
     :(List[TTkMatcher], List[TCompMatcher], List[TXtr[Long]], TPostProc) = {
@@ -78,8 +78,8 @@ object Adm0Gen extends Serializable {
 //      )
       CompMatcherNXs.sfxLookAroundByTag_R2L(
         LookAroundSfxSet, LookAroundSfxCounts_CityState,
-        adm1SubEntTmTag(admc),
         admDynTag(admc),
+        adm1SubEntTmTag(admc),
         csTag
       )
     }.toList

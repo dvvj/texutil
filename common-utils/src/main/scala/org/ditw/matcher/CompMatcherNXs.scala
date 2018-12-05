@@ -25,35 +25,50 @@ object CompMatcherNXs extends Serializable {
       val ctMatches = mCenter.runAtLine(matchPool, lineIdx)
       val lookforMatches = m2Lookfor.runAtLine(matchPool, lineIdx)
 
-      if (!oneMatchEach) {
-        ctMatches.flatMap { m =>
-          val rangeBySfx = matchPool.input.linesOfTokens(lineIdx).rangeBySfxs(m.range, sfx, sfxCounts)
-          lookforMatches.filter { lm => rangeBySfx.covers(lm.range) && !lm.range.overlap(m.range) }
-            .map { lm =>
+      if (ctMatches.nonEmpty) {
+        if (!oneMatchEach) {
+          ctMatches.flatMap { m =>
+            val rangeBySfx = matchPool.input.linesOfTokens(lineIdx).rangeBySfxs(m.range, sfx, sfxCounts)
+            lookforMatches.filter { lm => rangeBySfx.covers(lm.range) && !lm.range.overlap(m.range) }
+              .map { lm =>
+                val mseq = if (m.range.start < lm.range.start) IndexedSeq(m, lm)
+                else IndexedSeq(lm, m)
+                TkMatch.fromChildren(mseq)
+              }
+          }
+        }
+        else {
+          // find first depending on left->right or right-> left
+          ctMatches.flatMap { m =>
+            val rangeBySfx = matchPool.input.linesOfTokens(lineIdx).rangeBySfxs(m.range, sfx, sfxCounts)
+            val t = lookforMatches.filter { lm => rangeBySfx.covers(lm.range) && !lm.range.overlap(m.range) }
+              .toList
+            if (t.nonEmpty) {
+              val sorted =
+                if (left2Right) t.sortBy(_.range)
+                else t.sortBy(_.range)(reverseOrdering)
+              val lm = sorted.head
               val mseq = if (m.range.start < lm.range.start) IndexedSeq(m, lm)
               else IndexedSeq(lm, m)
-              TkMatch.fromChildren(mseq)
+              Option(TkMatch.fromChildren(mseq))
             }
-        }
-      }
-      else {
-        // find first depending on left->right or right-> left
-        ctMatches.flatMap { m =>
-          val rangeBySfx = matchPool.input.linesOfTokens(lineIdx).rangeBySfxs(m.range, sfx, sfxCounts)
-          val t = lookforMatches.filter { lm => rangeBySfx.covers(lm.range) && !lm.range.overlap(m.range) }
-            .toList
-          if (t.nonEmpty) {
-            val sorted =
-              if (left2Right) t.sortBy(_.range)
-              else t.sortBy(_.range.end)(Ordering[Int].reverse)
-            val lm = sorted.head
-            val mseq = if (m.range.start < lm.range.start) IndexedSeq(m, lm)
-            else IndexedSeq(lm, m)
-            Option(TkMatch.fromChildren(mseq))
+            else EmptyMatches
           }
-          else EmptyMatches
         }
       }
+      else EmptyMatches
+
+    }
+  }
+
+  private val reverseOrdering = new Ordering[TkRange] {
+    override def compare(r1:TkRange, r2: TkRange): Int = {
+      assert(r1.lineIdx == r2.lineIdx)
+      val e = r2.end-r1.end  // big end goes first
+      if (e == 0) {
+        r1.start-r2.start // if end same, pick smaller [1, 3]  [2, 3]
+      }
+      else e
     }
   }
 
