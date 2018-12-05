@@ -1,4 +1,5 @@
 package org.ditw.textSeg.common
+import org.ditw.common.InputHelpers.splitVocabToSet
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.CatSegMatchers.Category
@@ -127,8 +128,6 @@ object Vocabs extends Serializable {
     _DeptWords
   )
 
-  import InputHelpers._
-  private [textSeg] val AllVocabDict:Dict = InputHelpers.loadDict(
-    allVocabs.map(splitVocabToSet)
-  )
+  def allWords:Iterable[Iterable[String]] = allVocabs.map(splitVocabToSet)
+
 }

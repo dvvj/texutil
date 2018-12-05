@@ -5,7 +5,7 @@ import org.ditw.textSeg.catSegMatchers.Cat1SegMatchers
 import org.ditw.textSeg.common.CatSegMatchers.TSegMatchers4Cat
 import org.ditw.tknr.Tokenizers.TTokenizer
 
-object AllCatMatchers {
+object AllCatMatchers extends Serializable {
 
   import org.ditw.matcher.TokenMatchers._
   import Tags._
@@ -14,22 +14,32 @@ object AllCatMatchers {
   import AssiMatchers._
   import Vocabs._
   def mmgrFrom(
+    dict: Dict,
     catSegMatchers:TSegMatchers4Cat*
   ):MatcherMgr = {
-    val postprocs = catSegMatchers.map(_.postproc)
+    val (tms, cms, postprocs) = segMatchersFrom(dict, catSegMatchers)
     new MatcherMgr(
-      _ExtraTms ++ catSegMatchers.flatMap(_.tms),
+      tms,
       List(),
-      _ExtraCms ++ catSegMatchers.flatMap(_.cms),
+      cms,
       postprocs
+    )
+  }
+
+  def segMatchersFrom(dict: Dict, catSegMatchers:Seq[TSegMatchers4Cat])
+    :(Iterable[TTkMatcher], Iterable[TCompMatcher], Iterable[TPostProc]) = {
+    (
+      _ExtraTms(dict) ++ catSegMatchers.flatMap(_.tms),
+      _ExtraCms ++ catSegMatchers.flatMap(_.cms),
+      catSegMatchers.map(_.postproc)
     )
   }
 
   def run(
     mmgr:MatcherMgr,
     inStr:String,
-    tokenizer:TTokenizer = TknrTextSeg,
-    dict: Dict = Vocabs.AllVocabDict
+    dict: Dict,
+    tokenizer:TTokenizer = TknrTextSeg
   ): MatchPool = {
     val matchPool = MatchPool.fromStr(inStr, tokenizer, dict)
     mmgr.run(matchPool)

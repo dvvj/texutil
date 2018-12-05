@@ -133,6 +133,14 @@ class ExtractionTests extends FlatSpec with Matchers with TableDrivenPropertyChe
     (
       "Komatsu Japan",
       Set(1858910L)  // before disambiguation
+    ),
+    (
+      "Washington University School of Medicine, St. Louis, MO, USA.",
+      Set(4407066L)  // before disambiguation
+    ),
+    (
+      "Washington University School of Medicine, St Louis, MO, USA.",
+      Set(4407066L)  // before disambiguation
     )
   )
 

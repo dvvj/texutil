@@ -6,9 +6,9 @@ private[ditw] trait TPostProc extends Serializable {
 }
 
 class MatcherMgr(
-  val tms:List[TTkMatcher],
+  val tms:Iterable[TTkMatcher],
   val tmPProcs:Iterable[TPostProc],
-  val cms:List[TCompMatcher],
+  val cms:Iterable[TCompMatcher],
   val postProcs:Iterable[TPostProc]
   //val blockTagMap:Map[String, Set[String]]
 ) extends Serializable {

@@ -61,13 +61,17 @@ class Cat1SegMatchersTests extends FlatSpec with Matchers with TableDrivenProper
     )
   )
 
+  private val dict = TestVocabs.AllVocabDict
+
   private val mmgr = mmgrFrom(
-    Cat1SegMatchers.segMatchers,
-    Cat2SegMatchers.segMatchers
+    dict,
+    Cat1SegMatchers.segMatchers(dict),
+    Cat2SegMatchers.segMatchers(dict)
   )
   "Corp SegMatcher tests" should "pass" in {
     forAll(corpTestData) { (inStr, tag, expRanges) =>
       TestHelpers.runAndVerifyRanges(
+        TestVocabs.AllVocabDict,
         mmgr, inStr, tag, expRanges
       )
     }

@@ -20,6 +20,12 @@ object AAAuAff extends Serializable {
     write(auAff)
   }
 
+  def fromJson(json:String):AAAuAff = {
+    implicit val fmts = _fmts
+    import org.json4s.jackson.JsonMethods._
+    parse(json).extract[AAAuAff]
+  }
+
   def createFrom(auList:AuthorList):AAAuAff = {
     val allAffs:IndexedSeq[(String, AffInfo)] = auList.authors.flatMap(_.affInfo)
       .map { aff =>

@@ -406,15 +406,21 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "Department of Brain Science University of Ulsan College of Medicine",
       (0, 4, 7)
+    ),
+    testDataEntr(
+      "Temple University School of Medicine",
+      (0, 0, 2)
     )
   )
 
   private val mmgr = mmgrFrom(
-    Cat2SegMatchers.segMatchers
+    TestVocabs.AllVocabDict,
+    Cat2SegMatchers.segMatchers(TestVocabs.AllVocabDict)
   )
   "Cat2 seg matchers test" should "pass" in {
     forAll(univSegtestData) { (inStr, tag, expRanges) =>
       TestHelpers.runAndVerifyRanges(
+        TestVocabs.AllVocabDict,
         mmgr, inStr, tag, expRanges
       )
     }

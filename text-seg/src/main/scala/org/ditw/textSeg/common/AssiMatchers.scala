@@ -1,5 +1,5 @@
 package org.ditw.textSeg.common
-import org.ditw.common.InputHelpers
+import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.common.InputHelpers.splitVocabEntries
 import org.ditw.matcher.TokenMatchers.ngramT
 import org.ditw.matcher.{CompMatcherNs, TCompMatcher, TokenMatchers}
@@ -19,8 +19,8 @@ object AssiMatchers extends Serializable {
     TmAnd -> _And
   )
 
-  private[textSeg] val _ExtraTms = _ExtraTmData.map(
-    tmd => ngramT(splitVocabEntries(tmd._2), Vocabs.AllVocabDict, tmd._1)
+  private[textSeg] def _ExtraTms(dict:Dict) = _ExtraTmData.map(
+    tmd => ngramT(splitVocabEntries(tmd._2), dict, tmd._1)
   ) ++ List(
     TokenMatchers.emailMatcher(TmEmail)
   )

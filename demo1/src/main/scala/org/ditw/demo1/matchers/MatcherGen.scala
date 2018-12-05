@@ -16,19 +16,29 @@ object MatcherGen extends Serializable {
     _gnBlackList
   )
 
-  def loadDict(
-    gnsvc: GNSvc
-  ):Dict = {
+  def wordsFromGNSvc(gnsvc: GNSvc
+                    ):Iterable[Iterable[String]] = {
     val adm0s = gnsvc._cntryMap.values
     val keys = adm0s.flatMap(_.admNameMap.values.flatMap(_.keySet))
     val adm0Names = adm0s.flatMap(_.self.get.queryNames)
     val words = splitVocabEntries(keys.toSet ++ adm0Names ++ extraVocabs.flatten)
       .map(_.toIndexedSeq)
-    InputHelpers.loadDict(words)
+    words
+  }
+
+  def loadDict(
+    gnsvc: GNSvc
+  ):Dict = {
+    InputHelpers.loadDict(wordsFromGNSvc(gnsvc))
   }
 
   import TagHelper._
-  def gen(gnsvc:GNSvc, dict:Dict): (MatcherMgr, XtrMgr[Long]) = {
+
+  def gen(
+           gnsvc:GNSvc,
+           dict:Dict,
+           extras:Option[(Iterable[TTkMatcher], Iterable[TCompMatcher], Iterable[TPostProc])] = None
+         ): (MatcherMgr, XtrMgr[Long]) = {
     val tmlst = ListBuffer[TTkMatcher]()
     val cmlst = ListBuffer[TCompMatcher]()
     val pproclst = ListBuffer[TPostProc]()
@@ -73,6 +83,12 @@ object MatcherGen extends Serializable {
     xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
     xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
     // xtrlst += Xtrs.entXtrFirst4TagPfx(gnsvc, _CityAdmSeqPfx)
+    if (extras.nonEmpty) {
+      val ex = extras.get
+      tmlst ++= ex._1
+      cmlst ++= ex._2
+      pproclst ++= ex._3
+    }
 
     new MatcherMgr(
       tmlst.toList,
@@ -80,6 +96,7 @@ object MatcherGen extends Serializable {
       cmlst.toList,
       pproclst.toList
     ) -> XtrMgr.create(xtrlst.toList)
-
   }
+
+
 }

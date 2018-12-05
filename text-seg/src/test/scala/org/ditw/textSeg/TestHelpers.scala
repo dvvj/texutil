@@ -27,10 +27,11 @@ object TestHelpers extends Matchers {
   }
 
   def runAndVerifyRanges(
+    dict: Dict,
     mmgr:MatcherMgr,
     inStr:String, tag:String, expRanges:Set[(Int, Int, Int)]
   ):Unit = {
-    val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, Vocabs.AllVocabDict)
+    val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, dict)
     mmgr.run(matchPool)
     val res = matchPool.get(tag)
     val resRanges = res.map(_.range)

@@ -35,6 +35,8 @@ object TmTest1 extends App {
   import org.ditw.demo1.gndata.GNCntry._
 
   testTm(List(
+    "Department of Psychiatry, Washington University School of Medicine, St Louis, MO, USA.",
+    "Department of Psychiatry, Washington University School of Medicine, St. Louis, MO, USA.",
     "Wurzweiler School of Social Work, Yeshiva University, New York, USA.",
     "Department of Public Health Sciences, University of Rochester Medical Center, Rochester, NY, USA.",
     "Department of Obstetrics and Gynaecology, Hôpital Sainte-Justine and Université de Montréal, Montréal (Québec), Canada.less ",

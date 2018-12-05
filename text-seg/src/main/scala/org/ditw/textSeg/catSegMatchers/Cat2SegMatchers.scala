@@ -1,5 +1,5 @@
 package org.ditw.textSeg.catSegMatchers
-import org.ditw.common.{InputHelpers, ResourceHelpers}
+import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.matcher.{CompMatcherNs, MatcherMgr, TokenMatchers}
 import org.ditw.matcher.TokenMatchers.ngramT
 import org.ditw.textSeg.SegMatchers._
@@ -29,9 +29,9 @@ object Cat2SegMatchers {
 //    override def cms: List[TCompMatcher] = List(segUniv)
 //  }
   private[textSeg] val tagTmUnivOf = customTmTag("UnivOfVocab")
-  private[textSeg] val tmUnivOf = ngramT(
+  private[textSeg] def tmUnivOf(dict: Dict) = ngramT(
     InputHelpers.splitVocabEntries(Vocabs.__univOfVocab),
-    AllVocabDict,
+    dict,
     tagTmUnivOf
   )
 
@@ -93,12 +93,12 @@ object Cat2SegMatchers {
 
   private val UnivTagGroup = Tags.TagGroup4Univ
 
-  private val tmSegStopLeft = TokenMatchers.ngramT(
-    InputHelpers.splitVocabEntries(_UnivSegStopWordsLeft), AllVocabDict, UnivTagGroup.segLeftStopTag)
-  private val tmSegStopRight = TokenMatchers.ngramT(
-    InputHelpers.splitVocabEntries(_UnivSegStopWordsRight), AllVocabDict, UnivTagGroup.segRightStopTag)
+  private def tmSegStopLeft(dict:Dict) = TokenMatchers.ngramT(
+    InputHelpers.splitVocabEntries(_UnivSegStopWordsLeft), dict, UnivTagGroup.segLeftStopTag)
+  private def tmSegStopRight(dict:Dict) = TokenMatchers.ngramT(
+    InputHelpers.splitVocabEntries(_UnivSegStopWordsRight), dict, UnivTagGroup.segRightStopTag)
 
-  val segMatchers = new SegMatcher4Cat(
+  def segMatchers(dict:Dict) = new SegMatcher4Cat(
     cat = Category.Univ,
     tagGroup = TagGroup4Univ,
     keywords = _UnivWords,
@@ -107,7 +107,8 @@ object Cat2SegMatchers {
     segStopTagsLeft = Set(UnivTagGroup.segLeftStopTag, AssiMatchers._CmDeptOfTag, TmEmail),
     segStopTagsRight = Set(UnivTagGroup.segRightStopTag, AssiMatchers._CmXDeptTag, TmEmail),
     _canBeStart,
-    List(tmUnivOf, tmSegStopLeft, tmSegStopRight),
+    dict,
+    List(tmUnivOf(dict), tmSegStopLeft(dict), tmSegStopRight(dict)),
     List(cmUnivOf, segUnivOf, segUnivOfVocab, cmUnivOfOf, segUnivOfVocabOf),
     List(univOfVocabOverride, univOfVocabOfOverride)
   )

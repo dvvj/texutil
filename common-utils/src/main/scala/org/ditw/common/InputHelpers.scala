@@ -1,6 +1,7 @@
 package org.ditw.common
 
 import TypeCommon._
+import org.ditw.tknr.TknrHelpers
 object InputHelpers extends Serializable {
 
   def loadDict0(words:Iterable[Iterable[String]]):Dict = {
@@ -25,11 +26,23 @@ object InputHelpers extends Serializable {
   def splitVocabToSet(phrases:Iterable[String]):Set[String] = {
     phrases.flatMap(SpaceSplitter.split).map(_.toLowerCase()).toSet
   }
+
+  private val punctCharSet = TknrHelpers.PunctChars.toSet
   def splitVocabEntries(phrases:Set[String]):Set[Array[String]] = {
-    phrases.map(SpaceSplitter.split)
+    phrases.map(splitVocabEntry)
   }
+
   def splitVocabEntry(phrase:String):Array[String] = {
-    SpaceSplitter.split(phrase)
+    val tokenSeq = SpaceSplitter.split(phrase)
+    tokenSeq.flatMap { token =>
+      if (punctCharSet.contains(token.last)) {
+        if (token.length > 1)
+          Option(token.substring(0, token.length - 1)) // todo
+        else
+          None
+      } else
+        Option(token)
+    }
   }
 
 }

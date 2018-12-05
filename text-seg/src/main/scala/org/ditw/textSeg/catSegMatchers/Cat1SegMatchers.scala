@@ -1,4 +1,5 @@
 package org.ditw.textSeg.catSegMatchers
+import org.ditw.common.Dict
 import org.ditw.matcher.{TCompMatcher, TTkMatcher}
 import org.ditw.textSeg.common.CatSegMatchers.Category.Category
 import org.ditw.textSeg.common.CatSegMatchers.{Category, SegMatcher4Cat, TSegMatchers4Cat}
@@ -27,7 +28,7 @@ object Cat1SegMatchers {
 //    override def cms: List[TCompMatcher] = List(segCorp)
 //  }
 
-  private[textSeg] val segMatchers = new SegMatcher4Cat(
+  private[textSeg] def segMatchers(dict: Dict) = new SegMatcher4Cat(
     cat = Category.Corp,
     tagGroup = TagGroup4Corp,
     keywords = _CorpWords,
@@ -35,7 +36,8 @@ object Cat1SegMatchers {
     stopKeywords = Set(),
     segStopTagsLeft = Set(),
     segStopTagsRight = Set(),
-    false
+    false,
+    dict
   )
 
 }

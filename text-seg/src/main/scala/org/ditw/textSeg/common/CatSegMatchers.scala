@@ -1,4 +1,5 @@
 package org.ditw.textSeg.common
+import org.ditw.common.Dict
 import org.ditw.common.InputHelpers.splitVocabEntries
 import org.ditw.matcher.TokenMatchers.ngramT
 import org.ditw.matcher.{MatcherMgr, TCompMatcher, TPostProc, TTkMatcher}
@@ -28,12 +29,13 @@ object CatSegMatchers {
   private def createTmIfNonEmptyVoc(
     voc:Set[String],
     tag:String,
-    addTo:ListBuffer[TTkMatcher]
+    addTo:ListBuffer[TTkMatcher],
+    dict: Dict
   ):Unit = {
     if (voc.nonEmpty) {
       addTo += ngramT(
         splitVocabEntries(voc),
-        AllVocabDict,
+        dict,
         tag
       )
     }
@@ -49,6 +51,7 @@ object CatSegMatchers {
     segStopTagsLeft:Set[String],
     segStopTagsRight:Set[String],
     canBeStart:Boolean,
+    dict: Dict,
     extraTms:List[TTkMatcher] = Nil,
     extraCms:List[TCompMatcher] = Nil,
     extraPostProcs:List[TPostProc] = Nil
@@ -58,12 +61,12 @@ object CatSegMatchers {
       val t = ListBuffer[TTkMatcher](
         ngramT(
           splitVocabEntries(keywords),
-          AllVocabDict,
+          dict,
           tagGroup.keywordTag
         )
       )
-      createTmIfNonEmptyVoc(gazWords, tagGroup.gazTag, t)
-      createTmIfNonEmptyVoc(stopKeywords, tagGroup.stopWordsTag, t)
+      createTmIfNonEmptyVoc(gazWords, tagGroup.gazTag, t, dict)
+      createTmIfNonEmptyVoc(stopKeywords, tagGroup.stopWordsTag, t, dict)
 
       extraTms ++ t
     }

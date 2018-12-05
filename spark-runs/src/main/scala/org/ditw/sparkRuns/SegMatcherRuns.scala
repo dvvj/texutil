@@ -3,10 +3,11 @@ import java.io.File
 
 import org.apache.commons.io.FileUtils
 import org.apache.spark.storage.StorageLevel
-import org.ditw.common.SparkUtils
+import org.ditw.common.{InputHelpers, SparkUtils}
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.AllCatMatchers._
 import org.ditw.textSeg.common.Tags
+import org.ditw.textSeg.common.Vocabs.allWords
 
 object SegMatcherRuns extends App {
 
@@ -17,8 +18,10 @@ object SegMatcherRuns extends App {
     "/media/sf_vmshare/aff-w2v"
   )
 
+  val dict = InputHelpers.loadDict(allWords)
   val mmgr = mmgrFrom(
-    Cat2SegMatchers.segMatchers
+    dict,
+    Cat2SegMatchers.segMatchers(dict)
   )
   val brMgr = spark.broadcast(mmgr)
   println(s"Line count: ${affLines.count}")
@@ -26,7 +29,7 @@ object SegMatcherRuns extends App {
   val brEndingChars = spark.broadcast(Set(",", ";"))
 
   val allUnivs = affLines.map { l =>
-    val mp = run(brMgr.value, l)
+    val mp = run(brMgr.value, l, dict)
     val matches = mp.get(Tags.TagGroup4Univ.segTag)
     val univNames = matches.map { m =>
       var t = m.range.origStr
