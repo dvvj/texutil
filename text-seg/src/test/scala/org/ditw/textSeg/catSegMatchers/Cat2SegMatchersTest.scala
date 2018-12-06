@@ -454,6 +454,30 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "Department of Anesthesiology Duke University Medical Center Durham, NC.",
       (0, 3, 5)
+    ),
+    testDataEntr(
+      "Marine Biological Laboratory, Boston University Marine Program",
+      (0, 3, 5)
+    ),
+    testDataEntr(
+      "Marine Biological Laboratory, Boston University Marine Program",
+      (0, 3, 5)
+    ),
+    testDataEntr(
+      "University of Iowa Roy J. and Lucille A. Carver College of Medicine",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "Columbia University Mailman School of Public Health",
+      (0, 0, 2)
+    ),
+    testDataEntr(
+      "Cornell University Weill Medical College",
+      (0, 0, 2)
+    ),
+    testDataEntr(
+      "Tokyo Medical and Dental University Graduate School",
+      (0, 0, 5)
     )
   )
 

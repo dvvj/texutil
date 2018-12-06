@@ -24,7 +24,7 @@ object InputHelpers extends Serializable {
 
   private val SpaceSplitter = "\\s+".r
   def splitVocabToSet(phrases:Iterable[String]):Set[String] = {
-    phrases.flatMap(SpaceSplitter.split).map(_.toLowerCase()).toSet
+    phrases.flatMap(splitVocabEntry).map(_.toLowerCase()).toSet
   }
 
   private val punctCharSet = TknrHelpers.PunctChars.toSet

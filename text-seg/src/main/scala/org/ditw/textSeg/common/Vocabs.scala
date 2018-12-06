@@ -74,10 +74,13 @@ object Vocabs extends Serializable {
 
   private[textSeg] val _UnivStopWords = loadStopWords(Univ)
   private[textSeg] val _UnivGazWords = _catToGazSet(Univ)
+  private val namedSchoolColleges =
+    ResourceHelpers.load("/shared/named_school_colleges.json", NamedSchoolCollege.fromJson)
+  private val namedSchoolCollegeNames = namedSchoolColleges.flatMap { n =>
+    n.aliases :+ n.name
+  }.map(_.toLowerCase()).toSet
 
   private[textSeg] val __UnivSegStopWordsCommon = Set(
-    "Harrison School of Pharmacy",
-    "Carver College of Medicine",
     "school",
     "college",
     "Hospital",
@@ -111,7 +114,7 @@ object Vocabs extends Serializable {
     "-",
     "Institute",
     "from"
-  ).map(_.toLowerCase()) ++ otherGazWordsAsStopWords(Category.Univ)
+  ).map(_.toLowerCase()) ++ namedSchoolCollegeNames ++ otherGazWordsAsStopWords(Category.Univ)
 
   private[textSeg] val _UnivSegStopWordsLeftExtra = Set(
     "of", "at"
@@ -140,6 +143,7 @@ object Vocabs extends Serializable {
     _UnivSegStopWordsLeftExtra,
     _UnivSegStopWordsRightExtra,
     __univOfVocab,
+    namedSchoolCollegeNames,
     _And,
     _DeptTypes,
     _DeptWords
