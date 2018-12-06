@@ -28,6 +28,18 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
 
   private val univSegtestData = Table(
     ("inStr", "tag", "expRanges"),
+//    testDataEntr(
+//      "Department of Epidemiology and Medicine Kyoto Prefectural University of Medicine",
+//      (0, 5, 10)
+//    ),
+    testDataEntr(
+      "University of California-San Diego",
+      (0, 0, 3)
+    ),
+    testDataEntr(
+      "Department of Epidemiology and Environmental Health Juntendo University Graduate School of Medicine Tokyo Japan.",
+      (0, 6, 8)
+    ),
     testDataEntr(
       "Wayne State University/Detroit Medical Center, Detroit, MI, USA.",
       (0, 0, 3)
@@ -418,6 +430,18 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "Georgetown University/Providence Hospital Family Medicine Residency Program, Washington, DC, USA.",
       (0, 0, 2)
+    ),
+    testDataEntr(
+      "1 Duke University Medical Center Durham",
+      (0, 1, 3)
+    ),
+    testDataEntr(
+      "Department of Psychiatry and Behavioral Sciences Stanford University School of Medicine Stanford CA USA.",
+      (0, 6, 8)
+    ),
+    testDataEntr(
+      "Department of Neurology, Hematology, Metabolism, Endocrinology and Diabetology Yamagata University",
+      (0, 8, 10)
     )
   )
 

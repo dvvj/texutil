@@ -76,12 +76,20 @@ object Vocabs extends Serializable {
   private[textSeg] val _UnivGazWords = _catToGazSet(Univ)
 
   private[textSeg] val __UnivSegStopWordsCommon = Set(
+    "Harrison School of Pharmacy",
+    "Carver College of Medicine",
     "school",
     "college",
+    "Hospital",
+    "Hospitals",
     "Center",
     "sw medical center",
     "southwestern medical center",
     "medical center",
+    "Cancer Center",
+    "Health Center",
+    "medical Centre",
+    "downstate medical center",
     "medical campus",
     "biomedical campus",
     "medical school",
@@ -98,7 +106,7 @@ object Vocabs extends Serializable {
     "-",
     "Institute",
     "from"
-  ) ++ otherGazWordsAsStopWords(Category.Univ)
+  ).map(_.toLowerCase()) ++ otherGazWordsAsStopWords(Category.Univ)
 
   private[textSeg] val _UnivSegStopWordsLeftExtra = Set(
     "of", "at"

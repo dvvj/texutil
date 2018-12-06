@@ -8,6 +8,7 @@ object Tags extends Serializable {
   private[textSeg] val TmOf = builtInTag("Of")
   private[textSeg] val TmAnd = builtInTag("And")
   private[textSeg] val TmEmail = builtInTag("Email")
+  private[textSeg] val TmDigits = builtInTag("Digits")
 
   private[textSeg] val TmTagPfx = "__TagTm"
   private[textSeg] val CmTagPfx = "__TagCm"

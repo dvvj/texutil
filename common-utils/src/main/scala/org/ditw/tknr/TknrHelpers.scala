@@ -88,7 +88,7 @@ object TknrHelpers extends Serializable {
     Set(",;")
   )
   private [ditw] val TokenSplitter_DashSlash = TokenSplitterCond(
-    "(?i)(university|colorado|Pharmacy|Hospital)[\\-/].*",
+    "(?i)(university|colorado|Pharmacy|Hospital|center|centre|California)[\\-/].*",
     "[\\-/]+",
     Set("-", "/")
   )

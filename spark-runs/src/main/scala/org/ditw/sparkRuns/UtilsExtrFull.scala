@@ -74,8 +74,21 @@ object UtilsExtrFull {
         affMap.mapValues { aff =>
           val mp = MatchPool.fromStr(aff, TknrHelpers.TknrTextSeg, brDict.value)
           brMmgr.value.run(mp)
-          val univs = mp.get(TagGroup4Univ.segTag).map(_.toString)
+          val univRngs = mp.get(TagGroup4Univ.segTag).map(_.range)
           val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)
+          val univs =
+            if (univRngs.size == 1 && rng2Ents.size == 1) { // name fix, todo: better structure
+              val univRng = univRngs.head
+              val gnEntRng = rng2Ents.head._1
+              if (univRng.overlap(gnEntRng) && gnEntRng.start > univRng.start) {
+                val newRng = univRng.copy(end = gnEntRng.start)
+                Set(newRng.str)
+              }
+              else {
+                univRngs.map(_.str)
+              }
+            }
+            else univRngs.map(_.str)
           (aff, rng2Ents.map(identity), univs)
         }.toIndexedSeq.sortBy(_._1).map(p => (pmid, p._1, p._2))
       }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
@@ -86,7 +99,7 @@ object UtilsExtrFull {
     SparkUtils.deleteLocal(savePathEmpty)
     xtrs.filter(xtr => xtr._3._2.isEmpty || xtr._3._3.isEmpty).saveAsTextFile(savePathEmpty)
 
-    val hasXtrs1 = xtrs.filter(xtr => xtr._3._2.size == 1 && xtr._3._3.nonEmpty)
+    val hasXtrs1 = xtrs.filter(xtr => xtr._3._2.size == 1 && xtr._3._3.size == 1)
     val savePath1 = "/media/sf_vmshare/pmjs/9-x-s"
     SparkUtils.deleteLocal(savePath1)
     hasXtrs1.map { p =>
@@ -94,7 +107,37 @@ object UtilsExtrFull {
       trace(pmid, localId, pp)
     }.saveAsTextFile(savePath1)
 
-    val hasXtrs = xtrs.filter(xtr => xtr._3._2.size > 1 && xtr._3._3.nonEmpty)
+    val savePath1a = "/media/sf_vmshare/pmjs/9-x-agg"
+    SparkUtils.deleteLocal(savePath1a)
+    hasXtrs1.map { p =>
+        val (pmid, localId, pp) = p
+        val univ = p._3._3.head
+        val gnEnt = p._3._2.values.head.head
+//        if (univ.endsWith(gnEnt.name))
+//          univ = univ.substring(0, univ.length-gnEnt.name.length).trim // name fix, todo: better structure
+        (
+          univ,
+          (gnEnt.gnid, gnEnt.toString, pmid, localId)
+        )
+      }
+      .groupBy(_._1)
+      .mapValues{ p =>
+        p.map(_._2).groupBy(_._1)
+          .mapValues { pp =>
+            val gnstr = pp.head._2
+            val fps = pp.toList.sortBy(_._3).map(tp => s"${tp._3}-${tp._4}")
+            s"$gnstr #${fps.size}: ${fps.mkString(",")}"
+          }.toList.sortBy(_._2)
+          .map(_._2)
+          .mkString("\t", "\n\t", "")
+      }
+      .sortBy(_._1)
+      .map { p =>
+        s"${p._1}\n${p._2}"
+      }
+      .saveAsTextFile(savePath1a)
+
+    val hasXtrs = xtrs.filter(xtr => xtr._3._2.size > 1 && xtr._3._3.nonEmpty || xtr._3._2.nonEmpty && xtr._3._3.size > 1)
     val savePath = "/media/sf_vmshare/pmjs/9-x-m"
     SparkUtils.deleteLocal(savePath)
     hasXtrs.map { p =>

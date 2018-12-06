@@ -1,4 +1,6 @@
+Advanced Reproductive Medicine
 Anatomy
+Behavioral Sciences
 Biochemistry
 Biology
 Brain Science
@@ -6,8 +8,19 @@ Cell Biology
 Cellular Biology
 Chemical and Biomolecular Engineering
 Chemistry
+Community Health
 Developmental Biology
+Diabetology
+Endocrinology
+Environmental Health
+Epidemiology
 Health Science
+Health Sciences
+Hematology
+Medicine
+Metabolism
+Neurology
 Pharmacology
 Psychology
 Physical Therapy
+Psychiatry
