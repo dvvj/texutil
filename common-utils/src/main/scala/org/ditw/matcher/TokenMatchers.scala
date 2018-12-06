@@ -104,6 +104,8 @@ object TokenMatchers extends Serializable {
   def emailMatcher(tag:String):TTkMatcher = regex(_EmailPtn, Option(tag))
   private val _DigitsPtn = "\\d+"
   def digitsMatcher(tag:String):TTkMatcher = regex(_DigitsPtn, Option(tag))
+  private val _DigitsDashDigitsPtn = "\\d+(-\\d+)+"
+  def digitsDashDigitsMatcher(tag:String):TTkMatcher = regex(_DigitsDashDigitsPtn, Option(tag))
 
   // ---------- Prefixed-By
   private [matcher] trait SuffixedOrPrefixedBy extends TTkMatcher {

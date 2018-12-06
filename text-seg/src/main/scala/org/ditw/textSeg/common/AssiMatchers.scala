@@ -19,11 +19,13 @@ object AssiMatchers extends Serializable {
     TmAnd -> _And
   )
 
+  import TokenMatchers._
   private[textSeg] def _ExtraTms(dict:Dict) = _ExtraTmData.map(
     tmd => ngramT(splitVocabEntries(tmd._2), dict, tmd._1)
   ) ++ List(
-    TokenMatchers.emailMatcher(TmEmail),
-    TokenMatchers.digitsMatcher(TmDigits)
+    emailMatcher(TmEmail),
+    digitsMatcher(TmDigits),
+    digitsDashDigitsMatcher(TmDigitsDashDigits)
   )
 
   private val _CmDeptTypeSeqTag = CmTagPfx + "DeptTypeSeq"

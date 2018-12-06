@@ -42,6 +42,7 @@ object Cat2SegMatchers {
     tagCmUnivOf
   )
   private[textSeg] val tagSegUnivOf = customCmTag("SegUnivOf")
+  private[textSeg] val tagSegUnivOfVocabEW = customCmTag("SegUnivOfVocabEW")
   private[textSeg] val tagSegUnivOfVocab = customCmTag("SegUnivOfVocab")
   private[textSeg] val segUnivOf = segByPfxSfx(
     Set(tagCmUnivOf), _SegPfxs, _SegSfxs,
@@ -49,11 +50,17 @@ object Cat2SegMatchers {
     tagSegUnivOf
   )
   import CompMatchers._
-  private[textSeg] val segUnivOfVocab =
+  private[textSeg] val segUnivOfVocabEW =
     endWithTags(
       byTag(tagSegUnivOf),
       Set(tagTmUnivOf),
-      tagSegUnivOfVocab
+      tagSegUnivOfVocabEW
+  )
+  private[textSeg] val segUnivOfVocab = segByTags(
+    byTag(tagSegUnivOfVocabEW),
+    Set(AssiMatchers._CmDeptOfTag),
+    Set(),
+    tagSegUnivOfVocab
   )
 
   private[textSeg] val tagCmUnivOfOf = customCmTag("UnivOfVocabOf")
@@ -104,12 +111,12 @@ object Cat2SegMatchers {
     keywords = _UnivWords,
     gazWords = _UnivGazWords,
     stopKeywords = _UnivStopWords,
-    segStopTagsLeft = Set(UnivTagGroup.segLeftStopTag, AssiMatchers._CmDeptOfTag, TmEmail, TmDigits),
-    segStopTagsRight = Set(UnivTagGroup.segRightStopTag, AssiMatchers._CmXDeptTag, TmEmail, TmDigits),
+    segStopTagsLeft = Set(UnivTagGroup.segLeftStopTag, AssiMatchers._CmDeptOfTag, TmEmail, TmDigits, TmDigitsDashDigits),
+    segStopTagsRight = Set(UnivTagGroup.segRightStopTag, AssiMatchers._CmXDeptTag, TmEmail, TmDigits, TmDigitsDashDigits),
     _canBeStart,
     dict,
     List(tmUnivOf(dict), tmSegStopLeft(dict), tmSegStopRight(dict)),
-    List(cmUnivOf, segUnivOf, segUnivOfVocab, cmUnivOfOf, segUnivOfVocabOf),
+    List(cmUnivOf, segUnivOf, segUnivOfVocabEW, segUnivOfVocab, cmUnivOfOf, segUnivOfVocabOf),
     List(univOfVocabOverride, univOfVocabOfOverride)
   )
 }
