@@ -15,6 +15,7 @@ object Adm0Gen extends Serializable {
   private val EmptyPairs = Iterable[(String, List[String])]()
   private val LookAroundSfxSet = Set(",")
   private val LookAroundSfxCounts_CityState = (3, 1)
+  private val LookAroundSfxCounts_StateCity = (1, 3)
   private val LookAroundSfxCounts_CityCountry = (4, 1)
   def genMatcherExtractors(gnsvc:GNSvc, adm0:TGNMap, dict:Dict)
     :(List[TTkMatcher], List[TCompMatcher], List[TXtr[Long]], TPostProc) = {
@@ -65,23 +66,22 @@ object Adm0Gen extends Serializable {
     val tms = tmAdm1s :: name2Adm1SubEnts.toList
 
     val xtrs = ListBuffer[TXtr[Long]]()
-    val cms = adm0.admNameMap.keySet.map { admc =>
+    val cms = adm0.admNameMap.keySet.flatMap { admc =>
       val csTag = cityStateTag(admc)
-      //xtrs += Xtrs.entXtr4Tag(csTag)
-
-//      CompMatcherNs.lngOfTags(
-//        IndexedSeq(
-//          adm1SubEntTmTag(admc),
-//          admDynTag(admc)
-//        ),
-//        csTag
-//      )
-      CompMatcherNXs.sfxLookAroundByTag_R2L(
+      val cs = CompMatcherNXs.sfxLookAroundByTag_R2L(
         LookAroundSfxSet, LookAroundSfxCounts_CityState,
         admDynTag(admc),
         adm1SubEntTmTag(admc),
         csTag
       )
+      val scTag = stateCityTag(admc)
+      val sc = CompMatcherNXs.sfxLookAroundByTag_R2L(
+        LookAroundSfxSet, LookAroundSfxCounts_StateCity,
+        admDynTag(admc),
+        adm1SubEntTmTag(admc),
+        scTag
+      )
+      List(cs, sc)
     }.toList
     val ct = countryTag(adm0.countryCode)
     val t:IndexedSeq[(String, IndexedSeq[Long])] = adm2PlusMap.toIndexedSeq.flatMap(_._2.toIndexedSeq)
@@ -114,7 +114,7 @@ object Adm0Gen extends Serializable {
 
     val pprocBlockers = MatcherMgr.postProcBlocker_TagPfx(
       Map(
-        _CityStatePfx -> Set(cityCountryTag(adm0.countryCode))
+        _CityStatePfx -> Set(_CityCountryPfx, _StateCityPfx)
       )
     )
 

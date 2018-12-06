@@ -4,6 +4,7 @@ import org.ditw.demo1.gndata.GNCntry.GNCntry
 object TagHelper extends Serializable {
 
   val TmGNBlacklist = "TmGNBlacklist"
+  val TmGNWhitelist = "TmGNWhitelist"
 
   val TmAdm0 = "TmAdm0"
   private val AdmTmPfx = "TmAdm_"
@@ -19,6 +20,8 @@ object TagHelper extends Serializable {
   def cityOfCountryTag(cntry: GNCntry):String = _CityTmPfx + cntry
   private[demo1] val _CityStatePfx = "_CITY_STATE_"
   def cityStateTag(adm1c: String):String = _CityStatePfx + adm1c
+  private[demo1] val _StateCityPfx = "_STATE_CITY_"
+  def stateCityTag(adm1c: String):String = _StateCityPfx + adm1c
   private[demo1] val _CityCountryPfx = "_CITY_CNTR_"
   def cityCountryTag(cntry: GNCntry):String = _CityCountryPfx + cntry
   private[demo1] val GNIdTagPfx = "GNId_"

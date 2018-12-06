@@ -11,9 +11,10 @@ object MatcherGen extends Serializable {
   import InputHelpers._
 
   private[demo1] val _gnBlackList = ResourceHelpers.loadStrs("/gn_blacklist.txt").toSet
+  private[demo1] val _gnWhiteList = ResourceHelpers.loadStrs("/gn_whitelist.txt").toSet
 
   private val extraVocabs = List(
-    _gnBlackList
+    _gnBlackList, _gnWhiteList
   )
 
   def wordsFromGNSvc(gnsvc: GNSvc
@@ -48,7 +49,13 @@ object MatcherGen extends Serializable {
       dict,
       TmGNBlacklist
     )
+    val tmGNWhiteList = TokenMatchers.ngramT(
+      splitVocabEntries(_gnWhiteList),
+      dict,
+      TmGNWhitelist
+    )
     tmlst += tmGNBlackList
+    tmlst += tmGNWhiteList
 
     val adm0s: Iterable[TGNMap] = gnsvc._cntryMap.values
     val adm0Name2Tag = adm0s.flatMap { adm0 =>
@@ -77,10 +84,12 @@ object MatcherGen extends Serializable {
     val tmPProc = MatcherMgr.postProcBlocker(
       Map(
         TmGNBlacklist -> tmBlTargets.toSet
-      )
+      ),
+      Set(TmGNWhitelist)
     )
 
     xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
+    xtrlst += Xtrs.entXtr4TagPfxLast(_StateCityPfx)
     xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
     // xtrlst += Xtrs.entXtrFirst4TagPfx(gnsvc, _CityAdmSeqPfx)
     if (extras.nonEmpty) {

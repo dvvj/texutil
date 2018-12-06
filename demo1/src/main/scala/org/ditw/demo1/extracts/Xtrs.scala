@@ -34,6 +34,32 @@ object Xtrs extends Serializable {
     }
   }
 
+  private[demo1] def entXtr4TagPfxLast(tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+    override def _extract(m: TkMatch)
+    : List[Long] = {
+      extractEntId(m.children.last)
+    }
+  }
+
+  private val EmptyIds = List[Long]()
+  private[demo1] def entXtr4TagPfx_Level(gnsvc:GNSvc, tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+    override def _extract(m: TkMatch)
+    : List[Long] = {
+      val allIds = extractEntId(m)
+      val allEnts = allIds.flatMap(gnsvc.entById)
+      if (allEnts.nonEmpty) {
+        val maxLevel = allEnts.map(_.admLevel).max
+        val maxLevelEnts = allEnts.filter(_.admLevel == maxLevel)
+        val maxLevelNonAdm = maxLevelEnts.filter(!_.isAdm)
+        if (maxLevelNonAdm.nonEmpty)
+          maxLevelNonAdm.map(_.gnid)
+        else
+          maxLevelEnts.map(_.gnid)
+      }
+      else EmptyIds
+    }
+  }
+
   private[demo1] def entXtrFirst4TagPfx(gnsvc:GNSvc, tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
     override def _extract(m: TkMatch)
     : List[Long] = {

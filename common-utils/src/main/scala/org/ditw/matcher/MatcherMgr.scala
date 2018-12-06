@@ -99,9 +99,14 @@ object MatcherMgr extends Serializable {
     }
   }
 
-  private[ditw] def postProcBlocker(blockTagMap:Map[String, Set[String]]):TPostProc = new TPostProc {
+  private val EmptyTagWhiteList = Set[String]()
+  private[ditw] def postProcBlocker(
+    blockTagMap:Map[String, Set[String]],
+    tagsWhitelist:Set[String] = EmptyTagWhiteList
+  ):TPostProc = new TPostProc {
     override def run(matchPool: MatchPool): Unit = {
       val toRemoveList = ListBuffer[TkMatch]()
+      val whiteListRanges = matchPool.get(tagsWhitelist).map(_.range)
       blockTagMap.foreach { kv =>
         val (blockerTag, blockeeTags) = kv
         val blockerRanges = matchPool.get(blockerTag).map(_.range)
@@ -109,7 +114,8 @@ object MatcherMgr extends Serializable {
         val blockees = matchPool.get(blockeeTags)
 
         blockees.foreach { blockee =>
-          if (blockerRanges.exists(_.overlap(blockee.range))) {
+          if (!whiteListRanges.contains(blockee.range) &&
+            blockerRanges.exists(_.overlap(blockee.range))) {
             toRemoveList += blockee
           }
         }
@@ -123,9 +129,12 @@ object MatcherMgr extends Serializable {
     override def run(matchPool: MatchPool): Unit = {
       val toRemoveList = ListBuffer[TkMatch]()
       blockTagMap.foreach { kv =>
-        val (blockerTagPfx, blockeeTags) = kv
+        val (blockerTagPfx, blockeeTagPfxs) = kv
         val blockerTags = matchPool.allTags()
           .filter(_.startsWith(blockerTagPfx))
+          .toSet
+        val blockeeTags = matchPool.allTags()
+          .filter(blockeeTag => blockeeTagPfxs.exists(blockeeTag.startsWith))
           .toSet
         val blockerRanges = matchPool.get(blockerTags).map(_.range)
 
