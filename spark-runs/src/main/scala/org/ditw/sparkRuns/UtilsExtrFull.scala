@@ -143,14 +143,19 @@ object UtilsExtrFull {
 //          .map(_._2)
 //          .mkString("\t", "\n\t", "")
       }
-      .map { p =>
-        val affGns = p._2.values.map { tp =>
-          AffGN(tp._1, tp._2, tp._3.toIndexedSeq)
+      .flatMap { p =>
+        val affGns = p._2.values
+          .filter(_._3.size >= 5)
+          .map { tp =>
+            AffGN(tp._1, tp._2, tp._3.toIndexedSeq)
+          }
+        if (affGns.nonEmpty) {
+          val segRes = SegGN(
+            p._1, affGns.toIndexedSeq
+          )
+          Option(p._1 -> segRes)
         }
-        val segRes = SegGN(
-          p._1, affGns.toIndexedSeq
-        )
-        p._1 -> segRes
+        else None
       }
       .sortBy(_._1.toLowerCase())
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)

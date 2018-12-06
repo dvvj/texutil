@@ -90,7 +90,7 @@ object MatcherGen extends Serializable {
 
     xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
     xtrlst += Xtrs.entXtr4TagPfxLast(_StateCityPfx)
-    xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
+    // xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
     // xtrlst += Xtrs.entXtrFirst4TagPfx(gnsvc, _CityAdmSeqPfx)
     if (extras.nonEmpty) {
       val ex = extras.get
