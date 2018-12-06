@@ -143,32 +143,34 @@ object UtilsExtrFull {
 //          .map(_._2)
 //          .mkString("\t", "\n\t", "")
       }
-      .sortBy(_._1.toLowerCase())
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
-
-    segGns.map { p =>
+      .map { p =>
         val affGns = p._2.values.map { tp =>
           AffGN(tp._1, tp._2, tp._3.toIndexedSeq)
         }
         val segRes = SegGN(
           p._1, affGns.toIndexedSeq
         )
-        SegGN.toJson(segRes)
+        p._1 -> segRes
       }
+      .sortBy(_._1.toLowerCase())
+      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+
+    segGns.mapValues(SegGN.toJson)
+      .values
       .saveAsTextFile(savePath1a)
 
-//    val savePath1b = "/media/sf_vmshare/pmjs/9-x-agg"
-//    SparkUtils.del(spark, savePath1b)
-//    segGns.map { p =>
-//      val affGns = p._2.values.map { tp =>
-//        AffGN(tp._1, tp._2, tp._3.toIndexedSeq)
-//      }
-//      val segRes = SegGN(
-//        p._1, affGns.toIndexedSeq
-//      )
-//      SegGN.toJson(segRes)
-//    }
-//      .saveAsTextFile(savePath1b)
+    val savePath1b = "/media/sf_vmshare/pmjs/9-x-agg"
+    SparkUtils.del(spark, savePath1b)
+    segGns.sortBy(_._1.toLowerCase())
+      .map { p =>
+        val segGn = p._2
+        val affTr = segGn.affGns.map { affGn =>
+          val fps = affGn.pmAffFps.sorted.mkString(",")
+          s"${affGn.gnrep}: $fps"
+        }.mkString("\t", "\n\t", "")
+        s"${segGn.name}\n$affTr"
+      }
+      .saveAsTextFile(savePath1b)
 
     val hasXtrs = xtrs.filter(xtr => xtr._3._2.size > 1 && xtr._3._3.nonEmpty || xtr._3._2.nonEmpty && xtr._3._3.size > 1)
     val savePath = "/media/sf_vmshare/pmjs/9-x-m"
