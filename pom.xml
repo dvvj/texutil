@@ -12,6 +12,7 @@
         <scala.minor.version>2.11</scala.minor.version>
         <spark.version>2.3.0</spark.version>
         <hadoop_version>2.7.3</hadoop_version>
+        <jackson_version>2.6.5</jackson_version>
     </properties>
 
     <groupId>org.ditw</groupId>
@@ -215,6 +216,22 @@
                 <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-common</artifactId>
                 <version>${hadoop_version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>${jackson_version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>${jackson_version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

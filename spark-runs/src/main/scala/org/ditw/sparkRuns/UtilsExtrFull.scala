@@ -41,11 +41,25 @@ object UtilsExtrFull {
   }
 
   def main(args:Array[String]):Unit = {
-    val spark = SparkUtils.sparkContextLocal()
+    val runLocally = if (args.length > 0) args(0).toBoolean else true
+    val inputPath = if (args.length > 1) args(1) else "file:///media/sf_vmshare/pmjs/pmj9AuAff/"
+    val inputGNPath = if (args.length > 2) args(2) else "file:///media/sf_vmshare/gns/all"
+    val outputPathJson = if (args.length > 3) args(3) else "file:///media/sf_vmshare/pmjs/9-x-json"
+    val outputPathTrace = if (args.length > 4) args(4) else "file:///media/sf_vmshare/pmjs/9-x-agg"
+    val parts = if (args.length > 5) args(5).toInt else 4
+
+    val spark =
+      if (runLocally) {
+        SparkUtils.sparkContextLocal()
+      }
+      else {
+        SparkUtils.sparkContext(false, "Full Extraction", parts)
+      }
+
 
     val gnLines = spark.textFile(
       //"/media/sf_vmshare/fp2Affs_uniq"
-      "/media/sf_vmshare/gns/all"
+      inputGNPath
     ).map(tabSplitter.split)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val ccs = Set(
@@ -65,7 +79,7 @@ object UtilsExtrFull {
 
     printlnT0("Running extraction ...")
 
-    val xtrs = spark.textFile("/media/sf_vmshare/pmjs/pmj9AuAff")
+    val xtrs = spark.textFile(inputPath)
       .flatMap { l =>
         val firstComma = l.indexOf(",")
         val pmid = l.substring(1, firstComma).toLong
@@ -96,20 +110,25 @@ object UtilsExtrFull {
 
     printlnT0("Saving results ...")
 
-    val savePathEmpty = "/media/sf_vmshare/pmjs/9-e"
-    SparkUtils.deleteLocal(savePathEmpty)
-    xtrs.filter(xtr => xtr._3._2.isEmpty || xtr._3._3.isEmpty).saveAsTextFile(savePathEmpty)
+    if (runLocally) {
+      val savePathEmpty = "/media/sf_vmshare/pmjs/9-e"
+      SparkUtils.deleteLocal(savePathEmpty)
+      xtrs.filter(xtr => xtr._3._2.isEmpty || xtr._3._3.isEmpty).saveAsTextFile(savePathEmpty)
+    }
 
     val hasXtrs1 = xtrs.filter(xtr => xtr._3._2.size == 1 && xtr._3._3.size == 1)
-    val savePath1 = "/media/sf_vmshare/pmjs/9-x-s"
-    SparkUtils.deleteLocal(savePath1)
-    hasXtrs1.map { p =>
-      val (pmid, localId, pp) = p
-      trace(pmid, localId, pp)
-    }.saveAsTextFile(savePath1)
+    if (runLocally) {
+      val savePath1 = "/media/sf_vmshare/pmjs/9-x-s"
+      SparkUtils.deleteLocal(savePath1)
+      hasXtrs1
+      .map { p =>
+        val (pmid, localId, pp) = p
+        trace(pmid, localId, pp)
+      }
+      .saveAsTextFile(savePath1)
+    }
 
-    val savePath1a = "/media/sf_vmshare/pmjs/9-x-json"
-    SparkUtils.del(spark, savePath1a)
+    SparkUtils.del(spark, outputPathJson)
     val segGns = hasXtrs1.map { p =>
         val (pmid, localId, pp) = p
         val univ = p._3._3.head
@@ -162,10 +181,9 @@ object UtilsExtrFull {
 
     segGns.mapValues(SegGN.toJson)
       .values
-      .saveAsTextFile(savePath1a)
+      .saveAsTextFile(outputPathJson)
 
-    val savePath1b = "/media/sf_vmshare/pmjs/9-x-agg"
-    SparkUtils.del(spark, savePath1b)
+    SparkUtils.del(spark, outputPathTrace)
     segGns.sortBy(_._1.toLowerCase())
       .map { p =>
         val segGn = p._2
@@ -175,15 +193,18 @@ object UtilsExtrFull {
         }.mkString("\t", "\n\t", "")
         s"${segGn.name}\n$affTr"
       }
-      .saveAsTextFile(savePath1b)
+      .saveAsTextFile(outputPathTrace)
 
-    val hasXtrs = xtrs.filter(xtr => xtr._3._2.size > 1 && xtr._3._3.nonEmpty || xtr._3._2.nonEmpty && xtr._3._3.size > 1)
-    val savePath = "/media/sf_vmshare/pmjs/9-x-m"
-    SparkUtils.deleteLocal(savePath)
-    hasXtrs.map { p =>
-      val (pmid, localId, pp) = p
-      trace(pmid, localId, pp)
-    }.saveAsTextFile(savePath)
+    if (runLocally) {
+      val hasXtrs = xtrs.filter(xtr => xtr._3._2.size > 1 && xtr._3._3.nonEmpty || xtr._3._2.nonEmpty && xtr._3._3.size > 1)
+      val savePath = "/media/sf_vmshare/pmjs/9-x-m"
+      SparkUtils.deleteLocal(savePath)
+      hasXtrs.map { p =>
+        val (pmid, localId, pp) = p
+        trace(pmid, localId, pp)
+      }.saveAsTextFile(savePath)
+    }
+
 
     spark.stop()
   }

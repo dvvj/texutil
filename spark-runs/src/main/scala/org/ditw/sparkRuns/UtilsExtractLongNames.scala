@@ -15,7 +15,7 @@ object UtilsExtractLongNames {
         SparkUtils.sparkContextLocal()
       }
       else {
-        SparkUtils.sparkContext(false, "Extract PM Long Names", parts)
+        SparkUtils.sparkContext(false, "Extract Long Names", parts)
       }
 
     val splitter = "\\s+".r

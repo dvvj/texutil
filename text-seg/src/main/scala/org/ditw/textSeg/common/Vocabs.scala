@@ -85,6 +85,7 @@ object Vocabs extends Serializable {
     "college",
     "Hospital",
     "Hospitals",
+    "Chikushi Hospital",
     "Laboratory",
     "Marine Laboratory",
     "Program",
