@@ -76,7 +76,7 @@ class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPrope
   "adm1 matchers" should "work" in {
     forAll(testData) { (inStr, expTag, expRanges) =>
       val mp = MatchPool.fromStr(
-        inStr, TknrHelpers.TknrTextSeg, TestData.testDict
+        inStr, MatcherHelper.testTokenizer, TestData.testDict
       )
       MatcherHelper.mmgr.run(mp)
 

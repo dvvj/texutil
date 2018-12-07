@@ -25,7 +25,7 @@ class GNSeqMatcherTests extends FlatSpec with Matchers with TableDrivenPropertyC
   "GNSeqMatcher tests" should "pass" in {
     forAll(testData) { (inStr, expTag, expRanges) =>
       val mp = MatchPool.fromStr(
-        inStr, TknrHelpers.TknrTextSeg, TestData.testDict
+        inStr, MatcherHelper.testTokenizer, TestData.testDict
       )
       MatcherHelper.mmgr.run(mp)
       val ranges = mp.get(expTag).map(_.range)

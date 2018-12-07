@@ -1,6 +1,6 @@
 package org.ditw.tknr
 import org.ditw.common.{Dict, InputHelpers}
-import org.ditw.tknr.Tokenizers.{TokenSplitterCond, TokenizerSettings}
+import org.ditw.tknr.Tokenizers.{TTokenizer, TokenSplitterCond, TokenizerSettings}
 
 object TestHelpers {
 
@@ -16,16 +16,22 @@ object TestHelpers {
   private val trimByPuncts = Trimmers.byChars(
     ",;:\"()*†#".toSet
   )
-  private val settings = TokenizerSettings(
+
+  private[tknr] val EmptySpecialTokens = Set[String]()
+  private[tknr] def settings(specialTokens:Set[String]) = TokenizerSettings(
     "\\n+",
+    specialTokens,
     "[\\s]+",
+    DefTokenSplitters2Keep,
     List(
       TokenSplitter_CommaColon, TokenSplitter_DashSlash
     ),
     trimByPuncts
   )
 
-  val testTokenizer = Tokenizers.load(settings)
+  private[tknr] def _testTokenizer(specialTokens:Set[String] = EmptySpecialTokens) =
+    Tokenizers.load(settings(specialTokens))
+  val testTokenizer: TTokenizer = _testTokenizer()
 
   def testDataTuple(
     testStr:String,

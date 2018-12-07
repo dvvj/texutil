@@ -61,7 +61,7 @@ object UtilsExtrFull {
     val brMmgr = spark.broadcast(mmgr)
     val brXtrMgr = spark.broadcast(xtrMgr)
     val brDict = spark.broadcast(dict)
-    val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg)
+    val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg())
 
     printlnT0("Running extraction ...")
 
@@ -73,7 +73,7 @@ object UtilsExtrFull {
         val auaff = AAAuAff.fromJson(j)
         val affMap = auaff.affs.map(aff => aff.localId -> aff.aff.aff).toMap
         affMap.mapValues { aff =>
-          val mp = MatchPool.fromStr(aff, TknrHelpers.TknrTextSeg, brDict.value)
+          val mp = MatchPool.fromStr(aff, brTknr.value, brDict.value)
           brMmgr.value.run(mp)
           val univRngs = mp.get(TagGroup4Univ.segTag).map(_.range)
           val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)

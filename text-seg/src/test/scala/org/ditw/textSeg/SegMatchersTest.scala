@@ -131,7 +131,7 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
 
   "SegBySfx Matcher tests" should "pass" in {
     forAll(segBySfxTestData) { (inStr, expRes) =>
-      val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, _Dict)
+      val matchPool = MatchPool.fromStr(inStr, testTokenizer, _Dict)
       mmgr.run(matchPool)
       val expRanges = expRes.map { tp =>
         TknrHelpers.rangeFromTp3(matchPool.input, tp)
@@ -163,7 +163,7 @@ class SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChe
 
   "SegByTags Matcher tests" should "pass" in {
     forAll(segByTagsTestData) { (inStr, segMatcher, expRes) =>
-      val matchPool = MatchPool.fromStr(inStr, TknrTextSeg, _Dict)
+      val matchPool = MatchPool.fromStr(inStr, testTokenizer, _Dict)
       mmgr.run(matchPool)
       val expRanges = expRes.map { tp =>
         TkRange(matchPool.input, tp._1, tp._2, tp._3)

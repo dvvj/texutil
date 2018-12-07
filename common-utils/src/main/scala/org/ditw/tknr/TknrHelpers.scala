@@ -97,10 +97,16 @@ object TknrHelpers extends Serializable {
   val _AffIndexChars =
     """╫╪^?ζΘΦΨχΣΠξΔǁ«»¿×®°±¹²³ª©*†‡§¶∥‖║#△■●□⊥∇⁎€⁴№∞∧∫∮≠⊕⊗⊗⊗⊞⋈⌋⑊┘┼┼□▰▲▼▽◆◇◊○◐★☆⚲⦀⧓⿿☼§𝕃�|£¤¥⟁◑◪⧖⧧⧨⧩⧫⬢⬡⬠⬟⧳̂⊗"""
 
-  implicit val TknrTextSeg:TTokenizer = Tokenizers.load(
+  private val EmptySpecialTokens = Set[String]()
+  private[tknr] val DefTokenSplitters2Keep = Set("/")
+  def TknrTextSeg(
+    specialTokens:Set[String] = EmptySpecialTokens
+  ):TTokenizer = Tokenizers.load(
     TokenizerSettings(
       "\\n+",
+      specialTokens,
       "[\\h]+",
+      DefTokenSplitters2Keep,
       List(
         TokenSplitter_CommaColon, TokenSplitter_DashSlash
       ),

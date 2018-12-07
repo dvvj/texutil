@@ -39,7 +39,7 @@ object AllCatMatchers extends Serializable {
     mmgr:MatcherMgr,
     inStr:String,
     dict: Dict,
-    tokenizer:TTokenizer = TknrTextSeg
+    tokenizer:TTokenizer
   ): MatchPool = {
     val matchPool = MatchPool.fromStr(inStr, tokenizer, dict)
     mmgr.run(matchPool)

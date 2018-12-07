@@ -100,7 +100,7 @@ class DefaultTknrTest extends FlatSpec with Matchers with TableDrivenPropertyChe
 
   "Default Tokenizer tests" should "pass" in {
     forAll(tknrTestData) { (inStr, expRes) =>
-      val res = TknrTextSeg.run(inStr, _Dict)
+      val res = testTokenizer.run(inStr, _Dict)
 
       resEqual(res, expRes) shouldBe true
 

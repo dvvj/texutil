@@ -150,7 +150,7 @@ class ExtractionTests extends FlatSpec with Matchers with TableDrivenPropertyChe
 
   "extraction tests" should "pass" in {
     forAll(testData) { (inStr, expGNIds) =>
-      val mp = MatchPool.fromStr(inStr, TknrHelpers.TknrTextSeg, testDict)
+      val mp = MatchPool.fromStr(inStr, MatcherHelper.testTokenizer, testDict)
       mmgr.run(mp)
       val rng2Ents = testGNSvc.extrEnts(xtrMgr, mp)
       val res = rng2Ents.flatMap(_._2.map(_.gnid)).toSet

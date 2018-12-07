@@ -15,7 +15,7 @@ object TmTest1 extends App {
   ):Unit = {
 
     testStrs.foreach { str =>
-      val mp = MatchPool.fromStr(str, TknrHelpers.TknrTextSeg, testDict)
+      val mp = MatchPool.fromStr(str, MatcherHelper.testTokenizer, testDict)
       mmgr.run(mp)
       val tag = TagHelper.cityStateTag("US_MA")
       val t = mp.get(tag)

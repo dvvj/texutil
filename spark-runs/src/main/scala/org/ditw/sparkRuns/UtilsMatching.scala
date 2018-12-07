@@ -30,11 +30,11 @@ object UtilsMatching extends App {
   val brMmgr = spark.broadcast(mmgr)
   val brXtrMgr = spark.broadcast(xtrMgr)
   val brDict = spark.broadcast(dict)
-  val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg)
+  val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg())
 
   spark.textFile("/media/sf_vmshare/aff-w2v-dbg")
     .foreach { l =>
-      val mp = MatchPool.fromStr(l, TknrHelpers.TknrTextSeg, brDict.value)
+      val mp = MatchPool.fromStr(l, brTknr.value, brDict.value)
       brMmgr.value.run(mp)
       val t = TagHelper.cityCountryTag(GNCntry.US)
       val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)

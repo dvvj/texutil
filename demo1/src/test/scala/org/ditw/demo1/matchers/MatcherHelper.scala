@@ -3,6 +3,8 @@ import org.ditw.demo1.TestData
 import org.ditw.demo1.TestData.testDict
 import org.ditw.extract.XtrMgr
 import org.ditw.matcher.{MatcherMgr, TCompMatcher, TTkMatcher, TokenMatchers}
+import org.ditw.tknr.TknrHelpers
+import org.ditw.tknr.Tokenizers.TTokenizer
 
 import scala.collection.mutable.ListBuffer
 
@@ -10,4 +12,6 @@ object MatcherHelper {
   val (mmgr:MatcherMgr, xtrMgr:XtrMgr[Long]) = {
     MatcherGen.gen(TestData.testGNSvc, testDict)
   }
+
+  val testTokenizer: TTokenizer = TknrHelpers.TknrTextSeg()
 }
