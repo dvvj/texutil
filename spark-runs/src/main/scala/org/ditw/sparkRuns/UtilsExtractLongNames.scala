@@ -5,11 +5,22 @@ import org.ditw.pmxml.model.AAAuAff
 object UtilsExtractLongNames {
   import collection.mutable
   def main(args:Array[String]):Unit = {
-    val spark = SparkUtils.sparkContextLocal()
+    val runLocally = if (args.length > 0) args(0).toBoolean else true
+    val inputPath = if (args.length > 1) args(1) else "file:///media/sf_vmshare/pmj9AuAff/"
+    val outputPath = if (args.length > 2) args(2) else "file:///media/sf_vmshare/pmjs/longnames"
+    val parts = if (args.length > 3) args(3).toInt else 4
+
+    val spark =
+      if (runLocally) {
+        SparkUtils.sparkContextLocal()
+      }
+      else {
+        SparkUtils.sparkContext(false, "Extract PM Long Names", parts)
+      }
 
     val splitter = "\\s+".r
     val pmidSet = mutable.Set[Long]()
-    val sortedLongNames = spark.textFile("/media/sf_vmshare/pmjs/pmj9AuAff")
+    val sortedLongNames = spark.textFile(inputPath)
       .flatMap { l =>
         val firstComma = l.indexOf(",")
         val pmid = l.substring(1, firstComma).toLong
@@ -30,9 +41,8 @@ object UtilsExtractLongNames {
       .mapValues(_.toVector.sorted)
       .sortBy(_._1)
 
-    val path = "/media/sf_vmshare/pmjs/longnames"
-    SparkUtils.del(spark, path)
-    sortedLongNames.saveAsTextFile(path)
+    SparkUtils.del(spark, outputPath)
+    sortedLongNames.saveAsTextFile(outputPath)
 
     spark.stop()
   }

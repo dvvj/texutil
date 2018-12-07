@@ -1,5 +1,22 @@
 [
   {
+    "name": "Rollins School of Public Health",
+    "affTo": "Emory University",
+    "aliases": [ ]
+  },
+  {
+    "name": "Dornsife School of Public Health",
+    "affTo": "Drexel University",
+    "aliases": [ ]
+  },
+  {
+    "name": "Barbara Ann Karmanos Cancer Institute",
+    "affTo": "Wayne State University",
+    "aliases": [
+      "Karmanos Cancer Institute"
+    ]
+  },
+  {
     "name": "Alpert School of Medicine",
     "affTo": "Brown University",
     "aliases": [
