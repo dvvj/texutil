@@ -482,6 +482,10 @@ class Cat2SegMatchersTest extends FlatSpec with Matchers with TableDrivenPropert
     testDataEntr(
       "Karmanos Cancer Institute/Wayne State University",
       (0, 4, 7)
+    ),
+    testDataEntr(
+      "Case Western Reserve University Schools of Medicine",
+      (0, 0, 4)
     )
   )
 

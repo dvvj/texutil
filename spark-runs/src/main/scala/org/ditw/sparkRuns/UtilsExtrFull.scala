@@ -166,11 +166,11 @@ object UtilsExtrFull {
         val affGns = p._2.values
           .filter(_._3.size >= 5)
           .map { tp =>
-            AffGN(tp._1, tp._2, tp._3.toArray)
+            AffGN(tp._1, tp._2, tp._3.toVector)
           }
         if (affGns.nonEmpty) {
           val segRes = SegGN(
-            p._1, affGns.toArray
+            p._1, affGns.toVector
           )
           Option(p._1 -> segRes)
         }

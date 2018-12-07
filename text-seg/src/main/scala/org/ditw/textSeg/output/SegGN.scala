@@ -4,13 +4,14 @@ import org.json4s.DefaultFormats
 case class AffGN(
   gnid:Long,
   gnrep:String,
-  pmAffFps:Array[String]
+  pmAffFps:Vector[String]
 )
 case class SegGN(
   name:String,
-  affGns:Array[AffGN]
+  affGns:Vector[AffGN]
 ) {
-
+  private val m = affGns.map(agn => agn.gnid -> agn).toMap
+  def affGn(gnid:Long):AffGN = m(gnid)
 }
 
 object SegGN extends Serializable {
