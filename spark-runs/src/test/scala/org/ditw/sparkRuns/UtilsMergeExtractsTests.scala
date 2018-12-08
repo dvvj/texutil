@@ -10,29 +10,198 @@ class UtilsMergeExtractsTests extends FlatSpec with Matchers with TableDrivenPro
     ("existing", "toAdd", "expResult"),
     (
       Vector(
-        SegGN("univ1",
-          Vector(
-            AffGN(1L, "gn1", Vector("10000-1"))
-          )
-        )
+        SegGN("univ1", Vector(AffGN(1L, "gn1", Vector("10000-1"))))
       ),
       Vector(
-        SegGN("univ2",
-          Vector(
-            AffGN(2L, "gn2", Vector("10001-1"))
-          )
-        )
+        SegGN("univ2", Vector(AffGN(2L, "gn2", Vector("10001-1"))))
       ),
       Vector(
-        SegGN("univ1",
-          Vector(
-            AffGN(1L, "gn1", Vector("10000-1"))
-          )
+        SegGN("univ1", Vector(AffGN(1L, "gn1", Vector("10000-1")))),
+        SegGN("univ2", Vector(AffGN(2L, "gn2", Vector("10001-1"))))
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(AffGN(1L, "gn1", Vector("10000-1"))))
+      ),
+      Vector(
+        SegGN("univ1", Vector(AffGN(1L, "gn1", Vector("10001-1"))))
+      ),
+      Vector(
+        SegGN("univ1", Vector(AffGN(1L, "gn1", Vector("10000-1", "10001-1"))))
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(AffGN(1L, "gn1", Vector("10000-1"))))
+      ),
+      Vector(
+        SegGN("univ1", Vector(AffGN(2L, "gn2", Vector("10001-1"))))
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10001-1")))
+        )
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(AffGN(1L, "gn1", Vector("10000-1")))),
+        SegGN("univ2", Vector(AffGN(2L, "gn2", Vector("10001-1"))))
+      ),
+      Vector(
+        SegGN("univ1", Vector(AffGN(2L, "gn2", Vector("10002-1"))))
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10002-1")))
         ),
-        SegGN("univ2",
-          Vector(
-            AffGN(2L, "gn2", Vector("10001-1"))
-          )
+        SegGN("univ2", Vector(AffGN(2L, "gn2", Vector("10001-1"))))
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(AffGN(2L, "gn2", Vector("10001-1"))))
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")))
+        )
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10003-1")),
+          AffGN(2L, "gn2", Vector("10001-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1", "10003-1")),
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")))
+        )
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10003-1")),
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1", "10003-1")),
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")))
+        )
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")),
+          AffGN(3L, "gn3", Vector("10003-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")),
+          AffGN(3L, "gn3", Vector("10003-1")))
+        )
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10002-1")))
+        ),
+        SegGN("univ2", Vector(
+          AffGN(1L, "gn1", Vector("20000-1")),
+          AffGN(2L, "gn2", Vector("20002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")),
+          AffGN(3L, "gn3", Vector("10003-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")),
+          AffGN(3L, "gn3", Vector("10003-1")))
+        ),
+        SegGN("univ2", Vector(
+          AffGN(1L, "gn1", Vector("20000-1")),
+          AffGN(2L, "gn2", Vector("20002-1")))
+        )
+      )
+    ),
+    (
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10002-1")))
+        ),
+        SegGN("univ2", Vector(
+          AffGN(1L, "gn1", Vector("20000-1")),
+          AffGN(2L, "gn2", Vector("20002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")),
+          AffGN(3L, "gn3", Vector("10003-1")))
+        ),
+        SegGN("univ3", Vector(
+          AffGN(1L, "gn1", Vector("30000-1")),
+          AffGN(2L, "gn2", Vector("30002-1")))
+        )
+      ),
+      Vector(
+        SegGN("univ1", Vector(
+          AffGN(1L, "gn1", Vector("10000-1")),
+          AffGN(2L, "gn2", Vector("10001-1", "10002-1")),
+          AffGN(3L, "gn3", Vector("10003-1")))
+        ),
+        SegGN("univ2", Vector(
+          AffGN(1L, "gn1", Vector("20000-1")),
+          AffGN(2L, "gn2", Vector("20002-1")))
+        ),
+        SegGN("univ3", Vector(
+          AffGN(1L, "gn1", Vector("30000-1")),
+          AffGN(2L, "gn2", Vector("30002-1")))
         )
       )
     )

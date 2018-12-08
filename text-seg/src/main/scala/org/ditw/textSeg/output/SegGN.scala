@@ -4,12 +4,15 @@ import org.json4s.DefaultFormats
 case class AffGN(
   gnid:Long,
   gnrep:String,
-  pmAffFps:Vector[String]
-)
+  pmAffFps:Seq[String]
+) {
+  val fpsCount:Int = pmAffFps.size
+}
 case class SegGN(
   name:String,
-  affGns:Vector[AffGN]
+  affGns:Seq[AffGN]
 ) {
+  val affCount:Int = affGns.size
   private val m = affGns.map(agn => agn.gnid -> agn).toMap
   def affGn(gnid:Long):AffGN = m(gnid)
 }

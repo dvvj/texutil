@@ -16,7 +16,7 @@ object UtilsMergeExtracts {
 
   def mergeAffGN(agn1: AffGN, agn2: AffGN):AffGN = {
     assert(agn1.gnid == agn2.gnid)
-    agn1.copy(pmAffFps = agn1.pmAffFps++agn2.pmAffFps)
+    agn1.copy(pmAffFps = (agn1.pmAffFps++agn2.pmAffFps).sorted.distinct)
   }
 
   def mergeSegGN(sgn1:SegGN, sgn2:SegGN):SegGN = {
@@ -54,6 +54,10 @@ object UtilsMergeExtracts {
       }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
   }
 
+//  private def randSamples(sgns:RDD[(String, SegGN)]):Unit = {
+//
+//  }
+
   def main(args:Array[String]):Unit = {
     val spark = SparkUtils.sparkContextLocal()
     val existing = loadSgns(spark, "/media/sf_vmshare/pmjs/curated")
@@ -61,6 +65,16 @@ object UtilsMergeExtracts {
 
     val toAdd = loadSgns(spark, "/media/sf_vmshare/pmjs/mergeTmp")
     checkStats("ToAdd", toAdd)
+
+    val merged = doMerge(existing, toAdd).map(sgn => sgn.name -> sgn)
+      .sortBy(_._1)
+      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+    checkStats("Merged", merged)
+
+    val path = "file:///media/sf_vmshare/pmjs/merged"
+    SparkUtils.del(spark, path)
+    merged.values.map(SegGN.toJson)
+      .saveAsTextFile(path)
 
     spark.stop()
   }

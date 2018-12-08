@@ -53,46 +53,57 @@ class SeqOfTokens(
     isPrefix:Boolean = false,
     sfxCounts:(Int, Int) = RangeBySfxCountsDefault
   ):TkRange = {
-    var start = if (isPrefix) range.start else range.start-1
-    var found = false
     val (leftCount, rightCount) = sfxCounts
-    var leftFound = 0
-    while (start >= 0 && !found) {
-      val token = tokens(start)
-      val psfx = if (isPrefix) token.pfx else token.sfx
-      if (checkPSfx(psfx, psfxs) ||
-        (token.content.isEmpty && psfxs.contains(token.str))
-      ) {
-        leftFound += 1
-        if (leftFound >= leftCount)
-          found = true
-      }
-      if (!found)
-        start -= 1
-    }
-    start = if (found) {
-      if (!isPrefix) start+1
-      else start
-    }
-      else 0
 
-    var end = if (isPrefix) range.end else range.end-1
-    found = false
-    var rightFound = 0
-    while (end < tokens.size && !found) {
-      val token = tokens(end)
-      val psfx = if (isPrefix) token.pfx else token.sfx
-      if (checkPSfx(psfx, psfxs) ||
-        (token.content.isEmpty && psfxs.contains(token.str))
-      ) {
-        rightFound += 1
-        if (rightFound >= rightCount)
-          found = true
+    var found = false
+    var start = -1
+    if (leftCount == 0)
+      start = range.start
+    else {
+      start = if (isPrefix) range.start else range.start-1
+      var leftFound = 0
+      while (start >= 0 && !found) {
+        val token = tokens(start)
+        val psfx = if (isPrefix) token.pfx else token.sfx
+        if (checkPSfx(psfx, psfxs) ||
+          (token.content.isEmpty && psfxs.contains(token.str))
+        ) {
+          leftFound += 1
+          if (leftFound >= leftCount)
+            found = true
+        }
+        if (!found)
+          start -= 1
       }
-      if (!found)
-        end += 1
+      start =
+        if (found) {
+          if (!isPrefix) start+1
+          else start
+        }
+        else 0
     }
-    end = if (found) {
+
+    var end = -1
+    if (rightCount == 0)
+      end = range.end
+    else {
+      end = if (isPrefix) range.end else range.end-1
+      found = false
+      var rightFound = 0
+      while (end < tokens.size && !found) {
+        val token = tokens(end)
+        val psfx = if (isPrefix) token.pfx else token.sfx
+        if (checkPSfx(psfx, psfxs) ||
+          (token.content.isEmpty && psfxs.contains(token.str))
+        ) {
+          rightFound += 1
+          if (rightFound >= rightCount)
+            found = true
+        }
+        if (!found)
+          end += 1
+      }
+      end = if (found) {
         // if the (end) token is ',' self, use end instead
         if (tokens(end).content.isEmpty) end
         else {
@@ -101,6 +112,7 @@ class SeqOfTokens(
         }
       }
       else tokens.size
+    }
     TkRange(range.input, range.lineIdx, start, end)
   }
 }
