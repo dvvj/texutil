@@ -7,8 +7,8 @@
         <relativePath>../pom.xml</relativePath>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <name>Common Utilities</name>
-    <artifactId>common-utils</artifactId>
+    <name>Ex Utilities 1</name>
+    <artifactId>exutil1</artifactId>
   <dependencies>
       <dependency>
           <groupId>commons-io</groupId>
@@ -33,12 +33,8 @@
       </dependency>
       <dependency>
           <groupId>org.apache.spark</groupId>
-          <artifactId>spark-core_${scala.minor.version}</artifactId>
+          <artifactId>spark-core_2.11</artifactId>
       </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-sql_${scala.minor.version}</artifactId>
-    </dependency>
   </dependencies>
 
 

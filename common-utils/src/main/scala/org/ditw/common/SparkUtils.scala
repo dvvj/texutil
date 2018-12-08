@@ -4,6 +4,7 @@ import java.net.URI
 
 import org.apache.commons.io.FileUtils
 import org.apache.hadoop.fs.{FileSystem, Path}
+import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 
 object SparkUtils {
@@ -56,8 +57,18 @@ object SparkUtils {
     fs.delete(new Path(path), true)
   }
 
-  //  def sparkSessionLocal(appName:String = "[NO NAME]", numReducer:Int = 4) = {
-  //    val conf = config(true, appName, numReducer)
-  //    SparkSession.builder.config(conf).getOrCreate()
-  //  }
+  def sparkSessionLocal(appName:String = "[NO NAME]", numReducer:Int = 4):SparkSession = {
+    sparkSession(true, appName, numReducer)
+  }
+
+  def sparkSession(localRun: Boolean, appName:String = "[NO NAME]", numReducer:Int = 4):SparkSession = {
+    val conf = config(localRun, appName, numReducer)
+    val sess = SparkSession.builder.config(conf).getOrCreate()
+
+    if (localRun) {
+      sess.sparkContext.setLogLevel("ERROR")
+    }
+    sess
+  }
+
 }
