@@ -20,7 +20,7 @@ object UtilsMatching extends App {
     US, JP
     // ,CA, GB, AU //,FR,DE,ES,IT
   )
-  val svc = GNSvc.load(gnLines, ccs)
+  val svc = GNSvc.loadDef(gnLines, ccs)
 
   val dict = MatcherGen.loadDict(svc)
 

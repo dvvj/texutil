@@ -17,11 +17,11 @@ object TestData {
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     val cs = Set(
-      US, CA, CN, JP
+      US, CA, CN, JP, GB
       //, "GB", "AU", "FR", "DE", "ES", "IT"
     )
 
-    val svc = GNSvc.load(gnLines, cs)
+    val svc = GNSvc.loadDef(gnLines, cs)
 
     svc
   }

@@ -7,6 +7,7 @@ import org.ditw.common.GenUtils.printlnT0
 import org.ditw.common.ResourceHelpers
 import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.GNLevel.{ADM4, GNLevel}
+import org.ditw.demo1.gndata.GNSvc.LoadSettings
 import org.ditw.demo1.src.SrcDataUtils
 import org.ditw.demo1.src.SrcDataUtils.GNsCols
 import org.ditw.demo1.src.SrcDataUtils.GNsCols._
@@ -114,12 +115,11 @@ object SrcData extends Serializable {
 
   private val _aliasMap:Map[Long, Iterable[String]] = aliases.map(a => a.gnid -> a.aliases).toMap
 
-  private val MinPopu = 500
-
   def loadCountries(
     rdd:RDD[Array[String]],
     countries:Set[GNCntry],
     brAdm0Ents:Broadcast[Map[String, GNEnt]],
+    settings: LoadSettings,
     aliasMap:Map[Long, Iterable[String]] = _aliasMap
   ):Map[GNCntry, TGNMap] = {
 
@@ -128,13 +128,16 @@ object SrcData extends Serializable {
       .filter { cols =>
         val popu = cols(populationIndex).toLong
         val gnid = cols(gnidIndex).toLong
-        if (popu >= MinPopu) {
-          countryCodes.contains(cols(countryCodeIndex)) &&
-            !SrcDataUtils.isAdm0(cols(featureCodeIndex), cols(countryCodeIndex))
+        if (countryCodes.contains(cols(countryCodeIndex))) {
+          if (popu >= settings.minPopu) {
+              !SrcDataUtils.isAdm0(cols(featureCodeIndex), cols(countryCodeIndex))
+          }
+          else {
+            popu0Map.contains(gnid)
+          }
         }
-        else {
-          popu0Map.contains(gnid)
-        }
+        else
+          false
       }
       .map { cols =>
         val adms = ListBuffer[String]()

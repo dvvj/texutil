@@ -5,6 +5,7 @@ trait TGNMap extends TGNColl {
   def byId(gnid:Long):Option[GNEnt]
   def idsByName(name:String, adm:String):IndexedSeq[Long]
   def byName(name:String, adm:String):IndexedSeq[GNEnt]
+  def byName(name:String):IndexedSeq[GNEnt]
   def admNameMap:Map[String, Map[String, IndexedSeq[Long]]]
   val admMap:Map[String, TGNColl]
   val countryCode:GNCntry

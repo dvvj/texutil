@@ -42,7 +42,7 @@ object UtilsGNColls {
       US
       ,CA, GB, AU,FR,DE,ES,IT
     )
-    val adm0s = loadCountries(gnLines, ccs, brAdm0Ents)
+//    val adm0s = loadCountries(gnLines, ccs, brAdm0Ents)
 
 
 //    ccList.foreach { cc =>

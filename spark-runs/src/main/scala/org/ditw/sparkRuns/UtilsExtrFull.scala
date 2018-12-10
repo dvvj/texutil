@@ -72,7 +72,7 @@ object UtilsExtrFull {
       US, JP
       //,CA , GB, AU //,FR,DE,ES,IT
     )
-    val svc = GNSvc.load(gnLines, ccs)
+    val svc = GNSvc.loadDef(gnLines, ccs)
 
     val dict = loadDict(svc)
 

@@ -1,5 +1,9 @@
 package org.ditw.sparkRuns
+import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
+import org.ditw.demo1.gndata.GNCntry.{JP, US, GB}
+import org.ditw.demo1.gndata.{GNCntry, GNSvc}
+import org.ditw.demo1.gndata.SrcData.tabSplitter
 
 object UtilPocoCsv1 {
 
@@ -72,14 +76,33 @@ object UtilPocoCsv1 {
       .map{ tp =>
         val (name, p) = tp
         val (pocos, latMinMax, lonMinMax) = p
-        f"$name|$latMinMax|$lonMinMax|${pocos.mkString(",")}"
+        (name, latMinMax, lonMinMax, pocos.mkString(","))
       }
-      .cache()
+      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
+    val groupStr = grouped.map { p =>
+      val (name, latMinMax, lonMinMax, pocos) = p
+      s"$name|$latMinMax|$lonMinMax|$pocos}"
+    }
     val path = "/media/sf_vmshare/poco"
     SparkUtils.del(spSess.sparkContext, path)
+    groupStr.saveAsTextFile(path)
 
-    grouped.saveAsTextFile(path)
+    val diff = grouped.map { p =>
+      val (name, latMinMax, lonMinMax, pocos) = p
+      val latDiff = latMinMax._2 - latMinMax._1
+      val lonDiff = lonMinMax._2 - lonMinMax._1
+      (name, latDiff, lonDiff)
+    }
+
+    val maxDiff = 0.25
+    val maxLatDiff = diff.sortBy(_._2, false)
+        .filter(_._2 > maxDiff).collect()
+    print(maxLatDiff(0))
+    val maxLonDiff = diff.sortBy(_._3, false)
+      .filter(_._3 > maxDiff).collect()
+    print(maxLonDiff(0))
+
 
     spSess.stop()
   }

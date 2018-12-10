@@ -128,13 +128,21 @@ object GNColls extends Serializable {
       else EmptyIds
     }
 
-    def byName(name:String, adm:String):IndexedSeq[GNEnt] = {
+    private def _byName(name:String, adm:String):IndexedSeq[GNEnt] = {
       if (admNameMap.contains(adm)) {
         val ids = admNameMap(adm).getOrElse(name, EmptyIds)
         val m = admIdMap(adm)
         ids.map(m)
       }
       else EmptyEnts
+    }
+
+    def byName(name:String, adm:String):IndexedSeq[GNEnt] = _byName(name.toLowerCase(), adm)
+
+    def byName(name:String):IndexedSeq[GNEnt] = {
+      val lower = name.toLowerCase()
+      admNameMap.keySet.flatMap { adm => _byName(lower, adm) }
+        .toIndexedSeq
     }
 
     val idMap:Map[Long, GNEnt] = {

@@ -18,6 +18,10 @@ class GNSvc private (private[demo1] val _cntryMap:Map[GNCntry, TGNMap]) extends 
     idMap.get(gnid)
   }
 
+  def entsByName(cntry: GNCntry, name:String):IndexedSeq[GNEnt] = {
+    _cntryMap(cntry).byName(name)
+  }
+
   import GNSvc._
   def extrEnts(xtrMgr:XtrMgr[Long], matchPool: MatchPool):Map[TkRange, List[GNEnt]] = {
     val xtrs = xtrMgr.run(matchPool)
@@ -119,7 +123,8 @@ object GNSvc extends Serializable {
 
   def load(
     lines:RDD[Array[String]],
-    countries:Set[GNCntry]
+    countries:Set[GNCntry],
+    settings: LoadSettings
   ): GNSvc = {
     val spark = lines.sparkContext
     val adm0Ents = loadAdm0(lines)
@@ -129,8 +134,30 @@ object GNSvc extends Serializable {
 //      US, CA
 //      //, "GB", "AU", "FR", "DE", "ES", "IT"
 //    )
-    val adm0s = loadCountries(lines, countries, brAdm0Ents)
+    val adm0s = loadCountries(lines, countries, brAdm0Ents, settings)
 
     new GNSvc(adm0s)
   }
+
+  case class LoadSettings(minPopu:Long)
+
+  private val MinPopu = 500
+  private val AllPopu = -1
+  val defSettings = LoadSettings(MinPopu)
+  val noPopuSettings = LoadSettings(AllPopu)
+
+  def loadDef(
+    lines:RDD[Array[String]],
+    countries:Set[GNCntry]
+  ): GNSvc = {
+    load(lines, countries, defSettings)
+  }
+
+  def loadNoPopuReq(
+    lines:RDD[Array[String]],
+    countries:Set[GNCntry]
+  ): GNSvc = {
+    load(lines, countries, noPopuSettings)
+  }
+
 }
