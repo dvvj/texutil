@@ -35,6 +35,7 @@ object TmTest1 extends App {
   import org.ditw.demo1.gndata.GNCntry._
 
   testTm(List(
+    "Cardiff University, Cardiff, CF10 3NB, UK. Email: prokopovichp@cardiff.ac.uk; Center for Biomedical Engineering, Massachusetts Institute of Technology, Cambridge, USA.",
     "Cardinal Stefan Wyszynski University in Warsaw",
     "Boston University, Boston, USA.",
     "University of Nebraska, Lincoln, Center for Plant Science Innovation, United States.",

@@ -111,7 +111,7 @@ object Cat2SegMatchers {
     keywords = _UnivWords,
     gazWords = _UnivGazWords,
     stopKeywords = _UnivStopWords,
-    segStopTagsLeft = Set(UnivTagGroup.segLeftStopTag, AssiMatchers._CmDeptOfTag, TmEmail, TmDigits, TmDigitsDashDigits),
+    segStopTagsLeft = Set(UnivTagGroup.segLeftStopTag, AssiMatchers._CmDeptOfTag, TmSingleLowerAZ, TmEmail, TmDigits, TmDigitsDashDigits),
     segStopTagsRight = Set(UnivTagGroup.segRightStopTag, AssiMatchers._CmXDeptTag, TmEmail, TmDigits, TmDigitsDashDigits),
     _canBeStart,
     dict,

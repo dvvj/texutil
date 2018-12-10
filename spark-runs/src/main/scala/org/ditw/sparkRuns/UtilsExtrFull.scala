@@ -40,9 +40,15 @@ object UtilsExtrFull {
     InputHelpers.loadDict(words1++words2)
   }
 
+  def segment(affStr:String):Array[String] = {
+    affStr.split(";").map(_.trim).filter(!_.isEmpty)
+  }
+
   def main(args:Array[String]):Unit = {
     val runLocally = if (args.length > 0) args(0).toBoolean else true
-    val inputPath = if (args.length > 1) args(1) else "file:///media/sf_vmshare/pmjs/pmj9AuAff/"
+    val inputPath =
+      if (args.length > 1) args(1)
+      else "file:///media/sf_vmshare/pmjs/testAuAff/"  // "file:///media/sf_vmshare/pmjs/pmj9AuAff/"
     val inputGNPath = if (args.length > 2) args(2) else "file:///media/sf_vmshare/gns/all"
     val outputPathJson = if (args.length > 3) args(3) else "file:///media/sf_vmshare/pmjs/9-x-json"
     val outputPathTrace = if (args.length > 4) args(4) else "file:///media/sf_vmshare/pmjs/9-x-agg"
@@ -79,6 +85,10 @@ object UtilsExtrFull {
 
     printlnT0("Running extraction ...")
 
+    val singleSegs
+
+    val multiSegs
+
     val xtrs = spark.textFile(inputPath)
       .flatMap { l =>
         val firstComma = l.indexOf(",")
@@ -86,25 +96,32 @@ object UtilsExtrFull {
         val j = l.substring(firstComma+1, l.length-1)
         val auaff = AAAuAff.fromJson(j)
         val affMap = auaff.affs.map(aff => aff.localId -> aff.aff.aff).toMap
-        affMap.mapValues { aff =>
-          val mp = MatchPool.fromStr(aff, brTknr.value, brDict.value)
-          brMmgr.value.run(mp)
-          val univRngs = mp.get(TagGroup4Univ.segTag).map(_.range)
-          val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)
-          val univs =
-            if (univRngs.size == 1 && rng2Ents.size == 1) { // name fix, todo: better structure
-              val univRng = univRngs.head
-              val gnEntRng = rng2Ents.head._1
-              if (univRng.overlap(gnEntRng) && gnEntRng.start > univRng.start) {
-                val newRng = univRng.copy(end = gnEntRng.start)
-                Set(newRng.str)
+        affMap.mapValues { affStr =>
+          val affSegs = segment(affStr)
+          if (affSegs.length == 1) { // deal with one seg only
+            val aff = affSegs(0)
+            val mp = MatchPool.fromStr(aff, brTknr.value, brDict.value)
+            brMmgr.value.run(mp)
+            val univRngs = mp.get(TagGroup4Univ.segTag).map(_.range)
+            val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)
+            val univs =
+              if (univRngs.size == 1 && rng2Ents.size == 1) { // name fix, todo: better structure
+                val univRng = univRngs.head
+                val gnEntRng = rng2Ents.head._1
+                if (univRng.overlap(gnEntRng) && gnEntRng.start > univRng.start) {
+                  val newRng = univRng.copy(end = gnEntRng.start)
+                  Set(newRng.str)
+                }
+                else {
+                  univRngs.map(_.str)
+                }
               }
-              else {
-                univRngs.map(_.str)
-              }
-            }
-            else univRngs.map(_.str)
-          (aff, rng2Ents.map(identity), univs)
+              else univRngs.map(_.str)
+            (aff, rng2Ents.map(identity), univs)
+          }
+          else {
+            (affStr, Map[TkRange, List[GNEnt]](), Set[String]()) // todo: deal with one string containing multiple segments
+          }
         }.toIndexedSeq.sortBy(_._1).map(p => (pmid, p._1, p._2))
       }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 

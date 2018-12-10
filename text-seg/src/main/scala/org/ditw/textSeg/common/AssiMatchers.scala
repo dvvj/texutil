@@ -23,6 +23,7 @@ object AssiMatchers extends Serializable {
   private[textSeg] def _ExtraTms(dict:Dict) = _ExtraTmData.map(
     tmd => ngramT(splitVocabEntries(tmd._2), dict, tmd._1)
   ) ++ List(
+    singleLowerAZMatcher(TmSingleLowerAZ),
     emailMatcher(TmEmail),
     digitsMatcher(TmDigits),
     digitsDashDigitsMatcher(TmDigitsDashDigits)
