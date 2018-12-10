@@ -96,13 +96,15 @@ object UtilPoco1Map2GNs {
     println(s"Empty: ${empty.count()}")
     empty.foreach { emp => println(emp._1) }
 
-    nonEmpty.flatMap { p =>
+    val path = "/media/sf_vmshare/pocomap"
+    SparkUtils.del(spSess.sparkContext, path)
+    nonEmpty.map { p =>
         val (name, m) = p
         val tr = m.map(p => s"${p._1}: ${p._2.mkString(",")}")
           .mkString("\t", "\n\t", "")
         s"$name\n$tr"
       }
-      .saveAsTextFile("/media/sf_vmshare/pocomap")
+      .saveAsTextFile(path)
 
     spSess.stop()
   }
