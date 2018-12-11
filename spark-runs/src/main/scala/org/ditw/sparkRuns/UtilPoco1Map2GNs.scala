@@ -1,15 +1,20 @@
 package org.ditw.sparkRuns
+import java.io.FileOutputStream
+import java.nio.charset.StandardCharsets
+
+import org.apache.commons.io.IOUtils
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
 import org.ditw.demo1.gndata.GNCntry.GB
 import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
+import org.ditw.exutil1.poco.PoPfxGB
 import org.ditw.sparkRuns.UtilPocoCsv1.minMax
 
 import scala.collection.mutable.ListBuffer
 
 object UtilPoco1Map2GNs {
-  private val maxDiff = 0.25
+  private val maxDiff = 0.5
   private def checkCoord(
     lat1:Double,
     long1:Double,
@@ -79,30 +84,42 @@ object UtilPoco1Map2GNs {
           l.foreach { tp =>
             val (poco, lat, lon) = tp
             val nearestEnt = allEnts.minBy(ent => distByCoord(ent.latitude, ent.longitude, lat, lon))
-            if (!matchedMap.contains(nearestEnt.gnid))
-              matchedMap += nearestEnt.gnid -> mutable.Set[String]()
-            matchedMap(nearestEnt.gnid) += poco
+            if (!checkCoord(nearestEnt.latitude, nearestEnt.longitude, lat, lon)) {
+              println(s"Nearest ent: [$nearestEnt] is not close enough ($lat, $lon), ignored!")
+            }
+            else {
+              if (!matchedMap.contains(nearestEnt.gnid))
+                matchedMap += nearestEnt.gnid -> mutable.Set[String]()
+              matchedMap(nearestEnt.gnid) += poco
+            }
           }
-          name -> matchedMap.mapValues(_.toVector.sorted).toMap
+          PoPfxGB(name, matchedMap.mapValues(_.toVector.sorted).toMap)
         }
         else
-          name -> Map[Long, Vector[String]]()
+          PoPfxGB(name, Map[Long, Vector[String]]())
       }
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val nonEmpty = grouped.filter(_._2.nonEmpty)
+    val nonEmpty = grouped.filter(_.gnid2Pfxs.nonEmpty)
     println(s"Non Empty: ${nonEmpty.count()}")
-    val empty = grouped.filter(_._2.isEmpty)
+    val empty = grouped.filter(_.gnid2Pfxs.isEmpty)
     println(s"Empty: ${empty.count()}")
-    empty.foreach { emp => println(emp._1) }
+    empty.foreach { emp => println(emp.name) }
 
-    val path = "/media/sf_vmshare/pocomap"
+//    var path = "/media/sf_vmshare/pocoJson"
+//    SparkUtils.del(spSess.sparkContext, path)
+    val jsons = nonEmpty.sortBy(_.name.toLowerCase()).collect
+    val jsonStr = PoPfxGB.toJsons(jsons)
+    val saveFile = new FileOutputStream("/media/sf_vmshare/pocogb.json")
+    IOUtils.write(jsonStr, saveFile, StandardCharsets.UTF_8)
+    saveFile.close()
+
+    val path = "/media/sf_vmshare/pocoTrace"
     SparkUtils.del(spSess.sparkContext, path)
-    nonEmpty.map { p =>
-        val (name, m) = p
-        val tr = m.map(p => s"${p._1}: ${p._2.mkString(",")}")
+    nonEmpty.map { poPfx =>
+        val tr = poPfx.gnid2Pfxs.map(p => s"${p._1}: ${p._2.mkString(",")}")
           .mkString("\t", "\n\t", "")
-        s"$name\n$tr"
+        s"${poPfx.name}\n$tr"
       }
       .saveAsTextFile(path)
 

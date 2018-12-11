@@ -171,6 +171,12 @@
 
             <dependency>
                 <groupId>org.ditw</groupId>
+                <artifactId>exutil1</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ditw</groupId>
                 <artifactId>text-seg</artifactId>
                 <version>${project.version}</version>
             </dependency>
