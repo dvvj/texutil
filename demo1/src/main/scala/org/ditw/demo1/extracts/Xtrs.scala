@@ -20,21 +20,21 @@ object Xtrs extends Serializable {
       }.toList
   }
 
-  private[demo1] def entXtr4Tag(tag2Match:String):TXtr[Long] = new TExactTag[Long](tag2Match) {
+  private[demo1] def entXtr4Tag(tag2Match:String):TXtr[Long] = new XtrExactTag[Long](tag2Match) {
     override def _extract(m: TkMatch)
       : List[Long] = {
       extractEntId(m)
     }
   }
 
-  private[demo1] def entXtr4TagPfx(tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+  private[demo1] def entXtr4TagPfx(tagPfx:String):TXtr[Long] = new XtrPfx[Long](tagPfx) {
     override def _extract(m: TkMatch)
     : List[Long] = {
       extractEntId(m.children.head)
     }
   }
 
-  private[demo1] def entXtr4TagPfxLast(tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+  private[demo1] def entXtr4TagPfxLast(tagPfx:String):TXtr[Long] = new XtrPfx[Long](tagPfx) {
     override def _extract(m: TkMatch)
     : List[Long] = {
       extractEntId(m.children.last)
@@ -42,7 +42,7 @@ object Xtrs extends Serializable {
   }
 
   private val EmptyIds = List[Long]()
-  private[demo1] def entXtr4TagPfx_Level(gnsvc:GNSvc, tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+  private[demo1] def entXtr4TagPfx_Level(gnsvc:GNSvc, tagPfx:String):TXtr[Long] = new XtrPfx[Long](tagPfx) {
     override def _extract(m: TkMatch)
     : List[Long] = {
       val allIds = extractEntId(m)
@@ -60,7 +60,7 @@ object Xtrs extends Serializable {
     }
   }
 
-  private[demo1] def entXtrFirst4TagPfx(gnsvc:GNSvc, tagPfx:String):TXtr[Long] = new TTagPfx[Long](tagPfx) {
+  private[demo1] def entXtrFirst4TagPfx(gnsvc:GNSvc, tagPfx:String):TXtr[Long] = new XtrPfx[Long](tagPfx) {
     override def _extract(m: TkMatch)
     : List[Long] = {
       val admIds = extractEntId(m.children.last)

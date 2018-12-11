@@ -6,7 +6,7 @@ object PocoData extends Serializable {
   import org.ditw.matcher.CompMatchers._
   import org.ditw.matcher.CompMatcherNs._
   import org.ditw.matcher.TokenMatchers._
-  private[poco] val CC_GB = "GB"
+  private[exutil1] val CC_GB = "GB"
   private val PocoGB = new TPoco {
     // https://en.wikipedia.org/wiki/Postcodes_in_the_United_Kingdom
     // AA9A 9AA	WC postcode area; EC1–EC4, NW1W, SE1P, SW1	EC1A 1BB

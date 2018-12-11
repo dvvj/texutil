@@ -38,24 +38,24 @@ object TXtr extends Serializable {
 //  def runXtr[R : TXtr](m:Iterable[TkMatch]):Map[TkRange, List[R]] =
 //    implicitly[TXtr[R]].extractAll(m)
 
-  abstract class TExactTag[R](protected val tagToMatch:String) extends TXtr[R] {
+  abstract class XtrExactTag[R](protected val tagToMatch:String) extends TXtr[R] {
     override def canApply(tag: String): Boolean = tag == tagToMatch
   }
 
-  abstract class TTagPfx[R](protected val tagPfx:String) extends TXtr[R] {
+  abstract class XtrPfx[R](protected val tagPfx:String) extends TXtr[R] {
     override def canApply(tag: String): Boolean = tag.startsWith(tagPfx)
   }
 
-  abstract class TRegexTag[R](protected val regex:Regex) extends TXtr[R] {
+  abstract class XtrRegexTag[R](protected val regex:Regex) extends TXtr[R] {
     override def canApply(tag: String): Boolean = regex.pattern.matcher(tag).matches()
   }
 
-  private def fullStrExactTagMatch(tag:String):TXtr[String] = new TExactTag[String](tag) {
+  private def fullStrExactTagMatch(tag:String):TXtr[String] = new XtrExactTag[String](tag) {
     override def _extract(m: TkMatch)
       : List[String] = List(m.range.str)
   }
 
-  private def fullStrRegexTagMatch(regex:Regex):TXtr[String] = new TRegexTag[String](regex) {
+  private def fullStrRegexTagMatch(regex:Regex):TXtr[String] = new XtrRegexTag[String](regex) {
     override def _extract(m: TkMatch)
     : List[String] = List(m.range.str)
   }

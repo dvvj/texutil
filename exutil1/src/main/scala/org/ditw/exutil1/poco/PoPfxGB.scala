@@ -14,4 +14,10 @@ object PoPfxGB extends Serializable {
     import org.json4s.jackson.Serialization._
     writePretty(poPfxs)(DefaultFormats)
   }
+
+  def fromJson(j:String):Array[PoPfxGB] = {
+    import org.json4s.jackson.JsonMethods._
+    implicit val fmt = DefaultFormats
+    parse(j).extract[Array[PoPfxGB]]
+  }
 }

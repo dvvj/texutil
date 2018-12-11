@@ -43,8 +43,7 @@ class PocoGenMatcherTests extends FlatSpec with Matchers with TableDrivenPropert
     List(), List(), List(cm), List()
   )
 
-  private val testTokenizer = TknrTextSeg()
-  private val testDict: Dict = InputHelpers.loadDict()
+  import org.ditw.exutil1.TestHelpers._
 
   "GB poco matchers" should "work" in {
     forAll (testData) { (cc, inStr, expResult) =>
