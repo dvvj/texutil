@@ -24,12 +24,12 @@ object UtilPocoCsv1 {
     val headers = "Postcode,Latitude,Longitude,Easting,Northing,Grid Ref,Postcodes,Active postcodes,Population,Households,Built up area"
       .split(",")
 
+    import collection.mutable
     val rows = spSess.read
       .format("csv")
       .option("header", "true")
       .load("/media/sf_vmshare/postcode sectors.csv")
 
-    import collection.mutable
     val grouped = rows.select("Postcode", "Latitude", "Longitude", "Built up area")
       .filter(_.get(3) != null)
       .rdd.map(r => r.get(3) -> (r.getAs[String](0), r.get(1).toString.toDouble, r.get(2).toString.toDouble))

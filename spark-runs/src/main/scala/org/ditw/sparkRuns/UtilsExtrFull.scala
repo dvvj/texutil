@@ -9,7 +9,6 @@ import org.ditw.demo1.matchers.{MatcherGen, TagHelper}
 import org.ditw.extract.XtrMgr
 import org.ditw.matcher.{MatchPool, MatcherMgr}
 import org.ditw.pmxml.model.AAAuAff
-import org.ditw.sparkRuns.UtilsExtract.{xtrs, _}
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.Tags.TagGroup4Univ
 import org.ditw.textSeg.common.{AllCatMatchers, Vocabs}
@@ -56,14 +55,14 @@ object UtilsExtrFull {
     val svc = GNSvc.loadDef(gnLines, ccs)
 
     import CommonUtils._
-    val dict = loadDict(svc)
-
-    val (mmgr, xtrMgr) = genMMgr(svc, dict)
-    val brSvc = spark.broadcast(svc)
-    val brMmgr = spark.broadcast(mmgr)
-    val brXtrMgr = spark.broadcast(xtrMgr)
-    val brDict = spark.broadcast(dict)
-    val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg())
+    val gnmmgr = loadGNMmgr(ccs, spark, "file:///media/sf_vmshare/gns/all")
+    val brGNMmgr = spark.broadcast(gnmmgr)
+//    val (mmgr, xtrMgr) = genMMgr(svc, dict)
+//    val brSvc = spark.broadcast(svc)
+//    val brMmgr = spark.broadcast(mmgr)
+//    val brXtrMgr = spark.broadcast(xtrMgr)
+//    val brDict = spark.broadcast(dict)
+//    val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg())
 
     printlnT0("Running extraction ...")
 
@@ -84,10 +83,11 @@ object UtilsExtrFull {
       .map { tp3 =>
         val (pmid, localId, affSegs) = tp3
         val aff = affSegs(0) // single line
-        val mp = MatchPool.fromStr(aff, brTknr.value, brDict.value)
-        brMmgr.value.run(mp)
+        val gnm = brGNMmgr.value
+        val mp = MatchPool.fromStr(aff, gnm.tknr, gnm.dict)
+        gnm.mmgr.run(mp)
         val univRngs = mp.get(TagGroup4Univ.segTag).map(_.range)
-        val rng2Ents = brSvc.value.extrEnts(brXtrMgr.value, mp)
+        val rng2Ents = gnm.svc.extrEnts(gnm.xtrMgr, mp)
         val univs =
           if (univRngs.size == 1 && rng2Ents.size == 1) { // name fix, todo: better structure
             val univRng = univRngs.head

@@ -21,26 +21,15 @@ object UtilPoco2Map2GNs {
   def main(args:Array[String]):Unit = {
     val spark = SparkUtils.sparkContextLocal()
 
-    val gnLines = spark.textFile(
-      //"/media/sf_vmshare/fp2Affs_uniq"
-      "file:///media/sf_vmshare/gns/all"
-    ).map(tabSplitter.split)
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val ccs = Set(
       US
       //,CA , GB, AU //,FR,DE,ES,IT
     )
 
     import CommonUtils._
-    val svc = GNSvc.loadNoPopuReq(gnLines, ccs)
-    val dict = loadDict(svc)
-    val (mmgr, xtrMgr) = genMMgr(svc, dict)
+    val gnmmgr = loadGNMmgr(ccs, spark, "file:///media/sf_vmshare/gns/all")
 
-    val brSvc = spark.broadcast(svc)
-    val brMmgr = spark.broadcast(mmgr)
-    val brXtrMgr = spark.broadcast(xtrMgr)
-    val brDict = spark.broadcast(dict)
-    val brTknr = spark.broadcast(TknrHelpers.TknrTextSeg())
+    val brGNMmgr = spark.broadcast(gnmmgr)
 
     //country code      : iso country code, 2 characters
     //postal code       : varchar(20)
@@ -76,12 +65,13 @@ object UtilPoco2Map2GNs {
       val (placeAdm1Name, postalCoord) = p
       val placeAdm1 = s"${placeAdm1Name._1}, ${placeAdm1Name._2}"
 
-      if ("Washington, District of Columbia" == placeAdm1)
-        println("ok")
+//      if ("Washington, District of Columbia" == placeAdm1)
+//        println("ok")
+      val gnm = brGNMmgr.value
       var rng2Ents = runStr(
         placeAdm1,
-        brTknr.value, brDict.value, brMmgr.value, brSvc.value,
-        brXtrMgr.value
+        gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
+        gnm.xtrMgr
       )
       if (rng2Ents.isEmpty) {
         val pfx2Repl = Pfx2Replace.keySet.filter(placeAdm1.startsWith)
@@ -91,11 +81,8 @@ object UtilPoco2Map2GNs {
           val placeAdm1Repl = Pfx2Replace(pfx) + placeAdm1.substring(pfx.length)
           rng2Ents = runStr(
             placeAdm1Repl,
-            brTknr.value,
-            brDict.value,
-            brMmgr.value,
-            brSvc.value,
-            brXtrMgr.value
+            gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
+            gnm.xtrMgr
           )
         }
       }
@@ -159,14 +146,6 @@ object UtilPoco2Map2GNs {
     out.close()
   }
 
-  private def runStr(str:String, tknr:TTokenizer, dict: Dict, mmgr: MatcherMgr, svc:GNSvc, xtrMgr: XtrMgr[Long]) = {
-    val mp = MatchPool.fromStr(str, tknr, dict)
-    mmgr.run(mp)
-    val res = svc.extrEnts(xtrMgr, mp)
-    res.filter(
-      p => p._1.start == 0 && p._1.end == mp.input.linesOfTokens(0).length // should be the whole string
-    )
-  }
 
   private val Pfx2Replace = Map(
     "Mc " -> "Mc",
