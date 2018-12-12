@@ -7,12 +7,12 @@ import scala.util.matching.Regex
 trait TXtr[R] extends Serializable {
 
   def canApply(tag:String):Boolean
-  def extract(tag:String, m: TkMatch):List[R] = {
-    if (canApply(tag)) _extract(m)
-    else List()
-  }
+//  def extract(tag:String, m: TkMatch):List[R] = {
+//    if (canApply(tag)) _extract(m)
+//    else List()
+//  }
 
-  protected def _extract(m: TkMatch):List[R]
+  def extract(m: TkMatch):List[R]
 
   def extractAll(matchPool: MatchPool):Iterable[(TkRange, List[R])] = {
     val range2Exrs = matchPool.allTags().flatMap { tag =>
@@ -20,7 +20,7 @@ trait TXtr[R] extends Serializable {
       else {
         val matches = matchPool.get(tag)
         matches.flatMap { m =>
-          val exr = _extract(m)
+          val exr = extract(m)
           if (exr.nonEmpty)
             Option(m.range -> exr)
           else None
@@ -51,12 +51,12 @@ object TXtr extends Serializable {
   }
 
   private def fullStrExactTagMatch(tag:String):TXtr[String] = new XtrExactTag[String](tag) {
-    override def _extract(m: TkMatch)
+    override def extract(m: TkMatch)
       : List[String] = List(m.range.str)
   }
 
   private def fullStrRegexTagMatch(regex:Regex):TXtr[String] = new XtrRegexTag[String](regex) {
-    override def _extract(m: TkMatch)
+    override def extract(m: TkMatch)
     : List[String] = List(m.range.str)
   }
 }

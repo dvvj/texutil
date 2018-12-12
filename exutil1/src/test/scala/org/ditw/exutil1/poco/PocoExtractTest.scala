@@ -71,7 +71,7 @@ class PocoExtractTest extends FlatSpec with Matchers with TableDrivenPropertyChe
     List(), List(), List(cm), List()
   )
   import PocoXtrs._
-  private val xtrMgr = XtrMgr.create(List(gbPocoPfxXtr, usPocoXtr))
+  private val xtrMgr = XtrMgr.create(cc2Poco.values.map(_.xtr).toList)
 
   "Poco extract tests" should "pass" in {
     forAll (testData) { (cc, inStr, expRes) =>

@@ -1,5 +1,8 @@
 package org.ditw.exutil1.poco
-import org.ditw.matcher.TCompMatcher
+import org.ditw.extract.TXtr
+import org.ditw.extract.TXtr.XtrPfx
+import org.ditw.exutil1.extract.PocoXtrs.{pocoUS2GNid, pocoXtr4TagPfx, pocogbPfx2GNid}
+import org.ditw.matcher.{TCompMatcher, TkMatch}
 
 object PocoData extends Serializable {
 
@@ -28,12 +31,19 @@ object PocoData extends Serializable {
       )
     }
     override def check(poco: String): Boolean = throw new RuntimeException("todo")
+    override val xtr: TXtr[Long] = pocoXtr4TagPfx(
+      pocogbPfx2GNid, PocoTags.pocoTag(PocoData.CC_GB)
+    )
   }
 
   private val PocoUS = new TPoco {
     private val _regex = regex("\\d{5}([‑-]\\d{4})?")
 
     override def genMatcher: TCompMatcher = byTmT(_regex, PocoTags.pocoTag(CC_US))
+
+    override val xtr: TXtr[Long] = pocoXtr4TagPfx(
+      pocoUS2GNid, PocoTags.pocoTag(PocoData.CC_US)
+    )
 
     override def check(poco: String): Boolean = throw new RuntimeException("todo")
   }
@@ -42,5 +52,22 @@ object PocoData extends Serializable {
     CC_GB -> PocoGB,
     CC_US -> PocoUS
   )
+
+  import PocoTags._
+  val pocoXtr:TXtr[Long] = new XtrPfx[Long](_PocoCountryPfx) {
+    override def extract(m: TkMatch):List[Long] = {
+      val ccs = m.getTags.filter(_.startsWith(_PocoCountryPfx))
+      if (ccs.nonEmpty) {
+        if (ccs.size == 1) {
+          val cc = ccs.head.substring(_PocoCountryPfx.length)
+          cc2Poco(cc).xtr.extract(m.children.head)
+        }
+        else
+          throw new RuntimeException(s"multiple country codes? ${ccs.mkString(",")}")
+      }
+      else
+        throw new RuntimeException("No country code?")
+    }
+  }
 
 }

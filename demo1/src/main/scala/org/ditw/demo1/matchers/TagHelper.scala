@@ -15,6 +15,7 @@ object TagHelper extends Serializable {
   def adm1SubEntTmTag(adm1Code:String):String = _Adm1SubTmPfx + adm1Code
   def admDynTag(admCode:String):String = _DynamicTmPfx + admCode
   private val _CountryTmPfx = "_CNTR_"
+  def countryTag(cntry: String):String = _CountryTmPfx + cntry
   def countryTag(cntry: GNCntry):String = _CountryTmPfx + cntry
   private val _CityTmPfx = "_CITY_"
   def cityOfCountryTag(cntry: GNCntry):String = _CityTmPfx + cntry
@@ -29,4 +30,5 @@ object TagHelper extends Serializable {
 
   private[demo1] val _CityAdmSeqPfx = "_CITY_ADMSEQ_"
   def cityAdmSeqTag(cntry: GNCntry):String = _CityAdmSeqPfx + cntry
+
 }

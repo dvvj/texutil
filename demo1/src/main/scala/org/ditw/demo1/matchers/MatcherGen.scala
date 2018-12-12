@@ -2,7 +2,10 @@ package org.ditw.demo1.matchers
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.demo1.extracts.Xtrs
 import org.ditw.demo1.gndata.{GNSvc, TGNMap}
+import org.ditw.demo1.matchers.Adm0Gen.{LookAroundSfxCounts_CityCountry, LookAroundSfxSet}
+import org.ditw.demo1.matchers.TagHelper.countryTag
 import org.ditw.extract.{TXtr, XtrMgr}
+import org.ditw.exutil1.poco.{PocoData, PocoTags}
 import org.ditw.matcher._
 
 import scala.collection.mutable.ListBuffer
@@ -35,6 +38,8 @@ object MatcherGen extends Serializable {
 
   import TagHelper._
 
+  private val LookAroundSfxSet = Set(",")
+  private val LookAroundSfxCounts_PocoCountry = (3, 0)
   def gen(
            gnsvc:GNSvc,
            dict:Dict,
@@ -90,6 +95,20 @@ object MatcherGen extends Serializable {
 
     xtrlst += Xtrs.entXtr4TagPfx(_CityStatePfx)
     xtrlst += Xtrs.entXtr4TagPfxLast(_StateCityPfx)
+
+    //tmlst ++= PocoData.cc2Poco.values.map(_.genMatcher)
+    cmlst ++= PocoData.cc2Poco.map { p =>
+      val (cc, poco) = p
+      val mtr = poco.genMatcher
+      tmlst += mtr
+      val ct = countryTag(cc)
+      CompMatcherNXs.sfxLookAroundByTag_R2L(
+        LookAroundSfxSet, LookAroundSfxCounts_PocoCountry,
+        ct, mtr.tag.get,
+        PocoTags.pocoCountryTag(cc)
+      )
+    }
+    xtrlst += PocoData.pocoXtr
     // xtrlst += Xtrs.entXtr4TagPfx(_CityCountryPfx)
     // xtrlst += Xtrs.entXtrFirst4TagPfx(gnsvc, _CityAdmSeqPfx)
     if (extras.nonEmpty) {

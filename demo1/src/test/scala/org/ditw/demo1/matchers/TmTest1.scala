@@ -17,8 +17,6 @@ object TmTest1 extends App {
     testStrs.foreach { str =>
       val mp = MatchPool.fromStr(str, MatcherHelper.testTokenizer, testDict)
       mmgr.run(mp)
-      val tag = TagHelper.cityStateTag("US_MA")
-      val t = mp.get(tag)
 
       val rng2Ents = testGNSvc.extrEnts(xtrMgr, mp)
       println(rng2Ents)
@@ -35,6 +33,7 @@ object TmTest1 extends App {
   import org.ditw.demo1.gndata.GNCntry._
 
   testTm(List(
+    "CF10 3NB, UK",
     "Cardiff University, Cardiff, CF10 3NB, UK. Email: prokopovichp@cardiff.ac.uk; Center for Biomedical Engineering, Massachusetts Institute of Technology, Cambridge, USA.",
     "Cardinal Stefan Wyszynski University in Warsaw",
     "Boston University, Boston, USA.",

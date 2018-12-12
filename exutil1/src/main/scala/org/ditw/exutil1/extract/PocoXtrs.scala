@@ -8,7 +8,7 @@ import org.ditw.matcher.TkMatch
 object PocoXtrs extends Serializable {
 
   private val pocogbPfxs = ResourceHelpers.load("/poco/gb_pfx.json", PoPfxGB.fromJson)
-  private val pocogbPfx2GNid = pocogbPfxs.flatMap { pocogbPfx =>
+  private[exutil1] val pocogbPfx2GNid = pocogbPfxs.flatMap { pocogbPfx =>
     pocogbPfx.gnid2Pfxs.flatMap { p =>
       val id = p._1
       val pfxs = p._2.toSet
@@ -28,7 +28,7 @@ object PocoXtrs extends Serializable {
       val t = pfx2IdMap.keySet.map(_.length)
       t.min to t.max
     }
-    override def _extract(m: TkMatch)
+    override def extract(m: TkMatch)
     : List[Long] = {
       // todo: generalize to other countries
       val all = m.range.str.replace(" ", "")
@@ -50,21 +50,14 @@ object PocoXtrs extends Serializable {
     }
   }
 
-  val gbPocoPfxXtr:TXtr[Long] = pocoXtr4TagPfx(
-    pocogbPfx2GNid, PocoTags.pocoTag(PocoData.CC_GB)
-  )
-
 
   private val pocoUS = ResourceHelpers.load("/poco/us.json", PocoUS.fromJson)
-  private val pocoUS2GNid = pocoUS.flatMap { poco =>
+  private[exutil1] val pocoUS2GNid = pocoUS.flatMap { poco =>
     poco.gnid2Poco.flatMap { p =>
       val id = p._1
       val pfxs = p._2.toSet
       pfxs.map(_ -> id)
     }
   }.toMap
-  val usPocoXtr:TXtr[Long] = pocoXtr4TagPfx(
-    pocoUS2GNid, PocoTags.pocoTag(PocoData.CC_US)
-  )
 
 }
