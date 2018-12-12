@@ -2,12 +2,12 @@ package org.ditw.exutil1.extract
 import org.ditw.common.ResourceHelpers
 import org.ditw.extract.TXtr
 import org.ditw.extract.TXtr.XtrPfx
-import org.ditw.exutil1.poco.{PoPfxGB, PocoData, PocoTags}
+import org.ditw.exutil1.poco.{PoPfxGB, PocoData, PocoTags, PocoUS}
 import org.ditw.matcher.TkMatch
 
 object PocoXtrs extends Serializable {
 
-  private val pocogbPfxs = ResourceHelpers.load("/pocopfx/gb.json", PoPfxGB.fromJson)
+  private val pocogbPfxs = ResourceHelpers.load("/poco/gb_pfx.json", PoPfxGB.fromJson)
   private val pocogbPfx2GNid = pocogbPfxs.flatMap { pocogbPfx =>
     pocogbPfx.gnid2Pfxs.flatMap { p =>
       val id = p._1
@@ -17,10 +17,12 @@ object PocoXtrs extends Serializable {
     }
   }.toMap
 
+  private type Match2QueryStr = (String, Int) => String
 
   private[exutil1] def pocoXtr4TagPfx(
     pfx2IdMap:Map[String, Long],
-    tagPfx:String
+    tagPfx:String,
+    match2Query: Option[Match2QueryStr] = None
   ):TXtr[Long] = new XtrPfx[Long](tagPfx) {
     private val pfxRange:Range = {
       val t = pfx2IdMap.keySet.map(_.length)
@@ -35,7 +37,9 @@ object PocoXtrs extends Serializable {
       var currLen = maxLen
       var res:List[Long] = Nil
       while (!found && currLen >= pfxRange.start) {
-        val currPfx = all.substring(0, currLen)
+        val currPfx =
+          if (match2Query.isEmpty) all.substring(0, currLen)
+          else match2Query.get(all, currLen)
         if (pfx2IdMap.contains(currPfx)) {
           found = true
           res = List(pfx2IdMap(currPfx))
@@ -46,8 +50,21 @@ object PocoXtrs extends Serializable {
     }
   }
 
-   val gbPocoPfxXtr:TXtr[Long] = pocoXtr4TagPfx(
-     pocogbPfx2GNid, PocoTags.pocoTag(PocoData.CC_GB)
-   )
+  val gbPocoPfxXtr:TXtr[Long] = pocoXtr4TagPfx(
+    pocogbPfx2GNid, PocoTags.pocoTag(PocoData.CC_GB)
+  )
+
+
+  private val pocoUS = ResourceHelpers.load("/poco/us.json", PocoUS.fromJson)
+  private val pocoUS2GNid = pocoUS.flatMap { poco =>
+    poco.gnid2Poco.flatMap { p =>
+      val id = p._1
+      val pfxs = p._2.toSet
+      pfxs.map(_ -> id)
+    }
+  }.toMap
+  val usPocoXtr:TXtr[Long] = pocoXtr4TagPfx(
+    pocoUS2GNid, PocoTags.pocoTag(PocoData.CC_US)
+  )
 
 }

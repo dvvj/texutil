@@ -20,25 +20,6 @@ import scala.collection.mutable.ListBuffer
 
 object UtilsExtrFull {
 
-  private def genMMgr(gnsvc: GNSvc, dict: Dict):(MatcherMgr, XtrMgr[Long]) = {
-    MatcherGen.gen(
-      gnsvc, dict,
-      Option(
-        AllCatMatchers.segMatchersFrom(
-          dict,
-          Seq(Cat2SegMatchers.segMatchers(dict))
-        )
-      )
-    )
-  }
-
-  def loadDict(
-                gnsvc: GNSvc
-              ):Dict = {
-    val words1 = MatcherGen.wordsFromGNSvc(gnsvc)
-    val words2 = Vocabs.allWords
-    InputHelpers.loadDict(words1++words2)
-  }
 
   def segment(affStr:String):Array[String] = {
     affStr.split(";").map(_.trim).filter(!_.isEmpty)
@@ -74,6 +55,7 @@ object UtilsExtrFull {
     )
     val svc = GNSvc.loadDef(gnLines, ccs)
 
+    import CommonUtils._
     val dict = loadDict(svc)
 
     val (mmgr, xtrMgr) = genMMgr(svc, dict)

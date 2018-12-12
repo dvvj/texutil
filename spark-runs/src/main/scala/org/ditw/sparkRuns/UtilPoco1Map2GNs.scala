@@ -14,26 +14,7 @@ import org.ditw.sparkRuns.UtilPocoCsv1.minMax
 import scala.collection.mutable.ListBuffer
 
 object UtilPoco1Map2GNs {
-  private val maxDiff = 0.5
-  private def checkCoord(
-    lat1:Double,
-    long1:Double,
-    lat2:Double,
-    long2:Double
-  ):Boolean = {
-    math.abs(lat1-lat2) < maxDiff && math.abs(long1-long2) < maxDiff
-  }
 
-  private def distByCoord(
-    lat1:Double,
-    long1:Double,
-    lat2:Double,
-    long2:Double
-  ):Double = {
-    val latDiff = lat1-lat2
-    val lonDiff = long1-long2
-    latDiff*latDiff + lonDiff*lonDiff
-  }
 
   private def removeBrackets(in:String):String = {
     val rightIdx = in.lastIndexOf(')')
@@ -46,6 +27,7 @@ object UtilPoco1Map2GNs {
     else in
   }
 
+  import CommonUtils._
   def main(args:Array[String]):Unit = {
     val spSess = SparkUtils.sparkSessionLocal()
 
