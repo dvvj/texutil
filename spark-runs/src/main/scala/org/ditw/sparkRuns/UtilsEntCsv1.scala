@@ -1,6 +1,6 @@
 package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
-import org.ditw.common.SparkUtils
+import org.ditw.common.{ResourceHelpers, SparkUtils}
 import org.ditw.demo1.gndata.GNCntry
 import org.ditw.exutil1.naen.NaEn
 
@@ -66,7 +66,7 @@ object UtilsEntCsv1 {
             val name = row.getAs[String]("NAME")
             val altName = row.getAs[String]("ALT_NAME")
             val altNames = if (altName == "NOT AVAILABLE") Vector[String]() else Vector(altName)
-            Option(NaEn(name, altNames, nearest.get.gnid))
+            Option(NaEn(processName(name), altNames, nearest.get.gnid))
           }
           else {
             None  //todo trace
@@ -87,6 +87,33 @@ object UtilsEntCsv1 {
     )
 
     spSess.stop()
+  }
+
+  private val dashTokenSet = ResourceHelpers.loadStrs("/hosp_name_with_dash.txt")
+    .map(_.toLowerCase()).toSet
+  private val spaceSplitter = "\\s+".r
+  private val dashSplitter = "-".r
+  private def isDash(s:String):Boolean = s == "-"
+  private def processName(name:String):String = {
+    val spaceSplits = spaceSplitter.split(name.toLowerCase())
+    val tokens = spaceSplits.flatMap { s =>
+      if (dashTokenSet.contains(s)) List(s)
+      else {
+        if (!isDash(s))
+          dashSplitter.split(s).filter(_.nonEmpty)
+        else
+          List(s)
+      }
+    }
+    val firstDash = tokens.indices.find(idx => isDash(tokens(idx)))
+    if (firstDash.nonEmpty) {
+      val s = tokens.slice(0, firstDash.get)
+      if (s.length > 2)
+        s.mkString(" ")
+      else // probably a wrong slice
+        name.toLowerCase()
+    }
+    else name.toLowerCase()
   }
 
   private val Pfx2Replace = Map(

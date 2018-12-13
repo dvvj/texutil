@@ -58,6 +58,7 @@ object UtilsExtractSpanishNames {
         (s1, s2) => s1 ++ s2
       )
       .mapValues(_.toVector.sorted)
+      .coalesce(8)
       .sortBy(_._1)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
