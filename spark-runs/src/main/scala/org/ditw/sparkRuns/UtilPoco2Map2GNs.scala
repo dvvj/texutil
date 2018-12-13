@@ -140,10 +140,10 @@ object UtilPoco2Map2GNs {
     val pocos = res.collect()
     spark.stop()
 
-    var path = "/media/sf_vmshare/pocoUSJson.txt"
-    val out = new FileOutputStream(path)
-    IOUtils.write(PocoUS.toJsons(pocos), out, StandardCharsets.UTF_8)
-    out.close()
+    writeJson(
+      "/media/sf_vmshare/pocoUSJson.txt",
+      pocos, PocoUS.toJsons
+    )
   }
 
 

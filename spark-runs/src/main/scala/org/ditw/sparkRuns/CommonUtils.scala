@@ -1,4 +1,8 @@
 package org.ditw.sparkRuns
+import java.io.FileOutputStream
+import java.nio.charset.StandardCharsets
+
+import org.apache.commons.io.IOUtils
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.storage.StorageLevel
@@ -8,6 +12,7 @@ import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.MatcherGen
 import org.ditw.extract.XtrMgr
+import org.ditw.exutil1.poco.PocoUS
 import org.ditw.matcher.{MatchPool, MatcherMgr}
 import org.ditw.sparkRuns.UtilsEntCsv1.Pfx2Replace
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
@@ -127,5 +132,11 @@ object CommonUtils extends Serializable {
       Option(nearest)
     }
 
+  }
+
+  def writeJson[T](path:String, objs:Array[T], conv:Array[T] => String):Unit = {
+    val out = new FileOutputStream(path)
+    IOUtils.write(conv(objs), out, StandardCharsets.UTF_8)
+    out.close()
   }
 }

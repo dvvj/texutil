@@ -65,22 +65,26 @@ object UtilsEntCsv1 {
           if (nearest.nonEmpty) {
             val name = row.getAs[String]("NAME")
             val altName = row.getAs[String]("ALT_NAME")
-            Option(NaEn(name, Vector(altName), nearest.get.gnid))
+            val altNames = if (altName == "NOT AVAILABLE") Vector[String]() else Vector(altName)
+            Option(NaEn(name, altNames, nearest.get.gnid))
           }
           else {
             None  //todo trace
           }
 
         }
-
       }
-//      else {
-//        println(s"Found: ${rng2Ents.values.mkString(",")}")
-//      }
-
     }
+      .sortBy(_.name)
+      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     println(s"#: ${res.count()}")
+
+    val hosps = res.collect()
+    writeJson(
+      "/media/sf_vmshare/us_hosp.json",
+      hosps, NaEn.toJsons
+    )
 
     spSess.stop()
   }
