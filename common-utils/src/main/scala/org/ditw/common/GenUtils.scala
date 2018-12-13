@@ -1,4 +1,6 @@
 package org.ditw.common
+import java.text.Normalizer
+
 import org.joda.time.DateTime
 
 object GenUtils extends Serializable {
@@ -17,5 +19,12 @@ object GenUtils extends Serializable {
   def printlnT1(msg:String):Unit = printlnT(msg, 1)
   def printlnT2(msg:String):Unit = printlnT(msg, 2)
 
-
+  private val replRegex = "\\p{M}".r
+  def normalize(n:String):String = {
+    val nr = Normalizer.normalize(n, Normalizer.Form.NFD)
+    if (nr == n) n
+    else {
+      replRegex.replaceAllIn(nr, "")
+    }
+  }
 }

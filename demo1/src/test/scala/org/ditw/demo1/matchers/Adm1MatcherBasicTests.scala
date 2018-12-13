@@ -50,13 +50,13 @@ class Adm1MatcherBasicTests extends FlatSpec with Matchers with TableDrivenPrope
       cityCountryTag(GNCntry.CA),
       Set[(Int, Int, Int)]()
     ),
-    (
-      "Washington, DC, USA.",
-      cityCountryTag(GNCntry.US),
-      Set(
-        (0, 0, 3)
-      )
-    ),
+//    (
+//      "Washington, DC, USA.",
+//      cityCountryTag(GNCntry.US),
+//      Set(
+//        (0, 0, 3)
+//      )
+//    ),
     (
       "Worcester County, Massachusetts, USA.",
       cityStateTag("US_MA"),

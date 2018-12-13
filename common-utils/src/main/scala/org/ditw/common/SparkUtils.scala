@@ -4,6 +4,7 @@ import java.net.URI
 
 import org.apache.commons.io.FileUtils
 import org.apache.hadoop.fs.{FileSystem, Path}
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.{SparkConf, SparkContext}
 
@@ -55,6 +56,11 @@ object SparkUtils {
     val uri = new URI(path)
     val fs = FileSystem.get(uri, spark.hadoopConfiguration)
     fs.delete(new Path(path), true)
+  }
+
+  def saveDelExisting[T](data:RDD[T], path:String):Unit = {
+    del(data.sparkContext, path)
+    data.saveAsTextFile(path)
   }
 
   def sparkSessionLocal(appName:String = "[NO NAME]", numReducer:Int = 4):SparkSession = {

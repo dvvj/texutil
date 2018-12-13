@@ -37,17 +37,9 @@ object GNCollPreConstruct extends Serializable {
 //      lst += s"$trimmed-ku"
   }
 
-  private val replRegex = "\\p{M}".r
-  private def normalize(n:String):Option[String] = {
-    val nr = Normalizer.normalize(n, Normalizer.Form.NFD)
-    if (nr == n) None
-    else {
-      Option(replRegex.replaceAllIn(nr, ""))
-    }
-  }
-
 
   import GNCntry._
+  import org.ditw.common.GenUtils._
   private[gndata] val _ppMap = Map[GNCntry, GNCollPreProc] (
     JP -> (m => {
       m.foreach { p =>
@@ -55,18 +47,19 @@ object GNCollPreConstruct extends Serializable {
         if (coll.self.nonEmpty) {
           val admEnt = coll.self.get
           val lowerOrig = admEnt.name.toLowerCase()
-          val normedName = normalize(lowerOrig)
-          val lower = normedName.getOrElse(lowerOrig)
+          //val normedName = normalize(lowerOrig)
+          //normedName.getOrElse(lowerOrig)
+          val normedLower = normalize(lowerOrig)
           if (p._2.level == GNLevel.ADM1) {
 
             var found = false
-            var trimmed = lower
+            var trimmed = normedLower
             val it = jpAdm1Suffixes.iterator
             while (!found && it.hasNext) {
               val sfx = it.next()
-              if (lower.endsWith(sfx)) {
+              if (normedLower.endsWith(sfx)) {
                 found = true
-                trimmed = lower.substring(0, lower.length - sfx.length).trim
+                trimmed = normedLower.substring(0, normedLower.length - sfx.length).trim
               }
             }
             if (found) {
@@ -78,7 +71,7 @@ object GNCollPreConstruct extends Serializable {
             val it = jpAdm2SuffixesSorted.iterator
             while (!found && it.hasNext) {
               val sfx = it.next()
-              if (lower.endsWith(sfx)) {
+              if (normedLower.endsWith(sfx)) {
                 found = true
                 sfxFound = sfx
               }
@@ -86,8 +79,8 @@ object GNCollPreConstruct extends Serializable {
             if (found) {
               val alias2Add = ListBuffer[String]()
               jpAdm2Alias(lowerOrig, sfxFound, alias2Add)
-              if (normedName.nonEmpty) {
-                jpAdm2Alias(normedName.get, sfxFound, alias2Add)
+              if (lowerOrig != normedLower) {
+                jpAdm2Alias(normedLower, sfxFound, alias2Add)
               }
               admEnt.addAliases(alias2Add)
             }
