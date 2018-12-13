@@ -2,6 +2,7 @@ package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
 import org.ditw.demo1.gndata.GNCntry
+import org.ditw.exutil1.naen.NaEn
 
 object UtilsEntCsv1 {
   def main(args:Array[String]):Unit = {
@@ -33,15 +34,45 @@ object UtilsEntCsv1 {
       val city = row.getAs[String]("CITY")
       val state = row.getAs[String]("STATE")
       val cityState = s"$city $state"
-      val rng2Ents = runStr(
+      var rng2Ents = runStr(
         cityState, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr
       )
+
+      if (rng2Ents.isEmpty) {
+        val repl = replPfx(cityState, Pfx2Replace)
+        if (repl.nonEmpty) {
+          rng2Ents = runStr(
+            repl.get,
+            gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
+            gnm.xtrMgr
+          )
+        }
+      }
+
       if (rng2Ents.isEmpty) {
         println(s"$cityState not found")
         None
       }
       else {
-        Option(rng2Ents.values)
+        if (rng2Ents.values.size != 1) {
+          throw new RuntimeException(s"------ more than one ents: $rng2Ents")
+        }
+        else {
+          val lat = row.getAs[String]("LATITUDE").toDouble
+          val lon = row.getAs[String]("LONGITUDE").toDouble
+          val nearest = findNearestAndCheck(rng2Ents.values.head, lat->lon)
+
+          if (nearest.nonEmpty) {
+            val name = row.getAs[String]("NAME")
+            val altName = row.getAs[String]("ALT_NAME")
+            Option(NaEn(name, Vector(altName), nearest.get.gnid))
+          }
+          else {
+            None  //todo trace
+          }
+
+        }
+
       }
 //      else {
 //        println(s"Found: ${rng2Ents.values.mkString(",")}")
@@ -53,4 +84,11 @@ object UtilsEntCsv1 {
 
     spSess.stop()
   }
+
+  private val Pfx2Replace = Map(
+    "ST " -> "SAINT ",
+    "ST. " -> "SAINT ",
+    "MT. " -> "MOUNT ",
+    "MC " -> "MC"
+  )
 }

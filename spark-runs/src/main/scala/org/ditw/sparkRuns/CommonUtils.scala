@@ -4,11 +4,12 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.{Dict, InputHelpers}
 import org.ditw.demo1.gndata.GNCntry.GNCntry
-import org.ditw.demo1.gndata.GNSvc
+import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.MatcherGen
 import org.ditw.extract.XtrMgr
 import org.ditw.matcher.{MatchPool, MatcherMgr}
+import org.ditw.sparkRuns.UtilsEntCsv1.Pfx2Replace
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.{AllCatMatchers, Vocabs}
 import org.ditw.tknr.TknrHelpers
@@ -101,5 +102,30 @@ object CommonUtils extends Serializable {
       .option("header", "true")
       .load(csvPath)
     rows.select(first, theRest: _*)
+  }
+
+  def replPfx(in:String, pfxMap:Map[String, String]):Option[String] = {
+    val pfx2Repl = pfxMap.keySet.filter(in.startsWith)
+    if (pfx2Repl.nonEmpty) {
+      if (pfx2Repl.size > 1) throw new IllegalArgumentException("todo")
+      val pfx = pfx2Repl.head
+      val replaced = pfxMap(pfx) + in.substring(pfx.length)
+      Option(replaced)
+    } else None
+  }
+
+  def findNearestAndCheck(ents:Iterable[GNEnt], coord:(Double, Double)):Option[GNEnt] = {
+    val nearest = ents
+      .minBy(ent => distByCoord(ent.latitude, ent.longitude, coord._1, coord._2))
+    if (!checkCoord(nearest.latitude, nearest.longitude, coord._1, coord._2)) {
+      val nearestCoord = (nearest.latitude, nearest.longitude)
+      val diff = f"(${coord._1-nearestCoord._1}%.2f,${coord._2-nearestCoord._2}%.2f)"
+      println(s"Too far ($diff): ${nearest.gnid} $nearestCoord vs. $coord)")
+      None
+    }
+    else {
+      Option(nearest)
+    }
+
   }
 }
