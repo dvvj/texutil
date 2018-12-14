@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets
 import org.apache.commons.io.IOUtils
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.{Dict, SparkUtils}
-import org.ditw.demo1.gndata.GNCntry.US
+import org.ditw.demo1.gndata.GNCntry.{PR, US}
 import org.ditw.demo1.gndata.GNSvc
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.extract.XtrMgr
@@ -21,13 +21,8 @@ object UtilPoco2Map2GNs {
   def main(args:Array[String]):Unit = {
     val spark = SparkUtils.sparkContextLocal()
 
-    val ccs = Set(
-      US
-      //,CA , GB, AU //,FR,DE,ES,IT
-    )
-
     import CommonUtils._
-    val gnmmgr = loadGNMmgr(ccs, spark, "file:///media/sf_vmshare/gns/all")
+    val gnmmgr = loadGNMmgr(Set(US, PR), Set(PR), spark, "file:///media/sf_vmshare/gns/all")
 
     val brGNMmgr = spark.broadcast(gnmmgr)
 

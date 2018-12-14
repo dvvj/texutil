@@ -22,9 +22,9 @@ import org.ditw.tknr.Tokenizers.TTokenizer
 
 object CommonUtils extends Serializable {
 
-  private def genMMgr(gnsvc: GNSvc, dict: Dict):(MatcherMgr, XtrMgr[Long]) = {
+  private def genMMgr(gnsvc: GNSvc, dict: Dict, ccms:Set[GNCntry]):(MatcherMgr, XtrMgr[Long]) = {
     MatcherGen.gen(
-      gnsvc, dict,
+      gnsvc, dict, ccms,
       Option(
         AllCatMatchers.segMatchersFrom(
           dict,
@@ -44,6 +44,7 @@ object CommonUtils extends Serializable {
 
   private[sparkRuns] def loadGNMmgr(
     ccs:Set[GNCntry],
+    ccms:Set[GNCntry], // countries using
     spark:SparkContext,
     gnPath:String
   ):GNMmgr = {
@@ -52,7 +53,7 @@ object CommonUtils extends Serializable {
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val svc = GNSvc.loadNoPopuReq(gnLines, ccs)
     val dict = loadDict(svc)
-    val (mmgr, xtrMgr) = genMMgr(svc, dict)
+    val (mmgr, xtrMgr) = genMMgr(svc, dict, ccms)
     val tknr = TknrHelpers.TknrTextSeg()
     GNMmgr(tknr, svc, dict, mmgr, xtrMgr)
   }
@@ -61,6 +62,8 @@ object CommonUtils extends Serializable {
   private[sparkRuns] def runStr(str:String, tknr:TTokenizer, dict: Dict, mmgr: MatcherMgr, svc:GNSvc, xtrMgr: XtrMgr[Long]) = {
     val mp = MatchPool.fromStr(str, tknr, dict)
     mmgr.run(mp)
+//    if (str == "SAN JUAN PR")
+//      println("ok")
     val res = svc.extrEnts(xtrMgr, mp)
     res.filter(
       p => p._1.start == 0 && p._1.end == mp.input.linesOfTokens(0).length // should be the whole string

@@ -16,8 +16,8 @@ object Adm0Gen extends Serializable {
   private val LookAroundSfxSet = Set(",")
   private val LookAroundSfxCounts_CityState = (3, 0)
   private val LookAroundSfxCounts_StateCity = (0, 3)
-  private val LookAroundSfxCounts_CityCountry = (4, 1)
-  def genMatcherExtractors(gnsvc:GNSvc, adm0:TGNMap, dict:Dict)
+  private val LookAroundSfxCounts_CityCountry = (3, 0)
+  def genMatcherExtractors(gnsvc:GNSvc, adm0:TGNMap, dict:Dict, containCityCountry:Boolean)
     :(List[TTkMatcher], List[TCompMatcher], List[TXtr[Long]], TPostProc) = {
     val pairs = adm0.admMap.toIndexedSeq
       .flatMap { p =>
@@ -101,11 +101,6 @@ object Adm0Gen extends Serializable {
 //      IndexedSeq(cityTag, ct),
 //      cityCountryTag(adm0.countryCode)
 //    )
-    val cmCityCountry = CompMatcherNXs.sfxLookAroundByTag_R2L(
-      LookAroundSfxSet, LookAroundSfxCounts_CityCountry,
-      ct, cityTag,
-      cityCountryTag(adm0.countryCode)
-    )
 
     // todo: revisit this
 //    val cmCityAdmSeq = GNMatchers.GNSeqByTags(
@@ -118,9 +113,24 @@ object Adm0Gen extends Serializable {
       )
     )
 
+    val cmlst =
+      if (containCityCountry) {
+        val ccTag = cityCountryTag(adm0.countryCode)
+        val cmCityCountry = CompMatcherNXs.sfxLookAroundByTag_R2L(
+          LookAroundSfxSet, LookAroundSfxCounts_CityCountry,
+          ct, cityTag,
+          ccTag
+        )
+        xtrs += Xtrs.entXtr4Tag(ccTag)
+        cmCityCountry :: cms
+      }
+      else {
+        cms
+      }
+
     (
       tmCity :: tms,
-      cmCityCountry :: cms,  // cmCityAdmSeq ::
+      cmlst,  // cmCityAdmSeq ::
       xtrs.toList, pprocBlockers
     )
   }

@@ -2,6 +2,7 @@ package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
 import org.ditw.demo1.gndata.GNCntry
+import org.ditw.demo1.gndata.GNCntry.{PR, US}
 import org.ditw.exutil1.naen.NaEn
 import org.ditw.sparkRuns.NaEnIds.NaEnCat
 import org.ditw.sparkRuns.UtilsEntCsv1.{Pfx2Replace, processName}
@@ -20,7 +21,7 @@ object UtilsEntCsv2 {
         "DORM_CAP,TOT_EMP,SHELTER_ID"
 
     import CommonUtils._
-    val gnmmgr = loadGNMmgr(Set(GNCntry.US), spSess.sparkContext, "file:///media/sf_vmshare/gns/all")
+    val gnmmgr = loadGNMmgr(Set(US, PR), Set(PR), spSess.sparkContext, "file:///media/sf_vmshare/gns/all")
 
     val brGNMmgr = spSess.sparkContext.broadcast(gnmmgr)
 

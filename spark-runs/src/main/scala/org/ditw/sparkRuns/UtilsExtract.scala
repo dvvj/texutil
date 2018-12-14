@@ -17,11 +17,11 @@ object UtilsExtract {
     val spark = SparkUtils.sparkContextLocal()
 
     val ccs = Set(
-      US,
+      US, PR,
       JP,
       CA //, GB, AU //,FR,DE,ES,IT
     )
-    val gnmmgr = loadGNMmgr(ccs, spark, "file:///media/sf_vmshare/gns/all")
+    val gnmmgr = loadGNMmgr(ccs, Set(PR), spark, "file:///media/sf_vmshare/gns/all")
     val brGNMmgr = spark.broadcast(gnmmgr)
 
     printlnT0("Running extraction ...")

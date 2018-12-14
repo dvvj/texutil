@@ -17,14 +17,14 @@ object UtilsMatching extends App {
   ).map(tabSplitter.split)
     .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
   val ccs = Set(
-    US, JP
+    US, JP, PR
     // ,CA, GB, AU //,FR,DE,ES,IT
   )
   val svc = GNSvc.loadDef(gnLines, ccs)
 
   val dict = MatcherGen.loadDict(svc)
 
-  val (mmgr, xtrMgr) = MatcherGen.gen(svc, dict)
+  val (mmgr, xtrMgr) = MatcherGen.gen(svc, dict, Set(PR))
 
   val brSvc = spark.broadcast(svc)
   val brMmgr = spark.broadcast(mmgr)

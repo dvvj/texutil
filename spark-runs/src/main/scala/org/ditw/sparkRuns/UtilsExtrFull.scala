@@ -2,7 +2,7 @@ package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.GenUtils.printlnT0
 import org.ditw.common.{Dict, InputHelpers, SparkUtils, TkRange}
-import org.ditw.demo1.gndata.GNCntry.{CA, JP, US}
+import org.ditw.demo1.gndata.GNCntry.{CA, JP, PR, US}
 import org.ditw.demo1.gndata.{GNCntry, GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.{MatcherGen, TagHelper}
@@ -48,14 +48,12 @@ object UtilsExtrFull {
       inputGNPath
     ).map(tabSplitter.split)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
-    val ccs = Set(
-      US, JP
-      //,CA , GB, AU //,FR,DE,ES,IT
-    )
+
+    val ccs = Set(US, JP, PR)
     val svc = GNSvc.loadDef(gnLines, ccs)
 
     import CommonUtils._
-    val gnmmgr = loadGNMmgr(ccs, spark, "file:///media/sf_vmshare/gns/all")
+    val gnmmgr = loadGNMmgr(ccs, Set(PR), spark, "file:///media/sf_vmshare/gns/all")
     val brGNMmgr = spark.broadcast(gnmmgr)
 //    val (mmgr, xtrMgr) = genMMgr(svc, dict)
 //    val brSvc = spark.broadcast(svc)

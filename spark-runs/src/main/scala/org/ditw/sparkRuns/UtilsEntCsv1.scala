@@ -20,7 +20,8 @@ object UtilsEntCsv1 {
 
 
     import CommonUtils._
-    val gnmmgr = loadGNMmgr(Set(GNCntry.US), spSess.sparkContext, "file:///media/sf_vmshare/gns/all")
+    import GNCntry._
+    val gnmmgr = loadGNMmgr(Set(US, PR), Set(PR), spSess.sparkContext, "file:///media/sf_vmshare/gns/all")
 
     val brGNMmgr = spSess.sparkContext.broadcast(gnmmgr)
 

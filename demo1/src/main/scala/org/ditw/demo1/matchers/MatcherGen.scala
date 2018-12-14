@@ -1,6 +1,7 @@
 package org.ditw.demo1.matchers
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.demo1.extracts.Xtrs
+import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.{GNSvc, TGNMap}
 import org.ditw.demo1.matchers.Adm0Gen.{LookAroundSfxCounts_CityCountry, LookAroundSfxSet}
 import org.ditw.demo1.matchers.TagHelper.countryTag
@@ -43,6 +44,7 @@ object MatcherGen extends Serializable {
   def gen(
            gnsvc:GNSvc,
            dict:Dict,
+           ccCntries:Set[GNCntry],
            extras:Option[(Iterable[TTkMatcher], Iterable[TCompMatcher], Iterable[TPostProc])] = None
          ): (MatcherMgr, XtrMgr[Long]) = {
     val tmlst = ListBuffer[TTkMatcher]()
@@ -78,7 +80,10 @@ object MatcherGen extends Serializable {
     import collection.mutable
     val tmBlTargets = mutable.Set[String]()
     adm0s.foreach { adm0 =>
-      val (tms, cms, xtrs, pproc) = Adm0Gen.genMatcherExtractors(gnsvc, adm0, dict)
+      val (tms, cms, xtrs, pproc) = Adm0Gen.genMatcherExtractors(
+        gnsvc, adm0, dict,
+        ccCntries.contains(adm0.countryCode)
+      )
       tmBlTargets ++= tms.flatMap(_.tag) // black list blocks all tms
       tmlst ++= tms
       cmlst ++= cms
