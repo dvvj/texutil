@@ -1,9 +1,11 @@
 package org.ditw.sparkRuns
 import org.apache.spark.storage.StorageLevel
-import org.ditw.common.{ResourceHelpers, SparkUtils}
+import org.ditw.common.{GenUtils, ResourceHelpers, SparkUtils}
 import org.ditw.demo1.gndata.GNCntry
-import org.ditw.exutil1.naen.NaEn
-import org.ditw.sparkRuns.NaEnIds.NaEnCat
+import org.ditw.exutil1.naen.{NaEn, NaEnData}
+import org.ditw.exutil1.naen.NaEnData.NaEnCat
+
+import scala.collection.mutable.ListBuffer
 
 object UtilsEntCsv1 {
   def main(args:Array[String]):Unit = {
@@ -31,7 +33,7 @@ object UtilsEntCsv1 {
       )
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val idStart = NaEnIds.catIdStart(NaEnCat.US_HOSP)
+    val idStart = NaEnData.catIdStart(NaEnCat.US_HOSP)
 
     val res = rows.rdd.flatMap { row =>
         val gnm = brGNMmgr.value
@@ -69,7 +71,9 @@ object UtilsEntCsv1 {
             if (nearest.nonEmpty) {
               val name = row.getAs[String]("NAME")
               val altName = row.getAs[String]("ALT_NAME")
-              val altNames = if (altName == "NOT AVAILABLE") Vector[String]() else Vector(altName)
+              val altNames = if (altName == null || altName == "NOT AVAILABLE" || altName.isEmpty)
+                Array[String]()
+              else Array(altName)
               Option((processName(name), altNames, nearest.get.gnid))
             }
             else {
@@ -102,15 +106,16 @@ object UtilsEntCsv1 {
   private val dashTokenSet = ResourceHelpers.loadStrs("/hosp_name_with_dash.txt")
     .map(_.toLowerCase()).toSet
   private val spaceSplitter = "\\s+".r
-  private val dashSplitter = "-".r
+  private val dash = '-'
   private def isDash(s:String):Boolean = s == "-"
   private def processName(name:String):String = {
     val spaceSplits = spaceSplitter.split(name.toLowerCase())
     val tokens = spaceSplits.flatMap { s =>
       if (dashTokenSet.contains(s)) List(s)
       else {
-        if (!isDash(s))
-          dashSplitter.split(s).filter(_.nonEmpty)
+        if (!isDash(s)) {
+          GenUtils.splitPreserve(s, dash)
+        }
         else
           List(s)
       }

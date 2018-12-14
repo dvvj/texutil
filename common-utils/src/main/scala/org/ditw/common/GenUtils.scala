@@ -3,6 +3,8 @@ import java.text.Normalizer
 
 import org.joda.time.DateTime
 
+import scala.collection.mutable.ListBuffer
+
 object GenUtils extends Serializable {
 
   def printlnT(msg:String, indent:Int = 0):Unit = {
@@ -26,5 +28,28 @@ object GenUtils extends Serializable {
     else {
       replRegex.replaceAllIn(nr, "")
     }
+  }
+
+  def splitPreserve(in:String, sp:Char):Vector[String] = {
+    val res = new ListBuffer[String]()
+
+    var hasMore = true
+    var start = 0
+    while (hasMore && start < in.length) {
+      val n = in.indexOf(sp, start)
+      if (n >= 0) {
+        val p = in.substring(start, n)
+        if (p.nonEmpty) {
+          res += p
+        }
+        res += in.substring(n, n+1)
+        start = n+1
+      }
+      else {
+        hasMore = false
+        res += in.substring(start)
+      }
+    }
+    res.toVector
   }
 }

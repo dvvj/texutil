@@ -205,7 +205,7 @@
   "gnid" : 5136322
 }, {
   "neid" : 2000000041,
-  "name" : "adirondack medical center-lake placid site",
+  "name" : "adirondack medical center",
   "aliases" : [ ],
   "gnid" : 5123831
 }, {
@@ -302,12 +302,12 @@
   "neid" : 2000000060,
   "name" : "adventist medical center",
   "aliases" : [ ],
-  "gnid" : 5746545
+  "gnid" : 5394329
 }, {
   "neid" : 2000000061,
-  "name" : "adventist medical center-selma",
+  "name" : "adventist medical center",
   "aliases" : [ ],
-  "gnid" : 5394329
+  "gnid" : 5746545
 }, {
   "neid" : 2000000062,
   "name" : "adventist rehabilitation hospital of maryland",
@@ -655,22 +655,22 @@
   "gnid" : 5211303
 }, {
   "neid" : 2000000131,
-  "name" : "alta bates summit med ctr-alta bates campus",
+  "name" : "alta bates summit med ctr",
   "aliases" : [ ],
   "gnid" : 5327684
 }, {
   "neid" : 2000000132,
-  "name" : "alta bates summit med ctr-herrick campus",
+  "name" : "alta bates summit med ctr",
   "aliases" : [ ],
   "gnid" : 5327684
 }, {
   "neid" : 2000000133,
-  "name" : "alta bates summit med ctr-summit campus-hawthorne",
+  "name" : "alta bates summit med ctr",
   "aliases" : [ ],
   "gnid" : 5378538
 }, {
   "neid" : 2000000134,
-  "name" : "alta bates summit med ctr-summit campus-summit",
+  "name" : "alta bates summit med ctr",
   "aliases" : [ ],
   "gnid" : 5378538
 }, {
@@ -750,7 +750,7 @@
   "gnid" : 4929004
 }, {
   "neid" : 2000000150,
-  "name" : "amg specialty hospital-wichita",
+  "name" : "amg specialty hospital",
   "aliases" : [ "LTAC HOSPITLA OF WICHITA LLC" ],
   "gnid" : 4281730
 }, {
@@ -995,7 +995,7 @@
   "gnid" : 4120388
 }, {
   "neid" : 2000000199,
-  "name" : "arkansas dept. of correction-diagnostic unit",
+  "name" : "arkansas dept. of correction",
   "aliases" : [ ],
   "gnid" : 4126226
 }, {
@@ -1333,26 +1333,26 @@
   "name" : "aurelia osborn fox memorial hospital",
   "aliases" : [ "BASSETT A.O. FOX HOSPITAL" ],
   "gnid" : 5129852
-}, {
+}, {aurora behavioral healthcare
   "neid" : 2000000267,
   "name" : "aurora baycare med ctr",
   "aliases" : [ ],
   "gnid" : 5254962
 }, {
   "neid" : 2000000268,
-  "name" : "aurora behavioral healthcare-phoenix",
+  "name" : "aurora behavioral healthcare",
   "aliases" : [ ],
-  "gnid" : 5295985
+  "gnid" : 5317058
 }, {
   "neid" : 2000000269,
-  "name" : "aurora behavioral healthcare-santa rosa",
+  "name" : "aurora behavioral healthcare",
   "aliases" : [ ],
   "gnid" : 5393287
 }, {
   "neid" : 2000000270,
-  "name" : "aurora behavioral healthcare-tempe",
+  "name" : "aurora behavioral healthcare",
   "aliases" : [ ],
-  "gnid" : 5317058
+  "gnid" : 5295985
 }, {
   "neid" : 2000000271,
   "name" : "aurora charter oak",
@@ -1375,7 +1375,7 @@
   "gnid" : 5381396
 }, {
   "neid" : 2000000275,
-  "name" : "aurora med center-washington county",
+  "name" : "aurora med center",
   "aliases" : [ ],
   "gnid" : 5255628
 }, {
@@ -1605,7 +1605,7 @@
   "gnid" : 5325738
 }, {
   "neid" : 2000000321,
-  "name" : "bakersfield memorial hospital- 34th street",
+  "name" : "bakersfield memorial hospital",
   "aliases" : [ ],
   "gnid" : 5325738
 }, {
@@ -1770,7 +1770,7 @@
   "gnid" : 4114225
 }, {
   "neid" : 2000000354,
-  "name" : "baptist health extended care hospital-little rock, inc.",
+  "name" : "baptist health extended care hospital",
   "aliases" : [ ],
   "gnid" : 4119403
 }, {
@@ -1810,14 +1810,14 @@
   "gnid" : 4119403
 }, {
   "neid" : 2000000362,
-  "name" : "baptist health medical center-conway",
-  "aliases" : [ ],
-  "gnid" : 4106458
-}, {
-  "neid" : 2000000363,
-  "name" : "baptist health medical center-stuttgart",
+  "name" : "baptist health medical center",
   "aliases" : [ ],
   "gnid" : 4132625
+}, {
+  "neid" : 2000000363,
+  "name" : "baptist health medical center",
+  "aliases" : [ ],
+  "gnid" : 4106458
 }, {
   "neid" : 2000000364,
   "name" : "baptist health paducah",
@@ -1937,52 +1937,52 @@
   "neid" : 2000000387,
   "name" : "baptist memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4440076
+  "gnid" : 4419094
 }, {
   "neid" : 2000000388,
   "name" : "baptist memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4438121
+  "gnid" : 4440076
 }, {
   "neid" : 2000000389,
   "name" : "baptist memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4422442
+  "gnid" : 4438121
 }, {
   "neid" : 2000000390,
   "name" : "baptist memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4614748
+  "gnid" : 4422442
 }, {
   "neid" : 2000000391,
   "name" : "baptist memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4664170
+  "gnid" : 4614748
 }, {
   "neid" : 2000000392,
   "name" : "baptist memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4631422
+  "gnid" : 4664170
 }, {
   "neid" : 2000000393,
   "name" : "baptist memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4641239
+  "gnid" : 4631422
 }, {
   "neid" : 2000000394,
-  "name" : "baptist memorial hospital for women",
+  "name" : "baptist memorial hospital",
   "aliases" : [ ],
   "gnid" : 4641239
 }, {
   "neid" : 2000000395,
+  "name" : "baptist memorial hospital for women",
+  "aliases" : [ ],
+  "gnid" : 4641239
+}, {
+  "neid" : 2000000396,
   "name" : "baptist memorial hospital tipton",
   "aliases" : [ ],
   "gnid" : 4615804
-}, {
-  "neid" : 2000000396,
-  "name" : "baptist memorial hospital-booneville",
-  "aliases" : [ ],
-  "gnid" : 4419094
 }, {
   "neid" : 2000000397,
   "name" : "baptist memorial rehabilitation hospital",
@@ -2140,7 +2140,7 @@
   "gnid" : 4315588
 }, {
   "neid" : 2000000428,
-  "name" : "baton rouge general medical center (mid-city)",
+  "name" : "baton rouge general medical center (mid",
   "aliases" : [ ],
   "gnid" : 4315588
 }, {
@@ -2512,17 +2512,17 @@
   "neid" : 2000000502,
   "name" : "beacon behavioral hospital",
   "aliases" : [ ],
-  "gnid" : 4332152
+  "gnid" : 4335045
 }, {
   "neid" : 2000000503,
+  "name" : "beacon behavioral hospital",
+  "aliases" : [ ],
+  "gnid" : 4332152
+}, {
+  "neid" : 2000000504,
   "name" : "beacon behavioral hospital northshore",
   "aliases" : [ ],
   "gnid" : 4330126
-}, {
-  "neid" : 2000000504,
-  "name" : "beacon behavioral hospital-new orleans",
-  "aliases" : [ ],
-  "gnid" : 4335045
 }, {
   "neid" : 2000000505,
   "name" : "beacon children's hospital",
@@ -2840,7 +2840,7 @@
   "gnid" : 4930956
 }, {
   "neid" : 2000000568,
-  "name" : "bethesda arrow springs-er",
+  "name" : "bethesda arrow springs",
   "aliases" : [ ],
   "gnid" : 4516412
 }, {
@@ -3800,22 +3800,22 @@
   "gnid" : 5368361
 }, {
   "neid" : 2000000760,
-  "name" : "california pacific med ctr-california east",
+  "name" : "california pacific med ctr",
   "aliases" : [ ],
   "gnid" : 5391959
 }, {
   "neid" : 2000000761,
-  "name" : "california pacific med ctr-california west",
+  "name" : "california pacific med ctr",
   "aliases" : [ ],
   "gnid" : 5391959
 }, {
   "neid" : 2000000762,
-  "name" : "california pacific med ctr-davies campus",
+  "name" : "california pacific med ctr",
   "aliases" : [ ],
   "gnid" : 5391959
 }, {
   "neid" : 2000000763,
-  "name" : "california pacific med ctr-pacific campus",
+  "name" : "california pacific med ctr",
   "aliases" : [ ],
   "gnid" : 5391959
 }, {
@@ -4290,18 +4290,18 @@
   "gnid" : 4460243
 }, {
   "neid" : 2000000858,
-  "name" : "carolinas medical center for mental health",
-  "aliases" : [ "CAROLINAS HEALTHCARE SYSTEM BEHAVIORAL HEALTH CHARLOTTE" ],
+  "name" : "carolinas medical center",
+  "aliases" : [ ],
   "gnid" : 4460243
 }, {
   "neid" : 2000000859,
-  "name" : "carolinas medical center-lincoln",
+  "name" : "carolinas medical center",
   "aliases" : [ ],
   "gnid" : 4475995
 }, {
   "neid" : 2000000860,
-  "name" : "carolinas medical center-mercy",
-  "aliases" : [ ],
+  "name" : "carolinas medical center for mental health",
+  "aliases" : [ "CAROLINAS HEALTHCARE SYSTEM BEHAVIORAL HEALTH CHARLOTTE" ],
   "gnid" : 4460243
 }, {
   "neid" : 2000000861,
@@ -4665,7 +4665,7 @@
   "gnid" : 5037241
 }, {
   "neid" : 2000000933,
-  "name" : "centracare health system-long",
+  "name" : "centracare health system",
   "aliases" : [ ],
   "gnid" : 5035635
 }, {
@@ -5505,7 +5505,7 @@
   "gnid" : 4508722
 }, {
   "neid" : 2000001101,
-  "name" : "christian hospital northeast-northwest",
+  "name" : "christian hospital northeast",
   "aliases" : [ ],
   "gnid" : 4407066
 }, {
@@ -6185,7 +6185,7 @@
   "gnid" : 5419384
 }, {
   "neid" : 2000001237,
-  "name" : "colorado mental health institute at pueblo-psych",
+  "name" : "colorado mental health institute at pueblo",
   "aliases" : [ ],
   "gnid" : 5435464
 }, {
@@ -6497,22 +6497,22 @@
   "neid" : 2000001299,
   "name" : "community memorial hospital",
   "aliases" : [ ],
-  "gnid" : 5157449
+  "gnid" : 5405878
 }, {
   "neid" : 2000001300,
   "name" : "community memorial hospital",
   "aliases" : [ ],
-  "gnid" : 4877907
+  "gnid" : 5157449
 }, {
   "neid" : 2000001301,
   "name" : "community memorial hospital",
   "aliases" : [ ],
-  "gnid" : 5226625
+  "gnid" : 4877907
 }, {
   "neid" : 2000001302,
-  "name" : "community memorial hospital-san buenaventura",
+  "name" : "community memorial hospital",
   "aliases" : [ ],
-  "gnid" : 5405878
+  "gnid" : 5226625
 }, {
   "neid" : 2000001303,
   "name" : "community memorial hsptl",
@@ -6525,7 +6525,7 @@
   "gnid" : 4260223
 }, {
   "neid" : 2000001305,
-  "name" : "community regional medical center-fresno",
+  "name" : "community regional medical center",
   "aliases" : [ ],
   "gnid" : 5350937
 }, {
@@ -6870,12 +6870,12 @@
   "gnid" : 5113760
 }, {
   "neid" : 2000001374,
-  "name" : "corona regional medical center-magnolia",
+  "name" : "corona regional medical center",
   "aliases" : [ ],
   "gnid" : 5339631
 }, {
   "neid" : 2000001375,
-  "name" : "corona regional medical center-main",
+  "name" : "corona regional medical center",
   "aliases" : [ ],
   "gnid" : 5339631
 }, {
@@ -7110,19 +7110,19 @@
   "gnid" : 4068590
 }, {
   "neid" : 2000001422,
-  "name" : "crestwood psychiatric health facility 2",
-  "aliases" : [ ],
-  "gnid" : 5325738
-}, {
-  "neid" : 2000001423,
-  "name" : "crestwood psychiatric health facility-carmichael",
+  "name" : "crestwood psychiatric health facility",
   "aliases" : [ ],
   "gnid" : 5334336
 }, {
-  "neid" : 2000001424,
-  "name" : "crestwood psychiatric health facility-sacramento",
+  "neid" : 2000001423,
+  "name" : "crestwood psychiatric health facility",
   "aliases" : [ ],
   "gnid" : 5389489
+}, {
+  "neid" : 2000001424,
+  "name" : "crestwood psychiatric health facility 2",
+  "aliases" : [ ],
+  "gnid" : 5325738
 }, {
   "neid" : 2000001425,
   "name" : "crestwood san jose psychiatric health facility",
@@ -7700,7 +7700,7 @@
   "gnid" : 5338196
 }, {
   "neid" : 2000001540,
-  "name" : "department of state hospital-metropolitan",
+  "name" : "department of state hospital",
   "aliases" : [ ],
   "gnid" : 5377995
 }, {
@@ -7895,17 +7895,17 @@
   "gnid" : 4688275
 }, {
   "neid" : 2000001579,
-  "name" : "doctors center hospital- bayamon (ant. matildes brenes)",
-  "aliases" : [ ],
-  "gnid" : 4562831
-}, {
-  "neid" : 2000001580,
-  "name" : "doctors center hospital- manati",
+  "name" : "doctors center hospital",
   "aliases" : [ ],
   "gnid" : 4566137
 }, {
+  "neid" : 2000001580,
+  "name" : "doctors center hospital",
+  "aliases" : [ ],
+  "gnid" : 4562831
+}, {
   "neid" : 2000001581,
-  "name" : "doctors diagnostic center- williamsburg",
+  "name" : "doctors diagnostic center",
   "aliases" : [ ],
   "gnid" : 9036748
 }, {
@@ -7965,7 +7965,7 @@
   "gnid" : 5392508
 }, {
   "neid" : 2000001593,
-  "name" : "doctors medical center-behavioral health department",
+  "name" : "doctors medical center",
   "aliases" : [ ],
   "gnid" : 5373900
 }, {
@@ -8115,7 +8115,7 @@
   "gnid" : 4566880
 }, {
   "neid" : 2000001623,
-  "name" : "drake center for post-acute care, llc",
+  "name" : "drake center for post",
   "aliases" : [ ],
   "gnid" : 4508722
 }, {
@@ -8275,7 +8275,7 @@
   "gnid" : 5368361
 }, {
   "neid" : 2000001655,
-  "name" : "east louisiana state hospital-greenwell springs",
+  "name" : "east louisiana state hospital",
   "aliases" : [ ],
   "gnid" : 4326528
 }, {
@@ -8420,12 +8420,12 @@
   "gnid" : 4548363
 }, {
   "neid" : 2000001684,
-  "name" : "eastern plumas hospital-loyalton campus",
+  "name" : "eastern plumas hospital",
   "aliases" : [ ],
   "gnid" : 5369108
 }, {
   "neid" : 2000001685,
-  "name" : "eastern plumas hospital-portola campus",
+  "name" : "eastern plumas hospital",
   "aliases" : [ ],
   "gnid" : 5384438
 }, {
@@ -8840,7 +8840,7 @@
   "gnid" : 4180439
 }, {
   "neid" : 2000001768,
-  "name" : "emory univ hospital- emory univ ortho",
+  "name" : "emory univ hospital",
   "aliases" : [ ],
   "gnid" : 4227213
 }, {
@@ -8885,7 +8885,7 @@
   "gnid" : 5336269
 }, {
   "neid" : 2000001777,
-  "name" : "enloe medical center- esplanade campus",
+  "name" : "enloe medical center",
   "aliases" : [ ],
   "gnid" : 5336269
 }, {
@@ -9720,7 +9720,7 @@
   "gnid" : 5253352
 }, {
   "neid" : 2000001944,
-  "name" : "foothill presbyterian hospital-johnston memorial",
+  "name" : "foothill presbyterian hospital",
   "aliases" : [ ],
   "gnid" : 5352439
 }, {
@@ -10340,22 +10340,22 @@
   "gnid" : 4528923
 }, {
   "neid" : 2000002068,
+  "name" : "genesis medical center",
+  "aliases" : [ ],
+  "gnid" : 4853423
+}, {
+  "neid" : 2000002069,
   "name" : "genesis medical center aledo",
   "aliases" : [ ],
   "gnid" : 4883053
 }, {
-  "neid" : 2000002069,
+  "neid" : 2000002070,
   "name" : "genesis medical center illini campus",
   "aliases" : [ ],
   "gnid" : 4911516
 }, {
-  "neid" : 2000002070,
-  "name" : "genesis medical center west-davenport",
-  "aliases" : [ ],
-  "gnid" : 4853423
-}, {
   "neid" : 2000002071,
-  "name" : "genesis medical center-davenport",
+  "name" : "genesis medical center west",
   "aliases" : [ ],
   "gnid" : 4853423
 }, {
@@ -10667,42 +10667,42 @@
   "neid" : 2000002133,
   "name" : "good samaritan hospital",
   "aliases" : [ ],
-  "gnid" : 5143866
+  "gnid" : 5368361
 }, {
   "neid" : 2000002134,
   "name" : "good samaritan hospital",
   "aliases" : [ ],
-  "gnid" : 4508722
+  "gnid" : 5392171
 }, {
   "neid" : 2000002135,
   "name" : "good samaritan hospital",
   "aliases" : [ ],
-  "gnid" : 4509884
+  "gnid" : 5325738
 }, {
   "neid" : 2000002136,
   "name" : "good samaritan hospital",
   "aliases" : [ ],
-  "gnid" : 4528923
+  "gnid" : 5143866
 }, {
   "neid" : 2000002137,
+  "name" : "good samaritan hospital",
+  "aliases" : [ ],
+  "gnid" : 4508722
+}, {
+  "neid" : 2000002138,
+  "name" : "good samaritan hospital",
+  "aliases" : [ ],
+  "gnid" : 4509884
+}, {
+  "neid" : 2000002139,
+  "name" : "good samaritan hospital",
+  "aliases" : [ ],
+  "gnid" : 4528923
+}, {
+  "neid" : 2000002140,
   "name" : "good samaritan hospital, the",
   "aliases" : [ ],
   "gnid" : 5197517
-}, {
-  "neid" : 2000002138,
-  "name" : "good samaritan hospital-bakersfield",
-  "aliases" : [ ],
-  "gnid" : 5325738
-}, {
-  "neid" : 2000002139,
-  "name" : "good samaritan hospital-los angeles",
-  "aliases" : [ ],
-  "gnid" : 5368361
-}, {
-  "neid" : 2000002140,
-  "name" : "good samaritan hospital-san jose",
-  "aliases" : [ ],
-  "gnid" : 5392171
 }, {
   "neid" : 2000002141,
   "name" : "good samaritan medical center",
@@ -11315,12 +11315,12 @@
   "gnid" : 4152872
 }, {
   "neid" : 2000002263,
-  "name" : "halifax health medical center- port orange",
+  "name" : "halifax health medical center",
   "aliases" : [ ],
   "gnid" : 4169156
 }, {
   "neid" : 2000002264,
-  "name" : "halifax psychiatric center-north",
+  "name" : "halifax psychiatric center",
   "aliases" : [ ],
   "gnid" : 4152872
 }, {
@@ -11795,7 +11795,7 @@
   "gnid" : 4699066
 }, {
   "neid" : 2000002359,
-  "name" : "healthbridge children's hospital-orange",
+  "name" : "healthbridge children's hospital",
   "aliases" : [ ],
   "gnid" : 5379513
 }, {
@@ -12220,7 +12220,7 @@
   "gnid" : 4736096
 }, {
   "neid" : 2000002444,
-  "name" : "healthsouth rehabilitation hospital of the mid-cities",
+  "name" : "healthsouth rehabilitation hospital of the mid",
   "aliases" : [ "RELIANT REHABILITATION HOSPITAL MID-CITIES" ],
   "gnid" : 4673094
 }, {
@@ -12542,17 +12542,17 @@
   "neid" : 2000002508,
   "name" : "henry ford macomb hospital",
   "aliases" : [ ],
-  "gnid" : 4989133
-}, {
-  "neid" : 2000002509,
-  "name" : "henry ford macomb hospital-mt clemens campus",
-  "aliases" : [ ],
   "gnid" : 5002656
 }, {
-  "neid" : 2000002510,
-  "name" : "henry ford macomb hospital-warren campus",
+  "neid" : 2000002509,
+  "name" : "henry ford macomb hospital",
   "aliases" : [ ],
   "gnid" : 5014051
+}, {
+  "neid" : 2000002510,
+  "name" : "henry ford macomb hospital",
+  "aliases" : [ ],
+  "gnid" : 4989133
 }, {
   "neid" : 2000002511,
   "name" : "henry ford medical center cottage",
@@ -13510,7 +13510,7 @@
   "gnid" : 5381396
 }, {
   "neid" : 2000002702,
-  "name" : "huntsville hospital women & children-er",
+  "name" : "huntsville hospital women & children",
   "aliases" : [ ],
   "gnid" : 4068590
 }, {
@@ -13630,7 +13630,7 @@
   "gnid" : 4176409
 }, {
   "neid" : 2000002726,
-  "name" : "indian river medical center-behavioral health center",
+  "name" : "indian river medical center",
   "aliases" : [ ],
   "gnid" : 4176409
 }, {
@@ -13887,12 +13887,12 @@
   "neid" : 2000002777,
   "name" : "iowa specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4848144
+  "gnid" : 4851785
 }, {
   "neid" : 2000002778,
-  "name" : "iowa specialty hospital-clarion",
+  "name" : "iowa specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4851785
+  "gnid" : 4848144
 }, {
   "neid" : 2000002779,
   "name" : "ira davenport memorial hospital inc",
@@ -14370,12 +14370,12 @@
   "gnid" : 5339111
 }, {
   "neid" : 2000002874,
-  "name" : "john muir medical center-concord campus",
+  "name" : "john muir medical center",
   "aliases" : [ ],
   "gnid" : 5339111
 }, {
   "neid" : 2000002875,
-  "name" : "john muir medical center-walnut creek campus",
+  "name" : "john muir medical center",
   "aliases" : [ ],
   "gnid" : 5406990
 }, {
@@ -14562,57 +14562,57 @@
   "neid" : 2000002912,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5368361
+  "gnid" : 5370164
 }, {
   "neid" : 2000002913,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5387877
+  "gnid" : 5368361
 }, {
   "neid" : 2000002914,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5392171
+  "gnid" : 5387877
 }, {
   "neid" : 2000002915,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5393015
+  "gnid" : 5392171
 }, {
   "neid" : 2000002916,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5397765
+  "gnid" : 5393015
 }, {
   "neid" : 2000002917,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5388881
+  "gnid" : 5397765
 }, {
   "neid" : 2000002918,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5392567
+  "gnid" : 5388881
 }, {
   "neid" : 2000002919,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5350937
+  "gnid" : 5392567
 }, {
   "neid" : 2000002920,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5387428
+  "gnid" : 5350937
 }, {
   "neid" : 2000002921,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5406990
+  "gnid" : 5387428
 }, {
   "neid" : 2000002922,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5389489
+  "gnid" : 5406990
 }, {
   "neid" : 2000002923,
   "name" : "kaiser fnd hosp",
@@ -14622,32 +14622,32 @@
   "neid" : 2000002924,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5323810
+  "gnid" : 5389489
 }, {
   "neid" : 2000002925,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5359777
+  "gnid" : 5323810
 }, {
   "neid" : 2000002926,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5323810
+  "gnid" : 5359777
 }, {
   "neid" : 2000002927,
   "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5386834
+  "gnid" : 5373900
 }, {
   "neid" : 2000002928,
-  "name" : "kaiser fnd hosp-manteca",
+  "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5370164
+  "gnid" : 5323810
 }, {
   "neid" : 2000002929,
-  "name" : "kaiser fnd hosp-modesto",
+  "name" : "kaiser fnd hosp",
   "aliases" : [ ],
-  "gnid" : 5373900
+  "gnid" : 5386834
 }, {
   "neid" : 2000002930,
   "name" : "kaiser fnd hospital",
@@ -14655,7 +14655,7 @@
   "gnid" : 5374732
 }, {
   "neid" : 2000002931,
-  "name" : "kaiser found hsp-antioch",
+  "name" : "kaiser found hsp",
   "aliases" : [ ],
   "gnid" : 5324200
 }, {
@@ -14955,7 +14955,7 @@
   "gnid" : 5364554
 }, {
   "neid" : 2000002991,
-  "name" : "kernersville medical center-er",
+  "name" : "kernersville medical center",
   "aliases" : [ ],
   "gnid" : 4474221
 }, {
@@ -15515,7 +15515,7 @@
   "gnid" : 5301067
 }, {
   "neid" : 2000003103,
-  "name" : "kingman regional medical center-hualapai mountain campus",
+  "name" : "kingman regional medical center",
   "aliases" : [ ],
   "gnid" : 5301067
 }, {
@@ -16430,19 +16430,19 @@
   "gnid" : 5178127
 }, {
   "neid" : 2000003286,
-  "name" : "lehigh valley hospital hazleton",
-  "aliases" : [ ],
-  "gnid" : 5193011
-}, {
-  "neid" : 2000003287,
-  "name" : "lehigh valley hospital-17th st",
+  "name" : "lehigh valley hospital",
   "aliases" : [ ],
   "gnid" : 5178127
 }, {
-  "neid" : 2000003288,
-  "name" : "lehigh valley hospital-muhlenberg",
+  "neid" : 2000003287,
+  "name" : "lehigh valley hospital",
   "aliases" : [ ],
   "gnid" : 5180225
+}, {
+  "neid" : 2000003288,
+  "name" : "lehigh valley hospital hazleton",
+  "aliases" : [ ],
+  "gnid" : 5193011
 }, {
   "neid" : 2000003289,
   "name" : "lemuel sattuck hospital",
@@ -16900,7 +16900,7 @@
   "gnid" : 5367696
 }, {
   "neid" : 2000003380,
-  "name" : "loma linda university medical center-murrieta",
+  "name" : "loma linda university medical center",
   "aliases" : [ ],
   "gnid" : 5375911
 }, {
@@ -17005,7 +17005,7 @@
   "gnid" : 5327422
 }, {
   "neid" : 2000003401,
-  "name" : "los angeles county olive view-ucla medical center",
+  "name" : "los angeles county olive view",
   "aliases" : [ ],
   "gnid" : 5400784
 }, {
@@ -17410,12 +17410,12 @@
   "gnid" : 4957003
 }, {
   "neid" : 2000003482,
-  "name" : "mainegeneral medical center-seton",
+  "name" : "mainegeneral medical center",
   "aliases" : [ ],
   "gnid" : 4982236
 }, {
   "neid" : 2000003483,
-  "name" : "mainegeneral medical center-thayer",
+  "name" : "mainegeneral medical center",
   "aliases" : [ ],
   "gnid" : 4982236
 }, {
@@ -17635,29 +17635,29 @@
   "gnid" : 4502911
 }, {
   "neid" : 2000003527,
-  "name" : "marshall  medical center (1-rh)",
-  "aliases" : [ ],
-  "gnid" : 5383559
-}, {
-  "neid" : 2000003528,
   "name" : "marshall browning hospital",
   "aliases" : [ ],
   "gnid" : 4237312
 }, {
-  "neid" : 2000003529,
+  "neid" : 2000003528,
   "name" : "marshall county healthcare center",
   "aliases" : [ ],
   "gnid" : 5226523
 }, {
-  "neid" : 2000003530,
+  "neid" : 2000003529,
   "name" : "marshall county hospital",
   "aliases" : [ ],
   "gnid" : 4283953
 }, {
-  "neid" : 2000003531,
+  "neid" : 2000003530,
   "name" : "marshall medical center",
   "aliases" : [ ],
   "gnid" : 4636442
+}, {
+  "neid" : 2000003531,
+  "name" : "marshall medical center (1",
+  "aliases" : [ ],
+  "gnid" : 5383559
 }, {
   "neid" : 2000003532,
   "name" : "marshall medical center north",
@@ -17917,40 +17917,40 @@
   "neid" : 2000003583,
   "name" : "mayo clinic health system",
   "aliases" : [ ],
-  "gnid" : 5262634
+  "gnid" : 5246228
 }, {
   "neid" : 2000003584,
+  "name" : "mayo clinic health system",
+  "aliases" : [ ],
+  "gnid" : 5262634
+}, {
+  "neid" : 2000003585,
+  "name" : "mayo clinic health system",
+  "aliases" : [ ],
+  "gnid" : 5265857
+}, {
+  "neid" : 2000003586,
   "name" : "mayo clinic health system eau claire hospital",
   "aliases" : [ ],
   "gnid" : 5251436
 }, {
-  "neid" : 2000003585,
+  "neid" : 2000003587,
   "name" : "mayo clinic health system in red wing",
   "aliases" : [ ],
   "gnid" : 5042773
 }, {
-  "neid" : 2000003586,
+  "neid" : 2000003588,
   "name" : "mayo clinic health system in waycross, inc",
   "aliases" : [ ],
   "gnid" : 4229763
 }, {
-  "neid" : 2000003587,
+  "neid" : 2000003589,
   "name" : "mayo clinic health system s f",
   "aliases" : [ ],
   "gnid" : 5048394
 }, {
-  "neid" : 2000003588,
-  "name" : "mayo clinic health system- chippewa valley  inc",
-  "aliases" : [ ],
-  "gnid" : 5246228
-}, {
-  "neid" : 2000003589,
-  "name" : "mayo clinic health system-oakridge inc",
-  "aliases" : [ ],
-  "gnid" : 5265857
-}, {
   "neid" : 2000003590,
-  "name" : "mayo clinic hlth system- franciscan med ctr",
+  "name" : "mayo clinic hlth system",
   "aliases" : [ ],
   "gnid" : 5258957
 }, {
@@ -18160,14 +18160,14 @@
   "gnid" : 4585835
 }, {
   "neid" : 2000003632,
-  "name" : "mcleod medical center-darlington",
-  "aliases" : [ ],
-  "gnid" : 4576319
-}, {
-  "neid" : 2000003633,
-  "name" : "mcleod medical center-dillon",
+  "name" : "mcleod medical center",
   "aliases" : [ ],
   "gnid" : 4576653
+}, {
+  "neid" : 2000003633,
+  "name" : "mcleod medical center",
+  "aliases" : [ ],
+  "gnid" : 4576319
 }, {
   "neid" : 2000003634,
   "name" : "mcleod regional medical center",
@@ -19196,93 +19196,93 @@
 }, {
   "neid" : 2000003839,
   "name" : "mercy medical center",
-  "aliases" : [ "MERCY MEDICAL CENTER" ],
-  "gnid" : 4951788
+  "aliases" : [ ],
+  "gnid" : 4866445
 }, {
   "neid" : 2000003840,
   "name" : "mercy medical center",
   "aliases" : [ ],
-  "gnid" : 5570160
+  "gnid" : 4852022
 }, {
   "neid" : 2000003841,
   "name" : "mercy medical center",
-  "aliases" : [ ],
-  "gnid" : 5372253
+  "aliases" : [ "MERCY MEDICAL CENTER" ],
+  "gnid" : 4951788
 }, {
   "neid" : 2000003842,
   "name" : "mercy medical center",
   "aliases" : [ ],
-  "gnid" : 4347778
+  "gnid" : 4853828
 }, {
   "neid" : 2000003843,
   "name" : "mercy medical center",
   "aliases" : [ ],
-  "gnid" : 4525353
+  "gnid" : 4854529
 }, {
   "neid" : 2000003844,
   "name" : "mercy medical center",
   "aliases" : [ ],
-  "gnid" : 5149222
+  "gnid" : 5570160
 }, {
   "neid" : 2000003845,
   "name" : "mercy medical center",
   "aliases" : [ ],
-  "gnid" : 4850751
+  "gnid" : 5372253
 }, {
   "neid" : 2000003846,
   "name" : "mercy medical center",
   "aliases" : [ ],
-  "gnid" : 5749352
+  "gnid" : 4868686
 }, {
   "neid" : 2000003847,
+  "name" : "mercy medical center",
+  "aliases" : [ ],
+  "gnid" : 4854711
+}, {
+  "neid" : 2000003848,
+  "name" : "mercy medical center",
+  "aliases" : [ ],
+  "gnid" : 4347778
+}, {
+  "neid" : 2000003849,
+  "name" : "mercy medical center",
+  "aliases" : [ ],
+  "gnid" : 4525353
+}, {
+  "neid" : 2000003850,
+  "name" : "mercy medical center",
+  "aliases" : [ ],
+  "gnid" : 5149222
+}, {
+  "neid" : 2000003851,
+  "name" : "mercy medical center",
+  "aliases" : [ ],
+  "gnid" : 4850751
+}, {
+  "neid" : 2000003852,
+  "name" : "mercy medical center",
+  "aliases" : [ ],
+  "gnid" : 5749352
+}, {
+  "neid" : 2000003853,
+  "name" : "mercy medical center",
+  "aliases" : [ ],
+  "gnid" : 4850961
+}, {
+  "neid" : 2000003854,
   "name" : "mercy medical center mt. shasta",
   "aliases" : [ ],
   "gnid" : 5568295
 }, {
-  "neid" : 2000003848,
+  "neid" : 2000003855,
   "name" : "mercy medical center sioux city",
   "aliases" : [ ],
   "gnid" : 4876523
 }, {
-  "neid" : 2000003849,
+  "neid" : 2000003856,
   "name" : "mercy medical center west lakes",
   "aliases" : [ ],
   "gnid" : 4881346
-}, {
-  "neid" : 2000003850,
-  "name" : "mercy medical center-centerville",
-  "aliases" : [ ],
-  "gnid" : 4850961
-}, {
-  "neid" : 2000003851,
-  "name" : "mercy medical center-clinton",
-  "aliases" : [ ],
-  "gnid" : 4852022
-}, {
-  "neid" : 2000003852,
-  "name" : "mercy medical center-des moines",
-  "aliases" : [ ],
-  "gnid" : 4853828
-}, {
-  "neid" : 2000003853,
-  "name" : "mercy medical center-dubuque",
-  "aliases" : [ ],
-  "gnid" : 4854529
-}, {
-  "neid" : 2000003854,
-  "name" : "mercy medical center-dyersville",
-  "aliases" : [ ],
-  "gnid" : 4854711
-}, {
-  "neid" : 2000003855,
-  "name" : "mercy medical center-new hampton",
-  "aliases" : [ ],
-  "gnid" : 4868686
-}, {
-  "neid" : 2000003856,
-  "name" : "mercy medical center-north iowa",
-  "aliases" : [ ],
-  "gnid" : 4866445
 }, {
   "neid" : 2000003857,
   "name" : "mercy memorial hospital",
@@ -19536,7 +19536,7 @@
 }, {
   "neid" : 2000003907,
   "name" : "methodist health care",
-  "aliases" : [ null ],
+  "aliases" : [ ],
   "gnid" : 4439869
 }, {
   "neid" : 2000003908,
@@ -19840,7 +19840,7 @@
   "gnid" : 5578775
 }, {
   "neid" : 2000003968,
-  "name" : "middle park medical center-granby",
+  "name" : "middle park medical center",
   "aliases" : [ ],
   "gnid" : 5577516
 }, {
@@ -19866,28 +19866,28 @@
 }, {
   "neid" : 2000003973,
   "name" : "midmichigan medical center",
-  "aliases" : [ "ALPENA REGIONAL MEDICAL CENTER" ],
-  "gnid" : 4984075
-}, {
-  "neid" : 2000003974,
-  "name" : "midmichigan medical center-clare",
-  "aliases" : [ ],
-  "gnid" : 4988933
-}, {
-  "neid" : 2000003975,
-  "name" : "midmichigan medical center-gladwin",
   "aliases" : [ ],
   "gnid" : 4993985
 }, {
-  "neid" : 2000003976,
-  "name" : "midmichigan medical center-gratiot",
+  "neid" : 2000003974,
+  "name" : "midmichigan medical center",
+  "aliases" : [ ],
+  "gnid" : 5001929
+}, {
+  "neid" : 2000003975,
+  "name" : "midmichigan medical center",
   "aliases" : [ ],
   "gnid" : 4984049
 }, {
-  "neid" : 2000003977,
-  "name" : "midmichigan medical center-midland",
+  "neid" : 2000003976,
+  "name" : "midmichigan medical center",
   "aliases" : [ ],
-  "gnid" : 5001929
+  "gnid" : 4988933
+}, {
+  "neid" : 2000003977,
+  "name" : "midmichigan medical center",
+  "aliases" : [ "ALPENA REGIONAL MEDICAL CENTER" ],
+  "gnid" : 4984075
 }, {
   "neid" : 2000003978,
   "name" : "midstate medical center",
@@ -19905,7 +19905,7 @@
   "gnid" : 4188985
 }, {
   "neid" : 2000003981,
-  "name" : "midtown oaks post-acute",
+  "name" : "midtown oaks post",
   "aliases" : [ "SUTTER OAKS NURSING CENTER MIDTOWN" ],
   "gnid" : 5389489
 }, {
@@ -20130,7 +20130,7 @@
   "gnid" : 4711725
 }, {
   "neid" : 2000004026,
-  "name" : "mission trail baptist hospital-er",
+  "name" : "mission trail baptist hospital",
   "aliases" : [ ],
   "gnid" : 4726206
 }, {
@@ -20235,7 +20235,7 @@
   "gnid" : 5100619
 }, {
   "neid" : 2000004047,
-  "name" : "monmouth medical center-southern campus",
+  "name" : "monmouth medical center",
   "aliases" : [ "KIMBALL MEDICAL CENTER" ],
   "gnid" : 5100280
 }, {
@@ -20310,7 +20310,7 @@
   "gnid" : 5110253
 }, {
   "neid" : 2000004062,
-  "name" : "montefiore medical center-wakefield hospital",
+  "name" : "montefiore medical center",
   "aliases" : [ ],
   "gnid" : 5110253
 }, {
@@ -21282,12 +21282,12 @@
   "neid" : 2000004256,
   "name" : "nexus specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4736476
+  "gnid" : 4728287
 }, {
   "neid" : 2000004257,
-  "name" : "nexus specialty hospital-shenandoah campus",
+  "name" : "nexus specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4728287
+  "gnid" : 4736476
 }, {
   "neid" : 2000004258,
   "name" : "niagara falls memorial medical center",
@@ -21395,7 +21395,7 @@
   "gnid" : 5073965
 }, {
   "neid" : 2000004279,
-  "name" : "norman regional health system -norman campus",
+  "name" : "norman regional health system",
   "aliases" : [ ],
   "gnid" : 4543762
 }, {
@@ -21900,7 +21900,7 @@
   "gnid" : 5039675
 }, {
   "neid" : 2000004380,
-  "name" : "northkey community care-intensive services",
+  "name" : "northkey community care",
   "aliases" : [ ],
   "gnid" : 4288809
 }, {
@@ -22270,7 +22270,7 @@
   "gnid" : 4148986
 }, {
   "neid" : 2000004454,
-  "name" : "oak valley district hospital (2-rh)",
+  "name" : "oak valley district hospital (2",
   "aliases" : [ ],
   "gnid" : 5378500
 }, {
@@ -22452,27 +22452,27 @@
   "neid" : 2000004490,
   "name" : "ochsner medical center",
   "aliases" : [ ],
-  "gnid" : 4335045
+  "gnid" : 4326575
 }, {
   "neid" : 2000004491,
-  "name" : "ochsner medical center- kenner llc",
-  "aliases" : [ ],
-  "gnid" : 4329753
-}, {
-  "neid" : 2000004492,
-  "name" : "ochsner medical center-baton rouge",
+  "name" : "ochsner medical center",
   "aliases" : [ ],
   "gnid" : 4315588
 }, {
-  "neid" : 2000004493,
-  "name" : "ochsner medical center-north shore",
+  "neid" : 2000004492,
+  "name" : "ochsner medical center",
   "aliases" : [ ],
-  "gnid" : 4341727
+  "gnid" : 4335045
+}, {
+  "neid" : 2000004493,
+  "name" : "ochsner medical center",
+  "aliases" : [ ],
+  "gnid" : 4329753
 }, {
   "neid" : 2000004494,
-  "name" : "ochsner medical center-west bank",
+  "name" : "ochsner medical center",
   "aliases" : [ ],
-  "gnid" : 4326575
+  "gnid" : 4341727
 }, {
   "neid" : 2000004495,
   "name" : "oconee regional medical center",
@@ -22590,7 +22590,7 @@
   "gnid" : 4544263
 }, {
   "neid" : 2000004518,
-  "name" : "oklahoma center for orthopaedic & multi-specialty",
+  "name" : "oklahoma center for orthopaedic & multi",
   "aliases" : [ ],
   "gnid" : 4544349
 }, {
@@ -22920,12 +22920,12 @@
   "gnid" : 4544349
 }, {
   "neid" : 2000004584,
-  "name" : "ou medical center -the children's hospital",
+  "name" : "ou medical center",
   "aliases" : [ ],
   "gnid" : 4544349
 }, {
   "neid" : 2000004585,
-  "name" : "ou medical center edmond-er",
+  "name" : "ou medical center edmond",
   "aliases" : [ ],
   "gnid" : 4535740
 }, {
@@ -23065,7 +23065,7 @@
   "gnid" : 4333669
 }, {
   "neid" : 2000004613,
-  "name" : "p h s indian hosp at belcourt-quentin n burdick",
+  "name" : "p h s indian hosp at belcourt",
   "aliases" : [ ],
   "gnid" : 5058233
 }, {
@@ -23405,12 +23405,12 @@
   "gnid" : 5308116
 }, {
   "neid" : 2000004681,
-  "name" : "parkland health center-bonne terre",
+  "name" : "parkland health center",
   "aliases" : [ ],
   "gnid" : 4377913
 }, {
   "neid" : 2000004682,
-  "name" : "parkland health center-farmington",
+  "name" : "parkland health center",
   "aliases" : [ ],
   "gnid" : 4386289
 }, {
@@ -24415,7 +24415,7 @@
   "gnid" : 4927537
 }, {
   "neid" : 2000004883,
-  "name" : "porter-portage hospital campus-er",
+  "name" : "porter-portage hospital campus",
   "aliases" : [ ],
   "gnid" : 4925006
 }, {
@@ -24625,7 +24625,7 @@
   "gnid" : 4898182
 }, {
   "neid" : 2000004925,
-  "name" : "presence united samaritans medctr-logan",
+  "name" : "presence united samaritans medctr",
   "aliases" : [ ],
   "gnid" : 4889426
 }, {
@@ -24745,12 +24745,12 @@
   "gnid" : 4684888
 }, {
   "neid" : 2000004949,
-  "name" : "promise hospital of east los angeles-east l.a. campus",
+  "name" : "promise hospital of east los angeles",
   "aliases" : [ ],
   "gnid" : 5368361
 }, {
   "neid" : 2000004950,
-  "name" : "promise hospital of east los angeles-suburban campus",
+  "name" : "promise hospital of east los angeles",
   "aliases" : [ ],
   "gnid" : 5381110
 }, {
@@ -24765,14 +24765,14 @@
   "gnid" : 4155995
 }, {
   "neid" : 2000004953,
-  "name" : "promise hospital of louisiana-bossier city campus",
-  "aliases" : [ ],
-  "gnid" : 4317639
-}, {
-  "neid" : 2000004954,
-  "name" : "promise hospital of louisiana-shreveport campus",
+  "name" : "promise hospital of louisiana",
   "aliases" : [ ],
   "gnid" : 4341513
+}, {
+  "neid" : 2000004954,
+  "name" : "promise hospital of louisiana",
+  "aliases" : [ ],
+  "gnid" : 4317639
 }, {
   "neid" : 2000004955,
   "name" : "promise hospital of miami",
@@ -24780,7 +24780,7 @@
   "gnid" : 4164186
 }, {
   "neid" : 2000004956,
-  "name" : "promise hospital of miss-lou",
+  "name" : "promise hospital of miss",
   "aliases" : [ ],
   "gnid" : 4344599
 }, {
@@ -26610,7 +26610,7 @@
   "gnid" : 4347778
 }, {
   "neid" : 2000005322,
-  "name" : "saint alphonsus eagle health plz-er",
+  "name" : "saint alphonsus eagle health plz",
   "aliases" : [ ],
   "gnid" : 5591778
 }, {
@@ -27410,12 +27410,12 @@
   "gnid" : 4164547
 }, {
   "neid" : 2000005482,
-  "name" : "santa rosa memorial hospital-montgomery",
+  "name" : "santa rosa memorial hospital",
   "aliases" : [ ],
   "gnid" : 5393287
 }, {
   "neid" : 2000005483,
-  "name" : "santa rosa memorial hospital-sotoyome",
+  "name" : "santa rosa memorial hospital",
   "aliases" : [ ],
   "gnid" : 5393287
 }, {
@@ -27557,12 +27557,12 @@
   "neid" : 2000005511,
   "name" : "scl health community hospital",
   "aliases" : [ ],
-  "gnid" : 5429032
+  "gnid" : 5443910
 }, {
   "neid" : 2000005512,
-  "name" : "scl health community hospital- westminster",
+  "name" : "scl health community hospital",
   "aliases" : [ ],
-  "gnid" : 5443910
+  "gnid" : 5429032
 }, {
   "neid" : 2000005513,
   "name" : "scotland county hospital",
@@ -27715,7 +27715,7 @@
   "gnid" : 4517586
 }, {
   "neid" : 2000005543,
-  "name" : "select long term care hospital-colorado springs",
+  "name" : "select long term care hospital",
   "aliases" : [ ],
   "gnid" : 5417598
 }, {
@@ -27742,472 +27742,472 @@
   "neid" : 2000005548,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4152872
+  "gnid" : 4049979
 }, {
   "neid" : 2000005549,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4167147
+  "gnid" : 4920423
 }, {
   "neid" : 2000005550,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4167147
+  "gnid" : 4259418
 }, {
   "neid" : 2000005551,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4161422
+  "gnid" : 4152872
 }, {
   "neid" : 2000005552,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4174715
+  "gnid" : 4167147
 }, {
   "neid" : 2000005553,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5231851
+  "gnid" : 4167147
 }, {
   "neid" : 2000005554,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5002656
+  "gnid" : 4161422
 }, {
   "neid" : 2000005555,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4992982
+  "gnid" : 4164138
 }, {
   "neid" : 2000005556,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5006166
+  "gnid" : 4174715
 }, {
   "neid" : 2000005557,
-  "name" : "select specialty hospital",
-  "aliases" : [ "GREAT LAKES SPECIALTY HOSPITAL - MUSKEGON" ],
-  "gnid" : 5003132
-}, {
-  "neid" : 2000005558,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4985153
-}, {
-  "neid" : 2000005559,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 5015688
-}, {
-  "neid" : 2000005560,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4990729
-}, {
-  "neid" : 2000005561,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4994862
-}, {
-  "neid" : 2000005562,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 5007989
-}, {
-  "neid" : 2000005563,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 5015599
-}, {
-  "neid" : 2000005564,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 5011908
-}, {
-  "neid" : 2000005565,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4431410
-}, {
-  "neid" : 2000005566,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4499612
-}, {
-  "neid" : 2000005567,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4464368
-}, {
-  "neid" : 2000005568,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4469146
-}, {
-  "neid" : 2000005569,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4679195
-}, {
-  "neid" : 2000005570,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4684888
-}, {
-  "neid" : 2000005571,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4693003
-}, {
-  "neid" : 2000005572,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4853828
-}, {
-  "neid" : 2000005573,
-  "name" : "select specialty hospital",
-  "aliases" : [ "KINDRED HOSPITAL - ATLANTA" ],
-  "gnid" : 4180439
-}, {
-  "neid" : 2000005574,
-  "name" : "select specialty hospital",
-  "aliases" : [ "SEMPERCARE HOSPITAL OF SAVANNAH" ],
-  "gnid" : 4221552
-}, {
-  "neid" : 2000005575,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4180531
-}, {
-  "neid" : 2000005576,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4553433
-}, {
-  "neid" : 2000005577,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4644585
-}, {
-  "neid" : 2000005578,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4634946
-}, {
-  "neid" : 2000005579,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4634946
-}, {
-  "neid" : 2000005580,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4634946
-}, {
-  "neid" : 2000005581,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4641239
-}, {
-  "neid" : 2000005582,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4651138
-}, {
-  "neid" : 2000005583,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4608657
-}, {
-  "neid" : 2000005584,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4707814
-}, {
-  "neid" : 2000005585,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 5150529
-}, {
-  "neid" : 2000005586,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 5177568
-}, {
-  "neid" : 2000005587,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4409896
-}, {
-  "neid" : 2000005588,
-  "name" : "select specialty hospital",
-  "aliases" : [ "WESLEY WOODS LONG TERM HOSPITAL, INC" ],
-  "gnid" : 4180439
-}, {
-  "neid" : 2000005589,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4990729
-}, {
-  "neid" : 2000005590,
-  "name" : "select specialty hospital",
-  "aliases" : [ "GREAT LAKES SPECIALTY HOSPITAL - GRAND RAPIDS" ],
-  "gnid" : 4994358
-}, {
-  "neid" : 2000005591,
-  "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4994358
-}, {
-  "neid" : 2000005592,
   "name" : "select specialty hospital",
   "aliases" : [ ],
   "gnid" : 5231851
 }, {
-  "neid" : 2000005593,
+  "neid" : 2000005558,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5147784
+  "gnid" : 5002656
 }, {
-  "neid" : 2000005594,
-  "name" : "select specialty hospital",
-  "aliases" : [ "SELECT SPECIALTY HOSPITAL" ],
-  "gnid" : 4801859
-}, {
-  "neid" : 2000005595,
+  "neid" : 2000005559,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4111410
+  "gnid" : 4992982
 }, {
-  "neid" : 2000005596,
+  "neid" : 2000005560,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4180439
+  "gnid" : 5006166
 }, {
-  "neid" : 2000005597,
+  "neid" : 2000005561,
+  "name" : "select specialty hospital",
+  "aliases" : [ "GREAT LAKES SPECIALTY HOSPITAL - MUSKEGON" ],
+  "gnid" : 5003132
+}, {
+  "neid" : 2000005562,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4985153
+}, {
+  "neid" : 2000005563,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5015688
+}, {
+  "neid" : 2000005564,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4990729
+}, {
+  "neid" : 2000005565,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4994862
+}, {
+  "neid" : 2000005566,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5007989
+}, {
+  "neid" : 2000005567,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5015599
+}, {
+  "neid" : 2000005568,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5011908
+}, {
+  "neid" : 2000005569,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4431410
+}, {
+  "neid" : 2000005570,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4499612
+}, {
+  "neid" : 2000005571,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4464368
+}, {
+  "neid" : 2000005572,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4469146
+}, {
+  "neid" : 2000005573,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4679195
+}, {
+  "neid" : 2000005574,
   "name" : "select specialty hospital",
   "aliases" : [ ],
   "gnid" : 4684888
 }, {
-  "neid" : 2000005598,
+  "neid" : 2000005575,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4393217
+  "gnid" : 4693003
 }, {
-  "neid" : 2000005599,
+  "neid" : 2000005576,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4853828
+}, {
+  "neid" : 2000005577,
+  "name" : "select specialty hospital",
+  "aliases" : [ "KINDRED HOSPITAL - ATLANTA" ],
+  "gnid" : 4180439
+}, {
+  "neid" : 2000005578,
+  "name" : "select specialty hospital",
+  "aliases" : [ "SEMPERCARE HOSPITAL OF SAVANNAH" ],
+  "gnid" : 4221552
+}, {
+  "neid" : 2000005579,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4180531
+}, {
+  "neid" : 2000005580,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4544349
+}, {
+  "neid" : 2000005581,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4553433
+}, {
+  "neid" : 2000005582,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4644585
+}, {
+  "neid" : 2000005583,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4634946
+}, {
+  "neid" : 2000005584,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4634946
+}, {
+  "neid" : 2000005585,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4634946
+}, {
+  "neid" : 2000005586,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4641239
+}, {
+  "neid" : 2000005587,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4651138
+}, {
+  "neid" : 2000005588,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4608657
+}, {
+  "neid" : 2000005589,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4707814
+}, {
+  "neid" : 2000005590,
   "name" : "select specialty hospital",
   "aliases" : [ ],
   "gnid" : 5150529
 }, {
+  "neid" : 2000005591,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5177568
+}, {
+  "neid" : 2000005592,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4508722
+}, {
+  "neid" : 2000005593,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4528923
+}, {
+  "neid" : 2000005594,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5149222
+}, {
+  "neid" : 2000005595,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4257227
+}, {
+  "neid" : 2000005596,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4409896
+}, {
+  "neid" : 2000005597,
+  "name" : "select specialty hospital",
+  "aliases" : [ "WESLEY WOODS LONG TERM HOSPITAL, INC" ],
+  "gnid" : 4180439
+}, {
+  "neid" : 2000005598,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4990729
+}, {
+  "neid" : 2000005599,
+  "name" : "select specialty hospital",
+  "aliases" : [ "GREAT LAKES SPECIALTY HOSPITAL - GRAND RAPIDS" ],
+  "gnid" : 4994358
+}, {
   "neid" : 2000005600,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 7258563
+  "gnid" : 4994358
 }, {
   "neid" : 2000005601,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5308655
+  "gnid" : 5231851
 }, {
   "neid" : 2000005602,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5308655
+  "gnid" : 5147784
 }, {
   "neid" : 2000005603,
   "name" : "select specialty hospital",
-  "aliases" : [ ],
-  "gnid" : 4167694
+  "aliases" : [ "SELECT SPECIALTY HOSPITAL" ],
+  "gnid" : 4801859
 }, {
   "neid" : 2000005604,
   "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5074472
+  "gnid" : 4111410
 }, {
   "neid" : 2000005605,
-  "name" : "select specialty hospital -oklahoma city",
+  "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4544349
+  "gnid" : 5419384
 }, {
   "neid" : 2000005606,
-  "name" : "select specialty hospital arizona inc.",
+  "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5313457
+  "gnid" : 4180439
 }, {
   "neid" : 2000005607,
-  "name" : "select specialty hospital belhaven",
-  "aliases" : [ "MS HOSPITAL FOR RESTORATIVE CARE" ],
-  "gnid" : 4431410
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4684888
 }, {
   "neid" : 2000005608,
-  "name" : "select specialty hospital central pa",
+  "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5192726
+  "gnid" : 4393217
 }, {
   "neid" : 2000005609,
-  "name" : "select specialty hospital central pennsylvania camp hill",
+  "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 5182928
+  "gnid" : 4406831
 }, {
   "neid" : 2000005610,
-  "name" : "select specialty hospital central pennsylvania york",
+  "name" : "select specialty hospital",
   "aliases" : [ ],
-  "gnid" : 4562407
+  "gnid" : 5150529
 }, {
   "neid" : 2000005611,
-  "name" : "select specialty hospital columbus east",
+  "name" : "select specialty hospital",
   "aliases" : [ ],
   "gnid" : 4509177
 }, {
   "neid" : 2000005612,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 7258563
+}, {
+  "neid" : 2000005613,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4853423
+}, {
+  "neid" : 2000005614,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5308655
+}, {
+  "neid" : 2000005615,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5308655
+}, {
+  "neid" : 2000005616,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5145476
+}, {
+  "neid" : 2000005617,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 4167694
+}, {
+  "neid" : 2000005618,
+  "name" : "select specialty hospital",
+  "aliases" : [ ],
+  "gnid" : 5074472
+}, {
+  "neid" : 2000005619,
+  "name" : "select specialty hospital arizona inc.",
+  "aliases" : [ ],
+  "gnid" : 5313457
+}, {
+  "neid" : 2000005620,
+  "name" : "select specialty hospital belhaven",
+  "aliases" : [ "MS HOSPITAL FOR RESTORATIVE CARE" ],
+  "gnid" : 4431410
+}, {
+  "neid" : 2000005621,
+  "name" : "select specialty hospital central pa",
+  "aliases" : [ ],
+  "gnid" : 5192726
+}, {
+  "neid" : 2000005622,
+  "name" : "select specialty hospital central pennsylvania camp hill",
+  "aliases" : [ ],
+  "gnid" : 5182928
+}, {
+  "neid" : 2000005623,
+  "name" : "select specialty hospital central pennsylvania york",
+  "aliases" : [ ],
+  "gnid" : 4562407
+}, {
+  "neid" : 2000005624,
+  "name" : "select specialty hospital columbus east",
+  "aliases" : [ ],
+  "gnid" : 4509177
+}, {
+  "neid" : 2000005625,
   "name" : "select specialty hospital columbus south",
   "aliases" : [ ],
   "gnid" : 4509177
 }, {
-  "neid" : 2000005613,
+  "neid" : 2000005626,
   "name" : "select specialty hospital danville",
   "aliases" : [ ],
   "gnid" : 5186327
 }, {
-  "neid" : 2000005614,
+  "neid" : 2000005627,
   "name" : "select specialty hospital erie",
   "aliases" : [ ],
   "gnid" : 5188843
 }, {
-  "neid" : 2000005615,
+  "neid" : 2000005628,
   "name" : "select specialty hospital gainesville",
   "aliases" : [ ],
   "gnid" : 4156404
 }, {
-  "neid" : 2000005616,
+  "neid" : 2000005629,
   "name" : "select specialty hospital gulf coast",
   "aliases" : [ ],
   "gnid" : 4428667
 }, {
-  "neid" : 2000005617,
+  "neid" : 2000005630,
   "name" : "select specialty hospital johnstown",
   "aliases" : [ ],
   "gnid" : 5195561
 }, {
-  "neid" : 2000005618,
+  "neid" : 2000005631,
   "name" : "select specialty hospital laurel highlands inc",
   "aliases" : [ ],
   "gnid" : 5197227
 }, {
-  "neid" : 2000005619,
+  "neid" : 2000005632,
   "name" : "select specialty hospital madison",
   "aliases" : [ ],
   "gnid" : 5261457
 }, {
-  "neid" : 2000005620,
+  "neid" : 2000005633,
   "name" : "select specialty hospital mckeesport",
   "aliases" : [ ],
   "gnid" : 5200499
 }, {
-  "neid" : 2000005621,
+  "neid" : 2000005634,
   "name" : "select specialty hospital mt. carmel",
   "aliases" : [ ],
   "gnid" : 4509177
 }, {
-  "neid" : 2000005622,
+  "neid" : 2000005635,
   "name" : "select specialty hospital of ks city",
   "aliases" : [ "SELECT SPECIALTY  HOSPITAL KANSAS CITY INC" ],
   "gnid" : 4273837
 }, {
-  "neid" : 2000005623,
+  "neid" : 2000005636,
   "name" : "select specialty hospital of wilmington",
   "aliases" : [ "SSHW" ],
   "gnid" : 4145381
 }, {
-  "neid" : 2000005624,
+  "neid" : 2000005637,
   "name" : "select specialty hospital pensacola",
   "aliases" : [ ],
   "gnid" : 4168228
 }, {
-  "neid" : 2000005625,
+  "neid" : 2000005638,
   "name" : "select specialty hospital pittsbrgh upmc",
   "aliases" : [ ],
   "gnid" : 5206379
 }, {
-  "neid" : 2000005626,
+  "neid" : 2000005639,
   "name" : "select specialty hospital southeast ohio",
   "aliases" : [ ],
   "gnid" : 5164466
 }, {
-  "neid" : 2000005627,
+  "neid" : 2000005640,
   "name" : "select specialty hospital warren campus",
   "aliases" : [ ],
   "gnid" : 5175865
 }, {
-  "neid" : 2000005628,
+  "neid" : 2000005641,
   "name" : "select specialty hospital wichita",
   "aliases" : [ "SELECT SPECIALTY HOSPITAL WICHITA" ],
   "gnid" : 4281730
-}, {
-  "neid" : 2000005629,
-  "name" : "select specialty hospital- indianapolis",
-  "aliases" : [ ],
-  "gnid" : 4259418
-}, {
-  "neid" : 2000005630,
-  "name" : "select specialty hospital-akron",
-  "aliases" : [ ],
-  "gnid" : 5145476
-}, {
-  "neid" : 2000005631,
-  "name" : "select specialty hospital-birmingham",
-  "aliases" : [ ],
-  "gnid" : 4049979
-}, {
-  "neid" : 2000005632,
-  "name" : "select specialty hospital-cincinnati, inc",
-  "aliases" : [ ],
-  "gnid" : 4508722
-}, {
-  "neid" : 2000005633,
-  "name" : "select specialty hospital-columbus, inc",
-  "aliases" : [ ],
-  "gnid" : 4509177
-}, {
-  "neid" : 2000005634,
-  "name" : "select specialty hospital-denver",
-  "aliases" : [ ],
-  "gnid" : 5419384
-}, {
-  "neid" : 2000005635,
-  "name" : "select specialty hospital-evansville",
-  "aliases" : [ ],
-  "gnid" : 4257227
-}, {
-  "neid" : 2000005636,
-  "name" : "select specialty hospital-fort wayne",
-  "aliases" : [ ],
-  "gnid" : 4920423
-}, {
-  "neid" : 2000005637,
-  "name" : "select specialty hospital-miami",
-  "aliases" : [ ],
-  "gnid" : 4164138
-}, {
-  "neid" : 2000005638,
-  "name" : "select specialty hospital-northeast ohio, inc",
-  "aliases" : [ ],
-  "gnid" : 5149222
-}, {
-  "neid" : 2000005639,
-  "name" : "select specialty hospital-quad cities",
-  "aliases" : [ ],
-  "gnid" : 4853423
-}, {
-  "neid" : 2000005640,
-  "name" : "select specialty hospital-st. louis",
-  "aliases" : [ ],
-  "gnid" : 4406831
-}, {
-  "neid" : 2000005641,
-  "name" : "select specialty hospital-zanesville inc",
-  "aliases" : [ ],
-  "gnid" : 4528923
 }, {
   "neid" : 2000005642,
   "name" : "select specialty hsptl milwaukee",
@@ -28670,7 +28670,7 @@
   "gnid" : 5780993
 }, {
   "neid" : 2000005734,
-  "name" : "shriners hospital for children-portland",
+  "name" : "shriners hospital for children",
   "aliases" : [ ],
   "gnid" : 5746545
 }, {
@@ -28705,34 +28705,34 @@
   "gnid" : 4692883
 }, {
   "neid" : 2000005741,
-  "name" : "shriners hospitals for children northern calif.",
+  "name" : "shriners hospitals for children",
   "aliases" : [ ],
-  "gnid" : 5389489
+  "gnid" : 4341513
 }, {
   "neid" : 2000005742,
-  "name" : "shriners hospitals for children-philadelphia",
+  "name" : "shriners hospitals for children",
   "aliases" : [ ],
   "gnid" : 4560349
 }, {
   "neid" : 2000005743,
-  "name" : "shriners hospitals for children-shreveport",
+  "name" : "shriners hospitals for children northern calif.",
   "aliases" : [ ],
-  "gnid" : 4341513
+  "gnid" : 5389489
 }, {
   "neid" : 2000005744,
   "name" : "shriners' hospital for children",
   "aliases" : [ ],
-  "gnid" : 4930956
+  "gnid" : 4580543
 }, {
   "neid" : 2000005745,
   "name" : "shriners' hospital for children",
   "aliases" : [ ],
-  "gnid" : 4951788
+  "gnid" : 4930956
 }, {
   "neid" : 2000005746,
-  "name" : "shriners' hospital for children-greenville",
+  "name" : "shriners' hospital for children",
   "aliases" : [ ],
-  "gnid" : 4580543
+  "gnid" : 4951788
 }, {
   "neid" : 2000005747,
   "name" : "sibley memorial hospital",
@@ -28825,12 +28825,12 @@
   "gnid" : 4839319
 }, {
   "neid" : 2000005765,
-  "name" : "silver lake medical center-downtown campus",
+  "name" : "silver lake medical center",
   "aliases" : [ ],
   "gnid" : 5368361
 }, {
   "neid" : 2000005766,
-  "name" : "silver lake medical center-ingleside campus",
+  "name" : "silver lake medical center",
   "aliases" : [ ],
   "gnid" : 5388867
 }, {
@@ -28845,7 +28845,7 @@
   "gnid" : 5752024
 }, {
   "neid" : 2000005769,
-  "name" : "simi valley hospital and health care svcs-sycamore",
+  "name" : "simi valley hospital and health care svcs",
   "aliases" : [ ],
   "gnid" : 5396003
 }, {
@@ -29060,7 +29060,7 @@
   "gnid" : 5394165
 }, {
   "neid" : 2000005812,
-  "name" : "sonora behavioral health hospital (hosp-psy)",
+  "name" : "sonora behavioral health hospital (hosp",
   "aliases" : [ ],
   "gnid" : 5318313
 }, {
@@ -29290,7 +29290,7 @@
   "gnid" : 9409658
 }, {
   "neid" : 2000005858,
-  "name" : "southeast georgia health system- brunswick campus",
+  "name" : "southeast georgia health system",
   "aliases" : [ ],
   "gnid" : 4184845
 }, {
@@ -29515,12 +29515,12 @@
   "gnid" : 5688127
 }, {
   "neid" : 2000005903,
-  "name" : "southwest healthcare system-murrieta",
+  "name" : "southwest healthcare system",
   "aliases" : [ ],
   "gnid" : 5375911
 }, {
   "neid" : 2000005904,
-  "name" : "southwest healthcare system-wildomar",
+  "name" : "southwest healthcare system",
   "aliases" : [ ],
   "gnid" : 5409260
 }, {
@@ -29640,7 +29640,7 @@
   "gnid" : 5008278
 }, {
   "neid" : 2000005928,
-  "name" : "sparrow health system-st lawrence campus",
+  "name" : "sparrow health system",
   "aliases" : [ ],
   "gnid" : 4998830
 }, {
@@ -29915,7 +29915,7 @@
   "gnid" : 4250542
 }, {
   "neid" : 2000005983,
-  "name" : "springfield regional medical ctr-er",
+  "name" : "springfield regional medical ctr",
   "aliases" : [ ],
   "gnid" : 4525353
 }, {
@@ -30002,12 +30002,12 @@
   "neid" : 2000006000,
   "name" : "ssm st. joseph health center",
   "aliases" : [ ],
-  "gnid" : 4406831
+  "gnid" : 4414001
 }, {
   "neid" : 2000006001,
-  "name" : "ssm st. joseph health center-wentzville",
+  "name" : "ssm st. joseph health center",
   "aliases" : [ ],
-  "gnid" : 4414001
+  "gnid" : 4406831
 }, {
   "neid" : 2000006002,
   "name" : "st agnes hsptl",
@@ -30260,12 +30260,12 @@
   "gnid" : 4990729
 }, {
   "neid" : 2000006052,
-  "name" : "st john macomb-oakland hospital-macomb center",
+  "name" : "st john macomb-oakland hospital",
   "aliases" : [ ],
   "gnid" : 5014051
 }, {
   "neid" : 2000006053,
-  "name" : "st john macomb-oakland hospital-oakland center",
+  "name" : "st john macomb-oakland hospital",
   "aliases" : [ ],
   "gnid" : 5000500
 }, {
@@ -30335,7 +30335,7 @@
   "gnid" : 4885164
 }, {
   "neid" : 2000006067,
-  "name" : "st joseph medical center-main",
+  "name" : "st joseph medical center",
   "aliases" : [ ],
   "gnid" : 5207728
 }, {
@@ -30355,7 +30355,7 @@
   "gnid" : 4984247
 }, {
   "neid" : 2000006071,
-  "name" : "st joseph mercy hospital-saline",
+  "name" : "st joseph mercy hospital",
   "aliases" : [ ],
   "gnid" : 5008768
 }, {
@@ -30595,12 +30595,12 @@
   "gnid" : 4257227
 }, {
   "neid" : 2000006119,
-  "name" : "st mary's of michigan medical center",
+  "name" : "st mary's of michigan",
   "aliases" : [ ],
   "gnid" : 5007989
 }, {
   "neid" : 2000006120,
-  "name" : "st mary's of michigan-towne ctr",
+  "name" : "st mary's of michigan medical center",
   "aliases" : [ ],
   "gnid" : 5007989
 }, {
@@ -31065,7 +31065,7 @@
   "gnid" : 4550881
 }, {
   "neid" : 2000006213,
-  "name" : "st. john's episcopal hospital-south shore",
+  "name" : "st. john's episcopal hospital",
   "aliases" : [ ],
   "gnid" : 5116917
 }, {
@@ -31580,7 +31580,7 @@
   "gnid" : 4621196
 }, {
   "neid" : 2000006316,
-  "name" : "staten island univ hosp-concord div",
+  "name" : "staten island univ hosp",
   "aliases" : [ ],
   "gnid" : 5139568
 }, {
@@ -32070,7 +32070,7 @@
   "gnid" : 5405380
 }, {
   "neid" : 2000006414,
-  "name" : "sutter surgical hospital-north valley",
+  "name" : "sutter surgical hospital",
   "aliases" : [ ],
   "gnid" : 5411015
 }, {
@@ -32212,12 +32212,12 @@
   "neid" : 2000006442,
   "name" : "tahoe pacific hospitals",
   "aliases" : [ ],
-  "gnid" : 5511077
+  "gnid" : 5512862
 }, {
   "neid" : 2000006443,
-  "name" : "tahoe pacific hospitals-north",
+  "name" : "tahoe pacific hospitals",
   "aliases" : [ ],
-  "gnid" : 5512862
+  "gnid" : 5511077
 }, {
   "neid" : 2000006444,
   "name" : "takoma adventist hospital",
@@ -32550,7 +32550,7 @@
   "gnid" : 4691930
 }, {
   "neid" : 2000006510,
-  "name" : "texas health harris methodist hospital hurst-euless-bedford",
+  "name" : "texas health harris methodist hospital hurst",
   "aliases" : [ ],
   "gnid" : 4673094
 }, {
@@ -32635,7 +32635,7 @@
   "gnid" : 4691930
 }, {
   "neid" : 2000006527,
-  "name" : "texas health springwood hospital hurst-euless-bedford",
+  "name" : "texas health springwood hospital hurst",
   "aliases" : [ ],
   "gnid" : 4673094
 }, {
@@ -33020,7 +33020,7 @@
   "gnid" : 5134086
 }, {
   "neid" : 2000006604,
-  "name" : "the unity hospital of rochester-st marys campus",
+  "name" : "the unity hospital of rochester",
   "aliases" : [ ],
   "gnid" : 5134086
 }, {
@@ -33445,7 +33445,7 @@
   "gnid" : 4049979
 }, {
   "neid" : 2000006689,
-  "name" : "trinity medical center west-er",
+  "name" : "trinity medical center west",
   "aliases" : [ ],
   "gnid" : 5173048
 }, {
@@ -33590,7 +33590,7 @@
   "gnid" : 5731371
 }, {
   "neid" : 2000006718,
-  "name" : "tuality forest grove hospital-er",
+  "name" : "tuality forest grove hospital",
   "aliases" : [ ],
   "gnid" : 5727190
 }, {
@@ -33650,7 +33650,7 @@
   "gnid" : 5454711
 }, {
   "neid" : 2000006730,
-  "name" : "twelve step living corporation",
+  "name" : "twelve-step living corporation - tallgrass recovery center",
   "aliases" : [ ],
   "gnid" : 5231851
 }, {
@@ -33940,7 +33940,7 @@
   "gnid" : 5258393
 }, {
   "neid" : 2000006788,
-  "name" : "united medical healthwest-new orleans",
+  "name" : "united medical healthwest",
   "aliases" : [ ],
   "gnid" : 4326575
 }, {
@@ -34165,7 +34165,7 @@
   "gnid" : 4049979
 }, {
   "neid" : 2000006833,
-  "name" : "university of arizona medical center- university campus, the",
+  "name" : "university of arizona medical center",
   "aliases" : [ ],
   "gnid" : 5318313
 }, {
@@ -34290,7 +34290,7 @@
   "gnid" : 4984247
 }, {
   "neid" : 2000006858,
-  "name" : "university of minnesota medical center-fairview-east bank-er",
+  "name" : "university of minnesota medical center",
   "aliases" : [ ],
   "gnid" : 5037649
 }, {
@@ -34525,19 +34525,19 @@
   "gnid" : 5110227
 }, {
   "neid" : 2000006905,
-  "name" : "us air force hospital 92nd medical group",
-  "aliases" : [ ],
-  "gnid" : 5794049
-}, {
-  "neid" : 2000006906,
-  "name" : "us air force hospital glendale",
+  "name" : "us air force hospital",
   "aliases" : [ ],
   "gnid" : 5295985
 }, {
-  "neid" : 2000006907,
-  "name" : "us air force hospital-tucson",
+  "neid" : 2000006906,
+  "name" : "us air force hospital",
   "aliases" : [ ],
   "gnid" : 5318313
+}, {
+  "neid" : 2000006907,
+  "name" : "us air force hospital 92nd medical group",
+  "aliases" : [ ],
+  "gnid" : 5794049
 }, {
   "neid" : 2000006908,
   "name" : "us phs winslow indian hospital",
@@ -35130,7 +35130,7 @@
   "gnid" : 5132143
 }, {
   "neid" : 2000007026,
-  "name" : "vaughan regional medical center-parkway campus",
+  "name" : "vaughan regional medical center",
   "aliases" : [ ],
   "gnid" : 4089114
 }, {
@@ -35320,7 +35320,7 @@
   "gnid" : 5011908
 }, {
   "neid" : 2000007064,
-  "name" : "vibra hospital of southeastern michigan-dmc campus",
+  "name" : "vibra hospital of southeastern michigan",
   "aliases" : [ ],
   "gnid" : 4990729
 }, {
@@ -36180,7 +36180,7 @@
   "gnid" : 5821593
 }, {
   "neid" : 2000007236,
-  "name" : "west river regional medical center-cah",
+  "name" : "west river regional medical center",
   "aliases" : [ ],
   "gnid" : 5689618
 }, {
@@ -36355,7 +36355,7 @@
   "gnid" : 4816520
 }, {
   "neid" : 2000007271,
-  "name" : "wheat fran hlthcare-all saints inc",
+  "name" : "wheat fran hlthcare",
   "aliases" : [ ],
   "gnid" : 5268249
 }, {
@@ -36367,25 +36367,25 @@
   "neid" : 2000007273,
   "name" : "wheaton franciscan healthcare",
   "aliases" : [ ],
-  "gnid" : 5246835
-}, {
-  "neid" : 2000007274,
-  "name" : "wheaton franciscan healthcare- all saints",
-  "aliases" : [ ],
-  "gnid" : 5268249
-}, {
-  "neid" : 2000007275,
-  "name" : "wheaton franciscan healthcare- franklin inc",
-  "aliases" : [ ],
   "gnid" : 5253710
 }, {
-  "neid" : 2000007276,
-  "name" : "wheaton franciscan healthcare- st francis",
+  "neid" : 2000007274,
+  "name" : "wheaton franciscan healthcare",
   "aliases" : [ ],
   "gnid" : 5263045
 }, {
+  "neid" : 2000007275,
+  "name" : "wheaton franciscan healthcare",
+  "aliases" : [ ],
+  "gnid" : 5268249
+}, {
+  "neid" : 2000007276,
+  "name" : "wheaton franciscan healthcare",
+  "aliases" : [ ],
+  "gnid" : 5246835
+}, {
   "neid" : 2000007277,
-  "name" : "wheaton franciscan inc- st joseph",
+  "name" : "wheaton franciscan inc",
   "aliases" : [ ],
   "gnid" : 5263045
 }, {
@@ -36985,12 +36985,12 @@
   "gnid" : 5057562
 }, {
   "neid" : 2000007397,
-  "name" : "wuesthoff medical center-melbourne",
+  "name" : "wuesthoff medical center",
   "aliases" : [ ],
   "gnid" : 4163971
 }, {
   "neid" : 2000007398,
-  "name" : "wuesthoff medical center-rockledge",
+  "name" : "wuesthoff medical center",
   "aliases" : [ ],
   "gnid" : 4170358
 }, {

@@ -3,8 +3,9 @@ import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
 import org.ditw.demo1.gndata.GNCntry
 import org.ditw.demo1.gndata.GNCntry.{PR, US}
-import org.ditw.exutil1.naen.NaEn
-import org.ditw.sparkRuns.NaEnIds.NaEnCat
+import org.ditw.exutil1.naen.{NaEn, NaEnData}
+import org.ditw.exutil1.naen.NaEnData.NaEnCat
+
 import org.ditw.sparkRuns.UtilsEntCsv1.{Pfx2Replace, processName}
 
 object UtilsEntCsv2 {
@@ -30,7 +31,7 @@ object UtilsEntCsv2 {
       "NAME", "CITY", "STATE", "LATITUDE", "LONGITUDE", "ALIAS"
     )
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
-    val idStart = NaEnIds.catIdStart(NaEnCat.US_UNIV)
+    val idStart = NaEnData.catIdStart(NaEnCat.US_UNIV)
 
     val res = rows.rdd.flatMap { row =>
       val gnm = brGNMmgr.value
@@ -68,7 +69,10 @@ object UtilsEntCsv2 {
           if (nearest.nonEmpty) {
             val name = row.getAs[String]("NAME")
             val altName = row.getAs[String]("ALIAS")
-            val altNames = if (altName == "NOT AVAILABLE") Vector[String]() else Vector(altName)
+            val altNames =
+              if (altName == null || altName.isEmpty || altName == "NOT AVAILABLE")
+                Array[String]()
+              else Array(altName)
             Option((name, altNames, nearest.get.gnid))
           }
           else {

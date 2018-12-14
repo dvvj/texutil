@@ -33,15 +33,17 @@ object InputHelpers extends Serializable {
   }
 
   def splitVocabEntry(phrase:String):Array[String] = {
+    if (phrase == null)
+      println("ok")
     val tokenSeq = SpaceSplitter.split(phrase)
     tokenSeq.flatMap { token =>
-      if (punctCharSet.contains(token.last)) {
-        if (token.length > 1)
-          Option(token.substring(0, token.length - 1)) // todo
-        else
-          None
-      } else
-        Option(token)
+      var t = token
+      while (t.nonEmpty && punctCharSet.contains(t.last)) {
+        t = t.substring(0, t.length - 1)
+      }
+      if (t.nonEmpty)
+        Option(t)
+      else None
     }
   }
 
