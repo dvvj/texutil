@@ -1,7 +1,7 @@
 package org.ditw.exutil1.naen
 import org.json4s.DefaultFormats
 
-case class NaEn(name:String, aliases:Vector[String], gnid:Long) {
+case class NaEn(neid:Long, name:String, aliases:Vector[String], gnid:Long) {
 
 }
 
@@ -10,4 +10,6 @@ object NaEn extends Serializable {
     import org.json4s.jackson.Serialization._
     writePretty(pocos)(DefaultFormats)
   }
+
+
 }

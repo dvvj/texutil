@@ -3,6 +3,7 @@ import org.apache.spark.storage.StorageLevel
 import org.ditw.common.{ResourceHelpers, SparkUtils}
 import org.ditw.demo1.gndata.GNCntry
 import org.ditw.exutil1.naen.NaEn
+import org.ditw.sparkRuns.NaEnIds.NaEnCat
 
 object UtilsEntCsv1 {
   def main(args:Array[String]):Unit = {
@@ -29,53 +30,61 @@ object UtilsEntCsv1 {
       )
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
+    val idStart = NaEnIds.catIdStart(NaEnCat.US_HOSP)
+
     val res = rows.rdd.flatMap { row =>
-      val gnm = brGNMmgr.value
-      val city = row.getAs[String]("CITY")
-      val state = row.getAs[String]("STATE")
-      val cityState = s"$city $state"
-      var rng2Ents = runStr(
-        cityState, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr
-      )
+        val gnm = brGNMmgr.value
+        val city = row.getAs[String]("CITY")
+        val state = row.getAs[String]("STATE")
+        val cityState = s"$city $state"
+        var rng2Ents = runStr(
+          cityState, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr
+        )
 
-      if (rng2Ents.isEmpty) {
-        val repl = replPfx(cityState, Pfx2Replace)
-        if (repl.nonEmpty) {
-          rng2Ents = runStr(
-            repl.get,
-            gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
-            gnm.xtrMgr
-          )
+        if (rng2Ents.isEmpty) {
+          val repl = replPfx(cityState, Pfx2Replace)
+          if (repl.nonEmpty) {
+            rng2Ents = runStr(
+              repl.get,
+              gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
+              gnm.xtrMgr
+            )
+          }
         }
-      }
 
-      if (rng2Ents.isEmpty) {
-        println(s"$cityState not found")
-        None
-      }
-      else {
-        if (rng2Ents.values.size != 1) {
-          throw new RuntimeException(s"------ more than one ents: $rng2Ents")
+        if (rng2Ents.isEmpty) {
+          println(s"$cityState not found")
+          None
         }
         else {
-          val lat = row.getAs[String]("LATITUDE").toDouble
-          val lon = row.getAs[String]("LONGITUDE").toDouble
-          val nearest = findNearestAndCheck(rng2Ents.values.head, lat->lon)
-
-          if (nearest.nonEmpty) {
-            val name = row.getAs[String]("NAME")
-            val altName = row.getAs[String]("ALT_NAME")
-            val altNames = if (altName == "NOT AVAILABLE") Vector[String]() else Vector(altName)
-            Option(NaEn(processName(name), altNames, nearest.get.gnid))
+          if (rng2Ents.values.size != 1) {
+            throw new RuntimeException(s"------ more than one ents: $rng2Ents")
           }
           else {
-            None  //todo trace
-          }
+            val lat = row.getAs[String]("LATITUDE").toDouble
+            val lon = row.getAs[String]("LONGITUDE").toDouble
+            val nearest = findNearestAndCheck(rng2Ents.values.head, lat->lon)
 
+            if (nearest.nonEmpty) {
+              val name = row.getAs[String]("NAME")
+              val altName = row.getAs[String]("ALT_NAME")
+              val altNames = if (altName == "NOT AVAILABLE") Vector[String]() else Vector(altName)
+              Option((processName(name), altNames, nearest.get.gnid))
+            }
+            else {
+              None  //todo trace
+            }
+
+          }
         }
       }
-    }
-      .sortBy(_.name)
+      .sortBy(_._1)
+      .zipWithIndex()
+      .map { p =>
+        val (tp, idx) = p
+        val id = idStart + idx
+        NaEn(id, tp._1, tp._2, tp._3)
+      }
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     println(s"#: ${res.count()}")
