@@ -128,6 +128,8 @@ object SrcData extends Serializable {
       .filter { cols =>
         val popu = cols(populationIndex).toLong
         val gnid = cols(gnidIndex).toLong
+//        if (gnid == 4563065L)
+//          println("ok")
         if (countryCodes.contains(cols(countryCodeIndex))) {
           if (popu >= settings.minPopu) {
               !SrcDataUtils.isAdm0(cols(featureCodeIndex), cols(countryCodeIndex))

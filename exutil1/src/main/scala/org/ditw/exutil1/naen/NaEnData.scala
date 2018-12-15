@@ -61,7 +61,7 @@ object NaEnData extends Serializable {
 
   private val UsUnivColls = ResourceHelpers.load("/naen/us_univ_coll.json", NaEn.fromJsons)
   private val UsHosps = ResourceHelpers.load("/naen/us_hosp.json", NaEn.fromJsons)
-  val allVocs = vocab4NaEns(UsUnivColls) ++ vocab4NaEns(UsHosps)
+  val allVocs:Iterable[Iterable[String]] = vocab4NaEns(UsUnivColls) ++ vocab4NaEns(UsHosps)
   import TagHelper._
   private[exutil1] def tmUsUniv(dict:Dict) =
     tm4NaEns(UsUnivColls, dict, builtinTag(US_UNIV.toString))

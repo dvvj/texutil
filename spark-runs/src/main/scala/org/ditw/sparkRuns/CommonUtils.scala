@@ -12,6 +12,7 @@ import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.MatcherGen
 import org.ditw.extract.XtrMgr
+import org.ditw.exutil1.naen.NaEnData
 import org.ditw.exutil1.poco.PocoUS
 import org.ditw.matcher.{MatchPool, MatcherMgr}
 import org.ditw.sparkRuns.UtilsEntCsv1.Pfx2Replace
@@ -23,13 +24,16 @@ import org.ditw.tknr.Tokenizers.TTokenizer
 object CommonUtils extends Serializable {
 
   private def genMMgr(gnsvc: GNSvc, dict: Dict, ccms:Set[GNCntry]):(MatcherMgr, XtrMgr[Long]) = {
+    val exMatchers = AllCatMatchers.segMatchersFrom(
+      dict,
+      Seq(Cat2SegMatchers.segMatchers(dict))
+    )
     MatcherGen.gen(
       gnsvc, dict, ccms,
       Option(
-        AllCatMatchers.segMatchersFrom(
-          dict,
-          Seq(Cat2SegMatchers.segMatchers(dict))
-        )
+        exMatchers._1 ++ NaEnData.tmsNaEn(dict),
+        exMatchers._2,
+        exMatchers._3
       )
     )
   }
@@ -52,7 +56,7 @@ object CommonUtils extends Serializable {
       .map(tabSplitter.split)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val svc = GNSvc.loadNoPopuReq(gnLines, ccs)
-    val dict = loadDict(svc)
+    val dict = loadDict(svc, NaEnData.allVocs)
     val (mmgr, xtrMgr) = genMMgr(svc, dict, ccms)
     val tknr = TknrHelpers.TknrTextSeg()
     GNMmgr(tknr, svc, dict, mmgr, xtrMgr)
@@ -71,11 +75,12 @@ object CommonUtils extends Serializable {
   }
 
   private def loadDict(
-                gnsvc: GNSvc
+                gnsvc: GNSvc,
+                exVocabs:Iterable[Iterable[String]]
               ):Dict = {
     val words1 = MatcherGen.wordsFromGNSvc(gnsvc)
     val words2 = Vocabs.allWords
-    InputHelpers.loadDict(words1++words2)
+    InputHelpers.loadDict(words1++words2++exVocabs)
   }
 
   private val maxDiff = 0.5

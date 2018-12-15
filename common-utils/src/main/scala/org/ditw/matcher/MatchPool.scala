@@ -42,6 +42,10 @@ class MatchPool(
   }
 
   def allTags():Iterable[String] = _map.keySet
+
+  def allTagsPrefixedBy(pfx:String):Iterable[String] = {
+    allTags.filter(_.startsWith(pfx))
+  }
 }
 
 object MatchPool extends Serializable {
