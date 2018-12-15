@@ -35,25 +35,10 @@ object UtilsEntCsv1 {
 
     val idStart = NaEnData.catIdStart(NaEnCat.US_HOSP)
 
+    import CommonCsvUtils._
     val res = rows.rdd.flatMap { row =>
-        val gnm = brGNMmgr.value
-        val city = row.getAs[String]("CITY")
-        val state = row.getAs[String]("STATE")
-        val cityState = s"$city $state"
-        var rng2Ents = runStr(
-          cityState, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr
-        )
-
-        if (rng2Ents.isEmpty) {
-          val repl = replPfx(cityState, Pfx2Replace)
-          if (repl.nonEmpty) {
-            rng2Ents = runStr(
-              repl.get,
-              gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
-              gnm.xtrMgr
-            )
-          }
-        }
+      val cityState = concatCols(row, "CITY", "STATE")
+      val rng2Ents = extrGNEnts(cityState, brGNMmgr.value, Pfx2Replace)
 
         if (rng2Ents.isEmpty) {
           println(s"$cityState not found")

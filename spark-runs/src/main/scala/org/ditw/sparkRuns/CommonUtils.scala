@@ -4,9 +4,9 @@ import java.nio.charset.StandardCharsets
 
 import org.apache.commons.io.IOUtils
 import org.apache.spark.SparkContext
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import org.apache.spark.storage.StorageLevel
-import org.ditw.common.{Dict, InputHelpers}
+import org.ditw.common.{Dict, InputHelpers, TkRange}
 import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
@@ -15,6 +15,7 @@ import org.ditw.extract.XtrMgr
 import org.ditw.exutil1.naen.NaEnData
 import org.ditw.exutil1.poco.PocoUS
 import org.ditw.matcher.{MatchPool, MatcherMgr}
+import org.ditw.sparkRuns.CommonUtils.GNMmgr
 import org.ditw.sparkRuns.UtilsEntCsv1.Pfx2Replace
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.{AllCatMatchers, Vocabs}
@@ -63,7 +64,8 @@ object CommonUtils extends Serializable {
   }
 
 
-  private[sparkRuns] def runStr(str:String, tknr:TTokenizer, dict: Dict, mmgr: MatcherMgr, svc:GNSvc, xtrMgr: XtrMgr[Long]) = {
+  private[sparkRuns] def runStr(str:String, tknr:TTokenizer, dict: Dict, mmgr: MatcherMgr, svc:GNSvc, xtrMgr: XtrMgr[Long])
+    :Map[TkRange, List[GNEnt]] = {
     val mp = MatchPool.fromStr(str, tknr, dict)
     mmgr.run(mp)
 //    if (str == "SAN JUAN PR")
@@ -140,6 +142,24 @@ object CommonUtils extends Serializable {
       Option(nearest)
     }
 
+  }
+
+  def extrGNEnts(gnstr:String, gnm:GNMmgr, pfxReplMap:Map[String, String]):Map[TkRange, List[GNEnt]] = {
+    var rng2Ents = runStr(
+      gnstr, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr
+    )
+
+    if (rng2Ents.isEmpty) {
+      val repl = replPfx(gnstr, pfxReplMap)
+      if (repl.nonEmpty) {
+        rng2Ents = runStr(
+          repl.get,
+          gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
+          gnm.xtrMgr
+        )
+      }
+    }
+    rng2Ents
   }
 
   def writeJson[T](path:String, objs:Array[T], conv:Array[T] => String):Unit = {
