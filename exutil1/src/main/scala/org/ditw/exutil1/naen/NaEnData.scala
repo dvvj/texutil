@@ -15,14 +15,15 @@ object NaEnData extends Serializable {
 
   object NaEnCat extends Enumeration {
     type NaEnCat = Value
-    val US_UNIV, US_HOSP = Value
+    val US_UNIV, US_HOSP, ISNI = Value
   }
 
   import NaEnCat._
 
   private val idStartCatMap:Map[NaEnCat, Long] = Map(
     US_UNIV -> 1000000000L,
-    US_HOSP -> 2000000000L
+    US_HOSP -> 2000000000L,
+    ISNI -> 3000000000L
   )
 
   def catIdStart(cat:NaEnCat):Long = idStartCatMap(cat)

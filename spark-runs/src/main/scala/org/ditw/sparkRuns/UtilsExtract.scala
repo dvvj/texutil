@@ -30,7 +30,7 @@ object UtilsExtract {
       .textFile("/media/sf_vmshare/aff-w2v-dbg")
       .map { l =>
         val gnm = brGNMmgr.value
-        val rng2Ents = runStr(l, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr)
+        val rng2Ents = runStr(l, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr, false)
         l -> rng2Ents.map(identity)
       }
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)

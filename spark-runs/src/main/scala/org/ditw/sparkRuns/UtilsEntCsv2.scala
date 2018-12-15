@@ -3,23 +3,30 @@ import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
 import org.ditw.demo1.gndata.GNCntry
 import org.ditw.demo1.gndata.GNCntry.{PR, US}
-import org.ditw.exutil1.naen.{NaEn, NaEnData}
+import org.ditw.exutil1.naen.{NaEn, NaEnData, SrcCsvMeta}
 import org.ditw.exutil1.naen.NaEnData.NaEnCat
-
 import org.ditw.sparkRuns.UtilsEntCsv1.{Pfx2Replace, processName}
 
-object UtilsEntCsv2 {
+object UtilsEntCsv2 extends Serializable {
+
+  val headers =
+    "X,Y,OBJECTID,IPEDSID,NAME,ADDRESS,CITY,STATE,ZIP,ZIP4," +
+      "TELEPHONE,TYPE,STATUS,POPULATION,COUNTY,COUNTYFIPS,COUNTRY," +
+      "LATITUDE,LONGITUDE,NAICS_CODE,NAICS_DESC,SOURCE,SOURCEDATE," +
+      "VAL_METHOD,VAL_DATE,WEBSITE,STFIPS,COFIPS,SECTOR,LEVEL_," +
+      "HI_OFFER,DEG_GRANT,LOCALE,CLOSE_DATE,MERGE_ID,ALIAS," +
+      "SIZE_SET,INST_SIZE,PT_ENROLL,FT_ENROLL,TOT_ENROLL,HOUSING," +
+      "DORM_CAP,TOT_EMP,SHELTER_ID"
+
+  private val csvMeta = SrcCsvMeta(
+    "NAME",
+    "ALIAS",
+    Option("LATITUDE", "LONGITUDE"),
+    Vector("CITY", "STATE")
+  )
   def main(args:Array[String]):Unit = {
     val spSess = SparkUtils.sparkSessionLocal()
 
-    val headers =
-      "X,Y,OBJECTID,IPEDSID,NAME,ADDRESS,CITY,STATE,ZIP,ZIP4," +
-        "TELEPHONE,TYPE,STATUS,POPULATION,COUNTY,COUNTYFIPS,COUNTRY," +
-        "LATITUDE,LONGITUDE,NAICS_CODE,NAICS_DESC,SOURCE,SOURCEDATE," +
-        "VAL_METHOD,VAL_DATE,WEBSITE,STFIPS,COFIPS,SECTOR,LEVEL_," +
-        "HI_OFFER,DEG_GRANT,LOCALE,CLOSE_DATE,MERGE_ID,ALIAS," +
-        "SIZE_SET,INST_SIZE,PT_ENROLL,FT_ENROLL,TOT_ENROLL,HOUSING," +
-        "DORM_CAP,TOT_EMP,SHELTER_ID"
 
     import CommonUtils._
     val gnmmgr = loadGNMmgr(Set(US, PR), Set(PR), spSess.sparkContext, "file:///media/sf_vmshare/gns/all")
@@ -27,44 +34,38 @@ object UtilsEntCsv2 {
     val brGNMmgr = spSess.sparkContext.broadcast(gnmmgr)
 
     val rows = csvRead(
-      spSess, "/media/sf_vmshare/Colleges_and_Universities.csv",
-      "NAME", "CITY", "STATE", "LATITUDE", "LONGITUDE", "ALIAS"
+      spSess,
+      "/media/sf_vmshare/Colleges_and_Universities.csv",
+      csvMeta
     )
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val idStart = NaEnData.catIdStart(NaEnCat.US_UNIV)
 
     import CommonCsvUtils._
     val res = rows.rdd.flatMap { row =>
-      val cityState = concatCols(row, "CITY", "STATE")
-      val rng2Ents = extrGNEnts(cityState, brGNMmgr.value, Pfx2Replace)
+      val cityState = csvMeta.gnStr(row)
+      val rng2Ents = extrGNEnts(cityState, brGNMmgr.value, true, Pfx2Replace)
 
       if (rng2Ents.isEmpty) {
         println(s"$cityState not found")
         None
       }
       else {
-        if (rng2Ents.values.size != 1) {
-          throw new RuntimeException(s"------ more than one ents: $rng2Ents")
+        val nearest = checkNearestGNEnt(rng2Ents.values.flatten, row, csvMeta.latCol, csvMeta.lonCol)
+
+        if (nearest.nonEmpty) {
+          val name = csvMeta.name(row)
+          val altName = csvMeta.altNames(row)
+          val altNames =
+            if (altName == null || altName.isEmpty || altName == "NOT AVAILABLE")
+              Array[String]()
+            else Array(altName)
+          Option((name, altNames, nearest.get.gnid))
         }
         else {
-          val lat = row.getAs[String]("LATITUDE").toDouble
-          val lon = row.getAs[String]("LONGITUDE").toDouble
-          val nearest = findNearestAndCheck(rng2Ents.values.head, lat->lon)
-
-          if (nearest.nonEmpty) {
-            val name = row.getAs[String]("NAME")
-            val altName = row.getAs[String]("ALIAS")
-            val altNames =
-              if (altName == null || altName.isEmpty || altName == "NOT AVAILABLE")
-                Array[String]()
-              else Array(altName)
-            Option((name, altNames, nearest.get.gnid))
-          }
-          else {
-            None  //todo trace
-          }
-
+          None  //todo trace
         }
+
       }
     }
       .sortBy(_._1)

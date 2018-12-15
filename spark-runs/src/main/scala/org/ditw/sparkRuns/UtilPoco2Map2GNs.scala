@@ -66,7 +66,8 @@ object UtilPoco2Map2GNs {
       var rng2Ents = runStr(
         placeAdm1,
         gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
-        gnm.xtrMgr
+        gnm.xtrMgr,
+        true
       )
       if (rng2Ents.isEmpty) {
         val pfx2Repl = Pfx2Replace.keySet.filter(placeAdm1.startsWith)
@@ -77,7 +78,8 @@ object UtilPoco2Map2GNs {
           rng2Ents = runStr(
             placeAdm1Repl,
             gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
-            gnm.xtrMgr
+            gnm.xtrMgr,
+            true
           )
         }
       }

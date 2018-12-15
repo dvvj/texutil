@@ -12,11 +12,11 @@ import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.MatcherGen
 import org.ditw.extract.XtrMgr
-import org.ditw.exutil1.naen.NaEnData
+import org.ditw.exutil1.naen.{NaEnData, SrcCsvMeta}
 import org.ditw.exutil1.poco.PocoUS
 import org.ditw.matcher.{MatchPool, MatcherMgr}
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
-import org.ditw.sparkRuns.UtilsEntCsv1.Pfx2Replace
+import org.ditw.sparkRuns.UtilsEntCsv1.{Pfx2Replace, processName}
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.{AllCatMatchers, Vocabs}
 import org.ditw.tknr.TknrHelpers
@@ -64,16 +64,25 @@ object CommonUtils extends Serializable {
   }
 
 
-  private[sparkRuns] def runStr(str:String, tknr:TTokenizer, dict: Dict, mmgr: MatcherMgr, svc:GNSvc, xtrMgr: XtrMgr[Long])
-    :Map[TkRange, List[GNEnt]] = {
+  private[sparkRuns] def runStr(
+    str:String,
+    tknr:TTokenizer,
+    dict: Dict,
+    mmgr: MatcherMgr,
+    svc:GNSvc,
+    xtrMgr: XtrMgr[Long],
+    wholeStrMatch:Boolean
+  ):Map[TkRange, List[GNEnt]] = {
     val mp = MatchPool.fromStr(str, tknr, dict)
     mmgr.run(mp)
 //    if (str == "SAN JUAN PR")
 //      println("ok")
     val res = svc.extrEnts(xtrMgr, mp)
-    res.filter(
-      p => p._1.start == 0 && p._1.end == mp.input.linesOfTokens(0).length // should be the whole string
-    )
+    if (wholeStrMatch)
+      res.filter(
+        p => p._1.start == 0 && p._1.end == mp.input.linesOfTokens(0).length // should be the whole string
+      )
+    else res
   }
 
   private def loadDict(
@@ -109,7 +118,15 @@ object CommonUtils extends Serializable {
   private[sparkRuns] def csvRead(
     spSess: SparkSession,
     csvPath:String,
-    cols:String*
+    meta: SrcCsvMeta
+  ):DataFrame = {
+    _csvRead(spSess, csvPath, meta.allCols)
+  }
+
+  private[sparkRuns] def _csvRead(
+    spSess: SparkSession,
+    csvPath:String,
+    cols:Vector[String]
   ):DataFrame = {
     val (first, theRest) = cols.head -> cols.tail
     val rows = spSess.read
@@ -144,18 +161,28 @@ object CommonUtils extends Serializable {
 
   }
 
-  def extrGNEnts(gnstr:String, gnm:GNMmgr, pfxReplMap:Map[String, String]):Map[TkRange, List[GNEnt]] = {
+  def extrGNEnts(gnstr:String, gnm:GNMmgr, wholeStrMatch:Boolean, pfxReplMap:Map[String, String]):Map[TkRange, List[GNEnt]] =
+    _extrGNEnts(gnstr, gnm, wholeStrMatch, Option(pfxReplMap))
+  def extrGNEnts(gnstr:String, gnm:GNMmgr, wholeStrMatch:Boolean):Map[TkRange, List[GNEnt]] =
+    _extrGNEnts(gnstr, gnm, wholeStrMatch, None)
+
+  private def _extrGNEnts(
+                           gnstr:String,
+                           gnm:GNMmgr,
+                           wholeStrMatch:Boolean,
+                           pfxReplMap:Option[Map[String, String]]
+                         ):Map[TkRange, List[GNEnt]] = {
     var rng2Ents = runStr(
-      gnstr, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr
+      gnstr, gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc, gnm.xtrMgr, wholeStrMatch
     )
 
-    if (rng2Ents.isEmpty) {
-      val repl = replPfx(gnstr, pfxReplMap)
+    if (rng2Ents.isEmpty && pfxReplMap.nonEmpty) {
+      val repl = replPfx(gnstr, pfxReplMap.get)
       if (repl.nonEmpty) {
         rng2Ents = runStr(
           repl.get,
           gnm.tknr, gnm.dict, gnm.mmgr, gnm.svc,
-          gnm.xtrMgr
+          gnm.xtrMgr, wholeStrMatch
         )
       }
     }
