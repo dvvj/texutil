@@ -1,4 +1,9 @@
 package org.ditw.sparkRuns
+import java.io.FileOutputStream
+import java.nio.charset.StandardCharsets
+
+import org.apache.commons.io.IOUtils
+import org.apache.spark.sql.Row
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.SparkUtils
 import org.ditw.demo1.gndata.GNCntry
@@ -26,6 +31,18 @@ object UtilsEntCsv3 {
     Vector(ColISNI, ColPostal)
   )
 
+  private def rowInfo(row:Row):String = {
+    val isni = row.getAs[String](ColISNI)
+    val name = row.getAs[String](ColName)
+    s"$name($isni)"
+  }
+
+  private def errorRes(row:Row, errMsg:String):
+    (String, Option[(String, Vector[String], Long, Map[String, String])], Option[String]) = {
+    (
+      rowInfo(row), None, Option(errMsg)
+    )
+  }
 
   def main(args:Array[String]):Unit = {
     val spSess = SparkUtils.sparkSessionLocal()
@@ -50,22 +67,22 @@ object UtilsEntCsv3 {
     val idStart = NaEnData.catIdStart(NaEnCat.ISNI)
 
     import CommonCsvUtils._
-    val res = rows.rdd.flatMap { row =>
+    val preRes = rows.rdd.map { row =>
       val cc = csvMeta.strVal(row, ColCountryCode)
+      var errMsg = ""
+      var res:Option[(String, Vector[String], Long, Map[String, String])] = None
       if (!GNCntry.contains(cc)) {
-        println(s"Country code $cc not found")
-        None
+        errMsg = s"{1} Country code [$cc] not found"
       }
       else if (!ccs.contains(GNCntry.withName(cc))) {
-        None
+        errMsg = s"{2} Country code [$cc] not included"
       }
       else {
         val cityStateCC = csvMeta.gnStr(row)
         val rng2Ents = extrGNEnts(cityStateCC, brGNMmgr.value, false)
 
         if (rng2Ents.isEmpty) {
-          println(s"$cityStateCC not found")
-          None
+          errMsg = s"{3} $cityStateCC not found"
         }
         else {
           //val nearest = checkNearestGNEnt(rng2Ents.values.flatten, row, "LATITUDE", "LONGITUDE")
@@ -77,35 +94,50 @@ object UtilsEntCsv3 {
             val altName = csvMeta.altNames(row)
             val altNames =
               if (altName == null || altName == "NOT AVAILABLE" || altName.isEmpty)
-                Array[String]()
-              else Array(altName)
-            Option((name, altNames, ent.gnid))
+                Vector[String]()
+              else Vector(altName)
+            res = Option((name, altNames, ent.gnid, Map(NaEn.Attr_CC -> cc)))
           }
           else {
-            println(s"------ todo: more than one ents: $allEnts")
-            None  //todo trace
+            errMsg = s"{4} todo: more than one ents: $allEnts"
           }
         }
       }
+      val ri = rowInfo(row)
+      val r = res
+      val em = if (r.isEmpty) Option(errMsg) else None
+      (ri, r, em)
+    }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-
-    }
+    val allResults = preRes.filter(_._2.nonEmpty)
       .sortBy(_._1)
       .zipWithIndex()
       .map { p =>
         val (tp, idx) = p
         val id = idStart + idx
-        NaEn(id, tp._1, tp._2, tp._3)
+        val (ri, res, _) = tp
+        val (name, alts, gnid, attrs) = res.get
+        NaEn(id, name, alts.toArray, gnid, attrs)
       }
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    println(s"#: ${res.count()}")
+    println(s"#: ${allResults.count()}")
 
-    val hosps = res.collect()
+    val allEnts = allResults.collect()
     writeJson(
       "/media/sf_vmshare/isni.json",
-      hosps, NaEn.toJsons
+      allEnts, NaEn.toJsons
     )
+
+    val allErrors = preRes.filter(_._2.isEmpty)
+      .sortBy(_._1)
+      .map { p =>
+        val (ri, _, errMsg) = p
+        s"$ri: ${errMsg.get}"
+      }
+    val allErrs = allErrors.collect().mkString("\n")
+    val errorOut = new FileOutputStream("/media/sf_vmshare/isni_err.txt")
+    IOUtils.write(allErrs, errorOut, StandardCharsets.UTF_8)
+    errorOut.close()
 
     spSess.stop()
   }
