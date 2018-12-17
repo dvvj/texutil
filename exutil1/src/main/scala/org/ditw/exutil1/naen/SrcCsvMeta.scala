@@ -27,6 +27,11 @@ case class SrcCsvMeta(
 
   def latCol:String = coordCols.get._1
   def lonCol:String = coordCols.get._2
+
+  def getCoord(row:Row):(Double, Double) = {
+    row.getAs[String](latCol).toDouble ->
+      row.getAs[String](lonCol).toDouble
+  }
 }
 
 object SrcCsvMeta extends Serializable {

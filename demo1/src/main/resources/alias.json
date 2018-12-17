@@ -1,4 +1,9 @@
 [
+  {"gnid":4508722, "aliases":[ "CINICINNATI" ]},
+  {"gnid":7262854, "aliases":[ "EIELSON AFB" ]},
+  {"gnid":7260863, "aliases":[ "BEALE AFB" ]},
+  {"gnid":7261960, "aliases":[ "NELLIS AFB" ]},
+  {"gnid":7259720, "aliases":[ "EGLIN AFB" ]},
   {"gnid":4566966, "aliases":[ "PR" ]},
   {"gnid":4499612, "aliases":[ "WINSTON SALEM" ]},
   {"gnid":7318106, "aliases":[ "SAINT PETERSBURG" ]},

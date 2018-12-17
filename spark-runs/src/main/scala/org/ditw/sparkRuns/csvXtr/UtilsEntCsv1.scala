@@ -1,9 +1,15 @@
 package org.ditw.sparkRuns.csvXtr
+import java.io.FileOutputStream
+import java.nio.charset.StandardCharsets
+
+import org.apache.commons.io.IOUtils
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.{GenUtils, ResourceHelpers, SparkUtils}
 import org.ditw.demo1.gndata.GNCntry
 import org.ditw.exutil1.naen.NaEnData.NaEnCat
 import org.ditw.exutil1.naen.{NaEn, NaEnData, SrcCsvMeta}
+import org.ditw.sparkRuns.csvXtr.EntXtrUtils.process
+import org.ditw.sparkRuns.csvXtr.UtilsEntCsv2.csvMeta
 import org.ditw.sparkRuns.{CommonCsvUtils, CommonUtils}
 
 object UtilsEntCsv1 extends Serializable {
@@ -44,14 +50,22 @@ object UtilsEntCsv1 extends Serializable {
     val idStart = NaEnData.catIdStart(NaEnCat.US_HOSP)
 
     import CommonCsvUtils._
-    val res = rows.rdd.flatMap { row =>
+    import EntXtrUtils._
+
+    type RowResType = (String, Array[String], Long)
+    val (ents, errors) = process[RowResType](
+      rows.filter(r => csvMeta.name(r) != null),
+      row => {
 
         val cityState = csvMeta.gnStr(row)
         val rng2Ents = extrGNEnts(cityState, brGNMmgr.value, true, Pfx2Replace)
 
+        var errMsg:Option[String] = None
+        var res:Option[RowResType] = None
+        val coord = csvMeta.getCoord(row)
+        val coordTr = f"(${coord._1}%.4f,${coord._2}%.4f)"
         if (rng2Ents.isEmpty) {
-          println(s"$cityState not found")
-          None
+          errMsg = taggedErrorMsg(1, s"$cityState$coordTr not found")
         }
         else {
           val nearest = checkNearestGNEnt(rng2Ents.values.flatten, row, csvMeta.latCol, csvMeta.lonCol)
@@ -61,31 +75,43 @@ object UtilsEntCsv1 extends Serializable {
             val altNames = if (altName == null || altName == "NOT AVAILABLE" || altName.isEmpty) //todo
               Array[String]()
             else Array(altName)
-            Option((processName(name), altNames, nearest.get.gnid))
+            res = Option((processName(name), altNames, nearest.get.gnid))
           }
           else {
-            None  //todo trace
+            errMsg = taggedErrorMsg(2, s"Nearest not found for $cityState$coordTr, candidates: $rng2Ents")
           }
-
         }
-      }
-      .sortBy(_._1)
-      .zipWithIndex()
-      .map { p =>
-        val (tp, idx) = p
+        var ri = row.getAs[String](csvMeta.nameCol)
+        if (ri == null)
+          ri = ""
+        (ri, res, errMsg)
+      },
+      (tp, idx) => {
         val id = idStart + idx
-        NaEn(id, tp._1, tp._2, tp._3)
+        val (name, altNames, gnid) = tp._2.get
+        NaEn(id, name, altNames, gnid)
       }
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
-
-    println(s"#: ${res.count()}")
-
-    val hosps = res.collect()
-    writeJson(
-      "/media/sf_vmshare/us_hosp.json",
-      hosps, NaEn.toJsons
     )
 
+//    val res = rows.rdd.flatMap
+//      .sortBy(_._1)
+//      .zipWithIndex()
+//      .map { p =>
+//        val (tp, idx) = p
+//
+//      }
+//      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+//
+//    println(s"#: ${res.count()}")
+//
+//    val hosps = res.collect()
+    writeJson(
+      "/media/sf_vmshare/us_hosp.json",
+      ents, NaEn.toJsons
+    )
+    val errorOut = new FileOutputStream("/media/sf_vmshare/us_hosp_err.txt")
+    IOUtils.write(errors.mkString("\n"), errorOut, StandardCharsets.UTF_8)
+    errorOut.close()
     spSess.stop()
   }
 

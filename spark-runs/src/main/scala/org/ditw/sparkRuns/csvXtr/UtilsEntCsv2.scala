@@ -77,7 +77,9 @@ object UtilsEntCsv2 extends Serializable {
             res = Option((name, altNames, nearest.get.gnid))
           }
           else {
-            errMsg = taggedErrorMsg(2, s"Nearest not found for $cityState, candidates: $rng2Ents")
+            val coord = csvMeta.getCoord(row)
+            val coordTr = f"(${coord._1}%.4f,${coord._2}%.4f)"
+            errMsg = taggedErrorMsg(2, s"Nearest not found for $cityState$coordTr, candidates: $rng2Ents")
           }
         }
         (rowInfo(row), res, errMsg)
