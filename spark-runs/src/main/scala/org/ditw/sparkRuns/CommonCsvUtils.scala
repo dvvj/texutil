@@ -2,7 +2,7 @@ package org.ditw.sparkRuns
 import org.apache.spark.sql.Row
 import org.ditw.demo1.gndata.GNEnt
 import org.ditw.sparkRuns.CommonUtils.findNearestAndCheck
-import org.ditw.sparkRuns.UtilsEntCsv1.processName
+import org.ditw.sparkRuns.csvXtr.UtilsEntCsv1.processName
 
 object CommonCsvUtils extends Serializable {
 

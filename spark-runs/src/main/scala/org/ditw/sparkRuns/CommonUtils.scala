@@ -16,7 +16,7 @@ import org.ditw.exutil1.naen.{NaEnData, SrcCsvMeta}
 import org.ditw.exutil1.poco.PocoUS
 import org.ditw.matcher.{MatchPool, MatcherMgr}
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
-import org.ditw.sparkRuns.UtilsEntCsv1.{Pfx2Replace, processName}
+import org.ditw.sparkRuns.csvXtr.UtilsEntCsv1.{Pfx2Replace, processName}
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.{AllCatMatchers, Vocabs}
 import org.ditw.tknr.TknrHelpers
