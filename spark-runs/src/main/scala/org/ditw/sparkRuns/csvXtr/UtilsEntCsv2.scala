@@ -5,10 +5,11 @@ import java.nio.charset.StandardCharsets
 import org.apache.commons.io.IOUtils
 import org.apache.spark.sql.Row
 import org.apache.spark.storage.StorageLevel
-import org.ditw.common.SparkUtils
+import org.ditw.common.{GenUtils, SparkUtils}
 import org.ditw.demo1.gndata.GNCntry.{PR, US}
 import org.ditw.exutil1.naen.NaEnData.NaEnCat
 import org.ditw.exutil1.naen.{NaEn, NaEnData, SrcCsvMeta}
+import org.ditw.sparkRuns.csvXtr.UtilsEntCsv1.{dash, dashTokenSet, isDash, spaceSplitter}
 import org.ditw.sparkRuns.{CommonCsvUtils, CommonUtils}
 
 object UtilsEntCsv2 extends Serializable {
@@ -52,7 +53,7 @@ object UtilsEntCsv2 extends Serializable {
     val idStart = NaEnData.catIdStart(NaEnCat.US_UNIV)
     import CommonCsvUtils._
 
-    type RowResType = (String, Vector[String], Long)
+    type RowResType = (String, Vector[String], Long, Map[String, String])
     val (ents, errors) = process[RowResType](
       rows,
       row => {
@@ -74,7 +75,12 @@ object UtilsEntCsv2 extends Serializable {
               if (altName == null || altName.isEmpty || altName == "NOT AVAILABLE")
                 Vector[String]()
               else Vector(altName)
-            res = Option((name, altNames, nearest.get.gnid))
+            val (processedName, ex) = processName(name)
+            val attrs = if (ex.nonEmpty) {
+                Map("Ex" -> ex.get)
+              }
+              else Map[String, String]()
+            res = Option((processedName, altNames, nearest.get.gnid, attrs))
           }
           else {
             val coord = csvMeta.getCoord(row)
@@ -85,9 +91,9 @@ object UtilsEntCsv2 extends Serializable {
         (rowInfo(row), res, errMsg)
       },
       (tp, idx) => {
-        val (name, alias, gnid) = tp._2.get
+        val (name, alias, gnid, attrs) = tp._2.get
         val id = idStart + idx
-        NaEn(id, name, alias.toArray, gnid)
+        NaEn(id, name, alias.toArray, gnid, attrs)
       }
     )
 //    val res = rows.rdd.map
@@ -109,6 +115,36 @@ object UtilsEntCsv2 extends Serializable {
 
     spSess.close()
   }
+
+  private val spaceSplitter = "\\s+".r
+  private val dash = '-'
+  private val LocIndicators = Set("at", "-")
+  private def isLocIndicator(s:String):Boolean = LocIndicators.contains(s)
+  private def isDash(s:String):Boolean = s == "-"
+
+  private def processName(name:String):(String, Option[String]) = {
+    val spaceSplits = spaceSplitter.split(name.toLowerCase())
+    val tokens = spaceSplits.flatMap { s =>
+      if (!isDash(s)) {
+        GenUtils.splitPreserve(s, dash)
+      }
+      else
+        List(s)
+    }
+    val firstDash = tokens.indices.find(idx => isLocIndicator(tokens(idx)))
+    if (firstDash.nonEmpty) {
+      val s = tokens.slice(0, firstDash.get)
+      if (s.length > 2) {
+        val p1 = s.mkString(" ")
+        val p2 = tokens.slice(firstDash.get+1, tokens.length)
+        p1 -> Option(p2.mkString(" "))
+      }
+      else // probably a wrong slice
+        name.toLowerCase() -> None
+    }
+    else name.toLowerCase() -> None
+  }
+
 
   private val Pfx2Replace = Map(
     "ST " -> "SAINT ",

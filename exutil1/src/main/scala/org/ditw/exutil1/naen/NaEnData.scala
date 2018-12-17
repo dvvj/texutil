@@ -32,7 +32,7 @@ object NaEnData extends Serializable {
   private def splitNames(ne:NaEn):Set[Array[String]] = {
     val allNames = mutable.Set[String]()
     allNames += ne.name
-    allNames ++= ne.aliases
+    //todo: add later allNames ++= ne.aliases
     allNames.filter(n => n != null && n.nonEmpty)
     splitVocabEntries(allNames.toSet)
   }
@@ -73,4 +73,6 @@ object NaEnData extends Serializable {
     tmUsUniv(dict), tmUsHosp(dict)
   )
 
+  private val _dataMap:Map[Long, NaEn] = (UsUnivColls ++ UsHosps).map(e => e.neid -> e).toMap
+  def queryEnt(id:Long):Option[NaEn] = _dataMap.get(id)
 }

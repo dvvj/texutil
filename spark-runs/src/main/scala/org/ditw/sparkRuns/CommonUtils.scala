@@ -4,6 +4,7 @@ import java.nio.charset.StandardCharsets
 
 import org.apache.commons.io.IOUtils
 import org.apache.spark.SparkContext
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Row, SparkSession}
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.{Dict, InputHelpers, TkRange}
@@ -53,7 +54,20 @@ object CommonUtils extends Serializable {
     spark:SparkContext,
     gnPath:String
   ):GNMmgr = {
-    val gnLines = spark.textFile(gnPath)
+    _loadGNMmgr(
+      ccs, ccms, spark,
+      spark.textFile(gnPath)
+    )
+  }
+
+
+  private[sparkRuns] def _loadGNMmgr(
+                                     ccs:Set[GNCntry],
+                                     ccms:Set[GNCntry], // countries using
+                                     spark:SparkContext,
+                                     gndata:RDD[String]
+                                   ):GNMmgr = {
+    val gnLines = gndata
       .map(tabSplitter.split)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val svc = GNSvc.loadNoPopuReq(gnLines, ccs)
@@ -62,8 +76,6 @@ object CommonUtils extends Serializable {
     val tknr = TknrHelpers.TknrTextSeg()
     GNMmgr(tknr, svc, dict, mmgr, xtrMgr)
   }
-
-
   private[sparkRuns] def runStr(
     str:String,
     tknr:TTokenizer,
