@@ -52,7 +52,7 @@ object UtilsEntCsv1 extends Serializable {
     import CommonCsvUtils._
     import EntXtrUtils._
 
-    type RowResType = (String, Array[String], Long)
+    type RowResType = (String, List[String], Long)
     val (ents, errors) = process[RowResType](
       rows.filter(r => csvMeta.name(r) != null),
       row => {
@@ -73,8 +73,8 @@ object UtilsEntCsv1 extends Serializable {
             val name = csvMeta.name(row)
             val altName = csvMeta.altNames(row)
             val altNames = if (altName == null || altName == "NOT AVAILABLE" || altName.isEmpty) //todo
-              Array[String]()
-            else Array(altName)
+              List[String]()
+            else List(altName)
             res = Option((processName(name), altNames, nearest.get.gnid))
           }
           else {

@@ -21,10 +21,10 @@ object XtrCntryTests extends App {
   val xtrs = processSingleSegs(singleSegs, brGNMmgr, brCcs)
     .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-  xtrs.foreach { xtr =>
-    val (pmid, localId, tp) = xtr
-    val (aff, rng2Ents, univs) = tp
-    println(univs)
+  xtrs.foreach { singleRes =>
+    //val (pmid, localId, tp) = xtr
+    //val (aff, rng2Ents, univs) = tp
+    println(singleRes)
   }
 
   spark.stop()

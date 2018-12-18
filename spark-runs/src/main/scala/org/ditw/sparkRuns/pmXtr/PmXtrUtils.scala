@@ -6,7 +6,7 @@ import org.apache.spark.storage.StorageLevel
 import org.ditw.common.TkRange
 import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.GNEnt
-import org.ditw.exutil1.naen.{NaEnData, TagHelper}
+import org.ditw.exutil1.naen.{NaEn, NaEnData, TagHelper}
 import org.ditw.matcher.MatchPool
 import org.ditw.pmxml.model.AAAuAff
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
@@ -30,7 +30,19 @@ object PmXtrUtils extends Serializable {
       }
   }
 
-  type RawRes = (Long, Int, (String, Map[TkRange, List[GNEnt]], Set[String]))
+  case class SingleSegRes(
+    pmid:Long,
+    localId:Int,
+    seg:String,
+    range:TkRange,
+    naen:NaEn
+  ) {
+    override def toString: String = {
+      s"$pmid-$localId: [$seg] [$naen]"
+    }
+  }
+
+  type RawRes = SingleSegRes
   private[pmXtr] def processSingleSegs(
     singleSegs:RDD[SegmentRes],
     brGNMmgr:Broadcast[GNMmgr],
@@ -67,6 +79,8 @@ object PmXtrUtils extends Serializable {
 
         import TagHelper._
         if (univs.nonEmpty) {
+          if (univs.size > 1)
+            throw new RuntimeException(s"more than 1 seg found: $univs")
           val neids = mp.allTagsPrefixedBy(NaEnId_Pfx)
             .map(_.substring(NaEnId_Pfx.length).toLong)
           val ents = neids.flatMap(NaEnData.queryEnt)
@@ -77,14 +91,16 @@ object PmXtrUtils extends Serializable {
             s"$neid(${gnEnt.gnid}:${gnEnt.name})"
           }
 
-          println(s"Univs: [${univs.mkString(",")}] NEIds: [${entsTr.mkString(",")}]")
+          val singleRes = SingleSegRes(pmid, localId, univs.head, rng2Ents.keySet.head, entsByGNid.head)
+          //println(s"Univs: [${univs.mkString(",")}] NEIds: [${entsTr.mkString(",")}]")
+          Option(singleRes)
         }
-        Option((pmid, localId, (aff, rng2Ents.map(identity), univs)))
+        else None
       }
       else {
         None
       }
 
-    }.sortBy(_._1)
+    }.sortBy(_.seg)
   }
 }

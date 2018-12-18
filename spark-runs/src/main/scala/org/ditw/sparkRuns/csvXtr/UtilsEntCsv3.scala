@@ -67,7 +67,7 @@ object UtilsEntCsv3 {
 
     val idStart = NaEnData.catIdStart(NaEnCat.ISNI)
 
-    type RowResType = (String, Vector[String], Long, Map[String, String])
+    type RowResType = (String, List[String], Long, Map[String, String])
     val (ents, errors) = process[RowResType](
       rows,
       row => {
@@ -97,8 +97,8 @@ object UtilsEntCsv3 {
               val altName = csvMeta.altNames(row)
               val altNames =
                 if (altName == null || altName == "NOT AVAILABLE" || altName.isEmpty)
-                  Vector[String]()
-                else Vector(altName)
+                  List[String]()
+                else List(altName)
               res = Option((name, altNames, ent.gnid, Map(NaEn.Attr_CC -> cc)))
             }
             else {
@@ -113,7 +113,7 @@ object UtilsEntCsv3 {
         val id = idStart + idx
         val (ri, res, _) = tp
         val (name, alts, gnid, attrs) = res.get
-        NaEn(id, name, alts.toArray, gnid, attrs)
+        NaEn(id, name, alts, gnid, attrs)
       }
     )
 //    val preRes = rows.rdd.map { row =>

@@ -53,7 +53,7 @@ object UtilsEntCsv2 extends Serializable {
     val idStart = NaEnData.catIdStart(NaEnCat.US_UNIV)
     import CommonCsvUtils._
 
-    type RowResType = (String, Vector[String], Long, Map[String, String])
+    type RowResType = (String, List[String], Long, Map[String, String])
     val (ents, errors) = process[RowResType](
       rows,
       row => {
@@ -73,8 +73,8 @@ object UtilsEntCsv2 extends Serializable {
             val altName = csvMeta.altNames(row)
             val altNames =
               if (altName == null || altName.isEmpty || altName == "NOT AVAILABLE")
-                Vector[String]()
-              else Vector(altName)
+                List[String]()
+              else List(altName)
             val (processedName, ex) = processName(name)
             val attrs = if (ex.nonEmpty) {
                 Map("Ex" -> ex.get)
@@ -93,7 +93,7 @@ object UtilsEntCsv2 extends Serializable {
       (tp, idx) => {
         val (name, alias, gnid, attrs) = tp._2.get
         val id = idStart + idx
-        NaEn(id, name, alias.toArray, gnid, attrs)
+        NaEn(id, name, alias, gnid, attrs)
       }
     )
 //    val res = rows.rdd.map

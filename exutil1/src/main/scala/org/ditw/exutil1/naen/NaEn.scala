@@ -4,11 +4,13 @@ import org.json4s.DefaultFormats
 case class NaEn(
   neid:Long,
   name:String,
-  aliases:Array[String],
+  aliases:List[String],
   gnid:Long,
   exAttrs:Map[String, String] = NaEn.EmptyAttrs
 ) {
-
+  override def toString: String = {
+    s"$name($neid-$gnid)"
+  }
 }
 
 object NaEn extends Serializable {
