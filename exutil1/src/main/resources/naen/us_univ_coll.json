@@ -15968,108 +15968,114 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002464,
+  "name" : "fresno institute of technology",
+  "aliases" : [ "FRESNO INSTITUTE OF TECHNOLOGY | INSTITUTE OF TECHNOLOGY | FIT | IT | FRESNO'S INSTITUTE OF TECHNOLOGY" ],
+  "gnid" : 5338122,
+  "exAttrs" : { }
+}, {
+  "neid" : 1000002465,
   "name" : "fresno pacific university",
   "aliases" : [ ],
   "gnid" : 5350937,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002465,
+  "neid" : 1000002466,
   "name" : "friends university",
   "aliases" : [ ],
   "gnid" : 4281730,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002466,
+  "neid" : 1000002467,
   "name" : "front range community college",
   "aliases" : [ "FRCC" ],
   "gnid" : 5443910,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002467,
+  "neid" : 1000002468,
   "name" : "frontier community college",
   "aliases" : [ "FRONTIER COMMUNITY COLLEGE" ],
   "gnid" : 4238081,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002468,
+  "neid" : 1000002469,
   "name" : "frontier nursing university",
   "aliases" : [ ],
   "gnid" : 4295712,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002469,
+  "neid" : 1000002470,
   "name" : "frostburg state university",
   "aliases" : [ ],
   "gnid" : 4355756,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002470,
+  "neid" : 1000002471,
   "name" : "full sail university",
   "aliases" : [ ],
   "gnid" : 4178560,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002471,
+  "neid" : 1000002472,
   "name" : "fullen school of hair design",
   "aliases" : [ ],
   "gnid" : 5699404,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002472,
+  "neid" : 1000002473,
   "name" : "fuller theological seminary in california",
   "aliases" : [ ],
   "gnid" : 5381396,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002473,
+  "neid" : 1000002474,
   "name" : "fullerton college",
   "aliases" : [ ],
   "gnid" : 5351247,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002474,
+  "neid" : 1000002475,
   "name" : "fulton-montgomery community college",
   "aliases" : [ "FM" ],
   "gnid" : 5122833,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002475,
+  "neid" : 1000002476,
   "name" : "furman university",
   "aliases" : [ "FURMAN" ],
   "gnid" : 4580543,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002476,
+  "neid" : 1000002477,
   "name" : "futura career institute",
   "aliases" : [ ],
   "gnid" : 4158476,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002477,
+  "neid" : 1000002478,
   "name" : "future generations graduate school",
   "aliases" : [ ],
   "gnid" : 4806504,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002478,
+  "neid" : 1000002479,
   "name" : "future-tech institute",
   "aliases" : [ "FTI" ],
   "gnid" : 4164138,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002479,
+  "neid" : 1000002480,
   "name" : "gadsden state community college",
   "aliases" : [ "GSCC | GADSDEN STATE | GADSDEN COMMUNITY COLLEGE" ],
   "gnid" : 4063619,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002480,
+  "neid" : 1000002481,
   "name" : "galaxy medical college",
   "aliases" : [ ],
   "gnid" : 5377654,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002481,
+  "neid" : 1000002482,
   "name" : "galen college of nursing",
   "aliases" : [ ],
   "gnid" : 4508722,
@@ -16077,7 +16083,7 @@
     "Ex" : "cincinnati"
   }
 }, {
-  "neid" : 1000002482,
+  "neid" : 1000002483,
   "name" : "galen college of nursing",
   "aliases" : [ ],
   "gnid" : 4299276,
@@ -16085,7 +16091,7 @@
     "Ex" : "louisville"
   }
 }, {
-  "neid" : 1000002483,
+  "neid" : 1000002484,
   "name" : "galen college of nursing",
   "aliases" : [ ],
   "gnid" : 4726206,
@@ -16093,7 +16099,7 @@
     "Ex" : "san antonio"
   }
 }, {
-  "neid" : 1000002484,
+  "neid" : 1000002485,
   "name" : "galen college of nursing",
   "aliases" : [ ],
   "gnid" : 7318106,
@@ -16101,133 +16107,133 @@
     "Ex" : "tampa bay"
   }
 }, {
-  "neid" : 1000002485,
+  "neid" : 1000002486,
   "name" : "gallaudet university",
   "aliases" : [ ],
   "gnid" : 4140963,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002486,
+  "neid" : 1000002487,
   "name" : "gallipolis career college",
   "aliases" : [ ],
   "gnid" : 4512449,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002487,
+  "neid" : 1000002488,
   "name" : "galveston college",
   "aliases" : [ ],
   "gnid" : 4692883,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002488,
+  "neid" : 1000002489,
   "name" : "gannon university",
   "aliases" : [ ],
   "gnid" : 5188843,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002489,
+  "neid" : 1000002490,
   "name" : "garden city community college",
   "aliases" : [ ],
   "gnid" : 5445439,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002490,
+  "neid" : 1000002491,
   "name" : "garden state science and technology institute",
   "aliases" : [ ],
   "gnid" : 5099836,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002491,
+  "neid" : 1000002492,
   "name" : "gardner-webb university",
   "aliases" : [ "GWU" ],
   "gnid" : 4456595,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002492,
+  "neid" : 1000002493,
   "name" : "garnet career center",
   "aliases" : [ ],
   "gnid" : 4801859,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002493,
+  "neid" : 1000002494,
   "name" : "garrett college",
   "aliases" : [ "GARRETT COMMUNITY COLLEGE|GARRETT|GCC|GC" ],
   "gnid" : 4362059,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002494,
+  "neid" : 1000002495,
   "name" : "garrett-evangelical theological seminary",
   "aliases" : [ ],
   "gnid" : 4891382,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002495,
+  "neid" : 1000002496,
   "name" : "gary manuel aveda institute",
   "aliases" : [ "GMAI" ],
   "gnid" : 5809844,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002496,
+  "neid" : 1000002497,
   "name" : "gaston college",
   "aliases" : [ ],
   "gnid" : 4462896,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002497,
+  "neid" : 1000002498,
   "name" : "gateway community and technical college",
   "aliases" : [ "NORTHERN KENTUCKY STATE VOCATIONAL TECHNICAL SCHOOL |NORTHERN KENTUCKY TECH |NORTHERN KENTUCKY TECHNICAL COLLEGE |NORTHERN KENTUCKY HEALTH OCCUPATIONAL CENTER |NORTHERN CAMPBELL TECH |NORTHERN KENTUCKY HEALTH TECHNOLOGY CENTER" ],
   "gnid" : 4291945,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002498,
+  "neid" : 1000002499,
   "name" : "gateway community college",
   "aliases" : [ ],
   "gnid" : 4839366,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002499,
+  "neid" : 1000002500,
   "name" : "gateway community college",
   "aliases" : [ ],
   "gnid" : 5308655,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002500,
+  "neid" : 1000002501,
   "name" : "gateway technical college",
   "aliases" : [ ],
   "gnid" : 5258393,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002501,
+  "neid" : 1000002502,
   "name" : "gavilan college",
   "aliases" : [ ],
   "gnid" : 5352214,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002502,
+  "neid" : 1000002503,
   "name" : "gds institute",
   "aliases" : [ ],
   "gnid" : 5397603,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002503,
+  "neid" : 1000002504,
   "name" : "geisinger-lewistown hospital school of nursing",
   "aliases" : [ ],
   "gnid" : 5197850,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002504,
+  "neid" : 1000002505,
   "name" : "gem city college",
   "aliases" : [ ],
   "gnid" : 4247703,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002505,
+  "neid" : 1000002506,
   "name" : "gemini school of visual arts & communication",
   "aliases" : [ ],
   "gnid" : 4679867,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002506,
+  "neid" : 1000002507,
   "name" : "gemological institute of america",
   "aliases" : [ ],
   "gnid" : 5334223,
@@ -16235,7 +16241,7 @@
     "Ex" : "carlsbad"
   }
 }, {
-  "neid" : 1000002507,
+  "neid" : 1000002508,
   "name" : "gemological institute of america",
   "aliases" : [ ],
   "gnid" : 5128581,
@@ -16243,7 +16249,7 @@
     "Ex" : "new york"
   }
 }, {
-  "neid" : 1000002508,
+  "neid" : 1000002509,
   "name" : "gene juarez academy of beauty",
   "aliases" : [ "GENE JUAREZ ACADEMY" ],
   "gnid" : 5794245,
@@ -16251,7 +16257,7 @@
     "Ex" : "federal way"
   }
 }, {
-  "neid" : 1000002509,
+  "neid" : 1000002510,
   "name" : "gene juarez academy of beauty",
   "aliases" : [ "GENE JUAREZ ACADEMY" ],
   "gnid" : 5804191,
@@ -16259,13 +16265,13 @@
     "Ex" : "mountlake terrace"
   }
 }, {
-  "neid" : 1000002510,
+  "neid" : 1000002511,
   "name" : "genesee community college",
   "aliases" : [ "GCC" ],
   "gnid" : 5108093,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002511,
+  "neid" : 1000002512,
   "name" : "genesee valley boces",
   "aliases" : [ "GENESEE VALLEY EDUCATIONAL PARTNERSHIP" ],
   "gnid" : 5108093,
@@ -16273,7 +16279,7 @@
     "Ex" : "practical nursing program"
   }
 }, {
-  "neid" : 1000002512,
+  "neid" : 1000002513,
   "name" : "genesis career college",
   "aliases" : [ ],
   "gnid" : 4615145,
@@ -16281,7 +16287,7 @@
     "Ex" : "cookeville"
   }
 }, {
-  "neid" : 1000002513,
+  "neid" : 1000002514,
   "name" : "genesis career college",
   "aliases" : [ ],
   "gnid" : 4636045,
@@ -16289,19 +16295,19 @@
     "Ex" : "lebanon"
   }
 }, {
-  "neid" : 1000002514,
+  "neid" : 1000002515,
   "name" : "geneva college",
   "aliases" : [ ],
   "gnid" : 5179478,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002515,
+  "neid" : 1000002516,
   "name" : "gentle healing school of massage",
   "aliases" : [ ],
   "gnid" : 5097006,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002516,
+  "neid" : 1000002517,
   "name" : "george c wallace community college",
   "aliases" : [ "WALLACE DOTHAN|WCCD" ],
   "gnid" : 4059102,
@@ -16309,7 +16315,7 @@
     "Ex" : "dothan"
   }
 }, {
-  "neid" : 1000002517,
+  "neid" : 1000002518,
   "name" : "george c wallace state community college",
   "aliases" : [ "WALLACE STATE COMMUNITY COLLEGE |WALLACE STATE - HANCEVILLE" ],
   "gnid" : 4066065,
@@ -16317,7 +16323,7 @@
     "Ex" : "hanceville"
   }
 }, {
-  "neid" : 1000002518,
+  "neid" : 1000002519,
   "name" : "george c wallace state community college",
   "aliases" : [ "WALLACE COMMUNITY COLLEGE - SELMA" ],
   "gnid" : 4089114,
@@ -16325,91 +16331,91 @@
     "Ex" : "selma"
   }
 }, {
-  "neid" : 1000002519,
+  "neid" : 1000002520,
   "name" : "george fox university",
   "aliases" : [ ],
   "gnid" : 5742726,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002520,
+  "neid" : 1000002521,
   "name" : "george mason university",
   "aliases" : [ "MASON" ],
   "gnid" : 4758023,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002521,
+  "neid" : 1000002522,
   "name" : "george stone technical center",
   "aliases" : [ ],
   "gnid" : 4168228,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002522,
+  "neid" : 1000002523,
   "name" : "george t baker aviation technical college",
   "aliases" : [ ],
   "gnid" : 4164138,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002523,
+  "neid" : 1000002524,
   "name" : "george washington university",
   "aliases" : [ "GWU|GW" ],
   "gnid" : 4140963,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002524,
+  "neid" : 1000002525,
   "name" : "georgetown college",
   "aliases" : [ ],
   "gnid" : 4292686,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002525,
+  "neid" : 1000002526,
   "name" : "georgetown university",
   "aliases" : [ "GEORGETOWN|GU" ],
   "gnid" : 4140963,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002526,
+  "neid" : 1000002527,
   "name" : "georgia beauty academy",
   "aliases" : [ "GBA" ],
   "gnid" : 4190581,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002527,
+  "neid" : 1000002528,
   "name" : "georgia career institute",
   "aliases" : [ ],
   "gnid" : 4189213,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002528,
+  "neid" : 1000002529,
   "name" : "georgia christian university",
   "aliases" : [ ],
   "gnid" : 4180439,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002529,
+  "neid" : 1000002530,
   "name" : "georgia college and state university",
   "aliases" : [ "GEORGIA COLLEGE" ],
   "gnid" : 4209448,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002530,
+  "neid" : 1000002531,
   "name" : "georgia gwinnett college",
   "aliases" : [ ],
   "gnid" : 4205196,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002531,
+  "neid" : 1000002532,
   "name" : "georgia highlands college",
   "aliases" : [ "GHC" ],
   "gnid" : 4219762,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002532,
+  "neid" : 1000002533,
   "name" : "georgia institute of cosmetology",
   "aliases" : [ "GIC" ],
   "gnid" : 4180386,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002533,
+  "neid" : 1000002534,
   "name" : "georgia institute of technology",
   "aliases" : [ "GEORGIA TECH" ],
   "gnid" : 4180439,
@@ -16417,43 +16423,43 @@
     "Ex" : "main campus"
   }
 }, {
-  "neid" : 1000002534,
+  "neid" : 1000002535,
   "name" : "georgia military college",
   "aliases" : [ ],
   "gnid" : 4209448,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002535,
+  "neid" : 1000002536,
   "name" : "georgia northwestern technical college",
   "aliases" : [ ],
   "gnid" : 4219762,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002536,
+  "neid" : 1000002537,
   "name" : "georgia piedmont technical college",
   "aliases" : [ ],
   "gnid" : 4188233,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002537,
+  "neid" : 1000002538,
   "name" : "georgia southern university",
   "aliases" : [ ],
   "gnid" : 4224413,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002538,
+  "neid" : 1000002539,
   "name" : "georgia southwestern state university",
   "aliases" : [ "GSW, GEORGIA SOUTHWESTERN" ],
   "gnid" : 4179667,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002539,
+  "neid" : 1000002540,
   "name" : "georgia state university",
   "aliases" : [ ],
   "gnid" : 4180439,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002540,
+  "neid" : 1000002541,
   "name" : "georgia state university",
   "aliases" : [ ],
   "gnid" : 4180439,
@@ -16461,91 +16467,91 @@
     "Ex" : "perimeter college"
   }
 }, {
-  "neid" : 1000002541,
+  "neid" : 1000002542,
   "name" : "georgian court university",
   "aliases" : [ ],
   "gnid" : 5100280,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002542,
+  "neid" : 1000002543,
   "name" : "gerbers akron beauty school",
   "aliases" : [ ],
   "gnid" : 5145476,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002543,
+  "neid" : 1000002544,
   "name" : "gettysburg college",
   "aliases" : [ ],
   "gnid" : 4558183,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002544,
+  "neid" : 1000002545,
   "name" : "gill-tech academy of hair design",
   "aliases" : [ "GILL-TECH, GILL-TECH ACADEMY. G-TECH" ],
   "gnid" : 5244080,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002545,
+  "neid" : 1000002546,
   "name" : "glen dow academy of hair design",
   "aliases" : [ ],
   "gnid" : 5811696,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002546,
+  "neid" : 1000002547,
   "name" : "glen oaks community college",
   "aliases" : [ "GOCC" ],
   "gnid" : 4988455,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002547,
+  "neid" : 1000002548,
   "name" : "glendale career college",
   "aliases" : [ ],
   "gnid" : 5352423,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002548,
+  "neid" : 1000002549,
   "name" : "glendale community college",
   "aliases" : [ "GCC | GLENDALE COLLEGE" ],
   "gnid" : 5352423,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002549,
+  "neid" : 1000002550,
   "name" : "glendale community college",
   "aliases" : [ ],
   "gnid" : 5295985,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002550,
+  "neid" : 1000002551,
   "name" : "glenville state college",
   "aliases" : [ ],
   "gnid" : 4807116,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002551,
+  "neid" : 1000002552,
   "name" : "glenwood beauty academy",
   "aliases" : [ ],
   "gnid" : 5423092,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002552,
+  "neid" : 1000002553,
   "name" : "global health college",
   "aliases" : [ ],
   "gnid" : 4744091,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002553,
+  "neid" : 1000002554,
   "name" : "global institute",
   "aliases" : [ ],
   "gnid" : 4563008,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002554,
+  "neid" : 1000002555,
   "name" : "globe institute of technology",
   "aliases" : [ ],
   "gnid" : 5128581,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002555,
+  "neid" : 1000002556,
   "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5251436,
@@ -16553,7 +16559,7 @@
     "Ex" : "eau claire"
   }
 }, {
-  "neid" : 1000002556,
+  "neid" : 1000002557,
   "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5265702,
@@ -16561,7 +16567,7 @@
     "Ex" : "la crosse"
   }
 }, {
-  "neid" : 1000002557,
+  "neid" : 1000002558,
   "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5261457,
@@ -16569,7 +16575,7 @@
     "Ex" : "madison east"
   }
 }, {
-  "neid" : 1000002558,
+  "neid" : 1000002559,
   "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5037649,
@@ -16577,7 +16583,7 @@
     "Ex" : "minneapolis"
   }
 }, {
-  "neid" : 1000002559,
+  "neid" : 1000002560,
   "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5231851,
@@ -16585,7 +16591,7 @@
     "Ex" : "sioux falls"
   }
 }, {
-  "neid" : 1000002560,
+  "neid" : 1000002561,
   "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5053358,
@@ -16593,31 +16599,31 @@
     "Ex" : "woodbury"
   }
 }, {
-  "neid" : 1000002561,
+  "neid" : 1000002562,
   "name" : "globe university–green bay",
   "aliases" : [ ],
   "gnid" : 5254962,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002562,
+  "neid" : 1000002563,
   "name" : "globe university–madison west",
   "aliases" : [ ],
   "gnid" : 5262838,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002563,
+  "neid" : 1000002564,
   "name" : "globe university–wausau",
   "aliases" : [ ],
   "gnid" : 5269583,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002564,
+  "neid" : 1000002565,
   "name" : "globelle technical institute",
   "aliases" : [ ],
   "gnid" : 4568533,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002565,
+  "neid" : 1000002566,
   "name" : "gloria francis school of make",
   "aliases" : [ "GLORIA FRANCIS SCHOOL OF MAKE-UP ARTISTRY" ],
   "gnid" : 5120656,
@@ -16625,31 +16631,31 @@
     "Ex" : "up artistry"
   }
 }, {
-  "neid" : 1000002566,
+  "neid" : 1000002567,
   "name" : "gnomon school of visual effects",
   "aliases" : [ ],
   "gnid" : 5357527,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002567,
+  "neid" : 1000002568,
   "name" : "goddard college",
   "aliases" : [ ],
   "gnid" : 5239854,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002568,
+  "neid" : 1000002569,
   "name" : "gods bible school and college",
   "aliases" : [ ],
   "gnid" : 4508722,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002569,
+  "neid" : 1000002570,
   "name" : "gogebic community college",
   "aliases" : [ ],
   "gnid" : 4997249,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002570,
+  "neid" : 1000002571,
   "name" : "golden gate university",
   "aliases" : [ ],
   "gnid" : 5391959,
@@ -16657,25 +16663,25 @@
     "Ex" : "san francisco"
   }
 }, {
-  "neid" : 1000002571,
+  "neid" : 1000002572,
   "name" : "golden state college of court reporting",
   "aliases" : [ ],
   "gnid" : 5383777,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002572,
+  "neid" : 1000002573,
   "name" : "golden west college",
   "aliases" : [ ],
   "gnid" : 5358705,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002573,
+  "neid" : 1000002574,
   "name" : "goldey-beacom college",
   "aliases" : [ ],
   "gnid" : 4145381,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002574,
+  "neid" : 1000002575,
   "name" : "golf academy of america",
   "aliases" : [ ],
   "gnid" : 4690198,
@@ -16683,7 +16689,7 @@
     "Ex" : "dallas"
   }
 }, {
-  "neid" : 1000002575,
+  "neid" : 1000002576,
   "name" : "golf academy of america",
   "aliases" : [ ],
   "gnid" : 4588718,
@@ -16691,7 +16697,7 @@
     "Ex" : "myrtle beach"
   }
 }, {
-  "neid" : 1000002576,
+  "neid" : 1000002577,
   "name" : "golf academy of america",
   "aliases" : [ ],
   "gnid" : 4146166,
@@ -16699,7 +16705,7 @@
     "Ex" : "orlando"
   }
 }, {
-  "neid" : 1000002577,
+  "neid" : 1000002578,
   "name" : "golf academy of america",
   "aliases" : [ ],
   "gnid" : 5289282,
@@ -16707,7 +16713,7 @@
     "Ex" : "phoenix"
   }
 }, {
-  "neid" : 1000002578,
+  "neid" : 1000002579,
   "name" : "golf academy of america",
   "aliases" : [ ],
   "gnid" : 5334223,
@@ -16715,127 +16721,127 @@
     "Ex" : "san diego"
   }
 }, {
-  "neid" : 1000002579,
+  "neid" : 1000002580,
   "name" : "gonzaga university",
   "aliases" : [ ],
   "gnid" : 5811696,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002580,
+  "neid" : 1000002581,
   "name" : "good samaritan college of nursing and health science",
   "aliases" : [ "GOOD SAMARITAN COLLEGE" ],
   "gnid" : 4508722,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002581,
+  "neid" : 1000002582,
   "name" : "goodwin college",
   "aliases" : [ "GOODWIN" ],
   "gnid" : 4833403,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002582,
+  "neid" : 1000002583,
   "name" : "gordon college",
   "aliases" : [ ],
   "gnid" : 4954801,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002583,
+  "neid" : 1000002584,
   "name" : "gordon cooper technology center",
   "aliases" : [ "GORDON COOPER AREA VOCATIONAL-TECHNICAL SCHOOL DISTRICT #5" ],
   "gnid" : 4551177,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002584,
+  "neid" : 1000002585,
   "name" : "gordon state college",
   "aliases" : [ "GORDON" ],
   "gnid" : 4181110,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002585,
+  "neid" : 1000002586,
   "name" : "gordon-conwell theological seminary",
   "aliases" : [ "GCTS/GORDON-CONWELL SEMINARY/GORDON CROMWELL THEOLOGICAL SEMINARY" ],
   "gnid" : 4951411,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002586,
+  "neid" : 1000002587,
   "name" : "goshen college",
   "aliases" : [ ],
   "gnid" : 4920808,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002587,
+  "neid" : 1000002588,
   "name" : "goucher college",
   "aliases" : [ ],
   "gnid" : 4347778,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002588,
+  "neid" : 1000002589,
   "name" : "gould's academy",
   "aliases" : [ ],
   "gnid" : 4641239,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002589,
+  "neid" : 1000002590,
   "name" : "governors state university",
   "aliases" : [ "GSU" ],
   "gnid" : 7535510,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002590,
+  "neid" : 1000002591,
   "name" : "grabber school of hair design",
   "aliases" : [ ],
   "gnid" : 4407066,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002591,
+  "neid" : 1000002592,
   "name" : "grace bible college",
   "aliases" : [ ],
   "gnid" : 5015618,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002592,
+  "neid" : 1000002593,
   "name" : "grace college and theological seminary",
   "aliases" : [ ],
   "gnid" : 4928337,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002593,
+  "neid" : 1000002594,
   "name" : "grace college of barbering",
   "aliases" : [ "GRACE COLLEGE |GRACE BARBER COLLEGE" ],
   "gnid" : 4469160,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002594,
+  "neid" : 1000002595,
   "name" : "grace college of divinity",
   "aliases" : [ ],
   "gnid" : 4466033,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002595,
+  "neid" : 1000002596,
   "name" : "grace international beauty school",
   "aliases" : [ ],
   "gnid" : 5117472,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002596,
+  "neid" : 1000002597,
   "name" : "grace mission university",
   "aliases" : [ ],
   "gnid" : 5351247,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002597,
+  "neid" : 1000002598,
   "name" : "grace school of theology",
   "aliases" : [ ],
   "gnid" : 4682991,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002598,
+  "neid" : 1000002599,
   "name" : "grace university",
   "aliases" : [ "GRACE COLLEGE OF THE BIBLE |GRACE COLLEGE OF GRADUATE STUDIES |GRACE BIBLE INSTITUTE |GRACE COLLEGE OF PROFESSIONAL AND GRADUATE STUDIES" ],
   "gnid" : 5074472,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002599,
+  "neid" : 1000002600,
   "name" : "graceland university",
   "aliases" : [ ],
   "gnid" : 4864105,
@@ -16843,355 +16849,355 @@
     "Ex" : "lamoni"
   }
 }, {
-  "neid" : 1000002600,
+  "neid" : 1000002601,
   "name" : "graduate school usa",
   "aliases" : [ ],
   "gnid" : 4140963,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002601,
+  "neid" : 1000002602,
   "name" : "graduate theological union",
   "aliases" : [ "GTU" ],
   "gnid" : 5327684,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002602,
+  "neid" : 1000002603,
   "name" : "grady health system professional schools",
   "aliases" : [ ],
   "gnid" : 4180439,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002603,
+  "neid" : 1000002604,
   "name" : "graham hospital school of nursing",
   "aliases" : [ ],
   "gnid" : 4831990,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002604,
+  "neid" : 1000002605,
   "name" : "graham webb international academy of hair",
   "aliases" : [ ],
   "gnid" : 4744709,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002605,
+  "neid" : 1000002606,
   "name" : "grambling state university",
   "aliases" : [ "GSU, GRAMBLING" ],
   "gnid" : 4326074,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002606,
+  "neid" : 1000002607,
   "name" : "grand canyon university",
   "aliases" : [ ],
   "gnid" : 5308655,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002607,
+  "neid" : 1000002608,
   "name" : "grand rapids community college",
   "aliases" : [ ],
   "gnid" : 4994358,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002608,
+  "neid" : 1000002609,
   "name" : "grand river technical school",
   "aliases" : [ "CHILLICOTHE AREA VOCATIONAL SCHOOL" ],
   "gnid" : 4381104,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002609,
+  "neid" : 1000002610,
   "name" : "grand valley state university",
   "aliases" : [ "GRAND VALLEY|GVSU|GRAND VALLEY STATE|" ],
   "gnid" : 4984029,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002610,
+  "neid" : 1000002611,
   "name" : "grand view university",
   "aliases" : [ ],
   "gnid" : 4853828,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002611,
+  "neid" : 1000002612,
   "name" : "granite state college",
   "aliases" : [ "GSC" ],
   "gnid" : 5084868,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002612,
+  "neid" : 1000002613,
   "name" : "grantham university",
   "aliases" : [ ],
   "gnid" : 4282094,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002613,
+  "neid" : 1000002614,
   "name" : "gratz college",
   "aliases" : [ ],
   "gnid" : 5200737,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002614,
+  "neid" : 1000002615,
   "name" : "grays harbor college",
   "aliases" : [ "GHC" ],
   "gnid" : 5785243,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002615,
+  "neid" : 1000002616,
   "name" : "grayson college",
   "aliases" : [ ],
   "gnid" : 4685892,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002616,
+  "neid" : 1000002617,
   "name" : "great basin college",
   "aliases" : [ ],
   "gnid" : 5703670,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002617,
+  "neid" : 1000002618,
   "name" : "great bay community college",
   "aliases" : [ "GREAT BAY COMMUNITY COLLEGE" ],
   "gnid" : 5091383,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002618,
+  "neid" : 1000002619,
   "name" : "great falls college montana state university",
   "aliases" : [ ],
   "gnid" : 5655240,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002619,
+  "neid" : 1000002620,
   "name" : "great lakes christian college",
   "aliases" : [ ],
   "gnid" : 4998830,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002620,
+  "neid" : 1000002621,
   "name" : "great lakes institute of technology",
   "aliases" : [ ],
   "gnid" : 5188843,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002621,
+  "neid" : 1000002622,
   "name" : "great oaks career campuses",
   "aliases" : [ ],
   "gnid" : 4508722,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002622,
+  "neid" : 1000002623,
   "name" : "great plains technology center",
   "aliases" : [ ],
   "gnid" : 4540737,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002623,
+  "neid" : 1000002624,
   "name" : "greater altoona career & technology center",
   "aliases" : [ "GREATER ALTOONA CAREER & TECHNOLOGY CENTER" ],
   "gnid" : 5178195,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002624,
+  "neid" : 1000002625,
   "name" : "greater johnstown career and technology center",
   "aliases" : [ ],
   "gnid" : 5195561,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002625,
+  "neid" : 1000002626,
   "name" : "greater lowell technical school",
   "aliases" : [ ],
   "gnid" : 4953542,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002626,
+  "neid" : 1000002627,
   "name" : "green country technology center",
   "aliases" : [ ],
   "gnid" : 4544383,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002627,
+  "neid" : 1000002628,
   "name" : "green mountain college",
   "aliases" : [ ],
   "gnid" : 5239982,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002628,
+  "neid" : 1000002629,
   "name" : "green river college",
   "aliases" : [ "GRC" ],
   "gnid" : 5785965,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002629,
+  "neid" : 1000002630,
   "name" : "greene county career and technology center",
   "aliases" : [ "GREENE COUNTY VOCATIONAL-TECHNICAL SCHOOL" ],
   "gnid" : 4562078,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002630,
+  "neid" : 1000002631,
   "name" : "greene county vocational school district",
   "aliases" : [ "GREENE COUNTY CAREER CENTER|GREENE JVS|GREENE COUNTY JOINT VOCATIONAL SCHOOL|GREENE CAREER CENTER|GREEN COUNTY CAREER CENTER|GREEN JVS" ],
   "gnid" : 4528810,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002631,
+  "neid" : 1000002632,
   "name" : "greenfield community college",
   "aliases" : [ ],
   "gnid" : 4938378,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002632,
+  "neid" : 1000002633,
   "name" : "greensboro college",
   "aliases" : [ ],
   "gnid" : 4469146,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002633,
+  "neid" : 1000002634,
   "name" : "greenville college",
   "aliases" : [ ],
   "gnid" : 4239867,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002634,
+  "neid" : 1000002635,
   "name" : "greenville technical college",
   "aliases" : [ "GTC" ],
   "gnid" : 4580543,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002635,
+  "neid" : 1000002636,
   "name" : "grinnell college",
   "aliases" : [ "GRINNELL" ],
   "gnid" : 4859343,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002636,
+  "neid" : 1000002637,
   "name" : "grossmont college",
   "aliases" : [ ],
   "gnid" : 5345529,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002637,
+  "neid" : 1000002638,
   "name" : "grossmont-cuyamaca community college district",
   "aliases" : [ ],
   "gnid" : 5345529,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002638,
+  "neid" : 1000002639,
   "name" : "grove city college",
   "aliases" : [ ],
   "gnid" : 5192184,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002639,
+  "neid" : 1000002640,
   "name" : "guilford college",
   "aliases" : [ ],
   "gnid" : 4469146,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002640,
+  "neid" : 1000002641,
   "name" : "guilford technical community college",
   "aliases" : [ ],
   "gnid" : 4473158,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002641,
+  "neid" : 1000002642,
   "name" : "gulf coast state college",
   "aliases" : [ "GCSC" ],
   "gnid" : 4167694,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002642,
+  "neid" : 1000002643,
   "name" : "gupton jones college of funeral service",
   "aliases" : [ ],
   "gnid" : 4191124,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002643,
+  "neid" : 1000002644,
   "name" : "gurnick academy of medical arts",
   "aliases" : [ ],
   "gnid" : 5392423,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002644,
+  "neid" : 1000002645,
   "name" : "gustavus adolphus college",
   "aliases" : [ ],
   "gnid" : 5045517,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002645,
+  "neid" : 1000002646,
   "name" : "guti the premier beauty & wellness academy",
   "aliases" : [ ],
   "gnid" : 4148708,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002646,
+  "neid" : 1000002647,
   "name" : "guy's shreveport academy of cosmetology inc",
   "aliases" : [ "GUY'S ACADEMY HAIR, SKIN & NAILS" ],
   "gnid" : 4341513,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002647,
+  "neid" : 1000002648,
   "name" : "gwinnett college-lilburn",
   "aliases" : [ "GWINNETT COLLEGE OF BUSINESS" ],
   "gnid" : 4205724,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002648,
+  "neid" : 1000002649,
   "name" : "gwinnett college-sandy springs",
   "aliases" : [ "RISING SPIRIT INSTITUTE OF NATURAL HEALTH" ],
   "gnid" : 4221333,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002649,
+  "neid" : 1000002650,
   "name" : "gwinnett technical college",
   "aliases" : [ "GTC |GWINNETT TECH" ],
   "gnid" : 4205196,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002650,
+  "neid" : 1000002651,
   "name" : "gwynedd mercy university",
   "aliases" : [ ],
   "gnid" : 5192305,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002651,
+  "neid" : 1000002652,
   "name" : "h councill trenholm state community college",
   "aliases" : [ "TRENHOLM STATE" ],
   "gnid" : 4076784,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002652,
+  "neid" : 1000002653,
   "name" : "hacienda la puente adult education",
   "aliases" : [ ],
   "gnid" : 5364066,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002653,
+  "neid" : 1000002654,
   "name" : "hackensackumc mountainside school of nursing",
   "aliases" : [ "MOUNTAINSIDE SCHOOL OF NURSING" ],
   "gnid" : 7258296,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002654,
+  "neid" : 1000002655,
   "name" : "hagerstown community college",
   "aliases" : [ "HCC" ],
   "gnid" : 4357141,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002655,
+  "neid" : 1000002656,
   "name" : "hair academy",
   "aliases" : [ ],
   "gnid" : 4076784,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002656,
+  "neid" : 1000002657,
   "name" : "hair academy 110",
   "aliases" : [ ],
   "gnid" : 5055787,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002657,
+  "neid" : 1000002658,
   "name" : "hair academy ii",
   "aliases" : [ ],
   "gnid" : 4358082,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002658,
+  "neid" : 1000002659,
   "name" : "hair academy inc",
   "aliases" : [ ],
   "gnid" : 4363611,
@@ -17199,37 +17205,37 @@
     "Ex" : "new carrollton"
   }
 }, {
-  "neid" : 1000002659,
+  "neid" : 1000002660,
   "name" : "hair academy of safford",
   "aliases" : [ ],
   "gnid" : 5312476,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002660,
+  "neid" : 1000002661,
   "name" : "hair academy school of barbering & beauty",
   "aliases" : [ ],
   "gnid" : 4143861,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002661,
+  "neid" : 1000002662,
   "name" : "hair california beauty academy",
   "aliases" : [ ],
   "gnid" : 5379513,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002662,
+  "neid" : 1000002663,
   "name" : "hair design institute",
   "aliases" : [ ],
   "gnid" : 4148677,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002663,
+  "neid" : 1000002664,
   "name" : "hair design institute",
   "aliases" : [ ],
   "gnid" : 4146166,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002664,
+  "neid" : 1000002665,
   "name" : "hair design institute",
   "aliases" : [ ],
   "gnid" : 5110302,
@@ -17237,7 +17243,7 @@
     "Ex" : "fifth avenue - brooklyn"
   }
 }, {
-  "neid" : 1000002665,
+  "neid" : 1000002666,
   "name" : "hair design institute",
   "aliases" : [ ],
   "gnid" : 5128581,
@@ -17245,19 +17251,19 @@
     "Ex" : "fifth avenue - new york"
   }
 }, {
-  "neid" : 1000002666,
+  "neid" : 1000002667,
   "name" : "hair dynamics education center",
   "aliases" : [ ],
   "gnid" : 5577147,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002667,
+  "neid" : 1000002668,
   "name" : "hair expressions academy",
   "aliases" : [ ],
   "gnid" : 4367175,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002668,
+  "neid" : 1000002669,
   "name" : "hair fashions by kaye beauty college",
   "aliases" : [ "KAYE'S BEAUTY COLLEGE, CASTLETON |KAYE'S BARBER COLLEGE" ],
   "gnid" : 4259418,
@@ -17265,7 +17271,7 @@
     "Ex" : "indianapolis"
   }
 }, {
-  "neid" : 1000002669,
+  "neid" : 1000002670,
   "name" : "hair fashions by kaye beauty college",
   "aliases" : [ "KAYE'S BEAUTY COLLEGE" ],
   "gnid" : 4924198,
@@ -17273,67 +17279,67 @@
     "Ex" : "noblesville"
   }
 }, {
-  "neid" : 1000002670,
+  "neid" : 1000002671,
   "name" : "hair professionals academy of cosmetology",
   "aliases" : [ "G SKIN AND BEAUTY INSTITUTE" ],
   "gnid" : 4915977,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002671,
+  "neid" : 1000002672,
   "name" : "hair professionals career college",
   "aliases" : [ ],
   "gnid" : 4913110,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002672,
+  "neid" : 1000002673,
   "name" : "hair professionals career college",
   "aliases" : [ ],
   "gnid" : 4905263,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002673,
+  "neid" : 1000002674,
   "name" : "hair professionals school of cosmetology",
   "aliases" : [ ],
   "gnid" : 4904996,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002674,
+  "neid" : 1000002675,
   "name" : "hairitage hair academy",
   "aliases" : [ ],
   "gnid" : 5546220,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002675,
+  "neid" : 1000002676,
   "name" : "hairmasters institute of cosmetology",
   "aliases" : [ ],
   "gnid" : 4885164,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002676,
+  "neid" : 1000002677,
   "name" : "halifax community college",
   "aliases" : [ ],
   "gnid" : 4498017,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002677,
+  "neid" : 1000002678,
   "name" : "hallmark institute of photography",
   "aliases" : [ ],
   "gnid" : 4953473,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002678,
+  "neid" : 1000002679,
   "name" : "hallmark university",
   "aliases" : [ ],
   "gnid" : 4726206,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002679,
+  "neid" : 1000002680,
   "name" : "hamilton college",
   "aliases" : [ ],
   "gnid" : 5112972,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002680,
+  "neid" : 1000002681,
   "name" : "hamilton fulton montgomery boces",
   "aliases" : [ ],
   "gnid" : 5122833,
@@ -17341,97 +17347,97 @@
     "Ex" : "practical nursing program"
   }
 }, {
-  "neid" : 1000002681,
+  "neid" : 1000002682,
   "name" : "hamilton technical college",
   "aliases" : [ ],
   "gnid" : 4853423,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002682,
+  "neid" : 1000002683,
   "name" : "hamline university",
   "aliases" : [ ],
   "gnid" : 5045360,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002683,
+  "neid" : 1000002684,
   "name" : "hampshire college",
   "aliases" : [ ],
   "gnid" : 4929022,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002684,
+  "neid" : 1000002685,
   "name" : "hampton university",
   "aliases" : [ ],
   "gnid" : 4762894,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002685,
+  "neid" : 1000002686,
   "name" : "hamrick school",
   "aliases" : [ ],
   "gnid" : 5162512,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002686,
+  "neid" : 1000002687,
   "name" : "hands on therapy",
   "aliases" : [ ],
   "gnid" : 4710826,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002687,
+  "neid" : 1000002688,
   "name" : "hannah e mullins school of practical nursing",
   "aliases" : [ ],
   "gnid" : 5170511,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002688,
+  "neid" : 1000002689,
   "name" : "hannibal-lagrange university",
   "aliases" : [ ],
   "gnid" : 4389418,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002689,
+  "neid" : 1000002690,
   "name" : "hanover college",
   "aliases" : [ ],
   "gnid" : 4258510,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002690,
+  "neid" : 1000002691,
   "name" : "harcum college",
   "aliases" : [ ],
   "gnid" : 5182064,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002691,
+  "neid" : 1000002692,
   "name" : "hardin-simmons university",
   "aliases" : [ "HSU, HARDIN-SIMMONS" ],
   "gnid" : 4669635,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002692,
+  "neid" : 1000002693,
   "name" : "harding university",
   "aliases" : [ ],
   "gnid" : 4130430,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002693,
+  "neid" : 1000002694,
   "name" : "harford community college",
   "aliases" : [ ],
   "gnid" : 4348240,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002694,
+  "neid" : 1000002695,
   "name" : "harmony path school of massage therapy",
   "aliases" : [ ],
   "gnid" : 5168491,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002695,
+  "neid" : 1000002696,
   "name" : "harrington college of design",
   "aliases" : [ ],
   "gnid" : 4887398,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002696,
+  "neid" : 1000002697,
   "name" : "harris school of business",
   "aliases" : [ ],
   "gnid" : 4501198,
@@ -17439,7 +17445,7 @@
     "Ex" : "cherry hill campus"
   }
 }, {
-  "neid" : 1000002697,
+  "neid" : 1000002698,
   "name" : "harris school of business",
   "aliases" : [ ],
   "gnid" : 4832353,
@@ -17447,7 +17453,7 @@
     "Ex" : "danbury"
   }
 }, {
-  "neid" : 1000002698,
+  "neid" : 1000002699,
   "name" : "harris school of business",
   "aliases" : [ ],
   "gnid" : 4142290,
@@ -17455,7 +17461,7 @@
     "Ex" : "dover campus"
   }
 }, {
-  "neid" : 1000002699,
+  "neid" : 1000002700,
   "name" : "harris school of business",
   "aliases" : [ ],
   "gnid" : 5098766,
@@ -17463,7 +17469,7 @@
     "Ex" : "hamilton campus"
   }
 }, {
-  "neid" : 1000002700,
+  "neid" : 1000002701,
   "name" : "harris school of business",
   "aliases" : [ ],
   "gnid" : 4502690,
@@ -17471,7 +17477,7 @@
     "Ex" : "linwood campus"
   }
 }, {
-  "neid" : 1000002701,
+  "neid" : 1000002702,
   "name" : "harris school of business",
   "aliases" : [ ],
   "gnid" : 4561879,
@@ -17479,7 +17485,7 @@
     "Ex" : "upper darby campus"
   }
 }, {
-  "neid" : 1000002702,
+  "neid" : 1000002703,
   "name" : "harris school of business",
   "aliases" : [ ],
   "gnid" : 4145381,
@@ -17487,13 +17493,13 @@
     "Ex" : "wilmington campus"
   }
 }, {
-  "neid" : 1000002703,
+  "neid" : 1000002704,
   "name" : "harris-stowe state university",
   "aliases" : [ "HARRIS-STOWE STATE COLLEGE |HARRIS-STOWE" ],
   "gnid" : 4407084,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002704,
+  "neid" : 1000002705,
   "name" : "harrisburg area community college",
   "aliases" : [ "HACC" ],
   "gnid" : 5192726,
@@ -17501,247 +17507,247 @@
     "Ex" : "harrisburg"
   }
 }, {
-  "neid" : 1000002705,
+  "neid" : 1000002706,
   "name" : "harrisburg university of science and technology",
   "aliases" : [ ],
   "gnid" : 5192726,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002706,
+  "neid" : 1000002707,
   "name" : "harrison college-grove city",
   "aliases" : [ "HARRISON COLLEGE-GROVE CITY, OH" ],
   "gnid" : 4513409,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002707,
+  "neid" : 1000002708,
   "name" : "harrison college-indianapolis",
   "aliases" : [ "HARRISON COLLEGE-INDIANAPOLIS, IN" ],
   "gnid" : 4259418,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002708,
+  "neid" : 1000002709,
   "name" : "harrison college-morrisville",
   "aliases" : [ "HARRISON COLLEGE-MORRISVILLE, NC" ],
   "gnid" : 4480285,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002709,
+  "neid" : 1000002710,
   "name" : "hartford seminary",
   "aliases" : [ ],
   "gnid" : 4835797,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002710,
+  "neid" : 1000002711,
   "name" : "hartnell college",
   "aliases" : [ ],
   "gnid" : 5391295,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002711,
+  "neid" : 1000002712,
   "name" : "hartwick college",
   "aliases" : [ ],
   "gnid" : 5129852,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002712,
+  "neid" : 1000002713,
   "name" : "harvard university",
   "aliases" : [ ],
   "gnid" : 4931972,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002713,
+  "neid" : 1000002714,
   "name" : "harvey mudd college",
   "aliases" : [ "MUDD, HMC" ],
   "gnid" : 5337696,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002714,
+  "neid" : 1000002715,
   "name" : "haskell indian nations university",
   "aliases" : [ "HASKELL" ],
   "gnid" : 4274277,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002715,
+  "neid" : 1000002716,
   "name" : "hastings beauty school",
   "aliases" : [ ],
   "gnid" : 5029500,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002716,
+  "neid" : 1000002717,
   "name" : "hastings college",
   "aliases" : [ "HASTINGS COLLEGE" ],
   "gnid" : 5069802,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002717,
+  "neid" : 1000002718,
   "name" : "haverford college",
   "aliases" : [ ],
   "gnid" : 5192907,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002718,
+  "neid" : 1000002719,
   "name" : "hawaii community college",
   "aliases" : [ "HAWAII CC |HCC" ],
   "gnid" : 5855927,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002719,
+  "neid" : 1000002720,
   "name" : "hawaii institute of hair design",
   "aliases" : [ ],
   "gnid" : 5856195,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002720,
+  "neid" : 1000002721,
   "name" : "hawaii medical college",
   "aliases" : [ ],
   "gnid" : 5856195,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002721,
+  "neid" : 1000002722,
   "name" : "hawaii pacific university",
   "aliases" : [ ],
   "gnid" : 5856195,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002722,
+  "neid" : 1000002723,
   "name" : "hawkeye community college",
   "aliases" : [ ],
   "gnid" : 4880889,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002723,
+  "neid" : 1000002724,
   "name" : "hays academy of hair design",
   "aliases" : [ "HAYS ACADEMY OF HAIR DESIGN, HAYS CAMPUS" ],
   "gnid" : 4272782,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002724,
+  "neid" : 1000002725,
   "name" : "hays academy of hair design",
   "aliases" : [ "HAYS ACADEMY OF HAIR DESIGN - SALINA CAMPUS" ],
   "gnid" : 4278890,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002725,
+  "neid" : 1000002726,
   "name" : "haywood community college",
   "aliases" : [ ],
   "gnid" : 4461150,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002726,
+  "neid" : 1000002727,
   "name" : "hazard community and technical college",
   "aliases" : [ ],
   "gnid" : 4294349,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002727,
+  "neid" : 1000002728,
   "name" : "hds truck driving institute",
   "aliases" : [ ],
   "gnid" : 5318313,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002728,
+  "neid" : 1000002729,
   "name" : "headlines academy inc",
   "aliases" : [ ],
   "gnid" : 5768233,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002729,
+  "neid" : 1000002730,
   "name" : "headmasters school of hair design",
   "aliases" : [ ],
   "gnid" : 5598538,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002730,
+  "neid" : 1000002731,
   "name" : "headquarters academy of hair design inc",
   "aliases" : [ ],
   "gnid" : 5690532,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002731,
+  "neid" : 1000002732,
   "name" : "heads west kentucky beauty college",
   "aliases" : [ ],
   "gnid" : 4294494,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002732,
+  "neid" : 1000002733,
   "name" : "healing arts center",
   "aliases" : [ ],
   "gnid" : 4407066,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002733,
+  "neid" : 1000002734,
   "name" : "healing arts institute",
   "aliases" : [ ],
   "gnid" : 5577147,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002734,
+  "neid" : 1000002735,
   "name" : "healing hands school of holistic health",
   "aliases" : [ ],
   "gnid" : 5346827,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002735,
+  "neid" : 1000002736,
   "name" : "healing mountain massage school",
   "aliases" : [ "HEALING MTN. SCHOOL" ],
   "gnid" : 5780993,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002736,
+  "neid" : 1000002737,
   "name" : "healing touch career college",
   "aliases" : [ ],
   "gnid" : 4429295,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002737,
+  "neid" : 1000002738,
   "name" : "health and style institute",
   "aliases" : [ ],
   "gnid" : 4471025,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002738,
+  "neid" : 1000002739,
   "name" : "health works institute",
   "aliases" : [ ],
   "gnid" : 5641727,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002739,
+  "neid" : 1000002740,
   "name" : "healthcare preparatory institute",
   "aliases" : [ ],
   "gnid" : 5506956,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002740,
+  "neid" : 1000002741,
   "name" : "healthcare training institute",
   "aliases" : [ ],
   "gnid" : 5105608,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002741,
+  "neid" : 1000002742,
   "name" : "healthcare training institute",
   "aliases" : [ ],
   "gnid" : 4329753,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002742,
+  "neid" : 1000002743,
   "name" : "heartland community college",
   "aliases" : [ ],
   "gnid" : 4903780,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002743,
+  "neid" : 1000002744,
   "name" : "hebrew college",
   "aliases" : [ ],
   "gnid" : 4945283,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002744,
+  "neid" : 1000002745,
   "name" : "hebrew theological college",
   "aliases" : [ "HTC, TI, TEACHER'S INSTITUTE, SKOKIE YESHIVA, BLITSTEIN INSTITUTE, MACHON TORANI L'BANOT, BEIS HAMIDRASH L'TORAH" ],
   "gnid" : 4911600,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002745,
+  "neid" : 1000002746,
   "name" : "hebrew union college",
   "aliases" : [ "HUC-JIR" ],
   "gnid" : 5128581,
@@ -17749,139 +17755,139 @@
     "Ex" : "jewish institute of religion"
   }
 }, {
-  "neid" : 1000002746,
+  "neid" : 1000002747,
   "name" : "heidelberg university",
   "aliases" : [ "HEIDELBURG COLLEGE|HIEDELBERG COLLEGE|HIEDELBURG COLLEGE|HEIDLEBERG COLLEGE|HEIDLEBURG COLLEGE|THE 'BERG|HEIDELBERG UNIVERSITY|HIEDELBERG UNIVERSITY|HEIDELBURG UNIVERSITY" ],
   "gnid" : 5173930,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002747,
+  "neid" : 1000002748,
   "name" : "helena college university of montana",
   "aliases" : [ "HELENA COLLEGE UM." ],
   "gnid" : 5656882,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002748,
+  "neid" : 1000002749,
   "name" : "helene fuld college of nursing",
   "aliases" : [ "HFCN" ],
   "gnid" : 5128581,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002749,
+  "neid" : 1000002750,
   "name" : "hellenic college-holy cross greek orthodox school of theology",
   "aliases" : [ ],
   "gnid" : 4931482,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002750,
+  "neid" : 1000002751,
   "name" : "helms college",
   "aliases" : [ ],
   "gnid" : 4207400,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002751,
+  "neid" : 1000002752,
   "name" : "henderson community college",
   "aliases" : [ ],
   "gnid" : 4294494,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002752,
+  "neid" : 1000002753,
   "name" : "henderson state university",
   "aliases" : [ ],
   "gnid" : 4099647,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002753,
+  "neid" : 1000002754,
   "name" : "hendrix college",
   "aliases" : [ ],
   "gnid" : 4106458,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002754,
+  "neid" : 1000002755,
   "name" : "hennepin technical college",
   "aliases" : [ ],
   "gnid" : 5019335,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002755,
+  "neid" : 1000002756,
   "name" : "henry ford college",
   "aliases" : [ ],
   "gnid" : 4990510,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002756,
+  "neid" : 1000002757,
   "name" : "heritage bible college",
   "aliases" : [ ],
   "gnid" : 4464326,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002757,
+  "neid" : 1000002758,
   "name" : "heritage christian university",
   "aliases" : [ ],
   "gnid" : 4062577,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002758,
+  "neid" : 1000002759,
   "name" : "heritage college-cleveland",
   "aliases" : [ ],
   "gnid" : 5162851,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002759,
+  "neid" : 1000002760,
   "name" : "heritage college-columbus",
   "aliases" : [ ],
   "gnid" : 4509177,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002760,
+  "neid" : 1000002761,
   "name" : "heritage college-denver",
   "aliases" : [ ],
   "gnid" : 5419384,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002761,
+  "neid" : 1000002762,
   "name" : "heritage college-kansas city",
   "aliases" : [ ],
   "gnid" : 4393217,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002762,
+  "neid" : 1000002763,
   "name" : "heritage college-little rock",
   "aliases" : [ ],
   "gnid" : 4119403,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002763,
+  "neid" : 1000002764,
   "name" : "heritage college-oklahoma city",
   "aliases" : [ ],
   "gnid" : 4544349,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002764,
+  "neid" : 1000002765,
   "name" : "heritage college-wichita",
   "aliases" : [ ],
   "gnid" : 4281730,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002765,
+  "neid" : 1000002766,
   "name" : "heritage institute-ft myers",
   "aliases" : [ ],
   "gnid" : 4155995,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002766,
+  "neid" : 1000002767,
   "name" : "heritage institute-jacksonville",
   "aliases" : [ ],
   "gnid" : 4160021,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002767,
+  "neid" : 1000002768,
   "name" : "heritage university",
   "aliases" : [ ],
   "gnid" : 5813747,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002768,
+  "neid" : 1000002769,
   "name" : "herkimer county boces",
   "aliases" : [ ],
   "gnid" : 5121765,
@@ -17889,13 +17895,13 @@
     "Ex" : "practical nursing program"
   }
 }, {
-  "neid" : 1000002769,
+  "neid" : 1000002770,
   "name" : "herkimer county community college",
   "aliases" : [ ],
   "gnid" : 5120545,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002770,
+  "neid" : 1000002771,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5145476,
@@ -17903,7 +17909,7 @@
     "Ex" : "akron"
   }
 }, {
-  "neid" : 1000002771,
+  "neid" : 1000002772,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4180439,
@@ -17911,7 +17917,7 @@
     "Ex" : "atlanta"
   }
 }, {
-  "neid" : 1000002772,
+  "neid" : 1000002773,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4049979,
@@ -17919,7 +17925,7 @@
     "Ex" : "birmingham"
   }
 }, {
-  "neid" : 1000002773,
+  "neid" : 1000002774,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5246835,
@@ -17927,7 +17933,7 @@
     "Ex" : "brookfield"
   }
 }, {
-  "neid" : 1000002774,
+  "neid" : 1000002775,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4329753,
@@ -17935,7 +17941,7 @@
     "Ex" : "kenner"
   }
 }, {
-  "neid" : 1000002775,
+  "neid" : 1000002776,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5258393,
@@ -17943,7 +17949,7 @@
     "Ex" : "kenosha"
   }
 }, {
-  "neid" : 1000002776,
+  "neid" : 1000002777,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5261457,
@@ -17951,7 +17957,7 @@
     "Ex" : "madison"
   }
 }, {
-  "neid" : 1000002777,
+  "neid" : 1000002778,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5037649,
@@ -17959,7 +17965,7 @@
     "Ex" : "minneapolis"
   }
 }, {
-  "neid" : 1000002778,
+  "neid" : 1000002779,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5174035,
@@ -17967,7 +17973,7 @@
     "Ex" : "toledo"
   }
 }, {
-  "neid" : 1000002779,
+  "neid" : 1000002780,
   "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4178560,
@@ -17975,205 +17981,205 @@
     "Ex" : "winter park"
   }
 }, {
-  "neid" : 1000002780,
+  "neid" : 1000002781,
   "name" : "hesston college",
   "aliases" : [ "HESSTON" ],
   "gnid" : 4272861,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002781,
+  "neid" : 1000002782,
   "name" : "hibbing community college",
   "aliases" : [ ],
   "gnid" : 5030005,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002782,
+  "neid" : 1000002783,
   "name" : "hickey college",
   "aliases" : [ ],
   "gnid" : 4407084,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002783,
+  "neid" : 1000002784,
   "name" : "high desert medical college",
   "aliases" : [ ],
   "gnid" : 5364940,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002784,
+  "neid" : 1000002785,
   "name" : "high plains technology center",
   "aliases" : [ ],
   "gnid" : 4556050,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002785,
+  "neid" : 1000002786,
   "name" : "high point university",
   "aliases" : [ "HPU" ],
   "gnid" : 4471025,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002786,
+  "neid" : 1000002787,
   "name" : "high tech high graduate school of education",
   "aliases" : [ ],
   "gnid" : 5391811,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002787,
+  "neid" : 1000002788,
   "name" : "highland community college",
   "aliases" : [ ],
   "gnid" : 4893171,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002788,
+  "neid" : 1000002789,
   "name" : "highland community college",
   "aliases" : [ ],
   "gnid" : 4272914,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002789,
+  "neid" : 1000002790,
   "name" : "highlands college of montana tech",
   "aliases" : [ ],
   "gnid" : 5642934,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002790,
+  "neid" : 1000002791,
   "name" : "highline college",
   "aliases" : [ "HIGHLINE" ],
   "gnid" : 5792244,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002791,
+  "neid" : 1000002792,
   "name" : "hilbert college",
   "aliases" : [ ],
   "gnid" : 5119833,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002792,
+  "neid" : 1000002793,
   "name" : "hill college",
   "aliases" : [ ],
   "gnid" : 4697867,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002793,
+  "neid" : 1000002794,
   "name" : "hillsborough community college",
   "aliases" : [ "HCC" ],
   "gnid" : 4174757,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002794,
+  "neid" : 1000002795,
   "name" : "hillsdale beauty college",
   "aliases" : [ ],
   "gnid" : 4996107,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002795,
+  "neid" : 1000002796,
   "name" : "hillsdale college",
   "aliases" : [ ],
   "gnid" : 4996107,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002796,
+  "neid" : 1000002797,
   "name" : "hilltop beauty school",
   "aliases" : [ ],
   "gnid" : 5341430,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002797,
+  "neid" : 1000002798,
   "name" : "hillyard technical center",
   "aliases" : [ "HTC/HILLYARD TECH/N.S. HILLYARD TECHNICAL SCHOOL/N.S. HILLYARD A.V.T.S." ],
   "gnid" : 4407010,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002798,
+  "neid" : 1000002799,
   "name" : "hinds community college",
   "aliases" : [ ],
   "gnid" : 4442913,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002799,
+  "neid" : 1000002800,
   "name" : "hinton barber and beauty college",
   "aliases" : [ ],
   "gnid" : 5405380,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002800,
+  "neid" : 1000002801,
   "name" : "hiram college",
   "aliases" : [ "HIRAM" ],
   "gnid" : 5157675,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002801,
+  "neid" : 1000002802,
   "name" : "hobart institute of welding technology",
   "aliases" : [ "HIWT" ],
   "gnid" : 5174358,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002802,
+  "neid" : 1000002803,
   "name" : "hobart william smith colleges",
   "aliases" : [ ],
   "gnid" : 5118398,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002803,
+  "neid" : 1000002804,
   "name" : "hobe sound bible college",
   "aliases" : [ ],
   "gnid" : 4158758,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002804,
+  "neid" : 1000002805,
   "name" : "hocking college",
   "aliases" : [ "HOCKING TECHNICAL COLLEGE" ],
   "gnid" : 4519445,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002805,
+  "neid" : 1000002806,
   "name" : "hodges university",
   "aliases" : [ "INTERNATIONAL COLLEGE" ],
   "gnid" : 4165565,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002806,
+  "neid" : 1000002807,
   "name" : "hofstra university",
   "aliases" : [ ],
   "gnid" : 5120478,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002807,
+  "neid" : 1000002808,
   "name" : "hohokus school of trade and technical sciences",
   "aliases" : [ ],
   "gnid" : 5102466,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002808,
+  "neid" : 1000002809,
   "name" : "holistic massage training institute",
   "aliases" : [ ],
   "gnid" : 4347778,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002809,
+  "neid" : 1000002810,
   "name" : "hollins university",
   "aliases" : [ "HOLLINS COLLEGE" ],
   "gnid" : 4782167,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002810,
+  "neid" : 1000002811,
   "name" : "hollywood cosmetology center",
   "aliases" : [ ],
   "gnid" : 4543762,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002811,
+  "neid" : 1000002812,
   "name" : "hollywood institute of beauty careers",
   "aliases" : [ ],
   "gnid" : 4158928,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002812,
+  "neid" : 1000002813,
   "name" : "hollywood institute of beauty careers",
   "aliases" : [ "BEAUTY CAREER'S INSTITUTE" ],
   "gnid" : 4166105,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002813,
+  "neid" : 1000002814,
   "name" : "hollywood institute of beauty careers",
   "aliases" : [ ],
   "gnid" : 4150190,
@@ -18181,7 +18187,7 @@
     "Ex" : "casselberry"
   }
 }, {
-  "neid" : 1000002814,
+  "neid" : 1000002815,
   "name" : "hollywood institute of beauty careers",
   "aliases" : [ ],
   "gnid" : 4177887,
@@ -18189,145 +18195,145 @@
     "Ex" : "west palm beach"
   }
 }, {
-  "neid" : 1000002815,
+  "neid" : 1000002816,
   "name" : "holmes community college",
   "aliases" : [ ],
   "gnid" : 4427960,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002816,
+  "neid" : 1000002817,
   "name" : "holy apostles college and seminary",
   "aliases" : [ ],
   "gnid" : 4832121,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002817,
+  "neid" : 1000002818,
   "name" : "holy cross college",
   "aliases" : [ ],
   "gnid" : 8469294,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002818,
+  "neid" : 1000002819,
   "name" : "holy family university",
   "aliases" : [ "HOLY FAMILY" ],
   "gnid" : 4560349,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002819,
+  "neid" : 1000002820,
   "name" : "holy name medical center school of nursing",
   "aliases" : [ ],
   "gnid" : 5105262,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002820,
+  "neid" : 1000002821,
   "name" : "holy names university",
   "aliases" : [ "HOLY NAMES COLLEGE" ],
   "gnid" : 5378538,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002821,
+  "neid" : 1000002822,
   "name" : "holyoke community college",
   "aliases" : [ ],
   "gnid" : 4939783,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002822,
+  "neid" : 1000002823,
   "name" : "homestead schools",
   "aliases" : [ ],
   "gnid" : 5403022,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002823,
+  "neid" : 1000002824,
   "name" : "hondros college of nursing",
   "aliases" : [ ],
   "gnid" : 5176472,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002824,
+  "neid" : 1000002825,
   "name" : "honolulu community college",
   "aliases" : [ "HONOLULU CC |HCC" ],
   "gnid" : 5856195,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002825,
+  "neid" : 1000002826,
   "name" : "hood college",
   "aliases" : [ "HOOD" ],
   "gnid" : 4355585,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002826,
+  "neid" : 1000002827,
   "name" : "hood theological seminary",
   "aliases" : [ ],
   "gnid" : 4489985,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002827,
+  "neid" : 1000002828,
   "name" : "hope college",
   "aliases" : [ ],
   "gnid" : 4996248,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002828,
+  "neid" : 1000002829,
   "name" : "hope college of arts and sciences",
   "aliases" : [ ],
   "gnid" : 4169014,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002829,
+  "neid" : 1000002830,
   "name" : "hope international university",
   "aliases" : [ "HOPE|HIU|COLLEGE OF ARTS AND SCIENCES|COLLEGE OF BUSINESS AND MANAGEMENT|COLLEGE OF EDUCATION|PACIFIC CHRISTIAN OF MINISTRY AND BIBLICAL STUDIES|COLLEGE OF PSYCHOLOGY AND COUNSELING|FULLERTON|ORANGE COUNTY|CALIFORNIA|" ],
   "gnid" : 5351247,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002830,
+  "neid" : 1000002831,
   "name" : "hopkinsville community college",
   "aliases" : [ ],
   "gnid" : 4295251,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002831,
+  "neid" : 1000002832,
   "name" : "horizon university",
   "aliases" : [ ],
   "gnid" : 5391811,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002832,
+  "neid" : 1000002833,
   "name" : "horry-georgetown technical college",
   "aliases" : [ ],
   "gnid" : 4575461,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002833,
+  "neid" : 1000002834,
   "name" : "hoss lee academy",
   "aliases" : [ ],
   "gnid" : 5388881,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002834,
+  "neid" : 1000002835,
   "name" : "hot springs beauty college",
   "aliases" : [ ],
   "gnid" : 4115412,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002835,
+  "neid" : 1000002836,
   "name" : "houghton college",
   "aliases" : [ "HOUGHTON" ],
   "gnid" : 5121382,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002836,
+  "neid" : 1000002837,
   "name" : "houghton lake institute of cosmetology",
   "aliases" : [ ],
   "gnid" : 4996580,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002837,
+  "neid" : 1000002838,
   "name" : "housatonic community college",
   "aliases" : [ ],
   "gnid" : 5282804,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002838,
+  "neid" : 1000002839,
   "name" : "house of heavilin beauty college",
   "aliases" : [ ],
   "gnid" : 5261457,
@@ -18335,7 +18341,7 @@
     "Ex" : "academy of beauty professionals"
   }
 }, {
-  "neid" : 1000002839,
+  "neid" : 1000002840,
   "name" : "house of heavilin beauty college",
   "aliases" : [ ],
   "gnid" : 5244080,
@@ -18343,7 +18349,7 @@
     "Ex" : "academy of beauty professionals"
   }
 }, {
-  "neid" : 1000002840,
+  "neid" : 1000002841,
   "name" : "house of heavilin beauty college",
   "aliases" : [ ],
   "gnid" : 5254962,
@@ -18351,7 +18357,7 @@
     "Ex" : "academy of beauty professionals"
   }
 }, {
-  "neid" : 1000002841,
+  "neid" : 1000002842,
   "name" : "house of heavilin beauty college",
   "aliases" : [ ],
   "gnid" : 4377664,
@@ -18359,7 +18365,7 @@
     "Ex" : "blue springs"
   }
 }, {
-  "neid" : 1000002842,
+  "neid" : 1000002843,
   "name" : "house of heavilin beauty college",
   "aliases" : [ ],
   "gnid" : 4393217,
@@ -18367,7 +18373,7 @@
     "Ex" : "kansas city"
   }
 }, {
-  "neid" : 1000002843,
+  "neid" : 1000002844,
   "name" : "house of heavilin beauty college",
   "aliases" : [ ],
   "gnid" : 4405180,
@@ -18375,31 +18381,31 @@
     "Ex" : "raymore"
   }
 }, {
-  "neid" : 1000002844,
+  "neid" : 1000002845,
   "name" : "houston baptist university",
   "aliases" : [ "HBU" ],
   "gnid" : 4699066,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002845,
+  "neid" : 1000002846,
   "name" : "houston community college",
   "aliases" : [ ],
   "gnid" : 4699066,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002846,
+  "neid" : 1000002847,
   "name" : "houston graduate school of theology",
   "aliases" : [ ],
   "gnid" : 4699066,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002847,
+  "neid" : 1000002848,
   "name" : "houston international college cardiotech ultrasound school",
   "aliases" : [ ],
   "gnid" : 4699066,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002848,
+  "neid" : 1000002849,
   "name" : "houston training school",
   "aliases" : [ ],
   "gnid" : 4699066,
@@ -18407,7 +18413,7 @@
     "Ex" : "gulfgate"
   }
 }, {
-  "neid" : 1000002849,
+  "neid" : 1000002850,
   "name" : "houston training school",
   "aliases" : [ ],
   "gnid" : 4699066,
@@ -18415,7 +18421,7 @@
     "Ex" : "main campus"
   }
 }, {
-  "neid" : 1000002850,
+  "neid" : 1000002851,
   "name" : "houston training schools",
   "aliases" : [ ],
   "gnid" : 4699066,
@@ -18423,7 +18429,7 @@
     "Ex" : "gessner"
   }
 }, {
-  "neid" : 1000002851,
+  "neid" : 1000002852,
   "name" : "houston training schools",
   "aliases" : [ ],
   "gnid" : 4699066,
@@ -18431,79 +18437,79 @@
     "Ex" : "southwest"
   }
 }, {
-  "neid" : 1000002852,
+  "neid" : 1000002853,
   "name" : "howard college",
   "aliases" : [ "HOWARD COUNTY JUNIOR COLLEGE" ],
   "gnid" : 5517061,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002853,
+  "neid" : 1000002854,
   "name" : "howard community college",
   "aliases" : [ "HCC|HOWARD COUNTY COMMUNITY COLLEGE|HOWRAD COMMUNITY COLLEGE|HCCC|HOWARD COUNTY COLLEGE|COLUMBIA COMMUNITY COLLEGE|HOWARD COLLEGE" ],
   "gnid" : 4352053,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002854,
+  "neid" : 1000002855,
   "name" : "howard payne university",
   "aliases" : [ ],
   "gnid" : 4676798,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002855,
+  "neid" : 1000002856,
   "name" : "howard university",
   "aliases" : [ "HU" ],
   "gnid" : 4140963,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002856,
+  "neid" : 1000002857,
   "name" : "howell cheney ths/ct aero tech school",
   "aliases" : [ ],
   "gnid" : 4835797,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002857,
+  "neid" : 1000002858,
   "name" : "hshs st. john's hospital school of clinical laboratory science",
   "aliases" : [ ],
   "gnid" : 4250542,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002858,
+  "neid" : 1000002859,
   "name" : "hudson county community college",
   "aliases" : [ "HCCC" ],
   "gnid" : 5099836,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002859,
+  "neid" : 1000002860,
   "name" : "hudson valley community college",
   "aliases" : [ ],
   "gnid" : 5141502,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002860,
+  "neid" : 1000002861,
   "name" : "huertas college",
   "aliases" : [ ],
   "gnid" : 4563008,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002861,
+  "neid" : 1000002862,
   "name" : "hult international business school",
   "aliases" : [ ],
   "gnid" : 4931972,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002862,
+  "neid" : 1000002863,
   "name" : "humacao community college",
   "aliases" : [ ],
   "gnid" : 4565564,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002863,
+  "neid" : 1000002864,
   "name" : "humboldt state university",
   "aliases" : [ ],
   "gnid" : 5558953,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002864,
+  "neid" : 1000002865,
   "name" : "humphreys university",
   "aliases" : [ ],
   "gnid" : 5399020,
@@ -18511,109 +18517,109 @@
     "Ex" : "stockton and modesto campuses"
   }
 }, {
-  "neid" : 1000002865,
+  "neid" : 1000002866,
   "name" : "hunter business school",
   "aliases" : [ ],
   "gnid" : 5124276,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002866,
+  "neid" : 1000002867,
   "name" : "huntingdon college",
   "aliases" : [ ],
   "gnid" : 4076784,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002867,
+  "neid" : 1000002868,
   "name" : "huntingdon county career and technology center",
   "aliases" : [ ],
   "gnid" : 5201164,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002868,
+  "neid" : 1000002869,
   "name" : "huntington college of health sciences",
   "aliases" : [ ],
   "gnid" : 4634946,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002869,
+  "neid" : 1000002870,
   "name" : "huntington junior college",
   "aliases" : [ ],
   "gnid" : 4809537,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002870,
+  "neid" : 1000002871,
   "name" : "huntington university",
   "aliases" : [ ],
   "gnid" : 4921725,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002871,
+  "neid" : 1000002872,
   "name" : "huntsville bible college",
   "aliases" : [ ],
   "gnid" : 4068590,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002872,
+  "neid" : 1000002873,
   "name" : "hussian college school of art",
   "aliases" : [ ],
   "gnid" : 4560349,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002873,
+  "neid" : 1000002874,
   "name" : "hussian college-relativity campus california",
   "aliases" : [ ],
   "gnid" : 5368361,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002874,
+  "neid" : 1000002875,
   "name" : "husson university",
   "aliases" : [ "HUSSON" ],
   "gnid" : 4957280,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002875,
+  "neid" : 1000002876,
   "name" : "huston-tillotson university",
   "aliases" : [ ],
   "gnid" : 4671654,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002876,
+  "neid" : 1000002877,
   "name" : "hutchinson community college",
   "aliases" : [ ],
   "gnid" : 4273299,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002877,
+  "neid" : 1000002878,
   "name" : "hvac technical institute",
   "aliases" : [ ],
   "gnid" : 4887398,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002878,
+  "neid" : 1000002879,
   "name" : "hypnosis motivation institute",
   "aliases" : [ ],
   "gnid" : 5401143,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002879,
+  "neid" : 1000002880,
   "name" : "ibero american college",
   "aliases" : [ ],
   "gnid" : 5784607,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002880,
+  "neid" : 1000002881,
   "name" : "ibmc college",
   "aliases" : [ "INSTITUTE OF BUSINESS AND MEDICAL CAREERS" ],
   "gnid" : 5417598,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002881,
+  "neid" : 1000002882,
   "name" : "ibmc college",
   "aliases" : [ "IBMC |I.B.M.C" ],
   "gnid" : 5577147,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002882,
+  "neid" : 1000002883,
   "name" : "icahn school of medicine",
   "aliases" : [ ],
   "gnid" : 5128581,
@@ -18621,13 +18627,13 @@
     "Ex" : "mount sinai"
   }
 }, {
-  "neid" : 1000002883,
+  "neid" : 1000002884,
   "name" : "icdc college",
   "aliases" : [ ],
   "gnid" : 5358736,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002884,
+  "neid" : 1000002885,
   "name" : "icpr junior college",
   "aliases" : [ ],
   "gnid" : 4562635,
@@ -18635,7 +18641,7 @@
     "Ex" : "arecibo"
   }
 }, {
-  "neid" : 1000002885,
+  "neid" : 1000002886,
   "name" : "icpr junior college",
   "aliases" : [ ],
   "gnid" : 4566137,
@@ -18643,61 +18649,61 @@
     "Ex" : "manati"
   }
 }, {
-  "neid" : 1000002886,
+  "neid" : 1000002887,
   "name" : "idaho state university",
   "aliases" : [ "ISU" ],
   "gnid" : 5604045,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002887,
+  "neid" : 1000002888,
   "name" : "ideal beauty academy",
   "aliases" : [ ],
   "gnid" : 4259671,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002888,
+  "neid" : 1000002889,
   "name" : "ideal beauty academy",
   "aliases" : [ ],
   "gnid" : 4299276,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002889,
+  "neid" : 1000002890,
   "name" : "iglobal university",
   "aliases" : [ ],
   "gnid" : 4791160,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002890,
+  "neid" : 1000002891,
   "name" : "iliff school of theology",
   "aliases" : [ ],
   "gnid" : 5419384,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002891,
+  "neid" : 1000002892,
   "name" : "ilisagvik college",
   "aliases" : [ ],
   "gnid" : 5880054,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002892,
+  "neid" : 1000002893,
   "name" : "illinois central college",
   "aliases" : [ "ICC" ],
   "gnid" : 4890549,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002893,
+  "neid" : 1000002894,
   "name" : "illinois college",
   "aliases" : [ ],
   "gnid" : 4241704,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002894,
+  "neid" : 1000002895,
   "name" : "illinois college of optometry",
   "aliases" : [ ],
   "gnid" : 4887398,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002895,
+  "neid" : 1000002896,
   "name" : "illinois eastern community college",
   "aliases" : [ "ILLINOIS EASTERN COMMUNITY COLLEGES DISTRICT OFFICE" ],
   "gnid" : 4246382,
@@ -18705,19 +18711,19 @@
     "Ex" : "system office"
   }
 }, {
-  "neid" : 1000002896,
+  "neid" : 1000002897,
   "name" : "illinois institute of technology",
   "aliases" : [ "IIT" ],
   "gnid" : 4887398,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002897,
+  "neid" : 1000002898,
   "name" : "illinois media school",
   "aliases" : [ ],
   "gnid" : 4900373,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002898,
+  "neid" : 1000002899,
   "name" : "illinois media school",
   "aliases" : [ ],
   "gnid" : 4887398,
@@ -18725,73 +18731,73 @@
     "Ex" : "chicago campus"
   }
 }, {
-  "neid" : 1000002899,
+  "neid" : 1000002900,
   "name" : "illinois state university",
   "aliases" : [ ],
   "gnid" : 4903780,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002900,
+  "neid" : 1000002901,
   "name" : "illinois valley community college",
   "aliases" : [ "IVCC" ],
   "gnid" : 4904605,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002901,
+  "neid" : 1000002902,
   "name" : "illinois wesleyan university",
   "aliases" : [ "IWU|WESLEYAN" ],
   "gnid" : 4885164,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002902,
+  "neid" : 1000002903,
   "name" : "image maker beauty institute",
   "aliases" : [ ],
   "gnid" : 4628735,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002903,
+  "neid" : 1000002904,
   "name" : "imagine-paul mitchell partner school",
   "aliases" : [ ],
   "gnid" : 4124112,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002904,
+  "neid" : 1000002905,
   "name" : "immokalee technical college",
   "aliases" : [ "ITECH" ],
   "gnid" : 4159553,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002905,
+  "neid" : 1000002906,
   "name" : "imperial valley college",
   "aliases" : [ "IVC" ],
   "gnid" : 5359052,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002906,
+  "neid" : 1000002907,
   "name" : "in session arts of cosmetology beauty school",
   "aliases" : [ ],
   "gnid" : 5007989,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002907,
+  "neid" : 1000002908,
   "name" : "independence college of cosmetology",
   "aliases" : [ ],
   "gnid" : 4391812,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002908,
+  "neid" : 1000002909,
   "name" : "independence community college",
   "aliases" : [ ],
   "gnid" : 4273359,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002909,
+  "neid" : 1000002910,
   "name" : "independence university",
   "aliases" : [ "BRANCH OF STEVENS-HENAGER COLLEGE" ],
   "gnid" : 5780993,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002910,
+  "neid" : 1000002911,
   "name" : "indian capital technology center",
   "aliases" : [ ],
   "gnid" : 4543338,
@@ -18799,7 +18805,7 @@
     "Ex" : "muskogee"
   }
 }, {
-  "neid" : 1000002911,
+  "neid" : 1000002912,
   "name" : "indian capital technology center",
   "aliases" : [ ],
   "gnid" : 4550374,
@@ -18807,7 +18813,7 @@
     "Ex" : "sallisaw"
   }
 }, {
-  "neid" : 1000002912,
+  "neid" : 1000002913,
   "name" : "indian capital technology center",
   "aliases" : [ ],
   "gnid" : 4552280,
@@ -18815,7 +18821,7 @@
     "Ex" : "stilwell"
   }
 }, {
-  "neid" : 1000002913,
+  "neid" : 1000002914,
   "name" : "indian capital technology center",
   "aliases" : [ ],
   "gnid" : 4552707,
@@ -18823,43 +18829,43 @@
     "Ex" : "tahlequah"
   }
 }, {
-  "neid" : 1000002914,
+  "neid" : 1000002915,
   "name" : "indian hills community college",
   "aliases" : [ "IHCC|INDIAN HILLS COLLEGE|THE HILLS" ],
   "gnid" : 4870380,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002915,
+  "neid" : 1000002916,
   "name" : "indian river state college",
   "aliases" : [ ],
   "gnid" : 4156018,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002916,
+  "neid" : 1000002917,
   "name" : "indiana college of sports & medical massage",
   "aliases" : [ ],
   "gnid" : 4255466,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002917,
+  "neid" : 1000002918,
   "name" : "indiana county technology center",
   "aliases" : [ "ICTC" ],
   "gnid" : 5194868,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002918,
+  "neid" : 1000002919,
   "name" : "indiana institute of technology",
   "aliases" : [ "INDIANA TECH |IIT" ],
   "gnid" : 4920423,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002919,
+  "neid" : 1000002920,
   "name" : "indiana state university",
   "aliases" : [ "INDIANA STATE |ISU" ],
   "gnid" : 4265737,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002920,
+  "neid" : 1000002921,
   "name" : "indiana university of pennsylvania",
   "aliases" : [ ],
   "gnid" : 5194868,
@@ -18867,7 +18873,7 @@
     "Ex" : "main campus"
   }
 }, {
-  "neid" : 1000002921,
+  "neid" : 1000002922,
   "name" : "indiana university",
   "aliases" : [ "IU|IUB|IU BLOOMINGTON|" ],
   "gnid" : 4254679,
@@ -18875,7 +18881,7 @@
     "Ex" : "bloomington"
   }
 }, {
-  "neid" : 1000002922,
+  "neid" : 1000002923,
   "name" : "indiana university",
   "aliases" : [ "IUE | IU EAST" ],
   "gnid" : 4263681,
@@ -18883,7 +18889,7 @@
     "Ex" : "east"
   }
 }, {
-  "neid" : 1000002923,
+  "neid" : 1000002924,
   "name" : "indiana university",
   "aliases" : [ "IU KOKOMO | IUK | IU KO" ],
   "gnid" : 4922388,
@@ -18891,7 +18897,7 @@
     "Ex" : "kokomo"
   }
 }, {
-  "neid" : 1000002924,
+  "neid" : 1000002925,
   "name" : "indiana university",
   "aliases" : [ "IUN | IU NORTHWEST" ],
   "gnid" : 4920607,
@@ -18899,7 +18905,7 @@
     "Ex" : "northwest"
   }
 }, {
-  "neid" : 1000002925,
+  "neid" : 1000002926,
   "name" : "indiana university",
   "aliases" : [ "IPFW|IUPUFW|PURDUE UNIVERSITY-FORT WAYNE|PURDUE-FORT WAYNE|PURDUE FORT WAYNE" ],
   "gnid" : 4920423,
@@ -18907,7 +18913,7 @@
     "Ex" : "purdue university - fort wayne"
   }
 }, {
-  "neid" : 1000002926,
+  "neid" : 1000002927,
   "name" : "indiana university",
   "aliases" : [ "IUPUI" ],
   "gnid" : 4259418,
@@ -18915,7 +18921,7 @@
     "Ex" : "purdue university - indianapolis"
   }
 }, {
-  "neid" : 1000002927,
+  "neid" : 1000002928,
   "name" : "indiana university",
   "aliases" : [ "IUSB | IU SB | IU SOUTH BEND" ],
   "gnid" : 4926563,
@@ -18923,7 +18929,7 @@
     "Ex" : "south bend"
   }
 }, {
-  "neid" : 1000002928,
+  "neid" : 1000002929,
   "name" : "indiana university",
   "aliases" : [ "IUSE | IU SE | IU SOUTHEAST" ],
   "gnid" : 4262045,
@@ -18931,7 +18937,7 @@
     "Ex" : "southeast"
   }
 }, {
-  "neid" : 1000002929,
+  "neid" : 1000002930,
   "name" : "indiana wesleyan university",
   "aliases" : [ "IWU" ],
   "gnid" : 4923210,
@@ -18939,7 +18945,7 @@
     "Ex" : "marion"
   }
 }, {
-  "neid" : 1000002930,
+  "neid" : 1000002931,
   "name" : "indiana wesleyan university",
   "aliases" : [ "IWU" ],
   "gnid" : 4923210,
@@ -18947,109 +18953,109 @@
     "Ex" : "national and global"
   }
 }, {
-  "neid" : 1000002931,
+  "neid" : 1000002932,
   "name" : "industrial management training institute",
   "aliases" : [ ],
   "gnid" : 4845193,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002932,
+  "neid" : 1000002933,
   "name" : "industrial technical college",
   "aliases" : [ ],
   "gnid" : 4565564,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002933,
+  "neid" : 1000002934,
   "name" : "infinity career college",
   "aliases" : [ ],
   "gnid" : 4428667,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002934,
+  "neid" : 1000002935,
   "name" : "infinity college",
   "aliases" : [ ],
   "gnid" : 4330145,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002935,
+  "neid" : 1000002936,
   "name" : "infotech career college",
   "aliases" : [ ],
   "gnid" : 5381110,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002936,
+  "neid" : 1000002937,
   "name" : "inland massage institute",
   "aliases" : [ ],
   "gnid" : 5811696,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002937,
+  "neid" : 1000002938,
   "name" : "inner state beauty school",
   "aliases" : [ ],
   "gnid" : 5161493,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002938,
+  "neid" : 1000002939,
   "name" : "innovations design academy",
   "aliases" : [ ],
   "gnid" : 4831990,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002939,
+  "neid" : 1000002940,
   "name" : "institute for business and technology",
   "aliases" : [ ],
   "gnid" : 5393015,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002940,
+  "neid" : 1000002941,
   "name" : "institute for clinical social work",
   "aliases" : [ ],
   "gnid" : 4887398,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002941,
+  "neid" : 1000002942,
   "name" : "institute for doctoral studies in the visual arts",
   "aliases" : [ "IDSVA" ],
   "gnid" : 4975802,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002942,
+  "neid" : 1000002943,
   "name" : "institute for therapeutic massage",
   "aliases" : [ ],
   "gnid" : 5098706,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002943,
+  "neid" : 1000002944,
   "name" : "institute of advanced medical esthetics",
   "aliases" : [ ],
   "gnid" : 4781708,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002944,
+  "neid" : 1000002945,
   "name" : "institute of american indian and alaska native culture and arts development",
   "aliases" : [ "INSTITUTE OF AMERICAN INDIAN ARTS" ],
   "gnid" : 5490263,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002945,
+  "neid" : 1000002946,
   "name" : "institute of audio research",
   "aliases" : [ "IAR" ],
   "gnid" : 5128581,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002946,
+  "neid" : 1000002947,
   "name" : "institute of beauty careers",
   "aliases" : [ ],
   "gnid" : 4562635,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002947,
+  "neid" : 1000002948,
   "name" : "institute of beauty occupation and technology course",
   "aliases" : [ "IBO & TECHNOLOGY COURSE" ],
   "gnid" : 4566270,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002948,
+  "neid" : 1000002949,
   "name" : "institute of beauty occupations and technology course",
   "aliases" : [ "IBO & TECHNOLOGY COURSE" ],
   "gnid" : 4568175,
@@ -19057,58 +19063,52 @@
     "Ex" : "san sebastian"
   }
 }, {
-  "neid" : 1000002949,
+  "neid" : 1000002950,
   "name" : "institute of clinical acupuncture & oriental med",
   "aliases" : [ ],
   "gnid" : 5856195,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002950,
+  "neid" : 1000002951,
   "name" : "institute of culinary education",
   "aliases" : [ ],
   "gnid" : 5128581,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002951,
+  "neid" : 1000002952,
   "name" : "institute of hair design",
   "aliases" : [ ],
   "gnid" : 4551177,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002952,
+  "neid" : 1000002953,
   "name" : "institute of health sciences",
   "aliases" : [ ],
   "gnid" : 4358701,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002953,
+  "neid" : 1000002954,
   "name" : "institute of medical careers",
   "aliases" : [ "D/B/A INSTITUTE OF MEDICAL AND BUSINESS CAREERS" ],
   "gnid" : 5206379,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002954,
+  "neid" : 1000002955,
   "name" : "institute of production and recording",
   "aliases" : [ ],
   "gnid" : 5037649,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002955,
+  "neid" : 1000002956,
   "name" : "institute of professional careers",
   "aliases" : [ ],
   "gnid" : 5506956,
   "exAttrs" : { }
 }, {
-  "neid" : 1000002956,
+  "neid" : 1000002957,
   "name" : "institute of taoist education and acupuncture",
   "aliases" : [ "ITEA" ],
   "gnid" : 5429522,
-  "exAttrs" : { }
-}, {
-  "neid" : 1000002957,
-  "name" : "institute of technology",
-  "aliases" : [ "FRESNO INSTITUTE OF TECHNOLOGY | INSTITUTE OF TECHNOLOGY | FIT | IT | FRESNO'S INSTITUTE OF TECHNOLOGY" ],
-  "gnid" : 5338122,
   "exAttrs" : { }
 }, {
   "neid" : 1000002958,

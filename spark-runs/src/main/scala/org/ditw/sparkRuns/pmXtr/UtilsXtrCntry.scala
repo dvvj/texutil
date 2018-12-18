@@ -22,7 +22,7 @@ object UtilsXtrCntry {
     val runLocally = if (args.length > 0) args(0).toBoolean else true
     val inputPath =
       if (args.length > 1) args(1)
-      else "file:///media/sf_vmshare/pmjs/dbg/"  //"file:///media/sf_vmshare/pmjs/testAuAff/"  //
+      else "file:///media/sf_vmshare/pmjs/pmj9AuAff/"  //"file:///media/sf_vmshare/pmjs/testAuAff/"  //
     val inputGNPath = if (args.length > 2) args(2) else "file:///media/sf_vmshare/gns/all"
     val outputPathJson = if (args.length > 3) args(3) else "file:///media/sf_vmshare/pmjs/9-x-json"
     val outputPathTrace = if (args.length > 4) args(4) else "file:///media/sf_vmshare/pmjs/9-x-agg"

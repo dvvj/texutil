@@ -6,8 +6,9 @@ import org.apache.spark.storage.StorageLevel
 import org.ditw.common.TkRange
 import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.GNEnt
+import org.ditw.exutil1.naen.TagHelper.NaEnId_Pfx
 import org.ditw.exutil1.naen.{NaEn, NaEnData, TagHelper}
-import org.ditw.matcher.MatchPool
+import org.ditw.matcher.{MatchPool, TkMatch}
 import org.ditw.pmxml.model.AAAuAff
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
 import org.ditw.textSeg.common.Tags.TagGroup4Univ
@@ -35,7 +36,7 @@ object PmXtrUtils extends Serializable {
     pmid:Long,
     localId:Int,
     seg:String,
-    range:TkRange,
+    rangeStr:String,
     naen:NaEn
   ) {
     override def toString: String = {
@@ -48,7 +49,15 @@ object PmXtrUtils extends Serializable {
     write(ssr)(DefaultFormats)
   }
 
-  type RawRes = (String, Option[SingleSegRes])
+  private def xtrNaEns(matchPool: MatchPool):Set[Long] = {
+    val tags = matchPool.allTagsPrefixedBy(NaEnId_Pfx)
+    val matches = matchPool.get(tags.toSet)
+    val merged = TkMatch.mergeByRange(matches)
+    merged.flatMap(_.getTags).filter(_.startsWith(NaEnId_Pfx))
+      .map(_.substring(NaEnId_Pfx.length).toLong)
+  }
+
+  type RawRes = (String, Boolean, Option[SingleSegRes])
   private[pmXtr] def processSingleSegs(
     singleSegs:RDD[SegmentRes],
     brGNMmgr:Broadcast[GNMmgr],
@@ -85,35 +94,32 @@ object PmXtrUtils extends Serializable {
           else univRngs.map(_.str)
 
         import TagHelper._
-        if (univs.nonEmpty) {
-          if (univs.size > 1)
-            println(s"more than 1 seg found: $univs")
-          val neids = mp.allTagsPrefixedBy(NaEnId_Pfx)
-            .map(_.substring(NaEnId_Pfx.length).toLong)
-          val ents = neids.flatMap(NaEnData.queryEnt)
-          val entsByGNid = ents.filter(e => gnids.contains(e.gnid))
-          val entsTr = entsByGNid.map { e =>
-            val neid = e.neid
-            val gnEnt = brGNMmgr.value.svc.entById(e.gnid).get
-            s"$neid(${gnEnt.gnid}:${gnEnt.name})"
-          }
+        if (univs.size > 1)
+          println(s"more than 1 seg found: $univs")
+        val neids = xtrNaEns(mp)
+        val ents = neids.flatMap(NaEnData.queryEnt)
+        val entsByGNid = ents.filter(e => gnids.contains(e.gnid))
+        val entsTr = entsByGNid.map { e =>
+          val neid = e.neid
+          val gnEnt = brGNMmgr.value.svc.entById(e.gnid).get
+          s"$neid(${gnEnt.gnid}:${gnEnt.name})"
+        }
 
-          if (entsByGNid.nonEmpty) {
-            val singleRes = SingleSegRes(pmid, localId, univs.head, rng2Ents.keySet.head, entsByGNid.head)
-            //println(s"Univs: [${univs.mkString(",")}] NEIds: [${entsTr.mkString(",")}]")
-            res = Option(singleRes)
-          }
-          //else None
+        if (entsByGNid.nonEmpty) {
+          val univStr = if (univs.nonEmpty) univs.head else ""
+          val singleRes = SingleSegRes(pmid, localId, univStr, rng2Ents.keySet.head.str, entsByGNid.head)
+          //println(s"Univs: [${univs.mkString(",")}] NEIds: [${entsTr.mkString(",")}]")
+          res = Option(singleRes)
         }
         //else None
       }
       //else None
-      s"$pmid-$localId: $aff" -> res
+      (s"$pmid-$localId: $aff", entsOfCntry.nonEmpty, res)
 
     }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val found = t.flatMap(_._2)
-    val empty = t.filter(_._2.isEmpty).map(_._1)
+    val found = t.flatMap(_._3)
+    val empty = t.filter(tp => tp._2 && tp._3.isEmpty).map(_._1)
     found -> empty
   }
 }
