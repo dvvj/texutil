@@ -1750,46 +1750,60 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000000276,
-  "name" : "antioch university-los angeles",
+  "name" : "antioch university",
   "aliases" : [ "AULA|ANTIOCH|ANTIOK|ANTIOC|ANTOICH" ],
   "gnid" : 5341114,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "los angeles"
+  }
 }, {
   "neid" : 1000000277,
-  "name" : "antioch university-midwest",
+  "name" : "antioch university",
   "aliases" : [ "ANTIOCH UNIVERSITY MCGREGOR" ],
   "gnid" : 4528866,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "midwest"
+  }
 }, {
   "neid" : 1000000278,
-  "name" : "antioch university-new england",
+  "name" : "antioch university",
   "aliases" : [ "ANTIOCH NEW ENGLAND GRADUATE SCHOOL" ],
   "gnid" : 5088262,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "new england"
+  }
 }, {
   "neid" : 1000000279,
-  "name" : "antioch university-phd program in leadership and change",
+  "name" : "antioch university",
   "aliases" : [ ],
   "gnid" : 4528866,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "phd program in leadership and change"
+  }
 }, {
   "neid" : 1000000280,
-  "name" : "antioch university-santa barbara",
+  "name" : "antioch university",
   "aliases" : [ "AUSB" ],
   "gnid" : 5392952,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "santa barbara"
+  }
 }, {
   "neid" : 1000000281,
-  "name" : "antioch university-seattle",
+  "name" : "antioch university",
   "aliases" : [ ],
   "gnid" : 5809844,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "seattle"
+  }
 }, {
   "neid" : 1000000282,
-  "name" : "antioch university-system administration",
+  "name" : "antioch university",
   "aliases" : [ ],
   "gnid" : 4528866,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "system administration"
+  }
 }, {
   "neid" : 1000000283,
   "name" : "antonelli college-cincinnati",
@@ -1930,172 +1944,228 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000000306,
-  "name" : "argosy university-atlanta",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4180439,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "atlanta"
+  }
 }, {
   "neid" : 1000000307,
-  "name" : "argosy university-chicago",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4887398,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "chicago"
+  }
 }, {
   "neid" : 1000000308,
-  "name" : "argosy university-dallas",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4690198,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "dallas"
+  }
 }, {
   "neid" : 1000000309,
-  "name" : "argosy university-denver",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5419384,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "denver"
+  }
 }, {
   "neid" : 1000000310,
-  "name" : "argosy university-hawaii",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5856195,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "hawaii"
+  }
 }, {
   "neid" : 1000000311,
-  "name" : "argosy university-inland empire",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5379439,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "inland empire"
+  }
 }, {
   "neid" : 1000000312,
-  "name" : "argosy university-los angeles",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5368361,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "los angeles"
+  }
 }, {
   "neid" : 1000000313,
-  "name" : "argosy university-nashville",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4644585,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "nashville"
+  }
 }, {
   "neid" : 1000000314,
-  "name" : "argosy university-orange county",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5379513,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "orange county"
+  }
 }, {
   "neid" : 1000000315,
-  "name" : "argosy university-phoenix",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5308655,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "phoenix"
+  }
 }, {
   "neid" : 1000000316,
-  "name" : "argosy university-phoenix online division",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5308655,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "phoenix online division"
+  }
 }, {
   "neid" : 1000000317,
-  "name" : "argosy university-salt lake city",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5774001,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "salt lake city"
+  }
 }, {
   "neid" : 1000000318,
-  "name" : "argosy university-san diego",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5391811,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "san diego"
+  }
 }, {
   "neid" : 1000000319,
-  "name" : "argosy university-san francisco bay area",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5322737,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "san francisco bay area"
+  }
 }, {
   "neid" : 1000000320,
-  "name" : "argosy university-sarasota",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4172131,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "sarasota"
+  }
 }, {
   "neid" : 1000000321,
-  "name" : "argosy university-schaumburg",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4910713,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "schaumburg"
+  }
 }, {
   "neid" : 1000000322,
-  "name" : "argosy university-seattle",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5809844,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "seattle"
+  }
 }, {
   "neid" : 1000000323,
-  "name" : "argosy university-tampa",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4174757,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "tampa"
+  }
 }, {
   "neid" : 1000000324,
-  "name" : "argosy university-the art institute of california-hollywood",
+  "name" : "argosy university",
   "aliases" : [ "AI - HOLLYWOOD" ],
   "gnid" : 5377654,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - hollywood"
+  }
 }, {
   "neid" : 1000000325,
-  "name" : "argosy university-the art institute of california-inland empire",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5391710,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - inland empire"
+  }
 }, {
   "neid" : 1000000326,
-  "name" : "argosy university-the art institute of california-los angeles",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5393212,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - los angeles"
+  }
 }, {
   "neid" : 1000000327,
-  "name" : "argosy university-the art institute of california-orange county",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5392900,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - orange county"
+  }
 }, {
   "neid" : 1000000328,
-  "name" : "argosy university-the art institute of california-sacramento",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5389489,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - sacramento"
+  }
 }, {
   "neid" : 1000000329,
-  "name" : "argosy university-the art institute of california-san diego",
+  "name" : "argosy university",
   "aliases" : [ "ART INSTITUTE OF CALIFORNIA-SAN DIEGO" ],
   "gnid" : 5391811,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - san diego"
+  }
 }, {
   "neid" : 1000000330,
-  "name" : "argosy university-the art institute of california-san francisco",
+  "name" : "argosy university",
   "aliases" : [ "AICA-SF, THE ART INSTITUTE OF CALIFORNIA - SF, ART INSTITUTE OF CALIFORNIA - SAN FRANCISCO" ],
   "gnid" : 5391959,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - san francisco"
+  }
 }, {
   "neid" : 1000000331,
-  "name" : "argosy university-the art institute of california-silicon valley",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5400075,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of california - silicon valley"
+  }
 }, {
   "neid" : 1000000332,
-  "name" : "argosy university-twin cities",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 5024825,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "twin cities"
+  }
 }, {
   "neid" : 1000000333,
-  "name" : "argosy university-washington dc",
+  "name" : "argosy university",
   "aliases" : [ ],
   "gnid" : 4744709,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "washington dc"
+  }
 }, {
   "neid" : 1000000334,
   "name" : "aria health school of nursing",
@@ -2704,10 +2774,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000000428,
-  "name" : "auburn university at montgomery",
+  "name" : "auburn university",
   "aliases" : [ "AUM|AUBURN UNIVERSITY MONTGOMERY|AUBURN UNIVERSITY AT MONTGOMERY|AUBURN MONTGOMERY" ],
   "gnid" : 4076784,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "montgomery"
+  }
 }, {
   "neid" : 1000000429,
   "name" : "augsburg college",
@@ -3098,10 +3170,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000000489,
-  "name" : "averett university-non-traditional programs",
+  "name" : "averett university",
   "aliases" : [ "AU GPS AND IDEAL" ],
   "gnid" : 4755280,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "non - traditional programs"
+  }
 }, {
   "neid" : 1000000490,
   "name" : "avi career training",
@@ -3846,16 +3920,20 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000000606,
-  "name" : "bellarmine university - bullitt county",
+  "name" : "bellarmine university",
   "aliases" : [ ],
   "gnid" : 4308163,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "bullitt county"
+  }
 }, {
   "neid" : 1000000607,
-  "name" : "bellarmine university - oldham county",
+  "name" : "bellarmine university",
   "aliases" : [ ],
   "gnid" : 4289042,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "oldham county"
+  }
 }, {
   "neid" : 1000000608,
   "name" : "belle academy of cosmetology",
@@ -5248,28 +5326,36 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000000830,
-  "name" : "broadview university-boise",
+  "name" : "broadview university",
   "aliases" : [ ],
   "gnid" : 5600685,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "boise"
+  }
 }, {
   "neid" : 1000000831,
-  "name" : "broadview university-layton",
+  "name" : "broadview university",
   "aliases" : [ ],
   "gnid" : 5777107,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "layton"
+  }
 }, {
   "neid" : 1000000832,
-  "name" : "broadview university-orem",
+  "name" : "broadview university",
   "aliases" : [ ],
   "gnid" : 5779334,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "orem"
+  }
 }, {
   "neid" : 1000000833,
-  "name" : "broadview university-west jordan",
+  "name" : "broadview university",
   "aliases" : [ ],
   "gnid" : 5784549,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "west jordan"
+  }
 }, {
   "neid" : 1000000834,
   "name" : "broken arrow beauty college",
@@ -6026,10 +6112,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000000942,
-  "name" : "cairn university-langhorne",
+  "name" : "cairn university",
   "aliases" : [ "CAIRN" ],
   "gnid" : 5197140,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "langhorne"
+  }
 }, {
   "neid" : 1000000943,
   "name" : "calc institute of technology",
@@ -6892,28 +6980,36 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000001074,
-  "name" : "caribbean university-bayamon",
+  "name" : "caribbean university",
   "aliases" : [ ],
   "gnid" : 4562831,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "bayamon"
+  }
 }, {
   "neid" : 1000001075,
-  "name" : "caribbean university-carolina",
+  "name" : "caribbean university",
   "aliases" : [ ],
   "gnid" : 4563243,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "carolina"
+  }
 }, {
   "neid" : 1000001076,
-  "name" : "caribbean university-ponce",
+  "name" : "caribbean university",
   "aliases" : [ ],
   "gnid" : 4566880,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "ponce"
+  }
 }, {
   "neid" : 1000001077,
-  "name" : "caribbean university-vega baja",
+  "name" : "caribbean university",
   "aliases" : [ ],
   "gnid" : 4568533,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "vega baja"
+  }
 }, {
   "neid" : 1000001078,
   "name" : "carl albert state college",
@@ -8854,10 +8950,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000001384,
-  "name" : "cleveland university-kansas city",
+  "name" : "cleveland university",
   "aliases" : [ ],
   "gnid" : 4276873,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "kansas city"
+  }
 }, {
   "neid" : 1000001385,
   "name" : "clinton college",
@@ -10248,52 +10346,68 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000001604,
-  "name" : "concordia university-ann arbor",
+  "name" : "concordia university",
   "aliases" : [ "CUAA |CONCORDIA UNIVERSITY |CONCORDIA UNIVERSITY, ANN ARBOR |CONCORDIA UNIVERSITY - MICHIGAN |CONCORDIA (MICHIGAN) |C.U.A.A" ],
   "gnid" : 4984247,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "ann arbor"
+  }
 }, {
   "neid" : 1000001605,
-  "name" : "concordia university-chicago",
+  "name" : "concordia university",
   "aliases" : [ "CONCORDIA UNIVERSITY CHICAGO" ],
   "gnid" : 4907637,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "chicago"
+  }
 }, {
   "neid" : 1000001606,
-  "name" : "concordia university-irvine",
+  "name" : "concordia university",
   "aliases" : [ "CONCORDIA UNIVERSITY IRVINE" ],
   "gnid" : 5359777,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "irvine"
+  }
 }, {
   "neid" : 1000001607,
-  "name" : "concordia university-nebraska",
+  "name" : "concordia university",
   "aliases" : [ "CONCORDIA TEACHERS COLLEGE |CONCORDIA COLLEGE |CONCORDIA UNIVERSITY, SEWARD" ],
   "gnid" : 5078792,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "nebraska"
+  }
 }, {
   "neid" : 1000001608,
-  "name" : "concordia university-portland",
+  "name" : "concordia university",
   "aliases" : [ ],
   "gnid" : 5746545,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "portland"
+  }
 }, {
   "neid" : 1000001609,
-  "name" : "concordia university-saint paul",
+  "name" : "concordia university",
   "aliases" : [ "CONCORDIA UNIVERSITY, ST PAUL |CONCORDIA UNIVERSITY, ST. PAUL |CONCORDIA ST PAUL |CONCORDIA-ST PAUL |CONCORDIA ST. PAUL |CONCORDIA-ST. PAUL" ],
   "gnid" : 5045360,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "saint paul"
+  }
 }, {
   "neid" : 1000001610,
-  "name" : "concordia university-texas",
+  "name" : "concordia university",
   "aliases" : [ ],
   "gnid" : 4671654,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "texas"
+  }
 }, {
   "neid" : 1000001611,
-  "name" : "concordia university-wisconsin",
+  "name" : "concordia university",
   "aliases" : [ "CUW" ],
   "gnid" : 5262649,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "wisconsin"
+  }
 }, {
   "neid" : 1000001612,
   "name" : "conlee's college of cosmetology",
@@ -11752,166 +11866,220 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000001847,
-  "name" : "devry university-administrative office",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-ADMINISTRATIVE OFFICE" ],
   "gnid" : 4890119,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "administrative office"
+  }
 }, {
   "neid" : 1000001848,
-  "name" : "devry university-arizona",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-PHOENIX |DEVRY UNIVERSITY-GLENDALE |DEVRY UNIVERSITY-MESA" ],
   "gnid" : 5308655,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "arizona"
+  }
 }, {
   "neid" : 1000001849,
-  "name" : "devry university-california",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-ALHAMBRA |DEVRY UNIVERSITY-ANAHEIM |DEVRY UNIVERSITY-BAKERSFIELD |DEVRY UNIVERSITY-COLTON |DEVRY UNIVERSITY-FOLSOM |DEVRY UNIVERSITY-FREMONT |DEVRY UNIVERSITY-FRESNO |DEVRY UNIVERSITY-LONG BEACH |DEVRY UNIVERSITY-OAKLAND CITY |DEVRY UNIVERSITY-OXNARD |DEVRY UNIVERSITY-POMONA |DEVRY UNIVERSITY-PALMDALE |DEVRY UNIVERSITY-SACRAMENTO |DEVRY UNIVERSITY-SAN DIEGO |DEVRY UNIVERSITY-SAN JOSE |DEVRY UNIVERSITY-SHERMAN OAKS" ],
   "gnid" : 5384170,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "california"
+  }
 }, {
   "neid" : 1000001850,
-  "name" : "devry university-colorado",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-COLORADO SPRINGS |DEVRY UNIVERSITY-DENVER SOUTH |DEVRY UNIVERSITY-WESTMINSTER" ],
   "gnid" : 5443910,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "colorado"
+  }
 }, {
   "neid" : 1000001851,
-  "name" : "devry university-florida",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-FT. LAUDERDALE |DEVRY UNIVERSITY-JACKSONVILLE |DEVRY UNIVERSITY-MIRAMAR |DEVRY UNIVERSITY-ORLANDO |DEVRY UNIVERSITY-TAMPA BAY |DEVRY UNIVERSITY-TAMPA EAST" ],
   "gnid" : 4164601,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "florida"
+  }
 }, {
   "neid" : 1000001852,
-  "name" : "devry university-georgia",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-ALPHARETTA |DEVRY UNIVERSITY-ATLANTA COBB/GALLERIA |DEVRY UNIVERSITY-DECATUR |DEVRY UNIVERSITY-GWINNETT |DEVRY UNIVERSITY-HENRY COUNTY" ],
   "gnid" : 4191124,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "georgia"
+  }
 }, {
   "neid" : 1000001853,
-  "name" : "devry university-illinois",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-ADDISON |DEVRY UNIVERSITY-CHICAGO |DEVRY UNIVERSITY-CHICAGO LOOP |DEVRY UNIVERSITY-CHICAGO O'HARE |DEVRY UNIVERSITY-DOWNERS GROVE |DEVRY UNIVERSITY-ELGIN |DEVRY UNIVERSITY-GURNEE |DEVRY UNIVERSITY-NAPERVILLE |DEVRY UNIVERSITY-TINLEY PARK" ],
   "gnid" : 4887398,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "illinois"
+  }
 }, {
   "neid" : 1000001854,
-  "name" : "devry university-michigan",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-SOUTHFIELD" ],
   "gnid" : 5010636,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "michigan"
+  }
 }, {
   "neid" : 1000001855,
-  "name" : "devry university-minnesota",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-EDINA" ],
   "gnid" : 5025264,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "minnesota"
+  }
 }, {
   "neid" : 1000001856,
-  "name" : "devry university-missouri",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-KANSAS CITY |DEVRY UNIVERSITY-KANSAS CITY DOWNTOWN |DEVRY UNIVERSITY-ST. LOUIS" ],
   "gnid" : 4393217,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "missouri"
+  }
 }, {
   "neid" : 1000001857,
-  "name" : "devry university-nevada",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-HENDERSON" ],
   "gnid" : 5505411,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "nevada"
+  }
 }, {
   "neid" : 1000001858,
-  "name" : "devry university-new jersey",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-NORTH BRUNSWICK |DEVRY UNIVERSITY-CHERRY HILL |DEVRY UNIVERSITY-PARAMUS" ],
   "gnid" : 6946944,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "new jersey"
+  }
 }, {
   "neid" : 1000001859,
-  "name" : "devry university-north carolina",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-CHARLOTTE |DEVRY UNIVERSITY-RALEIGH-DURHAM" ],
   "gnid" : 4460243,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "north carolina"
+  }
 }, {
   "neid" : 1000001860,
-  "name" : "devry university-ohio",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-CLEVELAND |DEVRY UNIVERSITY-CINCINNATI |DEVRY UNIVERSITY-COLUMBUS |DEVRY UNIVERSITY-DAYTON" ],
   "gnid" : 4509177,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "ohio"
+  }
 }, {
   "neid" : 1000001861,
-  "name" : "devry university-oklahoma",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-OKLAHOMA CITY" ],
   "gnid" : 4544349,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "oklahoma"
+  }
 }, {
   "neid" : 1000001862,
-  "name" : "devry university-oregon",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-PORTLAND" ],
   "gnid" : 5746545,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "oregon"
+  }
 }, {
   "neid" : 1000001863,
-  "name" : "devry university-pennsylvania",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-FORT WASHINGTON |DEVRY UNIVERSITY-PHILADELPHIA |DEVRY UNIVERSITY-PITTSBURGH" ],
   "gnid" : 5190089,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "pennsylvania"
+  }
 }, {
   "neid" : 1000001864,
-  "name" : "devry university-texas",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-AUSTIN |DEVRY UNIVERSITY-FT. WORTH |DEVRY UNIVERSITY-HOUSTON |DEVRY UNIVERSITY-HOUSTON GALLERIA |DEVRY UNIVERSITY-IRVING |DEVRY UNIVERSITY-MESQUITE |DEVRY UNIVERSITY-SAN ANTONIO" ],
   "gnid" : 4689505,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "texas"
+  }
 }, {
   "neid" : 1000001865,
-  "name" : "devry university-virginia",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-ARLINGTON |DEVRY UNIVERSITY-MANASSAS |DEVRY UNIVERSITY-SOUTH HAMPTON ROADS" ],
   "gnid" : 4744709,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "virginia"
+  }
 }, {
   "neid" : 1000001866,
-  "name" : "devry university-washington",
+  "name" : "devry university",
   "aliases" : [ "DEVRY UNIVERSITY-FEDERAL WAY |DEVRY UNIVERSITY-LYNNWOOD" ],
   "gnid" : 5794245,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "washington"
+  }
 }, {
   "neid" : 1000001867,
-  "name" : "dewey university-arroyo",
+  "name" : "dewey university",
   "aliases" : [ ],
   "gnid" : 4562681,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "arroyo"
+  }
 }, {
   "neid" : 1000001868,
-  "name" : "dewey university-bayamon",
+  "name" : "dewey university",
   "aliases" : [ ],
   "gnid" : 4562831,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "bayamon"
+  }
 }, {
   "neid" : 1000001869,
-  "name" : "dewey university-carolina",
+  "name" : "dewey university",
   "aliases" : [ ],
   "gnid" : 4563243,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "carolina"
+  }
 }, {
   "neid" : 1000001870,
-  "name" : "dewey university-fajardo",
+  "name" : "dewey university",
   "aliases" : [ ],
   "gnid" : 4564946,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "fajardo"
+  }
 }, {
   "neid" : 1000001871,
-  "name" : "dewey university-hatillo",
+  "name" : "dewey university",
   "aliases" : [ ],
   "gnid" : 4565346,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "hatillo"
+  }
 }, {
   "neid" : 1000001872,
-  "name" : "dewey university-juana díaz",
+  "name" : "dewey university",
   "aliases" : [ ],
   "gnid" : 4565712,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "juana díaz"
+  }
 }, {
   "neid" : 1000001873,
-  "name" : "dewey university-manati",
+  "name" : "dewey university",
   "aliases" : [ ],
   "gnid" : 4566137,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "manati"
+  }
 }, {
   "neid" : 1000001874,
   "name" : "diablo valley college",
@@ -12056,16 +12224,20 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000001897,
-  "name" : "doane university-arts & sciences",
+  "name" : "doane university",
   "aliases" : [ ],
   "gnid" : 5066435,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "arts & sciences"
+  }
 }, {
   "neid" : 1000001898,
-  "name" : "doane university-graduate and professional studies",
+  "name" : "doane university",
   "aliases" : [ ],
   "gnid" : 5072006,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "graduate and professional studies"
+  }
 }, {
   "neid" : 1000001899,
   "name" : "dodge city community college",
@@ -12122,10 +12294,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000001908,
-  "name" : "dongguk university-los angeles",
+  "name" : "dongguk university",
   "aliases" : [ ],
   "gnid" : 5368361,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "los angeles"
+  }
 }, {
   "neid" : 1000001909,
   "name" : "donna's academy of hair design",
@@ -12776,16 +12950,20 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002010,
-  "name" : "ecpi university - college of nursing - orlando",
+  "name" : "ecpi university",
   "aliases" : [ ],
   "gnid" : 4161373,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "college of nursing - orlando"
+  }
 }, {
   "neid" : 1000002011,
-  "name" : "ecpi university - roanoke",
+  "name" : "ecpi university",
   "aliases" : [ ],
   "gnid" : 4782167,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "roanoke"
+  }
 }, {
   "neid" : 1000002012,
   "name" : "ecumenical theological seminary",
@@ -13186,10 +13364,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002075,
-  "name" : "emory university-oxford college",
+  "name" : "emory university",
   "aliases" : [ ],
   "gnid" : 4214538,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "oxford college"
+  }
 }, {
   "neid" : 1000002076,
   "name" : "emperor's college of traditional oriental medicine",
@@ -14388,64 +14568,84 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002243,
-  "name" : "everest university-brandon",
+  "name" : "everest university",
   "aliases" : [ ],
   "gnid" : 4174757,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "brandon"
+  }
 }, {
   "neid" : 1000002244,
-  "name" : "everest university-jacksonville",
+  "name" : "everest university",
   "aliases" : [ ],
   "gnid" : 4160021,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "jacksonville"
+  }
 }, {
   "neid" : 1000002245,
-  "name" : "everest university-lakeland",
+  "name" : "everest university",
   "aliases" : [ ],
   "gnid" : 4161438,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "lakeland"
+  }
 }, {
   "neid" : 1000002246,
-  "name" : "everest university-largo",
+  "name" : "everest university",
   "aliases" : [ "FLORIDA METROPOLITAN UNIVERSITY-PINELLAS |EVEREST UNIVERSITY-PINELLAS (CLEARWATER)" ],
   "gnid" : 4161580,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "largo"
+  }
 }, {
   "neid" : 1000002247,
-  "name" : "everest university-melbourne",
+  "name" : "everest university",
   "aliases" : [ ],
   "gnid" : 4163971,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "melbourne"
+  }
 }, {
   "neid" : 1000002248,
-  "name" : "everest university-north orlando",
+  "name" : "everest university",
   "aliases" : [ ],
   "gnid" : 4167147,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "north orlando"
+  }
 }, {
   "neid" : 1000002249,
-  "name" : "everest university-orange park",
+  "name" : "everest university",
   "aliases" : [ "FLORIDA METROPOLITAN UNIVERSITY-ORANGE PARK" ],
   "gnid" : 4167102,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "orange park"
+  }
 }, {
   "neid" : 1000002250,
-  "name" : "everest university-pompano beach",
+  "name" : "everest university",
   "aliases" : [ ],
   "gnid" : 4169014,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "pompano beach"
+  }
 }, {
   "neid" : 1000002251,
-  "name" : "everest university-south orlando",
+  "name" : "everest university",
   "aliases" : [ "FLORIDA METROPOLITAN UNIVERSITY-SOUTH ORLANDO" ],
   "gnid" : 4167147,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "south orlando"
+  }
 }, {
   "neid" : 1000002252,
-  "name" : "everest university-tampa",
+  "name" : "everest university",
   "aliases" : [ ],
   "gnid" : 4174757,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "tampa"
+  }
 }, {
   "neid" : 1000002253,
   "name" : "everett community college",
@@ -14460,10 +14660,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002255,
-  "name" : "everglades university - tampa",
+  "name" : "everglades university",
   "aliases" : [ ],
   "gnid" : 4174757,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "tampa"
+  }
 }, {
   "neid" : 1000002256,
   "name" : "evergreen beauty and barber college",
@@ -16344,40 +16546,52 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002555,
-  "name" : "globe university-eau claire",
+  "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5251436,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "eau claire"
+  }
 }, {
   "neid" : 1000002556,
-  "name" : "globe university-la crosse",
+  "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5265702,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "la crosse"
+  }
 }, {
   "neid" : 1000002557,
-  "name" : "globe university-madison east",
+  "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5261457,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "madison east"
+  }
 }, {
   "neid" : 1000002558,
-  "name" : "globe university-minneapolis",
+  "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5037649,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "minneapolis"
+  }
 }, {
   "neid" : 1000002559,
-  "name" : "globe university-sioux falls",
+  "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5231851,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "sioux falls"
+  }
 }, {
   "neid" : 1000002560,
-  "name" : "globe university-woodbury",
+  "name" : "globe university",
   "aliases" : [ ],
   "gnid" : 5053358,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "woodbury"
+  }
 }, {
   "neid" : 1000002561,
   "name" : "globe university–green bay",
@@ -16622,10 +16836,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002599,
-  "name" : "graceland university-lamoni",
+  "name" : "graceland university",
   "aliases" : [ ],
   "gnid" : 4864105,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "lamoni"
+  }
 }, {
   "neid" : 1000002600,
   "name" : "graduate school usa",
@@ -17680,64 +17896,84 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002770,
-  "name" : "herzing university-akron",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5145476,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "akron"
+  }
 }, {
   "neid" : 1000002771,
-  "name" : "herzing university-atlanta",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4180439,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "atlanta"
+  }
 }, {
   "neid" : 1000002772,
-  "name" : "herzing university-birmingham",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4049979,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "birmingham"
+  }
 }, {
   "neid" : 1000002773,
-  "name" : "herzing university-brookfield",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5246835,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "brookfield"
+  }
 }, {
   "neid" : 1000002774,
-  "name" : "herzing university-kenner",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4329753,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "kenner"
+  }
 }, {
   "neid" : 1000002775,
-  "name" : "herzing university-kenosha",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5258393,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "kenosha"
+  }
 }, {
   "neid" : 1000002776,
-  "name" : "herzing university-madison",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5261457,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "madison"
+  }
 }, {
   "neid" : 1000002777,
-  "name" : "herzing university-minneapolis",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5037649,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "minneapolis"
+  }
 }, {
   "neid" : 1000002778,
-  "name" : "herzing university-toledo",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 5174035,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "toledo"
+  }
 }, {
   "neid" : 1000002779,
-  "name" : "herzing university-winter park",
+  "name" : "herzing university",
   "aliases" : [ ],
   "gnid" : 4178560,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "winter park"
+  }
 }, {
   "neid" : 1000002780,
   "name" : "hesston college",
@@ -18268,10 +18504,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000002864,
-  "name" : "humphreys university-stockton and modesto campuses",
+  "name" : "humphreys university",
   "aliases" : [ ],
   "gnid" : 5399020,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "stockton and modesto campuses"
+  }
 }, {
   "neid" : 1000002865,
   "name" : "hunter business school",
@@ -18630,52 +18868,68 @@
   }
 }, {
   "neid" : 1000002921,
-  "name" : "indiana university-bloomington",
+  "name" : "indiana university",
   "aliases" : [ "IU|IUB|IU BLOOMINGTON|" ],
   "gnid" : 4254679,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "bloomington"
+  }
 }, {
   "neid" : 1000002922,
-  "name" : "indiana university-east",
+  "name" : "indiana university",
   "aliases" : [ "IUE | IU EAST" ],
   "gnid" : 4263681,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "east"
+  }
 }, {
   "neid" : 1000002923,
-  "name" : "indiana university-kokomo",
+  "name" : "indiana university",
   "aliases" : [ "IU KOKOMO | IUK | IU KO" ],
   "gnid" : 4922388,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "kokomo"
+  }
 }, {
   "neid" : 1000002924,
-  "name" : "indiana university-northwest",
+  "name" : "indiana university",
   "aliases" : [ "IUN | IU NORTHWEST" ],
   "gnid" : 4920607,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "northwest"
+  }
 }, {
   "neid" : 1000002925,
-  "name" : "indiana university-purdue university-fort wayne",
+  "name" : "indiana university",
   "aliases" : [ "IPFW|IUPUFW|PURDUE UNIVERSITY-FORT WAYNE|PURDUE-FORT WAYNE|PURDUE FORT WAYNE" ],
   "gnid" : 4920423,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "purdue university - fort wayne"
+  }
 }, {
   "neid" : 1000002926,
-  "name" : "indiana university-purdue university-indianapolis",
+  "name" : "indiana university",
   "aliases" : [ "IUPUI" ],
   "gnid" : 4259418,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "purdue university - indianapolis"
+  }
 }, {
   "neid" : 1000002927,
-  "name" : "indiana university-south bend",
+  "name" : "indiana university",
   "aliases" : [ "IUSB | IU SB | IU SOUTH BEND" ],
   "gnid" : 4926563,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "south bend"
+  }
 }, {
   "neid" : 1000002928,
-  "name" : "indiana university-southeast",
+  "name" : "indiana university",
   "aliases" : [ "IUSE | IU SE | IU SOUTHEAST" ],
   "gnid" : 4262045,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "southeast"
+  }
 }, {
   "neid" : 1000002929,
   "name" : "indiana wesleyan university",
@@ -21278,70 +21532,92 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000003298,
-  "name" : "kaplan university-augusta campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4957003,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "augusta campus"
+  }
 }, {
   "neid" : 1000003299,
-  "name" : "kaplan university-cedar falls campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4850699,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "cedar falls campus"
+  }
 }, {
   "neid" : 1000003300,
-  "name" : "kaplan university-cedar rapids campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4850751,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "cedar rapids campus"
+  }
 }, {
   "neid" : 1000003301,
-  "name" : "kaplan university-davenport campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4853423,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "davenport campus"
+  }
 }, {
   "neid" : 1000003302,
-  "name" : "kaplan university-des moines campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4879890,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "des moines campus"
+  }
 }, {
   "neid" : 1000003303,
-  "name" : "kaplan university-hagerstown campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4357141,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "hagerstown campus"
+  }
 }, {
   "neid" : 1000003304,
-  "name" : "kaplan university-indianapolis",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4259418,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "indianapolis"
+  }
 }, {
   "neid" : 1000003305,
-  "name" : "kaplan university-lincoln campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 5072006,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "lincoln campus"
+  }
 }, {
   "neid" : 1000003306,
-  "name" : "kaplan university-mason city campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 4866445,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "mason city campus"
+  }
 }, {
   "neid" : 1000003307,
-  "name" : "kaplan university-milwaukee",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 5263045,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "milwaukee"
+  }
 }, {
   "neid" : 1000003308,
-  "name" : "kaplan university-omaha campus",
+  "name" : "kaplan university",
   "aliases" : [ ],
   "gnid" : 5074472,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "omaha campus"
+  }
 }, {
   "neid" : 1000003309,
   "name" : "kaskaskia college",
@@ -21404,10 +21680,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000003319,
-  "name" : "keiser university-ft lauderdale",
+  "name" : "keiser university",
   "aliases" : [ ],
   "gnid" : 4155966,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "ft lauderdale"
+  }
 }, {
   "neid" : 1000003320,
   "name" : "kellogg community college",
@@ -24824,10 +25102,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000003853,
-  "name" : "mercyhurst university-north east campus",
+  "name" : "mercyhurst university",
   "aliases" : [ ],
   "gnid" : 5203634,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "north east campus"
+  }
 }, {
   "neid" : 1000003854,
   "name" : "meredith college",
@@ -25120,22 +25400,28 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000003899,
-  "name" : "miami university-hamilton",
+  "name" : "miami university",
   "aliases" : [ ],
   "gnid" : 4513575,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "hamilton"
+  }
 }, {
   "neid" : 1000003900,
-  "name" : "miami university-middletown",
+  "name" : "miami university",
   "aliases" : [ ],
   "gnid" : 4518264,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "middletown"
+  }
 }, {
   "neid" : 1000003901,
-  "name" : "miami university-oxford",
+  "name" : "miami university",
   "aliases" : [ "MIAMI OF OHIO" ],
   "gnid" : 4520760,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "oxford"
+  }
 }, {
   "neid" : 1000003902,
   "name" : "miami valley career technology center",
@@ -25492,16 +25778,20 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000003957,
-  "name" : "midwestern university-downers grove",
+  "name" : "midwestern university",
   "aliases" : [ ],
   "gnid" : 4890119,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "downers grove"
+  }
 }, {
   "neid" : 1000003958,
-  "name" : "midwestern university-glendale",
+  "name" : "midwestern university",
   "aliases" : [ ],
   "gnid" : 5295985,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "glendale"
+  }
 }, {
   "neid" : 1000003959,
   "name" : "midwives college of utah",
@@ -29004,10 +29294,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000004509,
-  "name" : "northwest university-college of adult and professional studies",
+  "name" : "northwest university",
   "aliases" : [ ],
   "gnid" : 5799841,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "college of adult and professional studies"
+  }
 }, {
   "neid" : 1000004510,
   "name" : "northwest vista college",
@@ -29094,10 +29386,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000004524,
-  "name" : "northwood university-texas",
+  "name" : "northwood university",
   "aliases" : [ ],
   "gnid" : 4679803,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "texas"
+  }
 }, {
   "neid" : 1000004525,
   "name" : "norwalk community college",
@@ -29584,40 +29878,52 @@
   }
 }, {
   "neid" : 1000004598,
-  "name" : "ohio university-chillicothe campus",
+  "name" : "ohio university",
   "aliases" : [ ],
   "gnid" : 4828890,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "chillicothe campus"
+  }
 }, {
   "neid" : 1000004599,
-  "name" : "ohio university-eastern campus",
+  "name" : "ohio university",
   "aliases" : [ ],
   "gnid" : 5169130,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "eastern campus"
+  }
 }, {
   "neid" : 1000004600,
-  "name" : "ohio university-lancaster campus",
+  "name" : "ohio university",
   "aliases" : [ ],
   "gnid" : 4516233,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "lancaster campus"
+  }
 }, {
   "neid" : 1000004601,
-  "name" : "ohio university-main campus",
+  "name" : "ohio university",
   "aliases" : [ ],
   "gnid" : 4505542,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "main campus"
+  }
 }, {
   "neid" : 1000004602,
-  "name" : "ohio university-southern campus",
+  "name" : "ohio university",
   "aliases" : [ ],
   "gnid" : 4515247,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "southern campus"
+  }
 }, {
   "neid" : 1000004603,
-  "name" : "ohio university-zanesville campus",
+  "name" : "ohio university",
   "aliases" : [ ],
   "gnid" : 4528923,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "zanesville campus"
+  }
 }, {
   "neid" : 1000004604,
   "name" : "ohio valley college of technology",
@@ -30000,40 +30306,52 @@
   }
 }, {
   "neid" : 1000004663,
-  "name" : "ottawa university-jeffersonville",
+  "name" : "ottawa university",
   "aliases" : [ "OU - INDIANA |OU - JEFFERSONVILLE" ],
   "gnid" : 4259671,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "jeffersonville"
+  }
 }, {
   "neid" : 1000004664,
-  "name" : "ottawa university-kansas city",
+  "name" : "ottawa university",
   "aliases" : [ "OUKC, OTTAWA UNIVERSITY - OVERLAND PARK |OTTAWA - GREATER KANSAS CITY" ],
   "gnid" : 4276873,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "kansas city"
+  }
 }, {
   "neid" : 1000004665,
-  "name" : "ottawa university-milwaukee",
+  "name" : "ottawa university",
   "aliases" : [ "OU - MILWAUKEE |OU - WISCONSIN" ],
   "gnid" : 5246835,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "milwaukee"
+  }
 }, {
   "neid" : 1000004666,
-  "name" : "ottawa university-online",
+  "name" : "ottawa university",
   "aliases" : [ "OU ONLINE |ONLINE" ],
   "gnid" : 4276816,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "online"
+  }
 }, {
   "neid" : 1000004667,
-  "name" : "ottawa university-ottawa",
+  "name" : "ottawa university",
   "aliases" : [ "OU, THE COLLEGE" ],
   "gnid" : 4276816,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "ottawa"
+  }
 }, {
   "neid" : 1000004668,
-  "name" : "ottawa university-phoenix",
+  "name" : "ottawa university",
   "aliases" : [ "OU - PHOENIX |OU - ARIZONA |OUAZ" ],
   "gnid" : 5308655,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "phoenix"
+  }
 }, {
   "neid" : 1000004669,
   "name" : "otterbein university",
@@ -30122,10 +30440,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000004683,
-  "name" : "pace university-new york",
+  "name" : "pace university",
   "aliases" : [ ],
   "gnid" : 5128581,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "new york"
+  }
 }, {
   "neid" : 1000004684,
   "name" : "pacific bible college",
@@ -32758,22 +33078,28 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000005069,
-  "name" : "purdue university-calumet campus",
+  "name" : "purdue university",
   "aliases" : [ "PURDUE-CALUMET|PURDUE CALUMET|PURDUECAL|PUC" ],
   "gnid" : 4921100,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "calumet campus"
+  }
 }, {
   "neid" : 1000005070,
-  "name" : "purdue university-main campus",
+  "name" : "purdue university",
   "aliases" : [ "PURDUE-WEST LAFAYETTE|PURDUE|PU|PURDUE-WL" ],
   "gnid" : 4928096,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "main campus"
+  }
 }, {
   "neid" : 1000005071,
-  "name" : "purdue university-north central campus",
+  "name" : "purdue university",
   "aliases" : [ "PURDUE-NORTH CENTRAL|PURDUE-NC|PURDUE NORTH CENTRAL|PNC" ],
   "gnid" : 4928145,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "north central campus"
+  }
 }, {
   "neid" : 1000005072,
   "name" : "pure aesthetics",
@@ -35012,22 +35338,28 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000005397,
-  "name" : "rutgers university-camden",
+  "name" : "rutgers university",
   "aliases" : [ "RUTGERS, THE STATE UNIVERSITY OF NEW JERSEY|RUTGERS UNIVERSITY-CAMDEN RUTGERS|RUTGERS,CAMDEN|RUTGERS-CAMDEN|RUTGERS, CAMDEN|RUTGERS, NEW JERSEY|RUTGERS U|" ],
   "gnid" : 4501018,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "camden"
+  }
 }, {
   "neid" : 1000005398,
-  "name" : "rutgers university-new brunswick",
+  "name" : "rutgers university",
   "aliases" : [ "RUTGERS, THE STATE UNIVERSITY OF NEW JERSEY|RUTGERS, THE STATE UNIVERSITY|RUTGERS UNIVERSITY|RUTGERS, NEW BRUNSWICK |RUTGERS UNIVERSITY-NEW BRUNSWICK|RUTGERS-NEW JERSEY|RUTGERS, THE STATE UNIVERSITY NEW BRUNSWICK/PISCATAWAY|RUTGERS, NEW BRUNSWICK|RUTGERS|RU|RUTGERS, NEW JERSEY" ],
   "gnid" : 5101717,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "new brunswick"
+  }
 }, {
   "neid" : 1000005399,
-  "name" : "rutgers university-newark",
+  "name" : "rutgers university",
   "aliases" : [ "RUTGERS UNIVERSITY-NEWARK; RUTGERS UNIVERSITY; NEWARK; RUTGERS; RU-NEWARK" ],
   "gnid" : 5101798,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "newark"
+  }
 }, {
   "neid" : 1000005400,
   "name" : "rwm fiber optics",
@@ -36566,10 +36898,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000005646,
-  "name" : "shorter university-college of adult & professional programs",
+  "name" : "shorter university",
   "aliases" : [ "SHORTER-CAPP" ],
   "gnid" : 4207783,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "college of adult & professional programs"
+  }
 }, {
   "neid" : 1000005647,
   "name" : "sidneys hair dressing college",
@@ -37066,76 +37400,100 @@
   }
 }, {
   "neid" : 1000005727,
-  "name" : "south university-accelerated graduate programs",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4180439,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "accelerated graduate programs"
+  }
 }, {
   "neid" : 1000005728,
-  "name" : "south university-austin",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4671654,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "austin"
+  }
 }, {
   "neid" : 1000005729,
-  "name" : "south university-cleveland",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 5150529,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "cleveland"
+  }
 }, {
   "neid" : 1000005730,
-  "name" : "south university-columbia",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4575352,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "columbia"
+  }
 }, {
   "neid" : 1000005731,
-  "name" : "south university-high point",
+  "name" : "south university",
   "aliases" : [ "SOUTH UNIVERSITY-HIGH POINT" ],
   "gnid" : 4471025,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "high point"
+  }
 }, {
   "neid" : 1000005732,
-  "name" : "south university-montgomery",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4076784,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "montgomery"
+  }
 }, {
   "neid" : 1000005733,
-  "name" : "south university-novi",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 5004062,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "novi"
+  }
 }, {
   "neid" : 1000005734,
-  "name" : "south university-savannah",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4221552,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "savannah"
+  }
 }, {
   "neid" : 1000005735,
-  "name" : "south university-tampa",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4174757,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "tampa"
+  }
 }, {
   "neid" : 1000005736,
-  "name" : "south university-the art institute of dallas",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4684888,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of dallas"
+  }
 }, {
   "neid" : 1000005737,
-  "name" : "south university-the art institute of fort worth",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4691930,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "the art institute of fort worth"
+  }
 }, {
   "neid" : 1000005738,
-  "name" : "south university-west palm beach",
+  "name" : "south university",
   "aliases" : [ ],
   "gnid" : 4170617,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "west palm beach"
+  }
 }, {
   "neid" : 1000005739,
   "name" : "south university–richmond",
@@ -37558,16 +37916,20 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000005805,
-  "name" : "southern university at new orleans",
+  "name" : "southern university",
   "aliases" : [ "SUNO" ],
   "gnid" : 4335045,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "new orleans"
+  }
 }, {
   "neid" : 1000005806,
-  "name" : "southern university at shreveport",
+  "name" : "southern university",
   "aliases" : [ ],
   "gnid" : 4341513,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "shreveport"
+  }
 }, {
   "neid" : 1000005807,
   "name" : "southern university law center",
@@ -37576,10 +37938,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000005808,
-  "name" : "southern university-board and system",
+  "name" : "southern university",
   "aliases" : [ ],
   "gnid" : 4315588,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "board and system"
+  }
 }, {
   "neid" : 1000005809,
   "name" : "southern utah university",
@@ -37730,10 +38094,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000005832,
-  "name" : "southwest university at el paso",
+  "name" : "southwest university",
   "aliases" : [ ],
   "gnid" : 5520993,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "el paso"
+  }
 }, {
   "neid" : 1000005833,
   "name" : "southwest university of visual arts",
@@ -38644,106 +39010,140 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000005976,
-  "name" : "strayer university-alabama",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4049979,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "alabama"
+  }
 }, {
   "neid" : 1000005977,
-  "name" : "strayer university-arkansas",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4119403,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "arkansas"
+  }
 }, {
   "neid" : 1000005978,
-  "name" : "strayer university-delaware",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4143861,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "delaware"
+  }
 }, {
   "neid" : 1000005979,
-  "name" : "strayer university-district of columbia",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4140963,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "district of columbia"
+  }
 }, {
   "neid" : 1000005980,
-  "name" : "strayer university-florida",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4174757,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "florida"
+  }
 }, {
   "neid" : 1000005981,
-  "name" : "strayer university-georgia",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4180439,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "georgia"
+  }
 }, {
   "neid" : 1000005982,
-  "name" : "strayer university-global region",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4140963,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "global region"
+  }
 }, {
   "neid" : 1000005983,
-  "name" : "strayer university-maryland",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4370616,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "maryland"
+  }
 }, {
   "neid" : 1000005984,
-  "name" : "strayer university-mississippi",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4431410,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "mississippi"
+  }
 }, {
   "neid" : 1000005985,
-  "name" : "strayer university-new jersey",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4501198,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "new jersey"
+  }
 }, {
   "neid" : 1000005986,
-  "name" : "strayer university-north carolina",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4480285,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "north carolina"
+  }
 }, {
   "neid" : 1000005987,
-  "name" : "strayer university-pennsylvania",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 5216000,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "pennsylvania"
+  }
 }, {
   "neid" : 1000005988,
-  "name" : "strayer university-south carolina",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4580543,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "south carolina"
+  }
 }, {
   "neid" : 1000005989,
-  "name" : "strayer university-tennessee",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4641239,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "tennessee"
+  }
 }, {
   "neid" : 1000005990,
-  "name" : "strayer university-texas",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4671654,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "texas"
+  }
 }, {
   "neid" : 1000005991,
-  "name" : "strayer university-virginia",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4744709,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "virginia"
+  }
 }, {
   "neid" : 1000005992,
-  "name" : "strayer university-west virginia",
+  "name" : "strayer university",
   "aliases" : [ ],
   "gnid" : 4821620,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "west virginia"
+  }
 }, {
   "neid" : 1000005993,
   "name" : "studio academy of beauty",
@@ -41788,16 +42188,20 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000006445,
-  "name" : "trine university-arizona regional campus",
+  "name" : "trine university",
   "aliases" : [ ],
   "gnid" : 5308480,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "arizona regional campus"
+  }
 }, {
   "neid" : 1000006446,
-  "name" : "trine university-regional/non-traditional campuses",
+  "name" : "trine university",
   "aliases" : [ ],
   "gnid" : 4920423,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "regional/non - traditional campuses"
+  }
 }, {
   "neid" : 1000006447,
   "name" : "trinidad state junior college",
@@ -47070,10 +47474,12 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000007237,
-  "name" : "whitworth university-adult degree programs",
+  "name" : "whitworth university",
   "aliases" : [ ],
   "gnid" : 5811696,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "adult degree programs"
+  }
 }, {
   "neid" : 1000007238,
   "name" : "wichita area technical college",
@@ -47100,16 +47506,20 @@
   "exAttrs" : { }
 }, {
   "neid" : 1000007242,
-  "name" : "widener university-commonwealth law school",
+  "name" : "widener university",
   "aliases" : [ ],
   "gnid" : 5192726,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "commonwealth law school"
+  }
 }, {
   "neid" : 1000007243,
-  "name" : "widener university-delaware law school",
+  "name" : "widener university",
   "aliases" : [ ],
   "gnid" : 4145381,
-  "exAttrs" : { }
+  "exAttrs" : {
+    "Ex" : "delaware law school"
+  }
 }, {
   "neid" : 1000007244,
   "name" : "wilberforce university",

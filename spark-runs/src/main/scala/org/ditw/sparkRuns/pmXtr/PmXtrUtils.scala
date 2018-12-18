@@ -71,7 +71,13 @@ object PmXtrUtils extends Serializable {
             .map(_.substring(NaEnId_Pfx.length).toLong)
           val ents = neids.flatMap(NaEnData.queryEnt)
           val entsByGNid = ents.filter(e => gnids.contains(e.gnid))
-          println(s"Univs: ${univs.mkString(",")} NEIds: ${entsByGNid.map(_.neid).mkString(",")}")
+          val entsTr = entsByGNid.map { e =>
+            val neid = e.neid
+            val gnEnt = brGNMmgr.value.svc.entById(e.gnid).get
+            s"$neid(${gnEnt.gnid}:${gnEnt.name})"
+          }
+
+          println(s"Univs: [${univs.mkString(",")}] NEIds: [${entsTr.mkString(",")}]")
         }
         Option((pmid, localId, (aff, rng2Ents.map(identity), univs)))
       }

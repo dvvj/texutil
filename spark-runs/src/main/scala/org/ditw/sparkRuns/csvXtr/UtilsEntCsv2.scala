@@ -134,7 +134,7 @@ object UtilsEntCsv2 extends Serializable {
     val firstDash = tokens.indices.find(idx => isLocIndicator(tokens(idx)))
     if (firstDash.nonEmpty) {
       val s = tokens.slice(0, firstDash.get)
-      if (s.length > 2) {
+      if (isValidUnivName(s)) {
         val p1 = s.mkString(" ")
         val p2 = tokens.slice(firstDash.get+1, tokens.length)
         p1 -> Option(p2.mkString(" "))
@@ -145,6 +145,18 @@ object UtilsEntCsv2 extends Serializable {
     else name.toLowerCase() -> None
   }
 
+  private val validUnivEnding = Set(
+    "university"
+  )
+
+  private def isValidUnivName(tokens:Array[String]):Boolean = {
+    if (tokens.length > 2) true
+    else if (tokens.length == 2) {
+      if (validUnivEnding.contains(tokens(1).toLowerCase())) true
+      else false
+    }
+    else false
+  }
 
   private val Pfx2Replace = Map(
     "ST " -> "SAINT ",
