@@ -10,7 +10,7 @@ object XtrCntryTests extends App {
   val gnmmgr = testGNMmgr(spark)
   val brGNMmgr = spark.broadcast(gnmmgr)
 
-  val allSegs = segmentInput(spark, "file:///media/sf_vmshare/pmjs/dbg/")
+  val allSegs = segmentInput(spark, "file:///media/sf_vmshare/pmjs/pmj9AuAff/")
     .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
   val singleSegs = allSegs.filter(_._3.length == 1)
 
@@ -18,14 +18,13 @@ object XtrCntryTests extends App {
 
   val brCcs = spark.broadcast(_ccs)
 
-  val xtrs = processSingleSegs(singleSegs, brGNMmgr, brCcs)
-    .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+  val (foundRes, emptyRes) = processSingleSegs(singleSegs, brGNMmgr, brCcs)
 
-  xtrs.foreach { singleRes =>
-    //val (pmid, localId, tp) = xtr
-    //val (aff, rng2Ents, univs) = tp
-    println(singleRes)
-  }
 
+  println("-------------- Found")
+  foundRes.foreach(println)
+
+  println("-------------- Empty")
+  foundRes.foreach(println)
   spark.stop()
 }

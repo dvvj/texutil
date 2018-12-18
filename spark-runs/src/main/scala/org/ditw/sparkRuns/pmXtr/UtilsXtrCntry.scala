@@ -65,11 +65,23 @@ object UtilsXtrCntry {
 
     val multiSegs = allSegs.filter(_._3.length != 1)
 
-    val xtrs = processSingleSegs(singleSegs, brGNMmgr, brCcs)
-      .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+    val (foundRes, emptyRes) = processSingleSegs(singleSegs, brGNMmgr, brCcs)
 
     printlnT0("Saving results ...")
+    val outJsonPath = "file:///media/sf_vmshare/pmjs/ssr"
+    SparkUtils.del(spark, outJsonPath)
+    foundRes
+      .coalesce(1)
+      .sortBy(r => r.pmid -> r.localId)
+      .map(singleRes2Json)
+      .saveAsTextFile(outJsonPath)
 
+    val outEmptyPath = "file:///media/sf_vmshare/pmjs/sse"
+    SparkUtils.del(spark, outEmptyPath)
+    emptyRes
+      .coalesce(1)
+      .sortBy(s => s)
+      .saveAsTextFile(outEmptyPath)
 
     spark.stop()
   }

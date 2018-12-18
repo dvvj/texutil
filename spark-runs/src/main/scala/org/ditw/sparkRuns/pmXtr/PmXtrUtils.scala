@@ -11,6 +11,7 @@ import org.ditw.matcher.MatchPool
 import org.ditw.pmxml.model.AAAuAff
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
 import org.ditw.textSeg.common.Tags.TagGroup4Univ
+import org.json4s.DefaultFormats
 
 object PmXtrUtils extends Serializable {
   private[pmXtr] def segment(affStr:String):Array[String] = {
@@ -42,15 +43,20 @@ object PmXtrUtils extends Serializable {
     }
   }
 
-  type RawRes = SingleSegRes
+  def singleRes2Json(ssr:SingleSegRes):String = {
+    import org.json4s.jackson.Serialization._
+    write(ssr)(DefaultFormats)
+  }
+
+  type RawRes = (String, Option[SingleSegRes])
   private[pmXtr] def processSingleSegs(
     singleSegs:RDD[SegmentRes],
     brGNMmgr:Broadcast[GNMmgr],
     brCcs:Broadcast[Set[GNCntry]]
-  ):RDD[RawRes] = {
+  ):(RDD[SingleSegRes], RDD[String]) = {
     val ccsStr = brCcs.value.map(_.toString)
     val brCcsStr = singleSegs.sparkContext.broadcast(ccsStr)
-    singleSegs.flatMap { tp3 =>
+    val t = singleSegs.map { tp3 =>
       val (pmid, localId, affSegs) = tp3
       val aff = affSegs(0) // single line
       val gnm = brGNMmgr.value
@@ -60,6 +66,7 @@ object PmXtrUtils extends Serializable {
       val rng2Ents = gnm.svc.extrEnts(gnm.xtrMgr, mp)
       val ents = rng2Ents.values.flatten
       val entsOfCntry = ents.filter(ent => brCcsStr.value.contains(ent.countryCode))
+      var res:Option[SingleSegRes] = None
 
       if (entsOfCntry.nonEmpty) {
         val gnids = entsOfCntry.map(_.gnid).toSet
@@ -80,7 +87,7 @@ object PmXtrUtils extends Serializable {
         import TagHelper._
         if (univs.nonEmpty) {
           if (univs.size > 1)
-            throw new RuntimeException(s"more than 1 seg found: $univs")
+            println(s"more than 1 seg found: $univs")
           val neids = mp.allTagsPrefixedBy(NaEnId_Pfx)
             .map(_.substring(NaEnId_Pfx.length).toLong)
           val ents = neids.flatMap(NaEnData.queryEnt)
@@ -91,16 +98,22 @@ object PmXtrUtils extends Serializable {
             s"$neid(${gnEnt.gnid}:${gnEnt.name})"
           }
 
-          val singleRes = SingleSegRes(pmid, localId, univs.head, rng2Ents.keySet.head, entsByGNid.head)
-          //println(s"Univs: [${univs.mkString(",")}] NEIds: [${entsTr.mkString(",")}]")
-          Option(singleRes)
+          if (entsByGNid.nonEmpty) {
+            val singleRes = SingleSegRes(pmid, localId, univs.head, rng2Ents.keySet.head, entsByGNid.head)
+            //println(s"Univs: [${univs.mkString(",")}] NEIds: [${entsTr.mkString(",")}]")
+            res = Option(singleRes)
+          }
+          //else None
         }
-        else None
+        //else None
       }
-      else {
-        None
-      }
+      //else None
+      s"$pmid-$localId: $aff" -> res
 
-    }.sortBy(_.seg)
+    }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
+
+    val found = t.flatMap(_._2)
+    val empty = t.filter(_._2.isEmpty).map(_._1)
+    found -> empty
   }
 }
