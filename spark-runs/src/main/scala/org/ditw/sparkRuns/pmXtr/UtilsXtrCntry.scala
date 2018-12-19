@@ -5,7 +5,9 @@ import org.ditw.common.{SparkUtils, TkRange}
 import org.ditw.demo1.gndata.GNCntry.{PR, US}
 import org.ditw.demo1.gndata.GNEnt
 import org.ditw.demo1.gndata.SrcData.tabSplitter
+import org.ditw.exutil1.naen.NaEnData.NaEnCat._
 import org.ditw.exutil1.naen.TagHelper
+import org.ditw.exutil1.naen.TagHelper.builtinTag
 import org.ditw.matcher.MatchPool
 import org.ditw.pmxml.model.AAAuAff
 import org.ditw.sparkRuns.CommonUtils
@@ -23,7 +25,7 @@ object UtilsXtrCntry {
     val runLocally = if (args.length > 0) args(0).toBoolean else true
     val inputPath =
       if (args.length > 1) args(1)
-      else "file:///media/sf_vmshare/pmjs/pmj9AuAff/"  //"file:///media/sf_vmshare/pmjs/testAuAff/"  //
+      else "file:///media/sf_vmshare/pmjs/pmj8AuAff/"  //"file:///media/sf_vmshare/pmjs/testAuAff/"  //
     val inputGNPath = if (args.length > 2) args(2) else "file:///media/sf_vmshare/gns/all"
     val outputPathJson = if (args.length > 3) args(3) else "file:///media/sf_vmshare/pmjs/9-x-json"
     val outputPathTrace = if (args.length > 4) args(4) else "file:///media/sf_vmshare/pmjs/9-x-agg"
@@ -50,11 +52,14 @@ object UtilsXtrCntry {
     val isniEnts = EntXtrUtils.loadNaEns("/media/sf_vmshare/isni.json")
 
     import CommonUtils._
+    import org.ditw.exutil1.naen.NaEnData._
     val gnmmgr = loadGNMmgr(
       ccs, Set(PR), spark,
       "file:///media/sf_vmshare/gns/all"
       ,Map(
-        TagHelper.builtinTag("ISNI") -> isniEnts
+        builtinTag(US_UNIV.toString) -> UsUnivColls,
+        builtinTag(US_HOSP.toString) -> UsHosps,
+        builtinTag(ISNI.toString) -> isniEnts
       )
     )
     val brGNMmgr = spark.broadcast(gnmmgr)

@@ -68,8 +68,7 @@ object PmXtrUtils extends Serializable {
     val brCcsStr = singleSegs.sparkContext.broadcast(ccsStr)
     val t = singleSegs.map { tp3 =>
       val (pmid, localId, affSegs) = tp3
-      if (pmid == 24555113L && localId == 0)
-        println("ok")
+
       val aff = affSegs(0) // single line
       val gnm = brGNMmgr.value
       val mp = MatchPool.fromStr(aff, gnm.tknr, gnm.dict)
@@ -108,7 +107,8 @@ object PmXtrUtils extends Serializable {
           val gnEnt = brGNMmgr.value.svc.entById(e.gnid).get
           s"$neid(${gnEnt.gnid}:${gnEnt.name})"
         }
-
+        if (pmid == 26834984L && localId == 1)
+          println("ok")
         if (entsByGNid.nonEmpty) {
           val univStr = if (univs.nonEmpty) univs.head else ""
           val singleRes = SingleSegRes(pmid, localId, univStr, rng2Ents.keySet.head.str, entsByGNid.head)

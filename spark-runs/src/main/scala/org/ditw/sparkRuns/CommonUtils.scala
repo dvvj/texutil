@@ -39,7 +39,7 @@ object CommonUtils extends Serializable {
     MatcherGen.gen(
       gnsvc, dict, ccms,
       Option(
-        exMatchers._1 ++ NaEnData.tmsNaEn(dict) ++ exNaEnsTms,
+        exMatchers._1 ++ exNaEnsTms,
         exMatchers._2,
         exMatchers._3
       )
@@ -82,10 +82,10 @@ object CommonUtils extends Serializable {
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val svc = GNSvc.loadNoPopuReq(gnLines, ccs)
     val extraVocabs = extraNaEns.values.flatMap(NaEnData.vocab4NaEns)
-    val dict = loadDict(svc, NaEnData.allVocs ++ extraVocabs)
+    val dict = loadDict(svc, extraVocabs)
     val (mmgr, xtrMgr) = genMMgr(svc, dict, ccms, extraNaEns)
     val tknr = TknrHelpers.TknrTextSeg()
-    val naEnMap = (UsUnivColls ++ UsHosps ++ extraNaEns.values.flatten).map(e => e.neid -> e).toMap
+    val naEnMap = extraNaEns.values.flatten.map(e => e.neid -> e).toMap
     GNMmgr(tknr, svc, dict, mmgr, xtrMgr, naEnMap)
   }
   private[sparkRuns] def runStr(

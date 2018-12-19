@@ -7,12 +7,14 @@ import org.ditw.tknr.TknrHelpers.TknrTextSeg
 
 object TestHelpers extends Serializable {
   private[exutil1] val testTokenizer = TknrTextSeg()
+  import NaEnData._
   private[exutil1] val testDict: Dict = InputHelpers.loadDict(
-    NaEnData.allVocs
+    vocab4NaEns(UsUnivColls) ++ vocab4NaEns(UsHosps)
   )
 
   val mmgr:MatcherMgr = {
-    new MatcherMgr(NaEnData.tmsNaEn(testDict),
+    new MatcherMgr(
+      List(tmUsUniv(testDict), tmUsHosp(testDict)),
       List(),
       List(),
       List()
