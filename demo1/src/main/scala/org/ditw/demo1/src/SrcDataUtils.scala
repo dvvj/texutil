@@ -95,7 +95,8 @@ object SrcDataUtils extends Serializable {
   }
   def isAdm(ent: GNEnt):Boolean = fcAdm(ent.featureClz, ent.featureCode)
   val fcPpl:FeatureChecker = (fcls:String, fcode:String) => {
-    fcls == PplClass && !pplExcludedCodes.contains(fcode)
+    (fcls == PplClass && !pplExcludedCodes.contains(fcode)) ||
+      fcode == "AIRB" // air force base
   }
   val fcAll:FeatureChecker = (fcls:String, fcode:String) => {
     fcAdm(fcls, fcode) || fcPpl(fcls, fcode) ||

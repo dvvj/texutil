@@ -1,5 +1,9 @@
 [
+  {"gnid":7260752, "aliases":[ "USAF Academy" ]},
+  {"gnid":7260641, "aliases":[ "Robins AFB" ]},
+  {"gnid":8085384, "aliases":[ "Davis-Monthan AFB" ]},
   {"gnid":4508722, "aliases":[ "CINICINNATI" ]},
+  {"gnid":7261570, "aliases":[ "Lackland AFB" ]},
   {"gnid":7262854, "aliases":[ "EIELSON AFB" ]},
   {"gnid":7260863, "aliases":[ "BEALE AFB" ]},
   {"gnid":7261960, "aliases":[ "NELLIS AFB" ]},

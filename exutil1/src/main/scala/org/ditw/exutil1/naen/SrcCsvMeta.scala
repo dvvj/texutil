@@ -32,6 +32,10 @@ case class SrcCsvMeta(
     row.getAs[String](latCol).toDouble ->
       row.getAs[String](lonCol).toDouble
   }
+
+  def otherKVPairs(row:Row):Vector[(String, String)] = {
+    others.map(k => k -> strVal(row, k))
+  }
 }
 
 object SrcCsvMeta extends Serializable {

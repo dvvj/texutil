@@ -99,7 +99,11 @@ object UtilsEntCsv3 {
                 if (altName == null || altName == "NOT AVAILABLE" || altName.isEmpty)
                   List[String]()
                 else List(altName)
-              res = Option((name, altNames, ent.gnid, Map(NaEn.Attr_CC -> cc)))
+              res = Option((name, altNames, ent.gnid,
+                Map(
+                  NaEn.Attr_CC -> cc
+                ) ++ csvMeta.otherKVPairs(row)
+              ))
             }
             else {
               errMsg = taggedErrorMsg(4, s"todo: more than one ents: $allEnts")
