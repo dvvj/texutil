@@ -5,5 +5,16 @@
       "California State University Fullerton",
       "California State University Long Beach"
     ]
+  },
+  {
+    "name": "University of North Carolina",
+    "siteNames": [
+      "University of North Carolina at Chapel Hill",
+      "University of North Carolina at Asheville",
+      "University of North Carolina at Charlotte",
+      "University of North Carolina at Greensboro",
+      "University of North Carolina at Pembroke",
+      "University of North Carolina at Wilmington"
+    ]
   }
 ]

@@ -5,7 +5,7 @@ import java.nio.charset.StandardCharsets
 import org.apache.commons.io.IOUtils
 import org.apache.spark.sql.Row
 import org.apache.spark.storage.StorageLevel
-import org.ditw.common.SparkUtils
+import org.ditw.common.{ResourceHelpers, SparkUtils}
 import org.ditw.demo1.gndata.GNCntry
 import org.ditw.demo1.gndata.GNCntry.{PR, US}
 import org.ditw.exutil1.naen.NaEnData.NaEnCat
@@ -67,6 +67,10 @@ object UtilsEntCsv3 {
 
     val idStart = NaEnData.catIdStart(NaEnCat.ISNI)
 
+    val nameGnHints = ResourceHelpers.load("/isni_gnhint.json", IsniGnHint.load)
+      .map { h => h.strInName.toLowerCase() -> h.gnid }.toMap
+    val brNameHint = spSess.sparkContext.broadcast(nameGnHints)
+
     type RowResType = (String, List[String], Long, Map[String, String])
     val (ents, errors) = process[RowResType](
       rows,
@@ -91,9 +95,24 @@ object UtilsEntCsv3 {
             //val nearest = checkNearestGNEnt(rng2Ents.values.flatten, row, "LATITUDE", "LONGITUDE")
             val allEnts = rng2Ents.values.flatten
 
-            if (allEnts.size == 1) {
-              val ent = allEnts.head
-              val name = csvMeta.name(row)
+            val name = csvMeta.name(row)
+            val lowerName = name.toLowerCase()
+            val h = brNameHint.value.filter(p => name.toLowerCase().contains(p._1))
+            val ents =
+              if (h.nonEmpty) {
+                if (h.size > 1) {
+                  throw new RuntimeException("todo: multiple hints?")
+                }
+                else {
+                  val gnidHint = h.head._2
+                  val hint = allEnts.filter(_.gnid == gnidHint)
+                  println(s"Found hint for [$name]: $hint")
+                  hint
+                }
+              }
+              else allEnts
+            if (ents.size == 1) {
+              val ent = ents.head
               val altName = csvMeta.altNames(row)
               val altNames =
                 if (altName == null || altName == "NOT AVAILABLE" || altName.isEmpty)
@@ -106,7 +125,7 @@ object UtilsEntCsv3 {
               ))
             }
             else {
-              errMsg = taggedErrorMsg(4, s"todo: more than one ents: $allEnts")
+               errMsg = taggedErrorMsg(4, s"todo: more than one ents: $ents")
             }
           }
         }
