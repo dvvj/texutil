@@ -1,9 +1,31 @@
 [
   {
+    "name": "State University of New York",
+    "siteNames": [
+      "State University of New York at Binghamton",
+      "State University of New York at Buffalo",
+      "State University of New York at Stony Brook"
+    ]
+  },
+  {
+    "name": "University at Buffalo",
+    "siteNames": [
+      "University at Buffalo - Downtown Campus",
+      "University at Buffalo - North Campus"
+    ]
+  },
+  {
     "name": "California State University",
     "siteNames": [
       "California State University Fullerton",
       "California State University Long Beach"
+    ]
+  },
+  {
+    "name": "University of Missouri",
+    "siteNames": [
+      "University of Missouri Columbia",
+      "University of Missouri Kansas City"
     ]
   },
   {

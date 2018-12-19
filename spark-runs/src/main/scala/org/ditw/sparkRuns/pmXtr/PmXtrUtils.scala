@@ -5,12 +5,13 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.TkRange
 import org.ditw.demo1.gndata.GNCntry.GNCntry
-import org.ditw.demo1.gndata.GNEnt
+import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.exutil1.naen.NaEnData.UsUnivColls
 import org.ditw.exutil1.naen.TagHelper.NaEnId_Pfx
 import org.ditw.exutil1.naen.{NaEn, NaEnData, TagHelper}
 import org.ditw.matcher.{MatchPool, TkMatch}
 import org.ditw.pmxml.model.AAAuAff
+import org.ditw.sparkRuns.CommonUtils
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
 import org.ditw.textSeg.common.Tags.TagGroup4Univ
 import org.json4s.DefaultFormats
@@ -78,7 +79,8 @@ object PmXtrUtils extends Serializable {
       val ents = rng2Ents.values.flatten
       val entsOfCntry = ents.filter(ent => brCcsStr.value.contains(ent.countryCode))
       var res:Option[SingleSegRes] = None
-
+//      if (pmid == 28288515L) // && localId == 2)
+//        println("ok")
       if (entsOfCntry.nonEmpty) {
         val gnids = entsOfCntry.map(_.gnid).toSet
         val univs =
@@ -100,15 +102,14 @@ object PmXtrUtils extends Serializable {
           println(s"more than 1 seg found: $univs")
         val neids = xtrNaEns(mp)
         val ents = neids.flatMap(brGNMmgr.value.naEntDataMap.get)
-        val entsByGNid = ents.filter(e => gnids.contains(e.gnid))
+        val entsByGNid = ents.filter(e => checkGNids(e, gnids, brGNMmgr.value.svc))
         // todo: could be multiple entities with diff ids while pointing to the same entity
         val entsTr = entsByGNid.map { e =>
           val neid = e.neid
           val gnEnt = brGNMmgr.value.svc.entById(e.gnid).get
           s"$neid(${gnEnt.gnid}:${gnEnt.name})"
         }
-        if (pmid == 26834994L) // && localId == 2)
-          println("ok")
+
         if (entsByGNid.nonEmpty) {
           val univStr = if (univs.nonEmpty) univs.head else ""
           val singleRes = SingleSegRes(pmid, localId, univStr, rng2Ents.keySet.head.str, entsByGNid.head)
@@ -125,5 +126,30 @@ object PmXtrUtils extends Serializable {
     val found = t.flatMap(_._3)
     val empty = t.filter(tp => tp._2 && tp._3.isEmpty).map(_._1)
     found -> empty
+  }
+
+  private def checkGNids(naen:NaEn, gnids:Set[Long], gnsvc: GNSvc):Boolean = {
+    if (gnids.contains(naen.gnid)) true
+    else {
+      val ent2Check = gnsvc.entById(naen.gnid)
+      if (ent2Check.isEmpty) {
+        println(s"gnid: ${naen.gnid} not in svc")
+        false
+      }
+      else {
+        gnids.exists { id =>
+          val ent = gnsvc.entById(id)
+          if (ent.nonEmpty) {
+            CommonUtils.checkCoord(
+              ent.get.latitude,
+              ent.get.longitude,
+              ent2Check.get.latitude,
+              ent2Check.get.longitude
+            )
+          }
+          else false
+        }
+      }
+    }
   }
 }

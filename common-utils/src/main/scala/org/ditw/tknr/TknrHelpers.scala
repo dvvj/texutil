@@ -87,8 +87,20 @@ object TknrHelpers extends Serializable {
     "(?<=[,;])",
     Set(",;")
   )
+
+  private val _dashSlashSepWords = Vector(
+    "university",
+    "colorado",
+    "Pharmacy",
+    "Hospital",
+    "center",
+    "centre",
+    "California",
+    "Nebraska",
+    "Missouri"
+  ).mkString("|")
   private [ditw] val TokenSplitter_DashSlash = TokenSplitterCond(
-    "(?i)(university|colorado|Pharmacy|Hospital|center|centre|California|Nebraska)[\\-/].*",
+    s"(?i)(${_dashSlashSepWords})[\\-/].*",
     "[\\-/]+",
     Set("-", "/")
   )
