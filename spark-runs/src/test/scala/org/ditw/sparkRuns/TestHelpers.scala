@@ -17,6 +17,6 @@ object TestHelpers extends Serializable {
                  spark:SparkContext
                 ):GNMmgr = {
     val gnLines = spark.parallelize(_gnLines)
-    _loadGNMmgr(_ccs, _ccms, spark, gnLines)
+    _loadGNMmgr(_ccs, _ccms, spark, gnLines, Map())
   }
 }

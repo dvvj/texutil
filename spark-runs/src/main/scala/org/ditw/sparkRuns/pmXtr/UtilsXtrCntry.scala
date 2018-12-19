@@ -10,6 +10,7 @@ import org.ditw.matcher.MatchPool
 import org.ditw.pmxml.model.AAAuAff
 import org.ditw.sparkRuns.CommonUtils
 import org.ditw.sparkRuns.CommonUtils.loadGNMmgr
+import org.ditw.sparkRuns.csvXtr.EntXtrUtils
 import org.ditw.textSeg.common.Tags.TagGroup4Univ
 import org.ditw.textSeg.output.{AffGN, SegGN}
 
@@ -46,8 +47,16 @@ object UtilsXtrCntry {
     val ccs = Set(US, PR)
     val brCcs = spark.broadcast(ccs)
 
+    val isniEnts = EntXtrUtils.loadNaEns("/media/sf_vmshare/isni.json")
+
     import CommonUtils._
-    val gnmmgr = loadGNMmgr(ccs, Set(PR), spark, "file:///media/sf_vmshare/gns/all")
+    val gnmmgr = loadGNMmgr(
+      ccs, Set(PR), spark,
+      "file:///media/sf_vmshare/gns/all"
+      ,Map(
+        TagHelper.builtinTag("ISNI") -> isniEnts
+      )
+    )
     val brGNMmgr = spark.broadcast(gnmmgr)
     //    val (mmgr, xtrMgr) = genMMgr(svc, dict)
     //    val brSvc = spark.broadcast(svc)

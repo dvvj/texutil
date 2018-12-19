@@ -13,10 +13,12 @@ import org.ditw.demo1.gndata.{GNEnt, GNSvc}
 import org.ditw.demo1.gndata.SrcData.tabSplitter
 import org.ditw.demo1.matchers.MatcherGen
 import org.ditw.extract.XtrMgr
-import org.ditw.exutil1.naen.{NaEnData, SrcCsvMeta}
+import org.ditw.exutil1.naen.NaEnData._
+import org.ditw.exutil1.naen.{NaEn, NaEnData, SrcCsvMeta}
 import org.ditw.exutil1.poco.PocoUS
 import org.ditw.matcher.{MatchPool, MatcherMgr}
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
+import org.ditw.sparkRuns.csvXtr.EntXtrUtils
 import org.ditw.sparkRuns.csvXtr.UtilsEntCsv1.{Pfx2Replace, processName}
 import org.ditw.textSeg.catSegMatchers.Cat2SegMatchers
 import org.ditw.textSeg.common.{AllCatMatchers, Vocabs}
@@ -25,15 +27,19 @@ import org.ditw.tknr.Tokenizers.TTokenizer
 
 object CommonUtils extends Serializable {
 
-  private def genMMgr(gnsvc: GNSvc, dict: Dict, ccms:Set[GNCntry]):(MatcherMgr, XtrMgr[Long]) = {
+  private def genMMgr(
+    gnsvc: GNSvc, dict: Dict, ccms:Set[GNCntry],
+    extraNaEns:Map[String, Array[NaEn]]
+  ):(MatcherMgr, XtrMgr[Long]) = {
     val exMatchers = AllCatMatchers.segMatchersFrom(
       dict,
       Seq(Cat2SegMatchers.segMatchers(dict))
     )
+    val exNaEnsTms = extraNaEns.map(p => NaEnData.tm4NaEns(p._2, dict, p._1))
     MatcherGen.gen(
       gnsvc, dict, ccms,
       Option(
-        exMatchers._1 ++ NaEnData.tmsNaEn(dict),
+        exMatchers._1 ++ NaEnData.tmsNaEn(dict) ++ exNaEnsTms,
         exMatchers._2,
         exMatchers._3
       )
@@ -45,36 +51,42 @@ object CommonUtils extends Serializable {
     svc:GNSvc,
     dict:Dict,
     mmgr:MatcherMgr,
-    xtrMgr: XtrMgr[Long]
+    xtrMgr: XtrMgr[Long],
+    naEntDataMap:Map[Long, NaEn]
   )
 
   private[sparkRuns] def loadGNMmgr(
     ccs:Set[GNCntry],
     ccms:Set[GNCntry], // countries using
     spark:SparkContext,
-    gnPath:String
+    gnPath:String,
+    extraNaEns:Map[String, Array[NaEn]] = Map()
   ):GNMmgr = {
     _loadGNMmgr(
       ccs, ccms, spark,
-      spark.textFile(gnPath)
+      spark.textFile(gnPath),
+      extraNaEns
     )
   }
 
 
   private[sparkRuns] def _loadGNMmgr(
-                                     ccs:Set[GNCntry],
-                                     ccms:Set[GNCntry], // countries using
-                                     spark:SparkContext,
-                                     gndata:RDD[String]
-                                   ):GNMmgr = {
+    ccs:Set[GNCntry],
+    ccms:Set[GNCntry], // countries using
+    spark:SparkContext,
+    gndata:RDD[String],
+    extraNaEns:Map[String, Array[NaEn]]
+  ):GNMmgr = {
     val gnLines = gndata
       .map(tabSplitter.split)
       .persist(StorageLevel.MEMORY_AND_DISK_SER_2)
     val svc = GNSvc.loadNoPopuReq(gnLines, ccs)
-    val dict = loadDict(svc, NaEnData.allVocs)
-    val (mmgr, xtrMgr) = genMMgr(svc, dict, ccms)
+    val extraVocabs = extraNaEns.values.flatMap(NaEnData.vocab4NaEns)
+    val dict = loadDict(svc, NaEnData.allVocs ++ extraVocabs)
+    val (mmgr, xtrMgr) = genMMgr(svc, dict, ccms, extraNaEns)
     val tknr = TknrHelpers.TknrTextSeg()
-    GNMmgr(tknr, svc, dict, mmgr, xtrMgr)
+    val naEnMap = (UsUnivColls ++ UsHosps ++ extraNaEns.values.flatten).map(e => e.neid -> e).toMap
+    GNMmgr(tknr, svc, dict, mmgr, xtrMgr, naEnMap)
   }
   private[sparkRuns] def runStr(
     str:String,

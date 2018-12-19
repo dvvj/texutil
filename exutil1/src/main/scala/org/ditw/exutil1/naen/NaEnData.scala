@@ -45,7 +45,7 @@ object NaEnData extends Serializable {
     res.map(_.toVector).toList
   }
 
-  private def tm4NaEns(d:Array[NaEn], dict:Dict, tag:String): TTkMatcher = {
+  def tm4NaEns(d:Array[NaEn], dict:Dict, tag:String): TTkMatcher = {
     val name2Ids = d.flatMap { ne =>
         val ids = Set(
           TagHelper.NaEnId(ne.neid)
@@ -60,8 +60,8 @@ object NaEnData extends Serializable {
     )
   }
 
-  private val UsUnivColls = ResourceHelpers.load("/naen/us_univ_coll.json", NaEn.fromJsons)
-  private val UsHosps = ResourceHelpers.load("/naen/us_hosp.json", NaEn.fromJsons)
+  val UsUnivColls = ResourceHelpers.load("/naen/us_univ_coll.json", NaEn.fromJsons)
+  val UsHosps = ResourceHelpers.load("/naen/us_hosp.json", NaEn.fromJsons)
   val allVocs:Iterable[Iterable[String]] = vocab4NaEns(UsUnivColls) ++ vocab4NaEns(UsHosps)
   import TagHelper._
   private[exutil1] def tmUsUniv(dict:Dict) =
@@ -73,6 +73,4 @@ object NaEnData extends Serializable {
     tmUsUniv(dict), tmUsHosp(dict)
   )
 
-  private val _dataMap:Map[Long, NaEn] = (UsUnivColls ++ UsHosps).map(e => e.neid -> e).toMap
-  def queryEnt(id:Long):Option[NaEn] = _dataMap.get(id)
 }

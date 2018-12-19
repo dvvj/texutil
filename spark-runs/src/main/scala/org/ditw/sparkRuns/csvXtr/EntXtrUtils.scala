@@ -1,9 +1,15 @@
 package org.ditw.sparkRuns.csvXtr
+import java.io.FileInputStream
+import java.nio.charset.StandardCharsets
+
+import org.apache.commons.io.IOUtils
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Row}
 import org.apache.spark.storage.StorageLevel
 import org.ditw.exutil1.naen.NaEn
 import org.ditw.sparkRuns.csvXtr.UtilsEntCsv3.{ColISNI, ColName, rowInfo}
+
+import scala.collection.mutable.ListBuffer
 
 object EntXtrUtils extends Serializable {
   def taggedErrorMsg(tag:Int, msg:String):Option[String] = {
@@ -32,6 +38,30 @@ object EntXtrUtils extends Serializable {
       }.collect()
     println(s"Error #: ${errors.length}")
     ents -> errors
+  }
+
+  def loadNaEns(f:String):Array[NaEn] = {
+    val is = new FileInputStream(f)
+    val srcStr = IOUtils.toString(is, StandardCharsets.UTF_8)
+    is.close()
+    NaEn.fromJsons(srcStr)
+  }
+
+  def mergeTwoSets(collSet:Array[NaEn], unitSet:Array[NaEn]):Unit = {
+    collSet.foreach { csEnt =>
+      val csNameLower = csEnt.name.toLowerCase()
+      val contained = ListBuffer[NaEn]()
+      unitSet.foreach { usEnt =>
+        if (usEnt.gnid == csEnt.gnid &&
+          usEnt.name.toLowerCase().contains(csNameLower)) {
+          contained += usEnt
+        }
+      }
+      if (contained.nonEmpty) {
+        println(s"${csEnt.name}: $csEnt")
+        println(contained.mkString("\t", "\n\t", ""))
+      }
+    }
   }
 
 //  def errorRes[T](rowInfo:String, errMsg:String):(String, Option[T], Option[String]) = {

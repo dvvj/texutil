@@ -6,6 +6,7 @@ import org.apache.spark.storage.StorageLevel
 import org.ditw.common.TkRange
 import org.ditw.demo1.gndata.GNCntry.GNCntry
 import org.ditw.demo1.gndata.GNEnt
+import org.ditw.exutil1.naen.NaEnData.UsUnivColls
 import org.ditw.exutil1.naen.TagHelper.NaEnId_Pfx
 import org.ditw.exutil1.naen.{NaEn, NaEnData, TagHelper}
 import org.ditw.matcher.{MatchPool, TkMatch}
@@ -67,6 +68,8 @@ object PmXtrUtils extends Serializable {
     val brCcsStr = singleSegs.sparkContext.broadcast(ccsStr)
     val t = singleSegs.map { tp3 =>
       val (pmid, localId, affSegs) = tp3
+      if (pmid == 24555113L && localId == 0)
+        println("ok")
       val aff = affSegs(0) // single line
       val gnm = brGNMmgr.value
       val mp = MatchPool.fromStr(aff, gnm.tknr, gnm.dict)
@@ -97,8 +100,9 @@ object PmXtrUtils extends Serializable {
         if (univs.size > 1)
           println(s"more than 1 seg found: $univs")
         val neids = xtrNaEns(mp)
-        val ents = neids.flatMap(NaEnData.queryEnt)
+        val ents = neids.flatMap(brGNMmgr.value.naEntDataMap.get)
         val entsByGNid = ents.filter(e => gnids.contains(e.gnid))
+        // todo: could be multiple entities with diff ids while pointing to the same entity
         val entsTr = entsByGNid.map { e =>
           val neid = e.neid
           val gnEnt = brGNMmgr.value.svc.entById(e.gnid).get
