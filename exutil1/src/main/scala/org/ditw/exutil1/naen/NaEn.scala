@@ -11,6 +11,7 @@ case class NaEn(
   override def toString: String = {
     s"$name($neid-$gnid)"
   }
+  def attr(key:String):String = exAttrs(key)
 }
 
 object NaEn extends Serializable {
@@ -28,4 +29,5 @@ object NaEn extends Serializable {
   val Attr_CC:String = "CC"
 
   val EmptyAttrs:Map[String, String] = Map()
+
 }

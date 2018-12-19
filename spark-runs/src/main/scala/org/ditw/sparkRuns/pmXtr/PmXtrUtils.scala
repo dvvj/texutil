@@ -107,8 +107,8 @@ object PmXtrUtils extends Serializable {
           val gnEnt = brGNMmgr.value.svc.entById(e.gnid).get
           s"$neid(${gnEnt.gnid}:${gnEnt.name})"
         }
-        if (pmid == 26834984L && localId == 1)
-          println("ok")
+//        if (pmid == 28294692L && localId == 2)
+//          println("ok")
         if (entsByGNid.nonEmpty) {
           val univStr = if (univs.nonEmpty) univs.head else ""
           val singleRes = SingleSegRes(pmid, localId, univStr, rng2Ents.keySet.head.str, entsByGNid.head)

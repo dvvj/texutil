@@ -6,6 +6,7 @@ import org.apache.commons.io.IOUtils
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.{DataFrame, Row}
 import org.apache.spark.storage.StorageLevel
+import org.ditw.common.ResourceHelpers
 import org.ditw.exutil1.naen.NaEn
 import org.ditw.sparkRuns.csvXtr.UtilsEntCsv3.{ColISNI, ColName, rowInfo}
 
@@ -45,6 +46,32 @@ object EntXtrUtils extends Serializable {
     val srcStr = IOUtils.toString(is, StandardCharsets.UTF_8)
     is.close()
     NaEn.fromJsons(srcStr)
+  }
+
+  private val EmptyAliases = List[String]()
+  def loadIsniNaEns(f:String):Array[NaEn] = {
+    val isniAliases = ResourceHelpers.load("/isni_aliases.json", IsniEnAlias.load)
+      .map(als => als.isni -> als.aliases).toMap
+
+    val isniEntSites = ResourceHelpers.load("/isni_ent_sites.json", IsniSiteNames.load)
+      .flatMap(sn => sn.siteNames.map(_.toLowerCase() -> sn.name)).toMap
+
+    EntXtrUtils.loadNaEns(f)
+      .map { en =>
+        val isni = en.attr("isni")
+        var exAliases =
+          if (isniAliases.contains(isni))
+            // todo: val merged = en.aliases ++ isniAliases(isni)
+            isniAliases(isni)
+          else EmptyAliases
+        val lowerName = en.name.toLowerCase()
+
+        if (isniEntSites.contains(lowerName))
+        // todo: val merged = en.aliases ++ isniAliases(isni)
+          exAliases ::= isniEntSites(lowerName)
+
+        en.copy(aliases = exAliases)
+      }
   }
 
   def mergeTwoSets(collSet:Array[NaEn], unitSet:Array[NaEn]):Unit = {

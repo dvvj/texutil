@@ -32,7 +32,7 @@ object NaEnData extends Serializable {
   private def splitNames(ne:NaEn):Set[Array[String]] = {
     val allNames = mutable.Set[String]()
     allNames += ne.name
-    //todo: add later allNames ++= ne.aliases
+    allNames ++= ne.aliases
     allNames.filter(n => n != null && n.nonEmpty)
     splitVocabEntries(allNames.toSet)
   }
@@ -55,6 +55,8 @@ object NaEnData extends Serializable {
       }
       .groupBy(_._1)
       .mapValues(_.flatMap(_._2).toSet)
+//    if (name2Ids.contains("california state university"))
+//      println("ok")
     TokenMatchers.ngramExtraTags(
       name2Ids, dict, tag
     )

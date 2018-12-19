@@ -23,13 +23,13 @@ object TestHelpers extends Serializable {
                 ):GNMmgr = {
     val gnLines = spark.parallelize(_gnLines)
     _loadGNMmgr(_ccs, _ccms, spark, gnLines,
-      Map(
-        builtinTag(US_UNIV.toString) -> UsUnivColls,
-        builtinTag(US_HOSP.toString) -> UsHosps
-      )
 //      Map(
-//        TagHelper.builtinTag("ISNI") -> EntXtrUtils.loadNaEns("/media/sf_vmshare/isni.json")
+//        builtinTag(US_UNIV.toString) -> UsUnivColls,
+//        builtinTag(US_HOSP.toString) -> UsHosps
 //      )
+      Map(
+        TagHelper.builtinTag(ISNI.toString) -> EntXtrUtils.loadIsniNaEns("/media/sf_vmshare/isni.json")
+      )
     )
   }
 }
