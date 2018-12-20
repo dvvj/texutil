@@ -1,5 +1,29 @@
 [
   {
+    "isni": "0000000121791997",
+    "aliases": [ "Albert Einstein College of Medicine" ]
+  },
+  {
+    "isni": "0000000110867837",
+    "aliases": [ "Geisel School of Medicine" ]
+  },
+  {
+    "isni": "0000000086884951",
+    "aliases": [ "UNC Eshelman School of Pharmacy" ]
+  },
+  {
+    "isni": "0000000403780882",
+    "aliases": [ "Harvard School of Medicine" ]
+  },
+  {
+    "isni": "0000000403738764",
+    "aliases": [ "Johns Hopkins School of Medicine" ]
+  },
+  {
+    "isni": "0000000404626991",
+    "aliases": [ "Johns Hopkins Bloomberg School of Public Health" ]
+  },
+  {
     "isni": "0000000121644508",
     "aliases": [ "State University of New York at Binghamton" ]
   },
@@ -13,7 +37,7 @@
   },
   {
     "isni": "0000000121797643",
-    "aliases": [ "Weill Cornell Medical College" ]
+    "aliases": [ "Weill Cornell Medical College", "Weill Cornell Medicine" ]
   },
   {
     "isni": "0000000089362606",
