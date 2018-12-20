@@ -97,7 +97,8 @@ object TknrHelpers extends Serializable {
     "centre",
     "California",
     "Nebraska",
-    "Missouri"
+    "Missouri",
+    "Wisconsin"
   ).mkString("|")
   private [ditw] val TokenSplitter_DashSlash = TokenSplitterCond(
     s"(?i)(${_dashSlashSepWords})[\\-/].*",

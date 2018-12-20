@@ -1,7 +1,7 @@
 package org.ditw.sparkRuns.csvXtr
 import org.json4s.DefaultFormats
 
-case class IsniSiteNames(name:String, siteNames:Array[String]) {
+case class IsniSiteNames(names:Array[String], siteNames:Array[String]) {
 
 }
 

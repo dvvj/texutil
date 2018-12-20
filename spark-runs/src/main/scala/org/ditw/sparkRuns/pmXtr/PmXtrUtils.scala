@@ -119,12 +119,16 @@ object PmXtrUtils extends Serializable {
         //else None
       }
       //else None
-      (s"$pmid-$localId: $aff", entsOfCntry.nonEmpty, res)
+      (s"$pmid-$localId: $aff", entsOfCntry, res)
 
     }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
     val found = t.flatMap(_._3)
-    val empty = t.filter(tp => tp._2 && tp._3.isEmpty).map(_._1)
+    val empty = t.filter(tp => tp._2.nonEmpty && tp._3.isEmpty)
+      .map { tp =>
+        val (affInfo, entsOfCntry, _) = tp
+        s"$affInfo [$entsOfCntry]"
+      }
     found -> empty
   }
 

@@ -1,5 +1,24 @@
 [
   {
+    "isni": "0000000122433366",
+    "aliases": [
+      "U.S. Food & Drug Administration",
+      "United States Food and Drug Administration"
+    ]
+  },
+  {
+    "isni": "0000000404231180",
+    "aliases": [ "New York Presbyterian Hospital", "Weill Cornell Medical Center" ]
+  },
+  {
+    "isni": "0000000122914776",
+    "aliases": [ "M.D. Anderson Cancer Center" ]
+  },
+  {
+    "isni": "0000000097585690",
+    "aliases": [ "Oregon Health Science University" ]
+  },
+  {
     "isni": "0000000121791997",
     "aliases": [ "Albert Einstein College of Medicine" ]
   },

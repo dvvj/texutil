@@ -54,7 +54,7 @@ object EntXtrUtils extends Serializable {
       .map(als => als.isni -> als.aliases).toMap
 
     val isniEntSites = ResourceHelpers.load("/isni_ent_sites.json", IsniSiteNames.load)
-      .flatMap(sn => sn.siteNames.map(_.toLowerCase() -> sn.name)).toMap
+      .flatMap(sn => sn.siteNames.map(_.toLowerCase() -> sn.names)).toMap
 
     EntXtrUtils.loadNaEns(f)
       .map { en =>
@@ -68,7 +68,7 @@ object EntXtrUtils extends Serializable {
 
         if (isniEntSites.contains(lowerName))
         // todo: val merged = en.aliases ++ isniAliases(isni)
-          exAliases ::= isniEntSites(lowerName)
+          exAliases ++= isniEntSites(lowerName)
 
         en.copy(aliases = exAliases)
       }
