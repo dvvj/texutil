@@ -8,6 +8,15 @@
     ]
   },
   {
+    "name": "Rutgers University",
+    "siteNames": [
+      "Rutgers University - George H. Cook Campus",
+      "Rutgers University - Douglass Campus",
+      "Rutgers University - Busch Campus",
+      "Rutgers University - Livingston Campus"
+    ]
+  },
+  {
     "name": "University at Buffalo",
     "siteNames": [
       "University at Buffalo - Downtown Campus",
@@ -37,6 +46,14 @@
       "University of North Carolina at Greensboro",
       "University of North Carolina at Pembroke",
       "University of North Carolina at Wilmington"
+    ]
+  },
+  {
+    "name": "University of California",
+    "siteNames": [
+      "University of California San Diego",
+      "University of California Berkeley",
+      "University of California Davis"
     ]
   }
 ]
