@@ -17,6 +17,11 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
   private val regexD3Plus = TokenMatchers.regex(
     "\\d{3,}"
   )
+
+  private val TagInLower = "inLowerTag"
+  private val regexInLower = TokenMatchers.regex(
+    "in", Option(TagInLower)
+  )
   private val pfxNGram = prefixedBy(
     ngram1,
     Set("\"")
@@ -44,6 +49,13 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
 
   private val testData = Table(
     ("ngram", "input", "expSet"),
+    (
+      regexInLower,
+      "Univ of X in CityX, IN 00001 USA",
+      Set(
+        (0, 3, 4) -> Set(regexInLower.tag.get)
+      )
+    ),
     (
       ngramD,
       "Cardiovascular Research, Vrije University, Amsterdam",

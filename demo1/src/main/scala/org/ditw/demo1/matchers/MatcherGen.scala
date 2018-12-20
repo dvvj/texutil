@@ -39,6 +39,8 @@ object MatcherGen extends Serializable {
 
   import TagHelper._
 
+  private val _tmInLower = TokenMatchers.regex("in", Option(TmPrepIn))
+
   private val LookAroundSfxSet = Set(",")
   private val LookAroundSfxCounts_PocoCountry = (3, 0)
   def gen(
@@ -91,9 +93,11 @@ object MatcherGen extends Serializable {
       pproclst += pproc
     }
 
+    tmlst += _tmInLower
     val tmPProc = MatcherMgr.postProcBlocker(
       Map(
         TmGNBlacklist -> tmBlTargets.toSet
+        ,_tmInLower.tag.get -> Set(admDynTag("US_IN"))
       ),
       Set(TmGNWhitelist)
     )
