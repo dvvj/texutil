@@ -2,7 +2,7 @@ package org.ditw.demo1.matchers
 import org.ditw.common.{Dict, InputHelpers, ResourceHelpers}
 import org.ditw.demo1.extracts.Xtrs
 import org.ditw.demo1.gndata.GNCntry.GNCntry
-import org.ditw.demo1.gndata.{GNSvc, TGNMap}
+import org.ditw.demo1.gndata.{GNCntry, GNSvc, TGNMap}
 import org.ditw.demo1.matchers.Adm0Gen.{LookAroundSfxCounts_CityCountry, LookAroundSfxSet}
 import org.ditw.demo1.matchers.TagHelper.countryTag
 import org.ditw.extract.{TXtr, XtrMgr}
@@ -99,6 +99,7 @@ object MatcherGen extends Serializable {
     val tmPProc = MatcherMgr.postProcBlocker(
       Map(
         TmGNBlacklist -> tmBlTargets.toSet
+        ,countryTag(GNCntry.CN) -> Set(countryTag(GNCntry.PR))
         ,_tmInLower.tag.get -> Set(admDynTag("US_IN"))
         ,_tmLaLower.tag.get -> Set(admDynTag("US_LA"))
       ),
