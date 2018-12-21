@@ -9,6 +9,7 @@ import org.apache.spark.storage.StorageLevel
 import org.ditw.common.ResourceHelpers
 import org.ditw.exutil1.naen.NaEn
 import org.ditw.sparkRuns.csvXtr.UtilsEntCsv3.{ColISNI, ColName, rowInfo}
+import org.ditw.sparkRuns.pmXtr.AliasHelper
 
 import scala.collection.mutable.ListBuffer
 
@@ -48,6 +49,7 @@ object EntXtrUtils extends Serializable {
     NaEn.fromJsons(srcStr)
   }
 
+  private val theStart = "the "
   private val EmptyAliases = List[String]()
   def loadIsniNaEns(f:String):Array[NaEn] = {
     val isniAliases = ResourceHelpers.load("/isni_aliases.json", IsniEnAlias.load)
@@ -64,7 +66,14 @@ object EntXtrUtils extends Serializable {
             // todo: val merged = en.aliases ++ isniAliases(isni)
             isniAliases(isni)
           else EmptyAliases
+
         val lowerName = en.name.toLowerCase()
+        if (lowerName.startsWith(theStart))
+          exAliases ::= en.name.substring(theStart.length)
+
+        val alt1 = AliasHelper.MR_xUnivSchoolOfY.matchRepl(lowerName)
+        if (alt1 != lowerName)
+          exAliases ::= alt1
 
         if (isniEntSites.contains(lowerName))
         // todo: val merged = en.aliases ++ isniAliases(isni)

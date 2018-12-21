@@ -98,11 +98,11 @@ object PmXtrUtils extends Serializable {
           else univRngs.map(_.str)
 
         import TagHelper._
-        if (univs.size > 1)
-          println(s"more than 1 seg found: $univs")
+//        if (univs.size > 1)
+//          println(s"more than 1 seg found: $univs")
         val neids = xtrNaEns(mp)
         val ents = neids.flatMap(brGNMmgr.value.naEntDataMap.get)
-        val entsByGNid = ents.filter(e => checkGNids(e, gnids, brGNMmgr.value.svc))
+        val entsByGNid = ents.filter(e => checkGNids(e.gnid, gnids, brGNMmgr.value.svc))
         // todo: could be multiple entities with diff ids while pointing to the same entity
         val entsTr = entsByGNid.map { e =>
           val neid = e.neid
@@ -132,27 +132,32 @@ object PmXtrUtils extends Serializable {
     found -> empty
   }
 
-  private def checkGNids(naen:NaEn, gnids:Set[Long], gnsvc: GNSvc):Boolean = {
-    if (gnids.contains(naen.gnid)) true
+  private[sparkRuns] def _checkGNidByDist(gnEnt1:GNEnt, gnEnt2:GNEnt):Boolean = {
+    CommonUtils.checkCoord(
+      gnEnt2.latitude,
+      gnEnt2.longitude,
+      gnEnt1.latitude,
+      gnEnt1.longitude
+    )
+  }
+  private[sparkRuns] def checkGNidByDist(gnEnt:GNEnt, gnid:Long, gnsvc: GNSvc):Boolean = {
+    val ent = gnsvc.entById(gnid)
+    if (ent.nonEmpty) {
+      _checkGNidByDist(ent.get, gnEnt)
+    }
+    else false
+  }
+
+  private[sparkRuns] def checkGNids(naenGNid:Long, gnids:Set[Long], gnsvc: GNSvc):Boolean = {
+    if (gnids.contains(naenGNid)) true
     else {
-      val ent2Check = gnsvc.entById(naen.gnid)
+      val ent2Check = gnsvc.entById(naenGNid)
       if (ent2Check.isEmpty) {
-        println(s"gnid: ${naen.gnid} not in svc")
+        println(s"gnid: ${naenGNid} not in svc")
         false
       }
       else {
-        gnids.exists { id =>
-          val ent = gnsvc.entById(id)
-          if (ent.nonEmpty) {
-            CommonUtils.checkCoord(
-              ent.get.latitude,
-              ent.get.longitude,
-              ent2Check.get.latitude,
-              ent2Check.get.longitude
-            )
-          }
-          else false
-        }
+        gnids.exists { id => checkGNidByDist(ent2Check.get, id, gnsvc) }
       }
     }
   }

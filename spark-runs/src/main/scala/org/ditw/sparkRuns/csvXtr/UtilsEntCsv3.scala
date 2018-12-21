@@ -6,11 +6,12 @@ import org.apache.commons.io.IOUtils
 import org.apache.spark.sql.Row
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.{ResourceHelpers, SparkUtils}
-import org.ditw.demo1.gndata.GNCntry
+import org.ditw.demo1.gndata.{GNCntry, GNEnt}
 import org.ditw.demo1.gndata.GNCntry.{PR, US}
 import org.ditw.exutil1.naen.NaEnData.NaEnCat
 import org.ditw.exutil1.naen.{NaEn, NaEnData, SrcCsvMeta}
 import org.ditw.sparkRuns.CommonUtils
+import org.ditw.sparkRuns.pmXtr.PmXtrUtils
 
 object UtilsEntCsv3 {
   private val headers =
@@ -71,6 +72,7 @@ object UtilsEntCsv3 {
       .map { h => h.strInName.toLowerCase() -> h.gnid }.toMap
     val brNameHint = spSess.sparkContext.broadcast(nameGnHints)
 
+    val EmptyEnts = List[GNEnt]()
     type RowResType = (String, List[String], Long, Map[String, String])
     val (ents, errors) = process[RowResType](
       rows,
@@ -98,19 +100,33 @@ object UtilsEntCsv3 {
             val name = csvMeta.name(row)
             val lowerName = name.toLowerCase()
             val h = brNameHint.value.filter(p => name.toLowerCase().contains(p._1))
-            val ents =
+            var ents =
               if (h.nonEmpty) {
                 if (h.size > 1) {
                   throw new RuntimeException("todo: multiple hints?")
                 }
                 else {
                   val gnidHint = h.head._2
-                  val hint = allEnts.filter(_.gnid == gnidHint)
-                  println(s"Found hint for [$name]: $hint")
-                  hint
+                  val hintEnt = brGNMmgr.value.svc.entById(gnidHint)
+                  if (hintEnt.nonEmpty) {
+                    val hint = allEnts.filter(PmXtrUtils._checkGNidByDist(hintEnt.get, _))
+                    println(s"Found hint for [$name]: $hint")
+                    hint
+                  }
+                  else EmptyEnts
                 }
               }
               else allEnts
+
+//            if (lowerName == "university of california san diego psychiatric associates")
+//              println("ok")
+            if (ents.size > 1) {
+              val maxPop = ents.map(_.population).max
+//              if (maxPop > 0)
+//                println(s"more than one ents: $ents - will choose the most populous one (max popu: $maxPop)")
+              ents = ents.filter(_.population == maxPop)
+            }
+
             if (ents.size == 1) {
               val ent = ents.head
               val altName = csvMeta.altNames(row)
@@ -125,7 +141,13 @@ object UtilsEntCsv3 {
               ))
             }
             else {
-               errMsg = taggedErrorMsg(4, s"todo: more than one ents: $ents")
+              if (ents.nonEmpty) {
+                val maxPop = ents.map(_.population).max
+                errMsg = taggedErrorMsg(4, s"todo: more than one ents (max population: $maxPop): $ents")
+              }
+              else {
+                errMsg = taggedErrorMsg(3, s"$cityStateCC not found (filtered)")
+              }
             }
           }
         }
