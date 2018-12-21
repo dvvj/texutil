@@ -58,8 +58,8 @@ object UtilsXtrCntry {
       ccs, Set(PR), spark,
       "file:///media/sf_vmshare/gns/all"
       ,Map(
-//        builtinTag(US_UNIV.toString) -> UsUnivColls,
-//        builtinTag(US_HOSP.toString) -> UsHosps,
+        builtinTag(US_UNIV.toString) -> UsUnivColls,
+        builtinTag(US_HOSP.toString) -> UsHosps,
         builtinTag(ISNI.toString) -> isniEnts
       )
     )
@@ -79,10 +79,11 @@ object UtilsXtrCntry {
     val singleSegs = allSegs.filter(_._3.length == 1)
 
     val multiSegs = allSegs.filter(_._3.length != 1)
+    printlnT0(s"Single Segs: ${singleSegs.count()}, Multiple Segs: ${multiSegs.count()}")
 
     val (foundRes, emptyRes) = processSingleSegs(singleSegs, brGNMmgr, brCcs)
 
-    printlnT0("Saving results ...")
+    printlnT0(s"Found: ${foundRes.count()}, Empty: ${emptyRes.count()} Saving results ...")
     val outJsonPath = "file:///media/sf_vmshare/pmjs/ssr"
     SparkUtils.del(spark, outJsonPath)
     foundRes

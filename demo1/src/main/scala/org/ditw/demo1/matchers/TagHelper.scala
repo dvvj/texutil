@@ -4,6 +4,7 @@ import org.ditw.demo1.gndata.GNCntry.GNCntry
 object TagHelper extends Serializable {
 
   private[demo1] val TmPrepIn = "_TmPrepIn"
+  private[demo1] val TmLaLower = "_TmLaLower"
   val TmGNBlacklist = "TmGNBlacklist"
   val TmGNWhitelist = "TmGNWhitelist"
 

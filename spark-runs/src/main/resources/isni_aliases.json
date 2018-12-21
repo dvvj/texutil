@@ -1,5 +1,12 @@
 [
   {
+    "isni": "0000000121618908",
+    "aliases": [
+      "Eli Lilly and Company",
+      "Lilly USA LLC"
+    ]
+  },
+  {
     "isni": "0000000122433366",
     "aliases": [
       "U.S. Food & Drug Administration",
@@ -68,7 +75,7 @@
   },
   {
     "isni": "0000000121090664",
-    "aliases": [ "Harvard T.H. Chan School of Public Health" ]
+    "aliases": [ "Harvard T.H. Chan School of Public Health", "Harvard School of Public Health" ]
   },
   {
     "isni": "0000000405397211",
