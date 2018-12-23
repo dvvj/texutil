@@ -72,15 +72,23 @@ object PmXtrUtils extends Serializable {
 
       val aff = affSegs(0) // single line
       val gnm = brGNMmgr.value
-      val mp = MatchPool.fromStr(aff, gnm.tknr, gnm.dict)
+      var mp:MatchPool = null
+      try {
+        mp = MatchPool.fromStr(aff, gnm.tknr, gnm.dict)
+      }
+      catch {
+        case t: Throwable => {
+          println(s"error tokenizing $aff")
+        }
+      }
       gnm.mmgr.run(mp)
       val univRngs = mp.get(TagGroup4Univ.segTag).map(_.range)
       val rng2Ents = gnm.svc.extrEnts(gnm.xtrMgr, mp)
       val ents = rng2Ents.values.flatten
       val entsOfCntry = ents.filter(ent => brCcsStr.value.contains(ent.countryCode))
       var res:Option[SingleSegRes] = None
-//      if (pmid == 28288515L) // && localId == 2)
-//        println("ok")
+      //      if (pmid == 28288515L) // && localId == 2)
+      //        println("ok")
       if (entsOfCntry.nonEmpty) {
         val gnids = entsOfCntry.map(_.gnid).toSet
         val univs =
@@ -98,8 +106,8 @@ object PmXtrUtils extends Serializable {
           else univRngs.map(_.str)
 
         import TagHelper._
-//        if (univs.size > 1)
-//          println(s"more than 1 seg found: $univs")
+        //        if (univs.size > 1)
+        //          println(s"more than 1 seg found: $univs")
         val neids = xtrNaEns(mp)
         val ents = neids.flatMap(brGNMmgr.value.naEntDataMap.get)
         val entsByGNid = ents.filter(e => checkGNids(e.gnid, gnids, brGNMmgr.value.svc))
@@ -120,6 +128,7 @@ object PmXtrUtils extends Serializable {
       }
       //else None
       (s"$pmid-$localId: $aff", entsOfCntry, res)
+
 
     }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 

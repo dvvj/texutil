@@ -29,6 +29,7 @@ object GenUtils extends Serializable {
       replRegex.replaceAllIn(nr, "")
     }
   }
+  def removeAccents(str:String):String = replRegex.replaceAllIn(str, "")
 
   def splitPreserve(in:String, sp:Char):Vector[String] = {
     val res = new ListBuffer[String]()

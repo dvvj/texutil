@@ -71,9 +71,9 @@ object EntXtrUtils extends Serializable {
         if (lowerName.startsWith(theStart))
           exAliases ::= en.name.substring(theStart.length)
 
-        val alt1 = AliasHelper.MR_xUnivSchoolOfY.matchRepl(lowerName)
-        if (alt1 != lowerName)
-          exAliases ::= alt1
+        val alt1 = AliasHelper.univSchoolCollegeAlias(lowerName)
+        if (alt1.nonEmpty)
+          exAliases ::= alt1.get
 
         if (isniEntSites.contains(lowerName))
         // todo: val merged = en.aliases ++ isniAliases(isni)

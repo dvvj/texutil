@@ -1,10 +1,12 @@
 package org.ditw.matcher
+import java.util.Locale
+
 import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.{FlatSpec, Matchers}
 import TokenMatchers._
 import org.ditw.tknr.TestHelpers._
 import MatchPool._
-import org.ditw.common.TkRange
+import org.ditw.common.{GenUtils, TkRange}
 class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyChecks {
   private val ngram1 = ngramSplit(
     Set(
@@ -49,6 +51,13 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
 
   private val testData = Table(
     ("ngram", "input", "expSet"),
+//    (
+//      regexInLower,
+//      "1 Bezmialem Vakıf University Faculty of Dentistry Department of Prosthodontics, Fatih, İstanbul/ Turkey .",
+//      Set(
+//        (0, 3, 4) -> Set(regexInLower.tag.get)
+//      )
+//    ),
     (
       regexInLower,
       "Univ of X in CityX, IN 00001 USA",
@@ -117,6 +126,7 @@ class TokenMatchersTest extends FlatSpec with Matchers with TableDrivenPropertyC
 
   "NGram matcher test" should "pass" in {
     forAll(testData) { (tm, inStr, expRangeTags) =>
+      val s = GenUtils.removeAccents(inStr.toLowerCase())
       val matchPool = fromStr(inStr, testTokenizer, dict)
       val res0 = tm.run(matchPool)
       val res = res0.map(r => r.range -> r.getTags)

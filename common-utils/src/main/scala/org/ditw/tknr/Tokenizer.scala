@@ -1,6 +1,6 @@
 package org.ditw.tknr
 
-import org.ditw.common.Dict
+import org.ditw.common.{Dict, GenUtils}
 import org.ditw.tknr.Trimmers.TTrimmer
 
 import scala.collection.mutable.ListBuffer
@@ -95,7 +95,7 @@ object Tokenizers extends Serializable {
       var findStart = 0
       var segStart = findStart
       val inStr = inToken.c
-      val inLower = inStr.toLowerCase()
+      val inLower = GenUtils.removeAccents(inStr.toLowerCase())
       while (findStart < inLower.length) {
         var idx = inLower.indexOf(splitter, findStart)
         if (idx >= 0) {

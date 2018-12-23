@@ -58,8 +58,8 @@ object UtilsXtrCntry {
       ccs, Set(PR), spark,
       "file:///media/sf_vmshare/gns/all"
       ,Map(
-        builtinTag(US_UNIV.toString) -> UsUnivColls,
-        builtinTag(US_HOSP.toString) -> UsHosps,
+//        builtinTag(US_UNIV.toString) -> UsUnivColls,
+//        builtinTag(US_HOSP.toString) -> UsHosps,
         builtinTag(ISNI.toString) -> isniEnts
       )
     )
@@ -87,7 +87,7 @@ object UtilsXtrCntry {
     val outJsonPath = "file:///media/sf_vmshare/pmjs/ssr"
     SparkUtils.del(spark, outJsonPath)
     foundRes
-      .coalesce(1)
+      .coalesce(4)
       .sortBy(r => r.pmid -> r.localId)
       .map(singleRes2Json)
       .saveAsTextFile(outJsonPath)
