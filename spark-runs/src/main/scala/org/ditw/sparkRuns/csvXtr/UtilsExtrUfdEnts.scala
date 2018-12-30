@@ -105,7 +105,7 @@ object UtilsExtrUfdEnts {
                   val hintEnt = brGNMmgr.value.svc.entById(gnidHint)
                   if (hintEnt.nonEmpty) {
                     val hint = allEnts.filter(PmXtrUtils._checkGNidByDist(hintEnt.get, _))
-                    println(s"Found hint for [$name]: $hint")
+                    //println(s"Found hint for [$name]: $hint")
                     hint
                   }
                   else EmptyEnts
@@ -128,6 +128,7 @@ object UtilsExtrUfdEnts {
               res = Option((name, GNCntry.withName(cc), altNames, ent,
                 Map(
                   NaEn.Attr_CC -> cc
+                  //,NaEn.Attr_ISNI -> csvMeta.strVal(row, ColISNI)
                 ) ++ csvMeta.otherKVPairs(row)
               ))
             }
@@ -158,9 +159,13 @@ object UtilsExtrUfdEnts {
 
     println(s"Ents: ${ents.length}")
 
-//    val errorOut = new FileOutputStream("/media/sf_vmshare/isni_err.txt")
-//    IOUtils.write(errors.mkString("\n"), errorOut, StandardCharsets.UTF_8)
-//    errorOut.close()
+//    writeJson(
+//      "/media/sf_vmshare/ufd-isni.json",
+//      ents, NaEn.toJsons
+//    )
+
+
+    writeStr("/media/sf_vmshare/isni_err.txt", errors)
 
     spSess.stop()
   }

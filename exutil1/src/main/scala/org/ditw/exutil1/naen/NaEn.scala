@@ -27,6 +27,7 @@ object NaEn extends Serializable {
   }
 
   val Attr_CC:String = "CC"
+  val Attr_ISNI:String = "ISNI"
 
   val EmptyAttrs:Map[String, String] = Map()
 

@@ -218,4 +218,9 @@ object CommonUtils extends Serializable {
     IOUtils.write(conv(objs), out, StandardCharsets.UTF_8)
     out.close()
   }
+  def writeStr(path:String, strs:Array[String]):Unit = {
+    val out = new FileOutputStream(path)
+    IOUtils.write(strs.mkString("\n"), out, StandardCharsets.UTF_8)
+    out.close()
+  }
 }
