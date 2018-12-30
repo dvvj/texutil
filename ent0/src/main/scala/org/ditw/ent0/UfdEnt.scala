@@ -1,5 +1,6 @@
 package org.ditw.ent0
 import org.ditw.demo1.gndata.GNCntry.GNCntry
+import org.ditw.demo1.gndata.{GNCntry, GNEnt}
 import org.ditw.ent0.UfdType.UfdType
 
 case class UfdEnt(
@@ -61,5 +62,16 @@ object UfdEnt extends Serializable {
       orgLId.toInt,
       0xFFFF
     )
+  }
+
+  private type AdmCodeXtrer = GNEnt => Array[String]
+  private val admCodeXtrerMap = Map[GNCntry, AdmCodeXtrer](
+    US -> (ent => ent.admCodes.slice(0, 1).toArray)
+  )
+
+  def ent2UfdGeo(ent: GNEnt):UfdGeo = {
+    val cntry = GNCntry.withName(ent.countryCode)
+    val admCodes = admCodeXtrerMap(cntry)(ent)
+    UfdGeo(cntry, admCodes, ent.gnid)
   }
 }

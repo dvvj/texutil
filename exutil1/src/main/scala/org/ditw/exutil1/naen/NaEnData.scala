@@ -24,7 +24,7 @@ object NaEnData extends Serializable {
     US_UNIV -> 1000000000L,
     US_HOSP -> 2000000000L,
     ISNI -> 3000000000L,
-    UFD -> 100000L
+    UFD -> 0x10000L
   )
 
   def catIdStart(cat:NaEnCat):Long = idStartCatMap(cat)

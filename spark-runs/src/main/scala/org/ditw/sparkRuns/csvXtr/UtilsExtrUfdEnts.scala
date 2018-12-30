@@ -69,7 +69,7 @@ object UtilsExtrUfdEnts {
     val idStart = NaEnData.catIdStart(NaEnCat.UFD)
 
     val EmptyEnts = List[GNEnt]()
-    type RowResType = (String, GNCntry, List[String], Long, Map[String, String])
+    type RowResType = (String, GNCntry, List[String], GNEnt, Map[String, String])
     val (ents, errors) = process[RowResType](
       rows,
       row => {
@@ -125,7 +125,7 @@ object UtilsExtrUfdEnts {
                 if (altName == null || altName.isEmpty)
                   List[String]()
                 else List(altName)
-              res = Option((name, GNCntry.withName(cc), altNames, ent.gnid,
+              res = Option((name, GNCntry.withName(cc), altNames, ent,
                 Map(
                   NaEn.Attr_CC -> cc
                 ) ++ csvMeta.otherKVPairs(row)
@@ -149,10 +149,10 @@ object UtilsExtrUfdEnts {
       (tp, idx) => {
         val orgLId = idStart + idx
         val (ri, res, _) = tp
-        val (name, cntry, alts, gnid, attrs) = res.get
-        val geo = UfdGeo(cntry, Array(), gnid)
+        val (name, cntry, alts, ent, attrs) = res.get
+        val geo = UfdEnt.ent2UfdGeo(ent) // UfdGeo(cntry, Array(), ent.gnid)
         val id = UfdEnt.ufdId(TODO, geo, orgLId)
-        NaEn(id, name, alts, gnid, attrs)
+        NaEn(id, name, alts, ent.gnid, attrs)
       }
     )
 
