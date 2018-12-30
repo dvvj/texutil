@@ -7,8 +7,8 @@
         <relativePath>../pom.xml</relativePath>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <name>Spark Jobs</name>
-    <artifactId>spark-runs</artifactId>
+    <name>Ent 0</name>
+    <artifactId>ent0</artifactId>
   <dependencies>
     <dependency>
       <groupId>commons-io</groupId>
@@ -23,63 +23,30 @@
       <artifactId>scala-library</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.scalatest</groupId>
+      <artifactId>scalatest_${scala.minor.version}</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.ditw</groupId>
       <artifactId>common-utils</artifactId>
     </dependency>
     <dependency>
       <groupId>org.ditw</groupId>
-      <artifactId>text-seg</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.ditw</groupId>
-      <artifactId>pmxml</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.ditw</groupId>
       <artifactId>demo1</artifactId>
     </dependency>
+
     <dependency>
-      <groupId>org.ditw</groupId>
-      <artifactId>ent0</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.ditw</groupId>
-      <artifactId>exutil1</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.scalatest</groupId>
-      <artifactId>scalatest_${scala.minor.version}</artifactId>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-core_2.11</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.apache.hadoop</groupId>
-      <artifactId>hadoop-aws</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.hadoop</groupId>
-      <artifactId>hadoop-common</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-annotations</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-core</artifactId>
-    </dependency>
   </dependencies>
 
 
-  <build>
+    <build>
     <plugins>
       <plugin>
         <groupId>net.alchim31.maven</groupId>
@@ -87,8 +54,12 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-shade-plugin</artifactId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.scalatest</groupId>
+        <artifactId>scalatest-maven-plugin</artifactId>
       </plugin>
     </plugins>
-  </build>
+    </build>
 </project>

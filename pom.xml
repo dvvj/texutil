@@ -183,6 +183,12 @@
 
             <dependency>
                 <groupId>org.ditw</groupId>
+                <artifactId>ent0</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ditw</groupId>
                 <artifactId>demo1</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -250,6 +256,7 @@
     </dependencyManagement>
 
     <modules>
+        <module>ent0</module>
         <module>exutil1</module>
         <module>common-utils</module>
         <module>spark-runs</module>
