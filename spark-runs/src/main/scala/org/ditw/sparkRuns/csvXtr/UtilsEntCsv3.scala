@@ -14,30 +14,7 @@ import org.ditw.sparkRuns.CommonUtils
 import org.ditw.sparkRuns.pmXtr.PmXtrUtils
 
 object UtilsEntCsv3 {
-  private val headers =
-    "isni,name,alt_names,locality,admin_area_level_1_short,post_code,country_code,urls"
-  private val ColISNI = "isni"
-  private val ColName = "name"
-  private val ColAltNames = "alt_names"
-  private val ColCity = "locality"
-  private val ColAdm1 = "admin_area_level_1_short"
-  private val ColPostal = "post_code"
-  private val ColCountryCode = "country_code"
-
-  private val csvMeta = SrcCsvMeta(
-    ColName,
-    ColAltNames,
-    None,
-    Vector(ColCity, ColAdm1, ColCountryCode),
-    Vector(ColISNI, ColPostal)
-  )
-
-  private def rowInfo(row:Row):String = {
-    val isni = row.getAs[String](ColISNI)
-    val name = row.getAs[String](ColName)
-    s"$name($isni)"
-  }
-
+  import IsniSchema._
 //  private def errorRes(row:Row, errMsg:String):
 //    (String, Option[(String, Vector[String], Long, Map[String, String])], Option[String]) = {
 //    (
