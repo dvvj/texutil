@@ -16,6 +16,10 @@ object UtilsIsniPfxMap {
         "/media/sf_vmshare/ringgold_isni.csv",
         csvMeta
       ).rdd
+      .filter { r =>
+        val cc = csvMeta.strVal(r, ColCountryCode)
+        cc == "US"
+      }
       .map { r =>
         val x = csvMeta.strVal(r, ColName)
         if (x != null && !x.isEmpty) x.toLowerCase()
@@ -43,10 +47,15 @@ object UtilsIsniPfxMap {
         n -> None
     }.persist(StorageLevel.MEMORY_AND_DISK_SER_2)
 
-    val noPfx = pfxMap.filter(_._2.isEmpty).map(_._1).sortBy(n => n)
+    val noPfx = pfxMap
+      .filter(_._2.isEmpty)
+      .map(_._1)
+      .sortBy(n => n)
+      .collect()
+    println(s"No Prefix #: ${noPfx.length}")
     CommonUtils.writeStr(
       "/media/sf_vmshare/isni_nopfx.txt",
-      noPfx.collect()
+      noPfx
     )
 
     val hasPfx = pfxMap.filter(_._2.nonEmpty)
@@ -61,6 +70,7 @@ object UtilsIsniPfxMap {
           s"$pfx\n\t", "\n\t", ""
         )
       }.collect()
+    println(s"W/ Prefix #: ${pfxOutput.length}")
     CommonUtils.writeStr(
       "/media/sf_vmshare/isni_pfx.txt",
       pfxOutput
