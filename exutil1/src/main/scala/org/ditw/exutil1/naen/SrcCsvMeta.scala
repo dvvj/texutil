@@ -23,7 +23,25 @@ case class SrcCsvMeta(
   def name(row:Row):String = strVal(row, nameCol)
   def altNames(row:Row):String = strVal(row, altNamesCol)
 
-  def strVal(row:Row, col:String):String = row.getAs[String](col)
+
+  def strVal(
+    row:Row,
+    col:String,
+    errata:Map[String, String] = SrcCsvMeta.NoErrata
+  ):String = {
+    val orig = row.getAs[String](col)
+    if (errata.isEmpty)
+      orig
+    else {
+      val toRepl = errata.keySet.filter(orig.contains)
+      if (toRepl.nonEmpty) {
+        var res = orig
+        toRepl.foreach(tr => res = res.replaceAll(tr, errata(tr)))
+        res
+      }
+      else orig
+    }
+  }
 
   def latCol:String = coordCols.get._1
   def lonCol:String = coordCols.get._2
@@ -40,4 +58,5 @@ case class SrcCsvMeta(
 
 object SrcCsvMeta extends Serializable {
   val EmptyCols:Vector[String] = Vector()
+  val NoErrata:Map[String, String] = Map()
 }
