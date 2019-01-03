@@ -3,11 +3,14 @@ import java.io.FileInputStream
 import java.nio.charset.StandardCharsets
 
 import org.apache.commons.io.IOUtils
+import org.apache.parquet.filter2.predicate.Operators.Column
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{DataFrame, Row}
+import org.apache.spark.sql.{DataFrame, Row, RowFactory, SparkSession}
 import org.apache.spark.storage.StorageLevel
 import org.ditw.common.ResourceHelpers
-import org.ditw.exutil1.naen.NaEn
+import org.ditw.exutil1.naen.{NaEn, SrcCsvMeta}
+import org.ditw.sparkRuns.CommonUtils.csvRead
+import org.ditw.sparkRuns.csvXtr.IsniSchema.csvMeta
 import org.ditw.sparkRuns.pmXtr.AliasHelper
 
 import scala.collection.mutable.ListBuffer
@@ -104,4 +107,25 @@ object EntXtrUtils extends Serializable {
 //      rowInfo, None, Option(errMsg)
 //    )
 //  }
+
+  def loadIsni(
+    spSess: SparkSession,
+    csvPath:String
+  ):DataFrame = {
+
+    import spSess.implicits._
+
+    val orig = csvRead(
+      spSess, csvPath, csvMeta
+    )
+
+    orig
+//    val errata = ResourceHelpers.load("isni_errata.json", IsniErrata.load)
+//
+//
+//    var res = orig
+//    errata.foreach { e =>
+//      res.sqlContext.sql("update ")
+//    }
+  }
 }

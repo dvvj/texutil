@@ -252,6 +252,7 @@
                 <artifactId>jackson-core</artifactId>
                 <version>${jackson_version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

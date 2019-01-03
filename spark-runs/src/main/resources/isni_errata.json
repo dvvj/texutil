@@ -1,0 +1,26 @@
+[
+  {
+    "isni": "0000000404442551",
+    "col": "name", "v": "University of California San Francisco Department of Biochemistry and Biophysics"
+  },
+  {
+    "isni": "0000000446782327",
+    "col": "name", "v": "University of California San Francisco Medical Center Neurosurgery Clinic"
+  },
+  {
+    "isni": "0000000446811685",
+    "col": "locality", "v": "San Francisco"
+  },
+  {
+    "isni": "0000000410910999",
+    "col": "locality", "v": "San Francisco"
+  },
+  {
+    "isni": "0000000104489702",
+    "col": "name", "v": "Jewish Community Center of San Francisco"
+  },
+  {
+    "isni": "000000040490228X",
+    "col": "name", "v": "University of California San Fransisco Division of Human Immunodeficiency Virus/Acquired Immune Deficiency Syndrome"
+  }
+]
