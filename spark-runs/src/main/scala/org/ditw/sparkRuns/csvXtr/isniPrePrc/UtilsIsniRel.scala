@@ -30,7 +30,13 @@ object UtilsIsniRel {
       .map { r =>
         val x = csvMeta.strVal(r, ColName)
         val name =
-          if (x != null && !x.isEmpty) x.toLowerCase()
+          if (x != null && !x.isEmpty) {
+            val loc = csvMeta.strValEmptyIfNull(r, ColCity).toLowerCase()
+            val adm1 = csvMeta.strValEmptyIfNull(r, ColAdm1).toLowerCase()
+            val cc = csvMeta.strValEmptyIfNull(r, ColCountryCode).toLowerCase()
+            val geo = s"$loc|$adm1|$cc|"
+            geo+x.toLowerCase()
+          }
           else "________________________________NA"
         val isni = csvMeta.strVal(r, ColISNI)
         name -> isni
@@ -113,9 +119,27 @@ object UtilsIsniRel {
     )
   }
 
+  private val blockPhrases = Set(
+    "elementary school",
+    "library",
+    "high school",
+    "middle school"
+  )
   private val filter1:Row => Boolean = r => {
-    csvMeta.strVal(r, ColCountryCode) == "US" &&
-      csvMeta.strVal(r, ColName).toLowerCase().contains("university of california")
+    val name = csvMeta.strVal(r, ColName)
+    if (name == null) {
+      println(r.toString())
+      false
+    }
+    else {
+      val nameLower = name.toLowerCase()
+      csvMeta.strVal(r, ColCountryCode) == "US" &&
+        nameLower.contains("university") &&
+        !blockPhrases.exists(nameLower.contains)
+
+      //&& csvMeta.strVal(r, ColName).toLowerCase().contains("university of california")
+    }
+
   }
 
   def main(args:Array[String]):Unit = {

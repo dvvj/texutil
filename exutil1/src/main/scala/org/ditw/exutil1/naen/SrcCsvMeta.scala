@@ -26,21 +26,31 @@ case class SrcCsvMeta(
 
   def strVal(
     row:Row,
-    col:String,
-    errata:Map[String, String] = SrcCsvMeta.NoErrata
+    col:String
+    //errata:Map[String, String] = SrcCsvMeta.NoErrata
   ):String = {
+    row.getAs[String](col)
+//    if (errata.isEmpty)
+//      orig
+//    else {
+//      val toRepl = errata.keySet.filter(orig.contains)
+//      if (toRepl.nonEmpty) {
+//        var res = orig
+//        toRepl.foreach(tr => res = res.replaceAll(tr, errata(tr)))
+//        res
+//      }
+//      else orig
+//    }
+  }
+
+  def strValEmptyIfNull(
+              row:Row,
+              col:String
+              //errata:Map[String, String] = SrcCsvMeta.NoErrata
+            ):String = {
     val orig = row.getAs[String](col)
-    if (errata.isEmpty)
-      orig
-    else {
-      val toRepl = errata.keySet.filter(orig.contains)
-      if (toRepl.nonEmpty) {
-        var res = orig
-        toRepl.foreach(tr => res = res.replaceAll(tr, errata(tr)))
-        res
-      }
-      else orig
-    }
+    if (orig != null) orig
+    else SrcCsvMeta.EmptyStr
   }
 
   def latCol:String = coordCols.get._1
@@ -59,4 +69,6 @@ case class SrcCsvMeta(
 object SrcCsvMeta extends Serializable {
   val EmptyCols:Vector[String] = Vector()
   val NoErrata:Map[String, String] = Map()
+
+  val EmptyStr = ""
 }
