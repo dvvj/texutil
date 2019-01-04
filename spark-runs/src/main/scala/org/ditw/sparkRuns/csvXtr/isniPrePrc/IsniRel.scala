@@ -5,7 +5,7 @@ case class IsniRelUnit(isni:String, n:String)
 
 case class IsniRel(
   parent:IsniRelUnit,
-  children:Array[IsniRelUnit]
+  children:Array[String]
 ) {
 
 }
