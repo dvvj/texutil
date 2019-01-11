@@ -260,6 +260,7 @@
         <module>ent0</module>
         <module>exutil1</module>
         <module>common-utils</module>
+        <module>name-utils</module>
         <module>spark-runs</module>
         <module>text-seg</module>
         <module>demo1</module>
