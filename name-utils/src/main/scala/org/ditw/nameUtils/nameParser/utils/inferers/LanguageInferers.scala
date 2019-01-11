@@ -25,7 +25,7 @@ private[nameParser] object LanguageInferers extends Serializable {
   // priority based on list order
   private[inferers] val PrioritizedInferers = List(
     List[Name2LangInferer](
-      lastNamePartInferer, namePartInferer, nameComponentInferer, fullNameInferer
+      lastNamePartInferer, namePartInferer, lastNameComponentInferer, fullNameInferer
     )
   )
 

@@ -13,6 +13,11 @@ class ParsingTests extends FlatSpec with Matchers with TableDrivenPropertyChecks
   val nameTestData = Table(
     ("in", "result"),
     (
+      genNormInput("Balmaña", "Judith"),
+      hispanicResult(
+        IndexedSeq("Balmaña"), IndexedSeq("Judith"), None)
+    ),
+    (
       genNormInput("DE LA PENA", "CRISTINA ISABEL"),
       hispanicResult(
         IndexedSeq("DE LA PENA"), IndexedSeq("CRISTINA"), None, Option(IndexedSeq("ISABEL")))

@@ -16,7 +16,7 @@ class LangInferersIntegratedTests extends TestNGSuite with Matchers with TableDr
   val testData = Table(
     ("foreName", "lastName", "confirmedLangs", "possibleLangs"),
     (
-      "Rodríguez-Hernández", "A",
+      "A", "Rodríguez-Hernández",
       Iterable(Hispanic), EmptyLangs
     ),
     (

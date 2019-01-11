@@ -74,10 +74,13 @@ object MLNParsers extends Serializable {
         isLastName = normedCompss.exists(lastNameSet.contains)
         if (!isLastName)
           idx += 1
-
       }
-      if (idx > parts.length-1)
-        throw new IllegalArgumentException(s"todo: no last name left, should probably flip")
+
+      if (idx > parts.length-1) {
+        println(s"todo: no last name left, should probably flip: [$fullName]")
+        idx = parts.length-1
+      }
+
 //      val lastPartInit = firstNames.last.length == 1
 //      val checkLastName = lastNameSet.nonEmpty
 //      if (!lastPartInit && checkLastName && idx != parts.length-1) {

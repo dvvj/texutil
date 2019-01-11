@@ -77,27 +77,27 @@ class MLNParsersTest extends FlatSpec with Matchers with TableDrivenPropertyChec
     }
   }
 
-  private val exTestData = Table(
-    ("lang", "fullName"),
-    (
-      Hispanic,
-      "Digna R"
-    ),
-    (
-      Hispanic,
-      "Digna R X"
-    ),
-    (
-      Hispanic,
-      "victor"
-    )
-  )
-
-  "MLN parser Exception tests" should "pass" in {
-    forAll(exTestData) { (lang, fullName) =>
-      intercept[IllegalArgumentException] {
-        parseFullName(lang, fullName)
-      }
-    }
-  }
+//  private val exTestData = Table(
+//    ("lang", "fullName"),
+//    (
+//      Hispanic,
+//      "Digna R"
+//    ),
+//    (
+//      Hispanic,
+//      "Digna R X"
+//    ),
+//    (
+//      Hispanic,
+//      "victor"
+//    )
+//  )
+//
+//  "MLN parser Exception tests" should "pass" in {
+//    forAll(exTestData) { (lang, fullName) =>
+//      intercept[IllegalArgumentException] {
+//        parseFullName(lang, fullName)
+//      }
+//    }
+//  }
 }
