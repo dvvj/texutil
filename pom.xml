@@ -183,6 +183,12 @@
 
             <dependency>
                 <groupId>org.ditw</groupId>
+                <artifactId>name-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.ditw</groupId>
                 <artifactId>ent0</artifactId>
                 <version>${project.version}</version>
             </dependency>

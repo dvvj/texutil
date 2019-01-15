@@ -10,7 +10,7 @@ import org.ditw.exutil1.naen.NaEnData.UsUnivColls
 import org.ditw.exutil1.naen.TagHelper.NaEnId_Pfx
 import org.ditw.exutil1.naen.{NaEn, NaEnData, TagHelper}
 import org.ditw.matcher.{MatchPool, TkMatch}
-import org.ditw.pmxml.model.AAAuAff
+import org.ditw.pmxml.model.{AAAuAff, AAAuSingle}
 import org.ditw.sparkRuns.CommonUtils
 import org.ditw.sparkRuns.CommonUtils.GNMmgr
 import org.ditw.textSeg.common.Tags.TagGroup4Univ
@@ -31,6 +31,18 @@ object PmXtrUtils extends Serializable {
         val auaff = AAAuAff.fromJson(j)
         val affMap = auaff.affs.map(aff => (pmid, aff.localId, segment(aff.aff.aff)))
         affMap
+      }
+  }
+
+  private[sparkRuns] def namesFromInput(spark: SparkContext, inputPath:String):RDD[(Long, Seq[AAAuSingle])] = {
+    spark.textFile(inputPath)
+      .map { l =>
+        val firstComma = l.indexOf(",")
+        val pmid = l.substring(1, firstComma).toLong
+        val j = l.substring(firstComma + 1, l.length - 1)
+        val auaff = AAAuAff.fromJson(j)
+        val authors = auaff.singleAuthors
+        pmid -> authors
       }
   }
 

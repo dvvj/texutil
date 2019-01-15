@@ -77,7 +77,7 @@ object MLNParsers extends Serializable {
       }
 
       if (idx > parts.length-1) {
-        println(s"todo: no last name left, should probably flip: [$fullName]")
+        //println(s"todo: no last name left, should probably flip: [$fullName]")
         idx = parts.length-1
       }
 
@@ -117,9 +117,12 @@ object MLNParsers extends Serializable {
       firstNames.toVector -> lastNames.toVector
     }
     else {
-      throw new IllegalArgumentException(s"Only one name part found from [$fullName]")
+      //throw new IllegalArgumentException(s"Only one name part found from [$fullName]")
+      println(s"Only one name part found from [$fullName]")
+      _EmptySplits
     }
   }
+  private val _EmptySplits = Vector[String]() -> Vector[String]()
 
   private val DoNotCheckLastNames = Set[String]()
   private val DoNotCheckReligiousNames:Option[TStrArrLookup] = None
@@ -165,7 +168,14 @@ object MLNParsers extends Serializable {
   }
 
   import ParserHelpers.InputKeyEnum._
-  private def nameStr(input:NormInput):String = s"${input(Medline_ForeName)} ${input(Medline_LastName)}"
+  private def nameStr(input:NormInput):String = {
+    var res = ""
+    if (input.contains(Medline_ForeName))
+      res += input(Medline_ForeName)
+    if (input.contains(Medline_LastName))
+      res += " " + input(Medline_LastName)
+    res
+  }
 
   import ParserHelpers._
   private[nameParser] trait TLFNParser extends TNameParser {

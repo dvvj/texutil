@@ -168,20 +168,20 @@ object ParserHelpers {
         // do parsing
 
         val r:Option[NormResult] = parserMap(lang).parse(in)
-        if (lang == Hispanic) {
-
-          val forename = in(Medline_ForeName)
-          val lastname = in(Medline_LastName)
-          if (r.nonEmpty) {
-            val resFirstNames = r.get.attrs(FirstName).mkString(" ")
-            val resLastNames = r.get.attrs(LastName).mkString(" ")
-            val resMiddleNames = r.get.extraNames.mkString(" ")
-            println(s"[$forename|$lastname] => [$resFirstNames|$resMiddleNames|$resLastNames]")
-          }
-          else {
-            println("empty results")
-          }
-        }
+//        if (lang == Hispanic) {
+//
+//          val forename = in(Medline_ForeName)
+//          val lastname = in(Medline_LastName)
+//          if (r.nonEmpty) {
+//            val resFirstNames = r.get.attrs(FirstName).mkString(" ")
+//            val resLastNames = r.get.attrs(LastName).mkString(" ")
+//            val resMiddleNames = r.get.extraNames.mkString(" ")
+//            println(s"[$forename|$lastname] => [$resFirstNames|$resMiddleNames|$resLastNames]")
+//          }
+//          else {
+//            println("empty results")
+//          }
+//        }
 
         r
 //        if (r.nonEmpty) normResult2ParseResult(inputSource(in), r.get)
