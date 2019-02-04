@@ -7,8 +7,8 @@ object NParsing {
   def main(args:Array[String]):Unit = {
 
     val spark = SparkUtils.sparkContextLocal()
-    val in = "file:///media/sf_vmshare/pmjs/pmj8AuAff"
-    val out = "/media/sf_vmshare/pmjs/psd8"
+    val in = "file:///media/sf_vmshare/pmjs/bck"
+    val out = "/media/sf_vmshare/pmjs/psd9"
 
     val pmid2NameSeq = PmXtrUtils.namesFromInput(spark, in)
 

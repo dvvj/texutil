@@ -195,10 +195,13 @@ object MLNParsers extends Serializable {
       else {
         val connIdx = lastNames.indices.filter(idx => lastNameConn.contains(lastNames(idx)))
         val lastNameParts = ListBuffer[String]()
-        if (connIdx.nonEmpty) {
-          if (connIdx.size > 1)
-            throw new IllegalArgumentException(s"todo: 2 or more connecting symbols [$src]?")
-          else {
+        if (connIdx.size > 1) {
+          println(s"todo: 2 or more connecting symbols [$src]?")
+          None
+        }
+        else {
+          if (connIdx.nonEmpty) {
+
             val idx = connIdx.head
             val p1 = lastNames.slice(0, idx)
             val p2 = lastNames.slice(idx+1, lastNames.length)
@@ -207,19 +210,19 @@ object MLNParsers extends Serializable {
             if (p2.nonEmpty)
               lastNameParts += p2.mkString(" ")
           }
-        }
-        else {
-          lastNameParts += lastNames.mkString(" ")
+          else {
+            lastNameParts += lastNames.mkString(" ")
+          }
+          val (firstNames, exNames) =
+            if (foreNames.size > 1) foreNames.slice(0, 1) -> Option(foreNames.slice(1, foreNames.size))
+            else foreNames -> None
+          Option(
+            resultFrom(
+              firstNames, splitLastNames(lastNameParts.toIndexedSeq), lang, exNames
+            )
+          )
         }
 
-        val (firstNames, exNames) =
-          if (foreNames.size > 1) foreNames.slice(0, 1) -> Option(foreNames.slice(1, foreNames.size))
-          else foreNames -> None
-        Option(
-          resultFrom(
-            firstNames, splitLastNames(lastNameParts.toIndexedSeq), lang, exNames
-          )
-        )
       }
     }
   }

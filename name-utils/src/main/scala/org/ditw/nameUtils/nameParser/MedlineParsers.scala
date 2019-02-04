@@ -137,7 +137,7 @@ object MedlineParsers {
       catch {
         case t:Throwable => {
           println(s"Exception when processing input: $input")
-          t.printStackTrace()
+          //t.printStackTrace()
           //throw t
           None
         }

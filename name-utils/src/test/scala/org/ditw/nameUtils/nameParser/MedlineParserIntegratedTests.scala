@@ -19,6 +19,10 @@ class MedlineParserIntegratedTests extends TestNGSuite with Matchers with TableD
 
   val testData = Table(
     ("input", "result"),
+//    (
+//      genNormInput("Xian-Qu", "-"),
+//      chineseResult("Fan", IndexedSeq("Xi", "De"))
+//    ),
     // Spanish
     (
       genNormInput("Rodríguez Hernández", "María de los Ángeles"),
