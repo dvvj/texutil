@@ -13,7 +13,15 @@ object SearchTest extends App {
 
   val clt = EsUtils.localClient("my-app")
 
-  val resp = EsUtils.runSearch(clt, "td_idx", QueryBuilders.matchAllQuery(), 15)
+  //val q = QueryBuilders.termQuery("res.name", "nist")
+  //val q = QueryBuilders.matchQuery("res.name", "nist")
+//  val q = QueryBuilders.matchQuery("res.name", "nits")
+//    .fuzziness(2)
+//  val q = QueryBuilders.matchPhraseQuery("res.name", "University of Maryland")
+//  val q = QueryBuilders.matchPhrasePrefixQuery("res.name", "University of Maryl")
+  val q = QueryBuilders.multiMatchQuery("University of Maryl", "res.name", "res.seg")
+
+  val resp = EsUtils.runSearch(clt, "td_idx", q, 15)
 
   val hits = resp.getHits.getHits
   println(s"${hits.size}")
